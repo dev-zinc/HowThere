@@ -1,4 +1,4 @@
-package com.jpa_team_project.how_there;
+package com.howthere.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

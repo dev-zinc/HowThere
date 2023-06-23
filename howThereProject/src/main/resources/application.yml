@@ -16,10 +16,10 @@ spring:
       ddl-auto: create
 
     #jpa format
-      properties:
-        hibernate:
-          format_sql: true
-        show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
 
   #log
   output:
