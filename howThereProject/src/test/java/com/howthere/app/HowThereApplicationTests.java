@@ -1,4 +1,4 @@
-package com.jpa_team_project.how_there;
+package com.howthere.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
