@@ -1,0 +1,142 @@
+body {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: rgb(34, 34, 34);
+    background-color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+    margin: 0px;
+}
+div {
+    display: block;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.cnvuats[class][class] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+ 
+}
+.midle{
+    padding-left: 5%;
+    padding-top: 5%;
+}
+section{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.h8i5hv0[class][class] {
+    font-size: var(--g-zgv-nj);
+    line-height: var(--b-x-z-q-l-e);
+    font-weight: var(--jx-zk-pv);
+}
+.ljt9wxn[class][class] {
+    padding: 0px !important;
+    list-style: none;
+    font-weight :bold; 
+}
+.lgydpc4{
+    color :#222;
+}
+.dqra4ro[class][class] {
+    display: inline-block;
+    vertical-align: bottom;
+    height: 240px;
+    width: 240px;
+    min-height: 1px;
+    background-image: url(https://a0.muscache.com/airbnb/static/error_pages/404-Airbnb_final-d652ff855b1335dd3eedc3baa8dc8b69.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.dir.m94tuun[class][class] {
+    margin: auto;
+}
+.m94tuun[class][class] {
+    width: 240px;
+    height: 240px;
+}
+.c1voot80[class][class] {
+    display: flex;
+}
+
+
+._1s94zl78 {
+    background-color: #F7F7F7;
+    margin: 0 auto !important;
+}
+._fyxf74 {
+    padding: 32px 0 !important;
+}
+._1l3ys1i:not(:last-child) {
+    padding-bottom: 24px !important;
+    margin-bottom: 24px !important;
+    border-bottom: 1px solid #DDDDDD !important;
+}
+
+._182afku {
+    color: #222222 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 600 !important;
+}
+
+._otc65q {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-size: unset !important;
+    font-weight: unset !important;
+}
+._yuolfv {
+    list-style: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+._fyxf74 {
+    display: flex;
+    flex-wrap: nowrap;
+
+
+}
+
+._1jndx64e {
+    font-family: inherit !important;
+    font-style: inherit !important;
+    font-variant: inherit !important;
+    position: relative !important;
+    text-decoration: none !important;
+    color: #222222 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 400 !important;
+    outline: none !important;
+}
+#head-boot{
+    height: 100px;
+}
+
+    
+hr{
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+}
+li{
+    height: 50px;
+    list-style: none;
+}
+.btn{
+    background-color: #e61e4d 27.5%;
+}
+a{
+    color : black;
+}
+#head-boot{
+    height: 100px;
+}
