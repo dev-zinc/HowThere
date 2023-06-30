@@ -7,81 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/diary/diary.css">
     <link rel="stylesheet" href="/css/main.css">
-    <title>list</title>
+    <title>일기장</title>
 </head>
 <body>
-    <header style="height: 80px;">
-        <div class="header-wrapper">
-            <div class="left-title">
-                <div class="flex">
-                    <div class="logo">
-                        <a href="/main" class="logo-img">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 32 32"
-                                 style="display: block; height: 32px; width: 32px; fill: #222222;"
-                                 focusable="false">
-                                <path d="M16 1c2 0 3.46.96 4.75 3.27l.53 1.02a424.58 424.58 0 0 1 7.1 14.84l.15.35c.67 1.6.9 2.48.96 3.4v.41l.01.23c0 4.06-2.88 6.48-6.36 6.48-2.22 0-4.55-1.26-6.7-3.39l-.26-.26-.17-.17h-.02l-.17.18c-2.05 2.1-4.27 3.42-6.42 3.62l-.28.01-.26.01c-3.48 0-6.36-2.42-6.36-6.48v-.47c.03-.93.23-1.77.83-3.24l.22-.53c.97-2.3 6.08-12.98 7.7-16.03C12.55 1.96 14 1 16 1zm0 2c-1.24 0-2.05.54-2.99 2.21l-.52 1a422.57 422.57 0 0 0-7.03 14.7l-.35.84a6.86 6.86 0 0 0-.6 2.24l-.01.33v.2C4.5 27.4 6.41 29 8.86 29c1.77 0 3.87-1.24 5.83-3.35-2.3-2.94-3.86-6.45-3.86-8.91 0-2.92 1.94-5.39 5.18-5.42 3.22.03 5.16 2.5 5.16 5.42 0 2.45-1.56 5.96-3.86 8.9 1.97 2.13 4.06 3.36 5.83 3.36 2.45 0 4.36-1.6 4.36-4.48v-.4a7.07 7.07 0 0 0-.72-2.63l-.25-.6C25.47 18.41 20.54 8.12 19 5.23 18.05 3.53 17.24 3 16 3zm.01 10.32c-2.01.02-3.18 1.51-3.18 3.42 0 1.8 1.18 4.58 2.96 7.04l.2.29.18-.24c1.73-2.38 2.9-5.06 3-6.87v-.22c0-1.9-1.17-3.4-3.16-3.42z">
-                                </path>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="title-text">
-                        <a href="/diary/list" class="diary-title">
-                            📝전국 일기장
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <nav class="right-nav flex">
-                <button type="button" class="nav-button">
-                    <div class="nav-wrapper flex">
-                        <div class="bundle">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 32 32"
-                                 style="display: block; fill: none; height: 16px; width: 16px; stroke: currentColor; stroke-width: 4; overflow: visible"
-                                 aria-hidden="true"
-                                 focusable="false">
-                                <g fill="none"><path d="M2 16h28M2 24h28M2 8h28"></path></g>
-                            </svg>
-                        </div>
-                        <div class="profile">
-                            <img alt="메인 탐색 메뉴"
-                                 src="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=찬&amp;im_w=240&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff"
-                                 class="i12vv2t2 dir dir-ltr" width="100%">
-                        </div>
-                    </div>
-                </button>
-            </nav>
-        </div>
-    </header>
+    <header th:replace="~{/diary/diary-header :: diary-header}"></header>
     <main>
         <div class="main-container">
             <div class="content">
-                <section id="search-box">
-                    <form class="diary-search-form flex">
-                        <input type="search" value=""
-                               class="diary-search-input"
-                               placeholder="내용, 지역 등으로 검색할 수 있어요"
-                               autocomplete="off">
-                        <button type="submit" class="search-button">
-                            <span class="button-background">
-                                <span></span>
-                            </span>
-                            <span class="button-icon">
-                                <span class="flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 32 32"
-                                         style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:4;overflow:visible"
-                                         focusable="false">
-                                        <path fill="none" d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9"></path>
-                                    </svg>
-                                    <span class="appear-text">검색</span>
-                                </span>
-                            </span>
-                        </button>
-                    </form>
-                </section>
                 <section id="diary-main-container">
+                    <div class="subtitle flex">
+                        <h2 tabindex="-1">거기어때 이용자들의 생생한 기록을 바로 만나보세요</h2>
+                    </div>
                     <nav class="category-nav">
                         <div class="category-nav-wrapper flex">
                             <div class="nav-tabs selected">카테고리1</div>
@@ -92,9 +28,6 @@
                         <div class="slight-divider"></div>
                     </nav>
                     <div class="content-wrap">
-                        <div class="subtitle flex">
-                            <h2 tabindex="-1">거기어때 이용자들의 생생한 기록을 바로 만나보세요</h2>
-                        </div>
                         <div class="diary-grid">
                             <!-- -->
                             <!-- -->

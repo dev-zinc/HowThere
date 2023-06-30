@@ -13,4 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DiaryController {
     @GetMapping("list")
     public void list() {;}
+
+    @GetMapping("article")
+    public void article() {;}
 }
