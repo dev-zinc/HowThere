@@ -52,4 +52,12 @@ header {
     box-shadow: 0 1px 0 rgba(0,0,0,0.135);
 }
 
+#search-box .diary-search-input {
+    padding: 14px 0 14px 24px;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
 

@@ -197,6 +197,8 @@
 
 .button-icon>span {
     align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
 }
 
 .category-nav {
@@ -294,8 +296,8 @@
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: bottom;
-    height: var(--dls-liteimage-height);
-    width: var(--dls-liteimage-width);
+    height: auto;
+    width: 100%;
     min-height: 1px;
 }
 
@@ -304,14 +306,14 @@
     width: 100%;
     position: absolute;
     vertical-align: bottom;
-    object-fit: var(--dls-liteimage-object-fit);
+    object-fit: cover;
 }
 
 .diary-img .background-img {
     background-image: none;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: var(--dls-liteimage-background-size);
+    background-size: 100%;
 }
 
 .diary-title {
