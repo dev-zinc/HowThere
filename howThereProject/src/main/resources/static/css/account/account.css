@@ -106,3 +106,36 @@
     font-weight: 400;
 }
 
+#account-deactivate {
+    margin-bottom: 49px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#account-deactivate .deactivate-text {
+    text-align: center;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+}
+
+#account-deactivate a {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    color: #222222;
+    position: relative;
+
+    font-size: 12px !important;
+    line-height: 16px !important;
+    font-weight: 600 !important;
+}
+
+
+
