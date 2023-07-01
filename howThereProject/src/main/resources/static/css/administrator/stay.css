@@ -180,7 +180,7 @@ input.select:focus{
     height: 68%;
 }
 
-.board-list div.post{
+.board-list div.stay{
     border-bottom: 0.5px solid #ddd;
     font-size: 0;
     height: 9%;
@@ -198,7 +198,7 @@ input.select:focus{
     align-items: center;
 }
 
-.board-list .post:last-child{
+.board-list .stay:last-child{
     border-bottom: 1px solid #000;
 }
 
@@ -217,31 +217,31 @@ input.select:focus{
 .board-list .checkbox {
     width: 5%;
 }
-.board-list .post-id {
+.board-list .stay-id {
     width: 10%;
 }
-.board-list .post-type {
+.board-list .stay-type {
     width: 10%;
 }
-.board-list .post-name {
+.board-list .stay-name {
     width: 10%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.board-list .post-content {
+.board-list .stay-content {
     width: 35%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.board-list .post-register-date {
+.board-list .stay-register-date {
     width: 10%;
 }
 .board-list .member-id {
     width: 10%;
 }
-.board-list .post-is-blinded {
+.board-list .stay-is-blinded {
     width: 10%;
 }
 .board-page{
