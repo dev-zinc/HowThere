@@ -43,4 +43,21 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #DDDDDD;
 }
 
+.header-line {
+    border-bottom-color: #222222;
+    border-bottom: 1px;
+}
+
+header {
+    box-shadow: 0 1px 0 rgba(0,0,0,0.135);
+}
+
+#search-box .diary-search-input {
+    padding: 14px 0 14px 24px;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
 
