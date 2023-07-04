@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>거기어때</title>
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/main.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/layout/header.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/layout/header.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="search-detail-btn-wrap">
                                                 <button>
-                                                    <div><span class="search-detail-btn-txt">일기</span></div>
+                                                    <div><span class="search-detail-btn-txt">다이어리</span></div>
                                                 </button>
                                             </div>
                                         </div>
@@ -69,8 +69,8 @@
                                     <div class="search-detail-wrap">
                                         <div style="display: flex;flex: 1 1 0%;min-width: 0;height: 100%;pointer-events: auto;">
                                             <div class="search-where-wrap">
-                                                <div class="search-where-lebel"><!--여기 하는 중-->
-                                                    <label class="search-active" for="place">
+                                                <div class="search-where-lebel">
+                                                    <label class="search-active">
                                                         <div style="position: relative;z-index: 1;">
                                                             <div class="search-title">여행지</div>
                                                             <input class="search-where-input" placeholder="여행지 검색" id="place" name="place" disabled>
@@ -183,6 +183,15 @@
         }
 
         $(".search-box-btn").click(function(e){
+            console.log(e.currentTarget);
+            switch(e.currentTarget.children[0].textContent){
+                case '지역': $('label.search-active').trigger('click');
+                    break;
+                case '거주기간':$($('.search-title-wrap')[0]).trigger('click');
+                    break;
+                case '인원':$($('.search-title-wrap')[2]).trigger('click');
+                    break;
+            }
             // search-detail-box 보이게 변경
             $(".search-detail-box").removeClass("search-detail-box-before");
 
@@ -214,12 +223,15 @@
 
         $(".search-active, .search-title-wrap").click(function(e){
             e.preventDefault();
-            if(e.target.dataset.select){
+            if(e.currentTarget.dataset.select === 'true'){
                 return;
             }
-            $(".search-active, .search-title-wrap").attr("select", false);
-            e.target.dataset.select = true;
+            // data-select 속성 초기화 및 클릭한 해당 태그만 true로 설정
+            document.querySelector(".search-active").dataset.select = false;
+            document.querySelectorAll(".search-title-wrap").forEach(el => el.dataset.select = false);
+            e.currentTarget.dataset.select = true;
         })
+
 
     </script>
 </body>
