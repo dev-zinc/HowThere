@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>거기어때</title>
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/layout/header.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/main.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/layout/header.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -212,9 +212,13 @@
             $("header").addClass('after');
         });
 
-        $(".search-where-wrap, .search-title-wrap").on("onClick", function(e){
-            $(".search-where-wrap, .search-title-wrap").data("select", false);
-            $(e.target).css("background",'#FFFFFF');
+        $(".search-active, .search-title-wrap").click(function(e){
+            e.preventDefault();
+            if(e.target.dataset.select){
+                return;
+            }
+            $(".search-active, .search-title-wrap").attr("select", false);
+            e.target.dataset.select = true;
         })
 
     </script>
