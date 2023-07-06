@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
 .article-format {
-    width: 60%;
+    width: 90%;
     height: auto;
     margin: 0 auto;
+    display: grid;
+    grid-column-gap: 100px;
+    grid-template-columns: 1fr 308px
 }
 
 .current-path {
@@ -63,6 +66,8 @@
 
 .image-section {
     margin-bottom: 16px;
+    width: 100%;
+    height: 100%;
 }
 
 img.article-img {
@@ -102,6 +107,10 @@ h2.section-title {
     text-decoration: none;
 }
 
+.diary-img {
+    height: 100% !important;
+}
+
 .top-btn .btn-text-wrap {
     width: 80% !important;
     height: 40% !important;
@@ -122,4 +131,49 @@ h2.section-title {
     pointer-events: none;
 }
 
+#right-buttons {
+    margin-top: 200px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 400px;
+}
 
+.modify-btns {
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.modify-btns .modify {
+    margin-right: 20px;
+}
+
+.modify-btns>a {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1),transform 0.1s cubic-bezier(0.2,0,0,1);
+    border-color: #222222;
+    background: #FFFFFF;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin: 10px;
+    text-align: center;
+
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    outline: none;
+
+    color: #222222;
+    -webkit-tap-highlight-color: transparent;
+
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    width: auto;
+}
+
+.inquiry {
+    margin-bottom: 8px;
+}
