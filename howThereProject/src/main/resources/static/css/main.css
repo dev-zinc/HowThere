@@ -54,6 +54,11 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #DDDDDD;
 }
 
+.heavy-divider {
+    height: 2px;
+    background-color: #222222;
+}
+
 .header-line {
     border-bottom-color: #222222;
     border-bottom: 1px;
