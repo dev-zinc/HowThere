@@ -13,7 +13,7 @@ public class ProgramController {
 
     @GetMapping("/list")
     public ModelAndView programMainPage(HttpServletRequest req, ModelAndView mv) {
-        mv.setViewName("list_t");
+        mv.setViewName("program/list");
         return mv;
     }
 }
