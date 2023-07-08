@@ -1,0 +1,39 @@
+#head-boot{
+    height: 100px;
+}
+.main-box{
+    width: 60%;
+    min-height: 800px;
+    border: 0;
+    border-right: 1px solid #dddddd;
+}
+.main-box-side{
+    width: 20%;
+    min-height: 800px;
+    border-right: 1px solid #dddddd;
+}
+.header-box{
+    height: 5%;
+}
+
+.custom-icon {
+    font-size: 30px;
+}
+.main-icon{
+    margin-right: 20px;
+}
+.multiline-text {
+    white-space: pre-line;
+}
+#main-text-logo{
+    font-size: 50px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+#sub-text-logo{
+    font-size: 40px;
+    margin-right: 20px;
+}
+.question{
+    width: 300px;
+}

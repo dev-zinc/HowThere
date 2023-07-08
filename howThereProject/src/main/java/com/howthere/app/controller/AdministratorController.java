@@ -11,6 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/administrator/*")
 public class AdministratorController {
-    @GetMapping("administrator-program")
+    @GetMapping("program")
     public void program() {;}
+
+    @GetMapping("stay")
+    public void stay() {;}
+
+    @GetMapping("reservation")
+    public void reserve() {;}
+
+    @GetMapping("member")
+    public void member() {;}
+
+    @GetMapping("notice")
+    public void notice() {;}
+
+    @GetMapping("inquiry")
+    public void inquiry() {;}
 }

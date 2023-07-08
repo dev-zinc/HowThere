@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+nav.menu{
+    width: 15%;
+    background-color: white;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+.logo {
+    height: 7%;
+    margin-top: 7%;
+}
+
+.logo img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.menu li a{
+    height: 55px;
+    line-height:55px;
+    display: block;
+    padding: 0 10px;
+    font-size: 15px;
+    color: #1f1f1fd9;
+}
+
+.menu li a:hover{
+    background-color: #f3f3f3;
+}
+
+.menu li .active {
+    background-color: #f3f3f3;
+}
+
+ul li span{
+    display: flex;
+    align-items: center;
+}
+.menu-list img{
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+    line-height: 55px;
+}
+
+hr{
+    height: 1px;
+    border: 0;
+    background: #2927271f;
+}
+
+div.title{
+    position: fixed;
+    height: 9%;
+    /* line-height: 60px; */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #f3f3f3;
+    z-index: 1;
+}
+
+.title span{
+    padding-left: 17%;
+    font-size: 20px;
+    font-weight: normal;
+    color: #1f1f1fd9
+}
+
+section.body{
+    background-color: #fafafa;
+    width: 100%;
+    height: 100%;
+}
+
+.board-wrap{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 85%;
+    height: 91%;
+    display: flex;
+    align-items: center;
+}
+
+.board-body{
+    width: 90%;
+    height: 85%;
+    margin: 0 auto;
+    background-color: white;
+    /* box-shadow: 1px 1px 3px 1px gray; */
+}
+
+.board-list-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+    height: 16%;
+}
+
+div.ask-wrap{
+    width: 250px;
+    height: 30px;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 10px;
+    justify-content: space-around;
+    margin-right: 20px;
+}
+
+input.select{
+    border-radius: 10px;
+    width: 190px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    border: none;
+    /* margin-left: 10px; */
+    /* padding-left: 10px; */
+}
+
+input.select:focus{
+    outline: none;
+}
+
+.button-select{
+    width: 30px;
+    height: 30px;
+}
+
+
+.button-delete {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    outline: 1px solid gray;
+    background-color: white;
+}
+
+.board-list{
+    height: 68%;
+}
+
+.board-list div.reservation{
+    border-bottom: 0.5px solid #ddd;
+    font-size: 0;
+    height: 9%;
+    display: flex;
+    align-items: center;
+}
+
+.board-list div.top{
+    height: 7%;
+    border-top: 1px solid #000;
+    border-bottom: 0.7px solid #999;
+    font-weight: bold;
+    font-size: 0;
+    display: flex;
+    align-items: center;
+}
+
+.board-list .reservation:last-child{
+    border-bottom: 1px solid #000;
+}
+
+.board-list div div {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.board-list div a{
+    width: 100%;
+}
+
+.board-list .checkbox {
+    width: 5%;
+}
+.board-list .reservation-id {
+    width: 10%;
+}
+.board-list .program-id {
+    width: 15%;
+}
+.board-list .stay-id {
+    width: 10%;
+}
+.board-list .reservation-register-date {
+    width: 20%;
+}
+.board-list .member-id {
+    width: 10%;
+}
+.board-list .boss-id {
+    width: 15%;
+}
+.board-list .reservation-is-blinded {
+    width: 15%;
+}
+.board-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0;
+    height: 16%;
+}
+
+.board-page a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+}
+
+.board-page a.number.active{
+    font-weight: bold;
+}

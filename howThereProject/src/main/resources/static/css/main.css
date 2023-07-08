@@ -13,8 +13,23 @@ body {
     background-color: #fff;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+    max-height: 100vh;
 }
+hr{
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+}
+#content-box{
+    width: 1064px;
+    min-height: 800px;
 
+    margin-left: 100px;
+    margin-right: 100px;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+}
 input, textarea, select, button, a {
     font-family: inherit;
     font-size: 100%;
