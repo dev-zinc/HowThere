@@ -4,7 +4,7 @@ const navButtons = $(".nav-tabs");
 
 navButtons.each((i, div) => $(div).on('click', function () {
     let it = $(this);
-    if(it.hasClass(".selected")) return
+    if(it.hasClass(".selected")) return;
 
     $(".selected").removeClass("selected");
     it.addClass("selected");

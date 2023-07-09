@@ -8,65 +8,99 @@
     <link rel="stylesheet" href="/css/diary/article.css">
     <link rel="stylesheet" href="/css/diary/diary.css">
     <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <title>일기장</title>
 </head>
 <body>
     <header th:replace="~{/diary/diary-header :: diary-header}"></header>
     <main>
-        <div class="main-container">
-            <div class="article-format">
-                <nav aria-label="이동 경로" class="current-path">
-                    <ol class="path-wrap flex">
-                        <li class="path-content inline-flex">
-                            <a class="path" href="/help/">
-                                <span>일기장 목록</span>
-                            </a>
-                            <span class="inline-flex">
-                                <span class="arrow" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="transform: translateY(-39px);display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
-                                        <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
-                                    </svg>
+        <div id="content-box" class="d-flex justify-content-center">
+            <div id="content-box-main" class="article-format">
+                <section id="left-article">
+                    <nav aria-label="이동 경로" class="current-path">
+                        <ol class="path-wrap flex">
+                            <li class="path-content inline-flex">
+                                <a class="path" href="/help/">
+                                    <span>일기장 목록</span>
+                                </a>
+                                <span class="inline-flex">
+                                    <span class="arrow" aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                                        </svg>
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-                        <li class="path-content">
-                            <a aria-current="page" itemprop="item" href="/help/article/3113" class="path">
-                                <span>글 제목</span>
-                            </a>
-                        </li>
-                    </ol>
-                </nav>
-                <a id="article-content"></a>
-                <div class="content">
-                    <h1 class="article-title">글 제목</h1>
-                    <div class="page-section">
-                        <div class="image-section">
-                            <div class="diary-img" style="--dls-liteimage-height:auto;--dls-liteimage-width:100%;--dls-liteimage-background-image:url('data:image/png;base64,null');--dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">
-                                <img class="article-img" style="--dls-liteimage-object-fit:cover" aria-hidden="true" alt="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다." elementtiming="LCP-target" loading="lazy" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg" data-original-uri="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg">
+                            </li>
+                            <li class="path-content inline-flex">
+                                <a aria-current="page" itemprop="item" href="/help/article/3113" class="path">
+                                    <span>글 제목</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <a id="article-content"></a>
+                    <div class="content">
+                        <div class="slight-divider"></div>
+                        <h1 class="article-title">&quot;글 제목&quot;</h1>
+                        <div class="slight-divider title-last"></div>
+                        <div class="page-section">
+                            <div class="image-section">
+                                <div class="diary-img" style="--dls-liteimage-height:100%;--dls-liteimage-width:100%;--dls-liteimage-background-image:url('data:image/png;base64,null');--dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">
+                                    <img class="article-img" style="--dls-liteimage-object-fit:cover" aria-hidden="true" alt="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다." elementtiming="LCP-target" loading="lazy" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg" data-original-uri="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg">
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-section">
-                            <span>
-                                에어비앤비를 통해 멋진 숙소를 예약하려는 게스트부터 에어비앤비에서 체험을 진행하고 싶은 신규 호스트까지,
-                                에어비앤비 커뮤니티 구성원이 궁금해하는 주요 정보를 한자리에 모았습니다. 먼저 기본적인 정보를 확인하세요.
-                                커뮤니티 일원이 되신 것을 환영합니다!
-                            </span>
-                        </div>
-                        <div class="text-section header">
-                            <div>
-                                <h2 class="section-title">에어비앤비 커뮤니티</h2>
+                            <div class="text-section">
                                 <span>
-                                    에어비앤비 커뮤니티는 교감과 소속감을 기반으로 합니다.
-                                    에어비앤비는 호스트와 게스트의 안전을 매우 중요하게 생각합니다.
-                                    호스트는 퀄리티 기준을 충족하고 유지해야 하며, 호스트의 개인 프로필과 숙소 역시 검증을 거쳐야 합니다.
-                                    개인정보를 암호화하고 신뢰할 수 있는 결제 시스템을 구축하여 사이트와 앱 사용자를 안전하게 보호하기 위해 노력하고 있으며,
-                                    커뮤니티 지원 팀을 연중무휴로 운영하여 궁금하신 사항을 해결해드리고 있습니다.
+                                    에어비앤비를 통해 멋진 숙소를 예약하려는 게스트부터 에어비앤비에서 체험을 진행하고 싶은 신규 호스트까지,
+                                    에어비앤비 커뮤니티 구성원이 궁금해하는 주요 정보를 한자리에 모았습니다. 먼저 기본적인 정보를 확인하세요.
+                                    커뮤니티 일원이 되신 것을 환영합니다!
                                 </span>
-                                <hr aria-hidden="true">
+                            </div>
+                            <div class="text-section header">
+                                <div>
+                                    <h2 class="section-title">에어비앤비 커뮤니티</h2>
+                                    <span>
+                                        에어비앤비 커뮤니티는 교감과 소속감을 기반으로 합니다.
+                                        에어비앤비는 호스트와 게스트의 안전을 매우 중요하게 생각합니다.
+                                        호스트는 퀄리티 기준을 충족하고 유지해야 하며, 호스트의 개인 프로필과 숙소 역시 검증을 거쳐야 합니다.
+                                        개인정보를 암호화하고 신뢰할 수 있는 결제 시스템을 구축하여 사이트와 앱 사용자를 안전하게 보호하기 위해 노력하고 있으며,
+                                        커뮤니티 지원 팀을 연중무휴로 운영하여 궁금하신 사항을 해결해드리고 있습니다.
+                                    </span>
+                                    <hr aria-hidden="true">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+                <section id="right-buttons">
+                    <div class="profile-box flex">
+                        <div class="divider flex">
+                            <div class="profile-img"
+                                 role="img" aria-busy="false" aria-label="찬님의 사용자 프로필"
+                                 style="--dls-liteimage-height: 104px; --dls-liteimage-width: 104px; --dls-liteimage-border-radius: 50%; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
+                                <picture>
+                                    <source srcset="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=240&amp;im_s=133.33&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff 1x" media="(min-width: 0px)">
+                                    <img aria-hidden="true" alt="찬님의 사용자 프로필" elementtiming="LCP-target" src="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=720&amp;im_s=400.00&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff"
+                                         style="--dls-liteimage-object-fit: cover; --dls-liteimage-border-radius: 50%; border-radius: 50%">
+                                </picture>
+                            </div>
+                            <div class="profile-text flex">
+                                <h1>사용자</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modify flex">
+                        <div class="modify-button">
+                            <span>수정하기</span>
+                        </div>
+                        <div class="modify-button">
+                            <span>삭제하기</span>
+                        </div>
+                    </div>
+                    <div class="slight-divider middle-line"></div>
+                </section>
             </div>
         </div>
         <div class="top-btn">
@@ -81,4 +115,7 @@
         </div>
     </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/js/diary/article.js"></script>
 </html>
