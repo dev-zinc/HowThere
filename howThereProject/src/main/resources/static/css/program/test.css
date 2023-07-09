@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.header-wrapper {
+    margin: 0 auto;
+    height: 80px;
+    max-width: 1440px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    white-space: nowrap;
+}
+
+.content-wrap {
+    margin-top: 28px;
+}
+
+#content-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.program-grid {
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(1,1fr);
+    grid-gap: 16px;
+    display: grid;
+}
+
+.program-pic {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    touch-action: manipulation;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 20px 0;
+    padding: 0;
+    text-align: inherit;
+}
+
+.img-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 0;
+    padding: 0;
+}
+
+.program-img {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: bottom;
+    height: 300px;
+    width: 100%;
+}
+
+.program-img img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    vertical-align: bottom;
+    object-fit: cover;
+}
+
+.program-img .background-img {
+    background-image: none;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.diary-title {
+    text-align: left;
+    margin-top: 16px;
+    color: #222222;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.program-title {
+    display: grid;
+    gap: 2px 8px;
+    grid-template-columns: minmax(2px, 1fr) max-content;
+    align-content: space-evenly;
+}
+.last {
+    margin: 50px auto;
+}
+.map-container {
+    margin: 2%;
+}
+
+.category-icon {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 30px 50px 0 50px;
+    cursor: pointer;
+}
+input[type=radio] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+    display: none;
+}

@@ -30,6 +30,11 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
+dependencies {
+    // H2
+    runtimeOnly 'com.h2database:h2'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
