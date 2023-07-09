@@ -1,33 +1,7 @@
-
-body {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
-    line-height: 1.43;
-    color: rgb(34, 34, 34);
-    background-color: rgb(255, 255, 255);
-    -webkit-font-smoothing: antialiased;
-    margin: 0px;
-}
-
-.content-box{
-    width: 1064px;
-    min-height: 800px;
-
-    margin-left: 100px;
-    margin-right: 100px;
-
-    padding-left: 40px;
-    padding-right: 40px;
-
-}
 div {
     display: block;
 }
 
-hr{
-    border: 0;
-    border-bottom: 1px solid #dddddd;
-}
 .title{
     padding-top: 20px;
     padding-bottom: 20px;

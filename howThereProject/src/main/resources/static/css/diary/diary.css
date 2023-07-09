@@ -250,7 +250,7 @@
 
 .subtitle {
     width: 100% !important;
-    margin-bottom: 24px !important;
+    margin: 24px 0 !important;
 }
 
 .subtitle h2 {
@@ -296,9 +296,8 @@
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: bottom;
-    height: auto;
+    height: 300px;
     width: 100%;
-    min-height: 1px;
 }
 
 .diary-img img {
