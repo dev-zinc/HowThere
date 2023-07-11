@@ -13,17 +13,18 @@
 }
 
 .content-wrap {
-    margin-top: 28px;
+    margin: 2%;
 }
 
 #content-box {
     display: flex;
     justify-content: space-around;
+    align-items: flex-start;
 }
 
 .program-grid {
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(1,1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-gap: 16px;
     display: grid;
 }
@@ -88,12 +89,14 @@
 .program-title {
     display: grid;
     gap: 2px 8px;
-    grid-template-columns: minmax(2px, 1fr) max-content;
+    grid-template-columns: minmax(2px, 1fr);
     align-content: space-evenly;
 }
+
 .last {
     margin: 50px auto;
 }
+
 .map-container {
     margin: 2%;
 }
@@ -105,6 +108,7 @@
     padding: 30px 50px 0 50px;
     cursor: pointer;
 }
+
 input[type=radio] {
     background-color: initial;
     cursor: default;

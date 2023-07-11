@@ -295,53 +295,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="program-pic">
-                            <div class="img-wrap">
-                                <div class="program-img" style="--dls-liteimage-height: 254px; --dls-liteimage-width: auto; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
-                                    <picture>
-                                        <img class="itu7ddv i1mla2as i1cqnm0r dir dir-ltr" aria-hidden="true" elementtiming="LCP-target" fetchpriority="high" loading="eager" src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-574843000111312410/original/1f34b234-14b9-4731-a897-7c660af030d0.jpeg?im_w=720" data-original-uri="https://a0.muscache.com/im/pictures/prohost-api/Hosting-574843000111312410/original/1f34b234-14b9-4731-a897-7c660af030d0.jpeg?im_w=720" style="--dls-liteimage-object-fit: cover;">
-                                    </picture>
-                                    <div class="background-img" style="--dls-liteimage-background-size: cover; --dls-liteimage-background-image: url(https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg);"></div>
-                                </div>
-                            </div>
-                            <div class="program-title">
-                                <div>Dolsan-eup, Yeosu-si, 한국</div>
-                                <div class="">
-                                    <span>
-                                        <span class="">326km 거리</span>
-                                    </span>
-                                </div>
-                                <div class="">
-                                    <span>
-                                        <span class=" dir dir-ltr">8월 19일~24일</span>
-                                    </span>
-                                </div>
-                                <div class="pquyp1l dir dir-ltr">
-                                    <div style="">
-                                        <div class="_i5duul"><span class="_14y1gc">
-                                            <div class="_1jo4hgw" aria-hidden="true">
-                                                <span class="_tyxjp1">₩286,200</span>
-                                                <span class="_r1nvod">/박</span>
-                                            </div>
-                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-                        <!-- -->
                     </div>
                 </div>
             </section>
         </div>
         <div class="map-container">
-            <img src="/img/sample-map.png">
+            <div id="map" style="width:800px;height:800px;"></div>
         </div>
     </div>
 </main>
-<footer style="height: 500px; width: 100%; background-color: antiquewhite"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d"></script>
+<script>
+    const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+    const options = { //지도를 생성할 때 필요한 기본 옵션
+        center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+        level: 3, //지도의 레벨(확대, 축소 정도)
+    };
+
+    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+</script>
 </html>
