@@ -8,13 +8,16 @@
     <link rel="stylesheet" href="/css/diary/article.css">
     <link rel="stylesheet" href="/css/diary/diary.css">
     <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <title>일기장</title>
 </head>
 <body>
     <header th:replace="~{/diary/diary-header :: diary-header}"></header>
     <main>
-        <div class="main-container">
-            <div class="article-format">
+        <div id="content-box" class="d-flex justify-content-center">
+            <div id="content-box-main" class="article-format">
                 <section id="left-article">
                     <nav aria-label="이동 경로" class="current-path">
                         <ol class="path-wrap flex">
@@ -24,13 +27,13 @@
                                 </a>
                                 <span class="inline-flex">
                                     <span class="arrow" aria-hidden="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="transform: translateY(-39px);display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
                                             <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
                                         </svg>
                                     </span>
                                 </span>
                             </li>
-                            <li class="path-content">
+                            <li class="path-content inline-flex">
                                 <a aria-current="page" itemprop="item" href="/help/article/3113" class="path">
                                     <span>글 제목</span>
                                 </a>
@@ -39,7 +42,9 @@
                     </nav>
                     <a id="article-content"></a>
                     <div class="content">
-                        <h1 class="article-title">글 제목</h1>
+                        <div class="slight-divider"></div>
+                        <h1 class="article-title">&quot;글 제목&quot;</h1>
+                        <div class="slight-divider title-last"></div>
                         <div class="page-section">
                             <div class="image-section">
                                 <div class="diary-img" style="--dls-liteimage-height:100%;--dls-liteimage-width:100%;--dls-liteimage-background-image:url('data:image/png;base64,null');--dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">
@@ -70,18 +75,31 @@
                     </div>
                 </section>
                 <section id="right-buttons">
-                    <div class="modify-btns flex">
-                        <a href="/help/contact-us?entry=HELP_CENTER" class="modify">
-                            수정하기
-                        </a>
-                        <a href="/help/contact-us?entry=HELP_CENTER" class="delete">
-                            삭제하기
-                        </a>
+                    <div class="profile-box flex">
+                        <div class="divider flex">
+                            <div class="profile-img"
+                                 role="img" aria-busy="false" aria-label="찬님의 사용자 프로필"
+                                 style="--dls-liteimage-height: 104px; --dls-liteimage-width: 104px; --dls-liteimage-border-radius: 50%; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
+                                <picture>
+                                    <source srcset="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=240&amp;im_s=133.33&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff 1x" media="(min-width: 0px)">
+                                    <img aria-hidden="true" alt="찬님의 사용자 프로필" elementtiming="LCP-target" src="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=720&amp;im_s=400.00&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff"
+                                         style="--dls-liteimage-object-fit: cover; --dls-liteimage-border-radius: 50%; border-radius: 50%">
+                                </picture>
+                            </div>
+                            <div class="profile-text flex">
+                                <h1>사용자</h1>
+                            </div>
+                        </div>
                     </div>
-                    <div class="inquiry">
-                        <a href="/help/feedback" class="l1ovpqvx b1uxatsa c1qih7tm dir dir-ltr">에어비앤비에 피드백을 보내실</a>
-                        수도 있습니다.
+                    <div class="modify flex">
+                        <div class="modify-button">
+                            <span>수정하기</span>
+                        </div>
+                        <div class="modify-button">
+                            <span>삭제하기</span>
+                        </div>
                     </div>
+                    <div class="slight-divider middle-line"></div>
                 </section>
             </div>
         </div>
@@ -97,4 +115,7 @@
         </div>
     </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/js/diary/article.js"></script>
 </html>

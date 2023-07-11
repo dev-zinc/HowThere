@@ -13,8 +13,19 @@ body {
     background-color: #fff;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+    max-height: 100vh;
 }
-
+hr{
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+}
+#content-box{
+    display: flex;
+    justify-content: center;
+}
+#content-box-main{
+    width: 1000px;
+}
 input, textarea, select, button, a {
     font-family: inherit;
     font-size: 100%;
@@ -41,6 +52,11 @@ h1, h2, h3, h4, h5, h6 {
 .slight-divider {
     height: 1px;
     background-color: #DDDDDD;
+}
+
+.heavy-divider {
+    height: 2px;
+    background-color: #222222;
 }
 
 .header-line {
