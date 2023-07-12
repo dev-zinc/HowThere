@@ -12,7 +12,7 @@
     <title>account menu</title>
 </head>
 <body>
-    <header style="height: 80px; background-color: antiquewhite"></header>
+    <div th:replace="~{/layout/header :: header}"></div>
     <main>
         <div id="content-box">
             <div id="content-box-main" class="d-flex justify-content-center">
@@ -86,6 +86,21 @@
                                     <div class="menu-description">
                                         <div class="title">개인정보</div>
                                         <div class="subtitle">개인정보 및 연락처를 수정합니다</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="menu-block">
+                        <a href="/account/payment">
+                            <div>
+                                <div class="menu-content flex">
+                                    <div style="margin-bottom: 16px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;height:32px;width:32px;fill:currentColor" aria-hidden="true" role="presentation" focusable="false"><path d="M25 4a2 2 0 0 1 2 1.85V8h2.04c1.04 0 1.88.82 1.96 1.85V26c0 1.05-.8 1.92-1.81 2H6.96a1.98 1.98 0 0 1-1.95-1.85L5 26v-2H3a2 2 0 0 1-2-1.85V6a2 2 0 0 1 1.85-2H3zm2 18a2 2 0 0 1-1.85 2H7v2h22V10h-2zM25 6H3v16h22zm-3 12a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-8-8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg>
+                                    </div>
+                                    <div class="menu-description">
+                                        <div class="title">내 숙소 목록</div>
+                                        <div class="subtitle">내 숙소를 관리합니다</div>
                                     </div>
                                 </div>
                             </div>
