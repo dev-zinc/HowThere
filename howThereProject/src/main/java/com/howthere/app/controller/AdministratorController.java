@@ -28,4 +28,7 @@ public class AdministratorController {
 
     @GetMapping("inquiry")
     public void inquiry() {;}
+
+    @GetMapping("inquiry-detail")
+    public void inquiryDetail() {;}
 }
