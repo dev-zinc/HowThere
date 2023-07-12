@@ -10,7 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/account/*")
-public class MyPageController {
+public class AccountController {
     @GetMapping("menu")
     public void menu() {;}
+
+    @GetMapping("setting")
+    public void setting() {;}
+
+    @GetMapping("payment")
+    public void payment() {;}
+
+    @GetMapping("diary")
+    public void diary() {;}
+
+    @GetMapping("program")
+    public void program() {;}
 }
