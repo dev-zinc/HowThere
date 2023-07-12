@@ -215,6 +215,7 @@
 }
 
 .nav-tabs {
+    border: none !important;
     cursor: pointer;
     position: relative;
     font-size: 14px;
@@ -222,7 +223,6 @@
     font-weight: 600;
     color: #717171;
     border-radius: 8px;
-    border: none;
     background: transparent;
     padding: 10px;
     margin: 6px 6px 6px -10px;
