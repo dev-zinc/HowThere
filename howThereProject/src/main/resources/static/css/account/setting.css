@@ -22,6 +22,7 @@
 .setting-content {
     margin-left: -8px;
     margin-right: -8px;
+    margin-bottom: 48px;
 }
 .profile-title {
     margin-top: 12px;
@@ -36,7 +37,7 @@
 }
 
 .account-info {
-    width: 58.333333333333336%;
+    width: 60%;
     float: left;
     padding-left: 8px;
     padding-right: 8px;
@@ -45,5 +46,90 @@
 }
 
 .info-block {
-    border-bottom: 1px solid #EBEBEB !important;
+    border-bottom: 1px solid #EBEBEB;
 }
+
+.info-block .info {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-radius: 1px;
+}
+
+.info-content {
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.info .info-label {
+    color: #222222;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.info .info-label h2 {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: 1em;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+
+.info .info-text {
+    margin-top: 4px;
+    color: #717171;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.info .info-modify {
+    margin-left: 16px;
+    text-align: right;
+    max-width: 30%;
+    word-break: break-word;
+}
+
+.info .info-modify .modify-button {
+    font-weight: 600;
+    text-align: right;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    appearance: none;
+    user-select: auto;
+    color: #222222;
+    text-decoration: underline;
+    position: relative;
+    outline: none;
+}
+
+.right-nav {
+    width: 30%;
+    float: left;
+    margin-left: 10%;
+    min-height: 1px;
+    position: relative;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.right-nav .question {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.right-nav .answer {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #717171;
+}
+
