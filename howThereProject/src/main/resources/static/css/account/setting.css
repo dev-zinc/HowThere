@@ -97,3 +97,10 @@
     color: #717171;
 }
 
+.name-input-wrap {
+    margin-bottom: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: calc(100% + 16px);
+    padding: 0 8px;
+}
