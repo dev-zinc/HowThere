@@ -24,7 +24,7 @@ $(".search-box-btn").click(function(e){
 
     // search-detail-wrap 보이게 변경
     $('.search-detail-wrap').css({
-        animation : "slideEnter 1s"
+        animation : "slideEnter .5s"
     });
 
     $(".search-box-div").css({
@@ -130,9 +130,13 @@ $("button[data-for='guestTotal']").click(function(){
 })
 
 function showHeaderProfilMenu(){
+    if(document.getElementById('headerProfileMenu')){
+        return;
+    }
     const tag = "<div id='headerProfileMenu'>" +
         "<a><div><b>로그인</b></div></a>" +
         "<a><div>회원가입</div></a>" +
+        "<a><div>도움말</div></a>" +
         "</div>"
     $(".header-profile").append(tag);
 }
