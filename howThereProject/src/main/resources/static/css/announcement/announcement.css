@@ -19,9 +19,7 @@ div {
 .multiline-text {
     white-space: pre-line;
   }
-#head-boot{
-    height: 100px;
-}
+
 .route{
     color: #222;
     font-size : 14px;
@@ -30,11 +28,7 @@ div {
     width: 50%;
     height: 30%;
 }
-#fixed{
 
-    font-size: 16px;
-
-}
 .book{
     border: 1px solid #dddddd;
     display:inline-block;

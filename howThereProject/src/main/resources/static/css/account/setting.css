@@ -1,41 +1,5 @@
 @charset "UTF-8";
 
-.setting-title {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.path {
-    display: inline-block;
-}
-
-.path-text {
-    margin: 0 !important;
-    overflow-wrap: break-word !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    line-height: 1.28571em !important;
-    color: rgb(72, 72, 72) !important;
-    text-decoration: none !important;
-}
-
-.setting-content {
-    margin-left: -8px;
-    margin-right: -8px;
-    margin-bottom: 48px;
-}
-.profile-title {
-    margin-top: 12px;
-    margin-bottom: 0 ;
-    padding: 0;
-    overflow-wrap: break-word;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1.125em;
-    color: rgb(72, 72, 72);
-}
-
 .account-info {
     width: 60%;
     float: left;
@@ -133,3 +97,10 @@
     color: #717171;
 }
 
+.name-input-wrap {
+    margin-bottom: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: calc(100% + 16px);
+    padding: 0 8px;
+}

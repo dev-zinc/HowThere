@@ -6,4 +6,4 @@ $(window).scroll(function () {
         $topButton.show()
     else
         $topButton.hide()
-})
+});
