@@ -77,6 +77,29 @@ header {
 }
 
 a:hover {
-
     text-decoration: none !important;
+}
+
+.top-btn a{
+    text-decoration: none;
+}
+
+.top-btn .btn-text-wrap {
+    width: 100% !important;
+    height: 80% !important;
+    padding: 10% 10%;
+    border-radius: 8px;
+    border: 1px none;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #222222;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
 }
