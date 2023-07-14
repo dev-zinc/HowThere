@@ -22,8 +22,17 @@ hr{
     justify-content: center
 
 }
-#content-box-main{
+#content-box-main {
     width: 1000px;
+}
+
+li {
+    height: 50px;
+    list-style: none;
+}
+
+li > a{
+    color: #000 !important;
 }
 
 #head-boot{
