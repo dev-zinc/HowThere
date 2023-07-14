@@ -6,12 +6,128 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/account/account.css">
     <link rel="stylesheet" href="/css/account/diary.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <title>내가 쓴 일기</title>
+    <title>내 일기</title>
 </head>
 <body>
+<div th:replace="~{/layout/header :: header}"></div>
+<main>
+    <div id="content-box">
+        <div id="content-box-main" class="d-flex justify-content-center">
+            <div class="menu-title-container">
+                <nav aria-label="계정">
+                    <ol style="padding: 0">
+                        <li class="path">
+                            <a href="/account/menu" class="path-text" aria-busy="false">계정</a>
+                        </li>
+                        <li class="path">
+                            <div class="path">
+                                <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
+                                     style="height: 10px; width: 10px; fill: rgb(118, 118, 118);">
+                                    <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span aria-current="step" class="path-text">내 일기</span>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="menu-title">내 일기</h1>
+            </div>
 
+            <div class="account-content">
+                <!-- -->
+                <!-- -->
+                <div class="diary-content flex">
+                    <div class="flex">
+                        <div class="diary-title">
+                            <span>용인 한 달 살림살이</span>
+                        </div>
+                        <div class="diary-content-brief">
+                            <span>용인시는 대한민국 경기도 동남부에 있는 특례시이다. 동쪽으로 이천시, 서쪽으로 수원시·의왕시·화성시, 남쪽으로 평택시·안성시, 북쪽은 성남시·광주시와 접한다. 4읍 3면 28행정동을 관할하는 도농복합시로, 3개의 행정구가 설치되...</span>
+                        </div>
+                    </div>
+                    <div class="diary-thumbnail">
+                        <picture>
+                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltd4609c55daf00800/finding-a-stay-thats-right-for-you-optimized.jpg"
+                                 style="--dls-liteimage-object-fit: cover;" alt=""
+                                 class="diary-thumb-img">
+                        </picture>
+                    </div>
+                </div>
+
+                <div class="slight-divider block-divider"></div>
+
+                <div class="diary-content flex">
+                    <div class="flex">
+                        <div class="diary-title">
+                            <span>용인 한 달 살림살이</span>
+                        </div>
+                        <div class="diary-content-brief">
+                            <span>용인시는 대한민국 경기도 동남부에 있는 특례시이다. 동쪽으로 이천시, 서쪽으로 수원시·의왕시·화성시, 남쪽으로 평택시·안성시, 북쪽은 성남시·광주시와 접한다. 4읍 3면 28행정동을 관할하...</span>
+                        </div>
+                    </div>
+                    <div class="diary-thumbnail">
+                        <picture>
+                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltd4609c55daf00800/finding-a-stay-thats-right-for-you-optimized.jpg"
+                                 style="--dls-liteimage-object-fit: cover;" alt=""
+                                 class="diary-thumb-img">
+                        </picture>
+                    </div>
+                </div>
+
+                <div class="slight-divider block-divider"></div>
+
+                <div class="diary-content flex">
+                    <div class="flex">
+                        <div class="diary-title">
+                            <span>용인 한 달 살림살이</span>
+                        </div>
+                        <div class="diary-content-brief">
+                            <span>용인시는 대한민국 경기도 동남부에 있는 특례시이다. 동쪽으로 이천시, 서쪽으로 수원시·의왕시·화성시, 남쪽으로 평택시·안성...</span>
+                        </div>
+                    </div>
+                    <div class="diary-thumbnail">
+                        <picture>
+                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltd4609c55daf00800/finding-a-stay-thats-right-for-you-optimized.jpg"
+                                 style="--dls-liteimage-object-fit: cover;" alt=""
+                                 class="diary-thumb-img">
+                        </picture>
+                    </div>
+                </div>
+
+                <div class="slight-divider block-divider"></div>
+
+                <div class="diary-content flex">
+                    <div class="flex">
+                        <div class="diary-title">
+                            <span>용인 한 달 살림살이</span>
+                        </div>
+                        <div class="diary-content-brief">
+                            <span>용인시는 대한민국 경기도 동남부에 있는 특례시이다. 동쪽으로 이천시, 서쪽으...</span>
+                        </div>
+                    </div>
+                    <div class="diary-thumbnail">
+                        <picture>
+                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltd4609c55daf00800/finding-a-stay-thats-right-for-you-optimized.jpg"
+                                 style="--dls-liteimage-object-fit: cover;" alt=""
+                                 class="diary-thumb-img">
+                        </picture>
+                    </div>
+                </div>
+
+                <div class="slight-divider block-divider"></div>
+                <!-- -->
+                <!-- -->
+            </div>
+
+        </div>
+    </div>
+</main>
+<footer style="height: 500px; background-color: bisque"></footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </html>
