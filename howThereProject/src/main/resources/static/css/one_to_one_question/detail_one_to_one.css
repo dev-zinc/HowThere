@@ -1,0 +1,20 @@
+
+div {
+    display: block;
+}
+#root > a{ 
+    text-decoration: none !important;
+    color: #000 !important;
+}
+hr{
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+}
+#content-box{
+    display: flex;
+    justify-content: center
+
+}
+#content-box-main{
+    width: 1000px;
+}

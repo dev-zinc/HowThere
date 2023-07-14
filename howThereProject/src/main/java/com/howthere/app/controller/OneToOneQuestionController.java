@@ -13,4 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OneToOneQuestionController {
     @GetMapping("one_to_one_question")
     public void question() {;}
+
+    @GetMapping("question_list")
+    public void questionList() {;}
+
+    @GetMapping("detail_one_to_one")
+    public void questionDetail() {;}
 }
