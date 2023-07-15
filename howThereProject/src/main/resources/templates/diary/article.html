@@ -7,13 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/diary/article.css">
     <link rel="stylesheet" href="/css/diary/diary.css">
+    <link rel="stylesheet" href="/css/modal/modal.css">
     <link rel="stylesheet" href="/css/main.css">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <title>일기장</title>
 </head>
 <body>
+    <div class="modal">
+        <div class="warn-modal">
+            <div id="content-wrap"></div>
+        </div>
+    </div>
+
     <header th:replace="~{/diary/diary-header :: diary-header}"></header>
     <main>
         <div id="content-box" class="d-flex justify-content-center">
@@ -22,7 +28,7 @@
                     <nav aria-label="이동 경로" class="current-path">
                         <ol class="path-wrap flex">
                             <li class="path-content inline-flex">
-                                <a class="path" href="/help/">
+                                <a class="path" href="/diary/list">
                                     <span>일기장 목록</span>
                                 </a>
                                 <span class="inline-flex">
@@ -34,7 +40,7 @@
                                 </span>
                             </li>
                             <li class="path-content inline-flex">
-                                <a aria-current="page" itemprop="item" href="/help/article/3113" class="path">
+                                <a class="path">
                                     <span>글 제목</span>
                                 </a>
                             </li>
@@ -92,10 +98,10 @@
                         </div>
                     </div>
                     <div class="modify flex">
-                        <div class="modify-button">
+                        <div id="modify" class="modify-button">
                             <span>수정하기</span>
                         </div>
-                        <div class="modify-button">
+                        <div id="delete" class="modify-button">
                             <span>삭제하기</span>
                         </div>
                     </div>
@@ -110,4 +116,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/layout/top-btn.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/diary/article.js"></script>
 </html>

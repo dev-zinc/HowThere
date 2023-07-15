@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleag.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/diary/write.css">
+    <link rel="stylesheet" href="/css/diary/diary.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <title>일기 쓰기</title>
+</head>
+<body>
+<header th:replace="~{/diary/diary-header :: diary-header}"></header>
+<main>
+    <div id="content-box" class="d-flex justify-content-center">
+        <div id="content-box-main">
+            <nav aria-label="이동 경로" class="current-path">
+                <ol class="path-wrap flex">
+                    <li class="path-content inline-flex">
+                        <a class="path" href="/diary/list">
+                            <span>일기장 목록</span>
+                        </a>
+                        <span class="inline-flex">
+                                    <span class="arrow" aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                                        </svg>
+                                    </span>
+                                </span>
+                    </li>
+                    <li class="path-content inline-flex">
+                        <a class="path">
+                            <span>일기 작성</span>
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="write-diary-text flex">
+                <span class="write-text">글 제목</span>
+                <label class="input-label flex" for="diary-title">
+                    <input name="diary-title" id="diary-title" autocomplete="off" type="text" placeholder="지난 경험을 생생하게 떠올리게 하는 문장을 적어보세요">
+                </label>
+                <span class="write-text">글 본문</span>
+            </div>
+
+            <div id="summernote"></div>
+            <div id="diary-submit">
+                <span>게시</span>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="/js/diary/write.js"></script>
+</html>

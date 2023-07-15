@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.write-diary-text {
+    flex-direction: column;
+}
+
+span.write-text {
+    font-size: 24px;
+    line-height: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-label input#diary-title {
+    color: #717171;
+    margin: auto;
+    position: relative;
+    width: calc(100% - 20px);
+    height: 100%;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+}
+
+.write-diary-text h6 {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: #717171;
+}
+
+.input-label {
+    width: 100% !important;
+    margin-bottom: 50px;
+}
+
+#diary-submit span {
+    display: block;
+}
+
+#diary-submit {
+    float: right;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 8px;
+    padding: 12px 0;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+    border: 1px solid #222222;
+    margin: 30px 0;
+}
+
+#diary-submit:hover {
+    background-color: #DDDDDD;
+}
