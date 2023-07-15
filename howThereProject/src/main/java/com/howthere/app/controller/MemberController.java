@@ -16,4 +16,7 @@ public class MemberController {
 
     @GetMapping("join")
     public void join() {;}
+
+    @GetMapping("connect")
+    public void connect() {;}
 }
