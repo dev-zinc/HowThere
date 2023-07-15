@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HowThereApplication<how_there>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.howthere.app.HowThereApplication",
+            "projectName": "how_there",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
