@@ -2,6 +2,7 @@
 
 .account-content {
     padding: 0 8px !important;
+    width: 60%;
 }
 
 .diary-content {
@@ -16,7 +17,7 @@
 
 .diary-content .flex{
     height: 100px;
-    width: 70%;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -68,5 +69,37 @@
 }
 
 .block-divider {
-    margin: 20px 5px 5px;
+    margin: 20px 0;
+}
+
+.right-nav {
+    margin: 0 !important;
+    height: 100%;
+}
+
+.right-nav .btn-right {
+    margin: 24px 0;
+}
+
+.btn-right button:hover {
+    background-color: #444444 !important;
+}
+
+.btn-right button {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 8px;
+    padding: 14px 24px;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1),transform 0.1s cubic-bezier(0.2,0,0,1);
+    border: 1px none;
+    background: #222222;
+    color: white;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+}
+
+.diary-list {
+    justify-content: space-between;
 }

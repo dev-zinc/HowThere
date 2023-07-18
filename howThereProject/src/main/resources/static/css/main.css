@@ -182,3 +182,26 @@ a:hover {
     width: calc(100% - 20px);
     height: 2px;
 }
+
+.right-nav {
+    width: 30%;
+    float: left;
+    margin-left: 10%;
+    min-height: 1px;
+    position: relative;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.right-nav .question {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.right-nav .answer {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #717171;
+}

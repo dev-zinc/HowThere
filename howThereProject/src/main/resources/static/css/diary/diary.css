@@ -50,13 +50,13 @@
     outline: none;
 }
 
-.right-nav {
+.right-profile {
     margin-right: 40px;
     justify-content: flex-end;
     align-items: center;
 }
 
-.right-nav .nav-button {
+.right-profile .nav-button {
     background: transparent;
     border: 1px none;
     border-radius: 0;
