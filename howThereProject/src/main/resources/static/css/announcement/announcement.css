@@ -35,10 +35,17 @@ div {
     height: 150px;
     border-radius: 0.5rem;
 
+    /*position: relative;*/
+    /*width: 25%;*/
+
     margin-top: 50px;
     margin-right: 50px;
 }
-.lonin_btn{
+.login_btn{
     color: white;
     background-color: #e61e4d;
+}
+#center-box{
+    position: relative;
+    width: 70%
 }
