@@ -11,18 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/account/*")
 public class AccountController {
+    //http://localhost:10000/account/menu
     @GetMapping("menu")
     public void menu() {;}
 
+    //http://localhost:10000/account/setting
     @GetMapping("setting")
     public void setting() {;}
 
+    //http://localhost:10000/account/payment
     @GetMapping("payment")
     public void payment() {;}
 
+    //http://localhost:10000/account/diary
     @GetMapping("diary")
     public void diary() {;}
 
+    //http://localhost:10000/account/program
     @GetMapping("program")
     public void program() {;}
 }
