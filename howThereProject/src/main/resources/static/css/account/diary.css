@@ -2,11 +2,12 @@
 
 .account-content {
     padding: 0 8px !important;
+    width: 60%;
 }
 
 .diary-content {
-    border-radius: 8px;
-    justify-content: space-between;
+    padding: 12px 0 12px 12px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -16,13 +17,11 @@
 
 .diary-content .flex{
     height: 100px;
-    width: 70%;
+    width: 100%;
     flex-direction: column;
 }
 
 .diary-title {
-    margin-top: 10px;
-    padding-left: 5px;
     font-size: 18px;
     font-weight: 600;
     line-height: 20px;
@@ -30,21 +29,77 @@
 }
 
 .diary-content-brief {
-    margin-top: 15px;
-    padding-left: 20px;
+    padding-left: 2px;
+    margin-top: 8px;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
     color: #717171;
 }
 
-.diary-thumb-img {
-    border-radius: 6px;
-    width: 100px;
+.diary-created-date {
+    padding-left: 4px;
+    margin-top: auto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #717171;
+}
+
+.diary-thumbnail {
+    position: relative;
     height: 100px;
+    width: 100px;
+    margin-right: 12px;
+}
+
+.diary-thumbnail picture{
+    display: block;
+    position: relative;
+    height: 100%;
+    width: inherit;
+}
+
+.diary-thumb-img {
+    position: relative;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
 .block-divider {
-    margin: 5px;
+    margin: 20px 0;
+}
+
+.right-nav {
+    margin: 0 !important;
+    height: 100%;
+}
+
+.right-nav .btn-right {
+    margin: 24px 0;
+}
+
+.btn-right button:hover {
+    background-color: #444444 !important;
+}
+
+.btn-right button {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 8px;
+    padding: 14px 24px;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1),transform 0.1s cubic-bezier(0.2,0,0,1);
+    border: 1px none;
+    background: #222222;
+    color: white;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+}
+
+.diary-list {
+    justify-content: space-between;
 }
