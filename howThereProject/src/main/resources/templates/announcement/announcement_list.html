@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="stylesheet" href="/css/announcement/announcement_list.css ">
@@ -20,68 +20,70 @@
   <body>
   <header th:replace="~{/layout/header :: header}"></header>
     <div id="content-box">
-      <div id="content-box-main">
-        <div>
-          <a href="#">
-            <span class="route">홈</span>
-          </a>
-          >
-          <a href="#">
-            <span class="route">더보기</span>
-          </a>
-          >
-          <a href="#">
-            <span class="route">공지사항</span>
-          </a>
-          >
+      <div id="content-box-main" class="d-flex justify-content-center mt-5 mb-5">
+        <div id="center-box">
+          <div>
+            <a href="#">
+              <span class="route">홈</span>
+            </a>
+            >
+            <a href="#">
+              <span class="route">더보기</span>
+            </a>
+            >
+            <a href="#">
+              <span class="route">공지사항</span>
+            </a>
+            >
+          </div>
+          <div class="mt-5 mb-5">
+              <h3><strong>공지사항</strong></h3>
+              <hr>
+              <ul>
+                <li class="d-flex align-items-center">
+                  <a href="#">공지사항1</a>
+                </li>
+                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <hr>
+                <li class=" d-flex align-items-center justify-content-between">
+                  <a href="#">공지사항2</a>
+                  <a href="#" class="mr-5"><i class="bi bi-arrow-down"></i></a>
+                </li>
+                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <hr>
+                <li class=" d-flex align-items-center">
+                  <a href="#">공지사항3</a>
+                </li>
+                <li  class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <hr>
+                <li class=" d-flex align-items-center">
+                  <a href="#">공지사항4</a>
+                </li>
+                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <hr>
+                <li class="d-flex align-items-center">
+                  <a href="#">공지사항5</a>
+                </li>
+                <li class="d-flex align-items-center"  style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+              </ul>
+              <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-danger" style="background-color:#e61e4d 27.5%;">다음</a>
+                <a href="#" class="btn" style="color: black;">1</a>
+                <a href="#" class="btn"  style="color: black;">2</a>
+                <a href="#" class="btn"  style="color: black;">3</a>
+                <a href="#" class="btn"  style="color: black;">4</a>
+                <a href="#" class="btn"  style="color: black;">5</a>
+                <a href="#" class="btn btn-danger" style="background-color:#e61e4d 27.5%;">이전</a>
+              </div>
+          </div>
         </div>
-        <div class="mt-5">
-            <h3><strong>공지사항</strong></h3>
-            <hr>
-            <ul>
-              <li class="d-flex align-items-center">
-                <a href="#">공지사항1</a>
-              </li>
-              <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-              <hr>
-              <li class=" d-flex align-items-center justify-content-between">
-                <a href="#">공지사항2</a>
-                <a href="#" class="mr-5"><i class="bi bi-arrow-down"></i></a>
-              </li>
-              <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-              <hr>
-              <li class=" d-flex align-items-center">
-                <a href="#">공지사항3</a>
-              </li>
-              <li  class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-              <hr>
-              <li class=" d-flex align-items-center">
-                <a href="#">공지사항4</a>
-              </li>
-              <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-              <hr>
-              <li class="d-flex align-items-center">
-                <a href="#">공지사항5</a>
-              </li>
-              <li class="d-flex align-items-center"  style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-            </ul>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-danger" style="background-color:#e61e4d 27.5%;">다음</a>
-              <a href="#" class="btn" style="color: black;">1</a>
-              <a href="#" class="btn"  style="color: black;">2</a>
-              <a href="#" class="btn"  style="color: black;">3</a>
-              <a href="#" class="btn"  style="color: black;">4</a>
-              <a href="#" class="btn"  style="color: black;">5</a>
-              <a href="#" class="btn btn-danger" style="background-color:#e61e4d 27.5%;">이전</a>
-            </div>
+        <div class="book ml-5">
+          <div class="m-3">
+            예약, 계정 등과 관련해 도움을 받으세요
+          </div>
+          <a href="#" class="m-3 btn login_btn">로그인 또는 회원 가입</a>
         </div>
-    </div>
-    <div class="book">
-        <div class="m-3">
-        예약, 계정 등과 관련해 도움을 받으세요
-        </div>
-        <a href="#" class="m-3 btn lonin_btn">로그인 또는 회원 가입</a>
-    </div>
+      </div>
       <div th:replace="~{/layout/top-btn :: top-btn}"></div>
   </div>
   <footer th:replace="~{/layout/footer :: footer}"></footer>
