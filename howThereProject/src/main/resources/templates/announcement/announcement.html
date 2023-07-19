@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,57 +17,60 @@
 <body>
 <header th:replace="~{/layout/header :: header}"></header>
 	<div id="content-box">
-		<div id="content-box-main">
-			<a id="article-content"></a>
-			<div class="d-flex justify-content-center">
-				<div>
+		<div id="content-box-main" class="d-flex justify-between mt-5 mb-5">
+			<div>
+				<a id="article-content"></a>
+				<div class="d-flex justify-content-center">
 					<div>
-						<a href="#">
-							<span class="route">홈</span>
-						</a>
-						>
-						<a href="#">
-							<span class="route">더보기</span>
-						</a>
-						>
-						<a href="#">
-							<span class="route">공지사항</span>
-						</a>
-						>
-						<a href="#">
-							<span class="route">상세보기</span>
-						</a>
+						<div>
+							<a href="#">
+								<span class="route">홈</span>
+							</a>
+							>
+							<a href="#">
+								<span class="route">더보기</span>
+							</a>
+							>
+							<a href="#">
+								<span class="route">공지사항</span>
+							</a>
+							>
+							<a href="#">
+								<span class="route">상세보기</span>
+							</a>
+						</div>
+						<div class="mt-5 mb-5">
+								<h1 class="title"><strong>공지 사항 상세보기 제목 부분</strong></h1>
+								<hr>
+								<div class="ctt">
+									<p class="multiline-text">
+									<img class="img_class" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/blt62bdb3101b21b963/629f8790bf05100f50a8e1d2/AC_Guests_HG_KR_S@3x_(1).png" alt="사진1">
+
+
+									에어비앤비는 결제 계좌가 등록된 국가에 따라 여러 종류의 결제 수단을 지원합니다.
+
+									결제 페이지에서 국가를 선택하시면 이용 가능한 결제 수단이 표시됩니다.
+									</p>
+								</div>
+						</div>
+
+						<div class="d-flex justify-content-end mt-3 mr-3">
+							<a href="#" class="btn listBtn">목록 보기</a>
+						</div>
 					</div>
-					<div class="mt-5">
-							<h1 class="title"><strong>공지 사항 상세보기 제목 부분</strong></h1>
-							<hr>
-							<div class="ctt">
-								<p class="multiline-text">
-								<img class="img_class" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/blt62bdb3101b21b963/629f8790bf05100f50a8e1d2/AC_Guests_HG_KR_S@3x_(1).png" alt="사진1">
 
-
-								에어비앤비는 결제 계좌가 등록된 국가에 따라 여러 종류의 결제 수단을 지원합니다.
-
-								결제 페이지에서 국가를 선택하시면 이용 가능한 결제 수단이 표시됩니다.
-								</p>
-							</div>
-					</div>
-
-					<div class="d-flex justify-content-end mt-3 mr-3">
-						<a href="#" class="btn listBtn">목록 보기</a>
-					</div>
 				</div>
-
+			</div>
+			<div>
+				<div class="book ml-5">
+					<div class="m-3">
+						예약, 계정 등과 관련해 도움을 받으세요
+					</div>
+					<a href="#" class="m-3 btn login_btn">로그인 또는 회원 가입</a>
+				</div>
 			</div>
 		</div>
-		<div>
-			<div class="book">
-				<div class="m-3">
-					예약, 계정 등과 관련해 도움을 받으세요
-				</div>
-				<a href="#" class="m-3 btn lonin_btn">로그인 또는 회원 가입</a>
-			</div>
-		</div>
+
 		<div th:replace="~{/layout/top-btn :: top-btn}"></div>
 	</div>
 	<footer th:replace="~{/layout/footer :: footer}"></footer>

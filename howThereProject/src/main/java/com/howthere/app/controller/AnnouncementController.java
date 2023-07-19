@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/announcement/*")
 public class AnnouncementController {
+    // http://localhost:10000/announcement/announcement_list
     @GetMapping("announcement_list")
     public void announcementList() {;}
 
+    // http://localhost:10000/announcement/announcement
     @GetMapping("announcement")
     public void announcement() {;}
 }

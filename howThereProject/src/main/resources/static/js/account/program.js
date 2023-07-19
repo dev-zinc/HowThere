@@ -1,6 +1,3 @@
-const searchButton = $(".appear-text");
-const diaryList = $('.diary-grid');
-
 onClickEachNavs((i, btn) => {
     let nav = $(btn);
     if(nav.hasClass(".selected")) return;
@@ -10,7 +7,3 @@ onClickEachNavs((i, btn) => {
 
     //do sth
 });
-
-//검색창 focus 시 show
-searchButton.hide();
-
