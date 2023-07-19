@@ -29,6 +29,9 @@ public class AdministratorController {
     @GetMapping("notice-detail")
     public void noticeDetail() {;}
 
+    @GetMapping("notice-write")
+    public void noticeWrite() {;}
+
     @GetMapping("inquiry")
     public void inquiry() {;}
 
