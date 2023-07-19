@@ -74,7 +74,7 @@ header.after {
     position: relative;
     vertical-align: middle;
     z-index: 1;
-    color: #FF385C;
+    color: #BB84E8;
 }
 
 .logo1 {
@@ -179,7 +179,7 @@ header.after {
     border-radius: 50%;
     padding: 10px;
     margin: 7px 7px 7px 0;
-    background-color: #FF385C;
+    background-color: #BB84E8;
     cursor: pointer;
 }
 
