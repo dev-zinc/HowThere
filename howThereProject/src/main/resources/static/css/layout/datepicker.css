@@ -161,7 +161,7 @@ td:has(.ui-state-highlight){
 }
 
 .ui-datepicker-calendar > tbody > tr > td:hover{
-    background: #FF385C;
+    background: #BB84E8;
     opacity: 1;
 }
 .ui-datepicker-calendar > tbody > tr > td:hover a{

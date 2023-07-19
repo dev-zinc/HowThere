@@ -1,0 +1,188 @@
+main {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+main > form {
+    display: flex;
+}
+
+main > form > div {
+    width: 800px;
+    margin-bottom: 50px;
+}
+
+section.address-sction {
+    padding: 40px;
+    padding-bottom: 0;
+}
+
+ol.imgOl {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.houseName-wrap {
+    margin-top: 30px;
+}
+
+.houseName-wrap > input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    background: #ebebeb82;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+    font-weight: 600;
+    padding-left: 30px;
+}
+
+.houseName-wrap > input:focus-visible {
+    outline: none;
+}
+
+.info-wrap {
+}
+
+.hidden {
+    display: none;
+}
+
+.thumb {
+    width: 100%;
+    height: 150px;
+    border: 1px dotted;
+    text-align: center;
+    border-radius: 10px;
+}
+.thumb:hover{
+    border: 1px solid;
+}
+.thumb svg{
+    position: relative;
+    top: 57px;
+}
+
+.img-add-btn {
+    display: inline-block;
+    border: 0.5px dotted;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.img-add-btn:hover {
+    border: 1px solid;
+}
+
+.img-add-btn > div {
+    display: inline-block;
+    position: relative;
+    top: 134px;
+}
+
+.etc-img {
+    width: 80px;
+    height: 60px;
+}
+
+.etc-img > div {
+    position: relative;
+    top: 14px;
+    transform: scale(0.8);
+}
+
+#summernote {
+    margin-top: 30px;
+}
+
+.write-btn-wrap {
+    display: inline-block;
+    top: 30px;
+    left: 47%;
+    margin-bottom: 10px;
+}
+
+#address {
+    width: 300px;
+    height: 50px;
+    margin-left: 30px;
+    border-radius: 27px;
+    padding-left: 20px;
+    padding-right: 50px;
+    z-index: 5;
+    top: 20px;
+    position: relative;
+    border: 1px solid lightgray;
+}
+
+#address:focus-visible {
+    outline: none;
+}
+
+#map {
+    width: 710px;
+    height: 330px;
+    margin-top: 10px;
+    top: -50px;
+    z-index: 0;
+}
+
+#address-search-btn {
+    position: relative;
+    right: 60px;
+    top: 20px;
+    z-index: 10;
+    background: #BB84E8;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 600;
+}
+
+.side-wrap {
+    position: sticky;
+    width: 300px;
+    height: 500px;
+    top: 130px;
+    border: 1.5px solid lightgray;
+    border-radius: 30px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 1px 1px 10px 0.1px lightgray;
+    display: grid;
+    justify-items: center;
+    align-content: space-between;
+    margin-left: -100px;
+}
+.people-cnt-wrap{
+    display: grid;
+    width: 90%;
+}
+.people-cnt-wrap div{
+    display: flex;
+    justify-content: space-around;
+}
+.write-btn-wrap button{
+    border: none;
+    height: 48px;
+    width: 80px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+.write{
+    background: #BB84E8;
+}
+.cancle{
+    background: lightgrey;
+}

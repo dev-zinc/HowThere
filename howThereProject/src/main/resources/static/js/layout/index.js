@@ -5,7 +5,7 @@ localNev.click(function(e){
     })
     e.currentTarget.dataset.select = true;
 })
-$('.local-nev-box > label').click(function(e){
-    e.currentTarget.focus();
-})
-$(localNev[Math.floor(Math.random() * 16)]).trigger('click');
+// $('.local-nev-box > label').click(function(e){
+//     e.currentTarget.focus();
+// })
+$(localNev[0]).trigger('click');
