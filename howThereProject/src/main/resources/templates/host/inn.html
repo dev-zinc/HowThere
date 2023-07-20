@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/account/menu.css">
+    <link rel="stylesheet" href="/css/host/host-inn.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <title>내 숙소 목록</title>
@@ -14,7 +15,7 @@
 <body>
 <div th:replace="~{/layout/header :: header}"></div>
 <main>
-    <div id="content-box">
+    <div id="content-box" style="min-height: 567px;">
         <div id="content-box-main" class="d-flex justify-content-center">
             <section id="brief-user-info">
                 <div class="info-wrap">
@@ -25,22 +26,57 @@
                     </div>
                 </div>
             </section>
-            <div class="menu-container flex">
+            <div class="my-house-container grid">
                 <!-- -->
-                <div class="menu-block">
-                    <a href="/account/diary">
-                        <div>
-                            <div class="menu-content flex">
-                                <div style="margin-bottom: 16px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;height:32px;width:32px;fill:currentColor" aria-hidden="true" role="presentation" focusable="false"><path d="M26 2a1 1 0 0 1 .92.61l.04.12 2 7a1 1 0 0 1-.85 1.26L28 11h-3v5h6v2h-2v13h-2v-2.54a3.98 3.98 0 0 1-1.73.53L25 29H7a3.98 3.98 0 0 1-2-.54V31H3V18H1v-2h5v-4a1 1 0 0 1 .88-1h.36L6.09 8.4l1.82-.8L9.43 11H12a1 1 0 0 1 1 .88V16h10v-5h-3a1 1 0 0 1-.99-1.16l.03-.11 2-7a1 1 0 0 1 .84-.72L22 2h4zm1 16H5v7a2 2 0 0 0 1.7 1.98l.15.01L7 27h18a2 2 0 0 0 2-1.85V18zm-16-5H8v3h3v-3zm14.24-9h-2.49l-1.43 5h5.35l-1.43-5z"></path></svg>
-                                </div>
-                                <div class="menu-description">
-                                    <div class="title">나의 일기</div>
-                                    <div class="subtitle">내가 쓴 글을 확인합니다</div>
-                                </div>
+                <div class="my-house-block">
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
                             </div>
                         </div>
-                    </a>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
+                            </div>
+                        </div>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
+                            </div>
+                        </div>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <section id="account-deactivate">
