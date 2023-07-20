@@ -190,3 +190,7 @@ div .info {
   font-size: 14px;
   line-height: 20px;
 }
+
+.content-border {
+  border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid;
+}
