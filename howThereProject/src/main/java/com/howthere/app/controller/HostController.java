@@ -7,15 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/host/*")
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/error/*")
-public class ErrorController {
-    // http://localhost:10000/error/error_page
-    @GetMapping("error_page")
-    public void errorPage() {;}
-
-    // http://localhost:10000/error/error_page500
-    @GetMapping("error_page500")
-    public void errorPage500() {;}
+public class HostController {
+//    http://localhost:10000/host/write
+    @GetMapping("write")
+    public void write(){;}
 }

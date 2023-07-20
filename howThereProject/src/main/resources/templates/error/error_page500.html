@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에러 페이지</title>
+    <link rel="stylesheet" href="/css/error/error_page.css ">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div th:replace="~{/layout/header :: header}"></div>
+        <div id="content-box" class=" mt-5 mb-5">
+                    <div id="content-box-main" class="c1voot80 dir dir-ltr">
+                        <div class="row mb-50">
+                            <div class="h8i5hv0 dir dir-ltr">
+                                <h1 tabindex="-1" class="hpipapi dir dir-ltr" elementtiming="LCP-target">
+                                    사이트 접속중 에러가 발생 하였습니다.
+                                </h1>
+                            </div>
+                             <div class="align-self-center">
+                                <a href="http://localhost:10000/" class="btn btn-lg btn-outline-info"> 첫 페이지로 이동하기</a>
+                             </div>
+                        </div>
+                        <div class="m94tuun dir dir-ltr">
+                            <div class="dqra4ro bmwtyu7 dir dir-ltr">
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    <footer th:replace="~{/layout/footer :: footer}"></footer>
+</body>
+<script src="/js/layout/index.js"></script>
+</html>
