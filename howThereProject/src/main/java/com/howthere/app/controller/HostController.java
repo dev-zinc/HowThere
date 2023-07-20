@@ -14,4 +14,8 @@ public class HostController {
 //    http://localhost:10000/host/write
     @GetMapping("write")
     public void write(){;}
+
+//    http://localhost:10000/host/inn
+    @GetMapping("inn")
+    public void inn(){;}
 }
