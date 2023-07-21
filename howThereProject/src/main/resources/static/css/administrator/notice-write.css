@@ -129,103 +129,137 @@ section.body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom: 1.5px solid #ddd;
+    /*border-bottom: 1.5px solid #ddd;*/
 }
 
 .name{
-    border-bottom: 1px dashed #ddd;
+    display: flex;
+    border-bottom: 1px solid #ddd;
     height: 14%;
     line-height: 60px;
     padding: 0 30px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.info{
-    border-bottom: 1px solid #ddd;
-    font-size: 0;
-    height: 6%;
-}
-
-.info dl{
-    display: inline-block;
+.input-wrapper{
+    height: 86%;
     padding: 0 30px;
-    position: relative;
-    height: 30px;
-    line-height: 27px;
 }
 
-
-.info dl::before{
-    display: block;
-    position: absolute;
-    top: 6px;
-    left: -3px;
-    content: "";
-    width: 1px;
-    height: 16px;
-    background: #ddd;
+.input-title{
+    padding: 15px 0px;
+    border-bottom: 1px dashed #ddd;
 }
 
-.info dl:first-child::before{
-    display: none;
+.input-title dl {
+    font-size: 0;
 }
 
-.info dl dt, .info dl dd {
+.input-title dt, .input-title dd{
     display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
 }
 
-.info dl dt{
-    font-size: 12px;
+.input-title dt {
+    width: 100px;
 }
 
-.info dl dd{
-    color: #777;
-    font-size: 12px;
-    margin-left: 6px;
+.input-title dd {
+    width: calc(100% - 100px);
 }
 
-.content{
-    padding: 30px;
-    line-height: 160%;
-    font-size: 13px;
-    height: 280px;
-}
-
-.comment{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 30%;
-}
-
-.comment-content{
-    width: 100%;
-    height: 65%;
-    font-size: 13px;
+.input-title input[type="text"]{
     padding: 10px;
-    resize: none;
-    border: 1px solid darkgrey;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border: 1px solid lightgray;
     border-radius: 10px;
-    margin: 0px 40px;
 }
 
-.comment-content:focus{
+.input-title input[type="text"]:focus{
+    /*background-color: lightblue;*/
+    border: 1px solid gray;
     outline: none;
 }
 
-.button-end {
-    border-radius: 10px;
-    cursor: pointer;
+.input-content{
+    padding: 15px 0px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.input-content dl {
+    font-size: 0;
+}
+
+.input-content dt, .input-content dd{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
+}
+
+.input-content dt {
     width: 100px;
-    height: 30px;
-    text-align: center;
-    font-size: 12px;
-    border: none;
-    outline: 1px solid gray;
-    background-color: white;
-    margin-bottom: 100px;
+}
+
+.input-content dd {
+    width: calc(100% - 100px);
+}
+
+.input-content textarea{
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 380px;
+    resize: none;
+    font-size: 14.5px;
+    border: 1px solid lightgray;
+    font-family: Arial;
+    border-radius: 10px;
+}
+
+.input-content textarea:focus{
+    /*background-color: lightblue;*/
+    border: 1px solid gray;
+    outline: none;
+}
+
+textarea::placeholder {font-family: Arial; color: #333;}
+input::placeholder {font-family: Arial; color: #333;}
+
+.input-file{
+    padding: 15px 0px;
+}
+.input-file dl {
+    font-size: 0;
+}
+
+.input-file dt, .input-file dd{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
+}
+
+.input-file dt {
+    width: 100px;
+}
+
+.input-file dd {
+    /*width: calc(100% - 100px);*/
+    width: 100px;
+}
+
+.input-file-label{
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    padding: 7px 28px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 13px;
 }
 
 .button-list {
@@ -254,43 +288,3 @@ section.body{
     background-color: white;
 }
 
-
-.button-write {
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    font-size: 12px;
-    border: none;
-    outline: 1px solid gray;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-.button-cancel {
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    font-size: 12px;
-    border: none;
-    background-color: black;
-    color: white;
-    margin-bottom: 50px;
-}
-
-.button-list {
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    font-size: 12px;
-    border: none;
-    /*outline: 1px solid black;*/
-    background-color: black;
-    color: white;
-    margin-right: 15px;
-}

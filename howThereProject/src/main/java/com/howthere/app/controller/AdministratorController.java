@@ -26,9 +26,25 @@ public class AdministratorController {
     @GetMapping("notice")
     public void notice() {;}
 
+    @GetMapping("notice/detail")
+    public String noticeDetail() {
+        return "/administrator/notice-detail";
+    }
+
+    @GetMapping("notice/write")
+    public String noticeWrite() {
+        return "/administrator/notice-write";
+    }
+
     @GetMapping("inquiry")
     public void inquiry() {;}
 
-    @GetMapping("inquiry-detail")
-    public void inquiryDetail() {;}
+    @GetMapping("inquiry/detail")
+    public String inquiryDetail() {
+        return "/administrator/inquiry-detail";
+    }
+    @GetMapping("inquiry/write")
+    public String inquiryWrite() {
+        return "/administrator/inquiry-write";
+    }
 }

@@ -163,6 +163,18 @@ input.select:focus{
     height: 30px;
 }
 
+.button-write {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    outline: 1px solid gray;
+    background-color: white;
+    margin-right: 20px;
+}
 
 .button-delete {
     border-radius: 10px;
