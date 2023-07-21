@@ -1,197 +1,401 @@
 @charset "UTF-8";
 
 .header-wrapper {
-  margin: 0 auto;
-  height: 80px;
-  max-width: 1440px;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  position: relative;
-  white-space: nowrap;
+    margin: 0 auto;
+    height: 80px;
+    max-width: 1440px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    white-space: nowrap;
 }
 
 .content-wrap {
-  margin: 2%;
+    margin: 2%;
 }
 
 .map-container {
-  margin: 2%;
+    margin: 2%;
 }
 
 .title-box {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1120px;
 }
 
 .title-under {
-  -webkit-box-pack: justify;
-  -webkit-box-align: end;
-  align-items: flex-end;
-  display: flex;
-  justify-content: space-between;
+    -webkit-box-pack: justify;
+    -webkit-box-align: end;
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
 }
 
 .review-under {
-  -webkit-box-align: center;
-  margin-top: 4px;
-  align-items: center;
-  display: inline-flex;
+    -webkit-box-align: center;
+    margin-top: 4px;
+    align-items: center;
+    display: inline-flex;
 }
 
 .review-btn-count {
-  border-width: 1px;
-  border-style: solid;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 24px;
-  padding-right: 24px;
-  transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1),
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1),
     transform 0.1s cubic-bezier(0.2, 0, 0, 1);
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  text-align: inherit;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
 }
 
 .review-count {
-  color: rgb(34, 34, 34);
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  padding-left: 4px;
-  font-weight: 600;
-  text-decoration-line: underline;
+    font-size: 14px;
+    line-height: 20px;
+    padding-left: 4px;
+    font-weight: 600;
+    text-decoration-line: underline;
 }
 
 .review-location {
-  border-width: 1px;
-  border-style: solid;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 24px;
-  padding-right: 24px;
-  transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1),
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1),
     transform 0.1s cubic-bezier(0.2, 0, 0, 1);
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  text-align: inherit;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
 }
 
 .img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 0;
-  padding: 0;
-  margin: 8px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 0;
+    padding: 0;
+    margin: 8px;
 }
 
 .detail-container {
-  display: flex;
+    display: flex;
 }
 
 .room-description {
-  color: rgb(34, 34, 34);
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 26px;
-  margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 8px;
 }
 
 .room-description > h2 {
-  color: inherit;
-  font-size: 1em;
-  font-weight: inherit;
-  line-height: inherit;
+    color: inherit;
+    font-size: 1em;
+    font-weight: inherit;
+    line-height: inherit;
 }
+
 ol {
-  display: block;
-  list-style-type: decimal;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
 }
+
 .room-info {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .room-info > li {
-  display: inline-block;
+    display: inline-block;
 }
 
 .content-box {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1120px;
-  padding-top: 48px;
-  padding-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1120px;
+    padding-top: 48px;
+    padding-bottom: 24px;
 }
 
 .host-box {
-  align-self: center;
+    align-self: center;
 }
 
 .host-img-box {
-  background-color: rgb(221, 221, 221);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
+    background-color: rgb(221, 221, 221);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
 }
 
 .subtitle {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 div .info {
-  display: flex;
+    display: flex;
 }
 
 .info .icon {
-  flex-shrink: 0;
-  min-width: 24px;
+    flex-shrink: 0;
+    min-width: 24px;
 }
 
 .content .text-box {
-  margin-left: 16px;
+    margin-left: 16px;
 }
 
 .text-box .title {
-  color: rgb(34, 34, 34);
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 4px;
 }
 
 .content .text {
-  color: rgb(113, 113, 113);
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    color: rgb(113, 113, 113);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .content-border {
-  border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    border-top-width: 1px;
+    border-top-style: solid;
 }
 
+.reply-container {
+    max-width: none;
+    /*padding-left: 80px;*/
+    padding-right: 80px;
+    -webkit-box-lines: multiple;
+    -webkit-box-pack: start;
+    -webkit-box-align: stretch;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.grade-top [class] [class] {
+    margin-bottom: 32px;
+    color: #222222;
+    font-family: "Circular", -apple-system, "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: calc(100% + 16px);
+}
+
+.star {
+    margin-right: 8px;
+    display: inline-flex;
+}
+
+.grade-top .text {
+    display: inline-flex;
+}
+
+.grade-container {
+    margin-left: calc(-1 * 16px / 2);
+    margin-right: calc(-1 * 16px / 2);
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.grade {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 41.666667%;
+    margin-right: 8.333333%;
+    position: relative;
+    margin-left: 0%;
+}
+
+.grade-line {
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.grade-line .text {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grade-line .graph {
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 12px;
+    width: 50%;
+}
+
+.graph .bar {
+    position: relative;
+    height: 4px;
+    width: 100%;
+    margin-right: 4px;
+    background-color: rgb(221, 221, 221);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.bar .percent {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: rgb(34, 34, 34);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.point {
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: 6px;
+}
+
+.reply-list-box {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 41.666667%;
+    margin-right: 8.333333%;
+    position: relative;
+    margin-left: 0%;
+}
+
+.reply-img-box {
+    margin-bottom: 16px;
+    justify-content: left;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.replier-box {
+    margin-left: 12px;
+    color: #222222;
+    font-family: "Circular", -apple-system, "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.reply-date-box {
+    color: #717171;
+    font-family: "Circular",-apple-system,"BlinkMacSystemFont","Roboto","Helvetica Neue",sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.reply-date-box > div > ol {
+    padding: 0;
+    margin: 0;
+}
+
+.img-link {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-variant-ligatures: inherit;
+    font-variant-caps: inherit;
+    font-variant-alternates: inherit;
+    font-variant-numeric: inherit;
+    font-variant-east-asian: inherit;
+    font-variant-position: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-decoration-line: underline;
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    outline-style: none;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-decoration: none;
+}
+
+.user-img {
+    height: 100%;
+    width: 100%;
+    position: static;
+    border-radius: 50%;
+}
+
+.reply-btn {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    transition: box-shadow 0.2s ease,transform 0.1s ease;
+    border-color: #222222;
+    background: #FFFFFF;
+    padding: 13px 23px;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+}

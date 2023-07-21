@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/program")
 public class ProgramController {
 
+    // localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/list");
         return mv;
     }
 
+    // localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/detail");
