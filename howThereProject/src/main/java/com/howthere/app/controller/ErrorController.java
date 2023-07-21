@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/error/*")
 public class ErrorController {
+    // http://localhost:10000/error/error_page
     @GetMapping("error_page")
     public void errorPage() {;}
+
+    // http://localhost:10000/error/error_page500
+    @GetMapping("error_page500")
+    public void errorPage500() {;}
 }

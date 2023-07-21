@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleag.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/diary/diary.css">
+    <link rel="stylesheet" href="/css/host/host-write.css">
+    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/js/summernote/summernote-lite.js"></script>
+    <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+    <title>내 숙소 등록</title>
+</head>
+<body>
+    <div th:replace="~{/layout/header :: header}"></div>
+    <div>
+        <main>
+            <form method="post" action="/host/write" onsubmit="return false;">
+                <div>
+                    <nav class="current-path">
+                        <ol class="path-wrap flex">
+                            <li class="path-content inline-flex">
+                                <a class="path" href="/account/menu">
+                                    <span>내 계정</span>
+                                </a>
+                                <span class="inline-flex">
+                                <span class="arrow" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
+                                        <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                                    </svg>
+                                </span>
+                            </span>
+                            </li>
+                            <li class="path-content inline-flex">
+                                <a class="path">
+                                    <span>내 숙소 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <hr/>
+                    <input type="hidden">
+                    <div class="houseName-wrap">
+                        <input type="text" name="houseName" placeholder="숙소의 이름을 정해주세요">
+                    </div>
+                    <div class="info-wrap">
+                        <section class="address-sction">
+                            <div>
+                                <input type="text" id="searchAddress" placeholder="주소">
+                                <input type="button" onclick="openAddressSearchPopup()" id="address-search-btn" value="검색">
+                                <br>
+                                <div id="map"></div>
+                                <div class="address-wrap">
+                                    <input type="hidden" id="sido">
+                                    <input type="hidden" id="sigungo">
+                                    <div class="hidden">
+                                        <div>주소</div>
+                                        <input id="address" type="text" disabled>
+                                    </div>
+                                    <div class="hidden">
+                                        <div>상세주소</div>
+                                        <input id="addressDetail" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <textarea name="content" id="summernote" cols="30" rows="10"></textarea>
+                </div>
+            </form>
+            <div class="side-wrap">
+                <div style="width: 100%">
+                    <label for="thumbImgFile" style="width: 100%;">
+                        <input type="file" class="hidden" id="thumbImgFile">
+                        <div class="thumb">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="height: 32px; width: 32px; fill: currentcolor;"><path d="M27 3a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM8.89 19.04l-.1.08L3 24.92V25a2 2 0 0 0 1.85 2H18.1l-7.88-7.88a1 1 0 0 0-1.32-.08zm12.5-6-.1.08-7.13 7.13L20.92 27H27a2 2 0 0 0 2-1.85v-5.73l-6.3-6.3a1 1 0 0 0-1.31-.08zM27 5H5a2 2 0 0 0-2 2v15.08l4.38-4.37a3 3 0 0 1 4.1-.14l.14.14 1.13 1.13 7.13-7.13a3 3 0 0 1 4.1-.14l.14.14L29 16.59V7a2 2 0 0 0-1.85-2zM8 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
+                        </div>
+                    </label>
+                    <div style="margin-bottom: 30px">
+                        <ol class="imgOl">
+                            <li>
+                                <label for="imgFileAddBtn">
+                                    <div class="img-add-btn etc-img" draggable="true">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 32px; width: 32px; stroke: rgb(113, 113, 113); stroke-width: 2; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                                        </div>
+                                        <input type="file" multiple class="hidden" id="imgFileAddBtn">
+                                    </div>
+                                </label>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="people-cnt-wrap">
+                    <div>
+                        <h3>최대인원</h3>
+                        <div class="count-btn-wrap">
+                            <button type="button" class="count maxCount" data-for="maxGuestCnt" data-oper="minus">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28"></path></svg>
+                                </span>
+                            </button>
+                            <div>
+                                <span id="maxGuestCnt">0</span>
+                            </div>
+                            <button type="button" class="count maxCount" data-for="maxGuestCnt" data-oper="plus">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>반려동물</h3>
+                        <div class="count-btn-wrap">
+                            <button type="button" class="count maxCount" data-for="maxPetCnt" data-oper="minus">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28"></path></svg>
+                                </span>
+                            </button>
+                            <div>
+                                <span id="maxPetCnt">0</span>
+                            </div>
+                            <button type="button" class="count maxCount" data-for="maxPetCnt" data-oper="plus">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="write-btn-wrap">
+                    <button  class="write">
+                        <span>
+                            <div>
+                                <div style="padding-left: 8px;padding-right: 4px;">등록</div>
+                            </div>
+                        </span>
+                    </button>
+                    <button  class="cancle">
+                        <span>
+                            <div>
+                                <div style="padding-left: 8px;padding-right: 4px;">취소</div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <footer th:replace="~{/layout/footer :: footer}"></footer>
+</body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d&libraries=services"></script>
+<script src="/js/host/write.js"></script>
+</html>

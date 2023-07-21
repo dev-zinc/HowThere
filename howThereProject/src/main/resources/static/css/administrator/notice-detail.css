@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+nav.menu{
+    width: 15%;
+    background-color: white;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+.logo {
+    height: 7%;
+    margin-top: 7%;
+}
+
+.logo img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.menu li a{
+    height: 55px;
+    line-height:55px;
+    display: block;
+    padding: 0 10px;
+    font-size: 15px;
+    color: #1f1f1fd9;
+}
+
+.menu li a:hover{
+    background-color: #f3f3f3;
+}
+
+.menu li .active {
+    background-color: #f3f3f3;
+}
+
+ul li span{
+    display: flex;
+    align-items: center;
+}
+.menu-list img{
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+    line-height: 55px;
+}
+
+hr{
+    height: 1px;
+    border: 0;
+    background: #2927271f;
+}
+
+div.title{
+    position: fixed;
+    height: 9%;
+    /* line-height: 60px; */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #f3f3f3;
+    z-index: 1;
+}
+
+.title span{
+    padding-left: 17%;
+    font-size: 20px;
+    font-weight: normal;
+    color: #1f1f1fd9
+}
+
+section.body{
+    background-color: #fafafa;
+    width: 100%;
+    height: 100%;
+}
+
+.board-wrap{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 85%;
+    height: 91%;
+    display: flex;
+    align-items: center;
+}
+
+.board-body{
+    width: 90%;
+    height: 85%;
+    margin: 0 auto;
+    background-color: white;
+    /* box-shadow: 1px 1px 3px 1px gray; */
+}
+
+.board-list-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.board-view{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*border-bottom: 1.5px solid #ddd;*/
+}
+
+.name{
+    display: flex;
+    border-bottom: 1px dashed #ddd;
+    height: 14%;
+    line-height: 60px;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info{
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+    height: 6%;
+}
+
+.info dl{
+    display: inline-block;
+    padding: 0 30px;
+    position: relative;
+    height: 30px;
+    line-height: 27px;
+}
+
+
+.info dl::before{
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: -3px;
+    content: "";
+    width: 1px;
+    height: 16px;
+    background: #ddd;
+}
+
+.info dl:first-child::before{
+    display: none;
+}
+
+.info dl dt, .info dl dd {
+    display: inline-block;
+}
+
+.info dl dt{
+    font-size: 12px;
+}
+
+.info dl dd{
+    color: #777;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.content{
+    padding: 30px;
+    line-height: 160%;
+    font-size: 13px;
+    height: 280px;
+}
+
+.button-list {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    /*outline: 1px solid black;*/
+    background-color: black;
+    color: white;
+    margin-right: 15px;
+}
+
+.button-update {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    outline: 1px solid gray;
+    background-color: white;
+    margin-right: 15px;
+}
+
+.button-delete {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    outline: 1px solid gray;
+    background-color: white;
+}
