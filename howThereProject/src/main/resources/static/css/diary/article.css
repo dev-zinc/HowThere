@@ -166,10 +166,10 @@ h2.section-title {
 }
 
 .modify .modify-button:last-child:hover {
-    background-color: #A50B2F;
+    background-color: #BB84E8;
 }
 .modify .modify-button:last-child {
-    background-color: #E61E4D;
+    background-color: #8e60b3;
     color: #FFFFFF;
 }
 

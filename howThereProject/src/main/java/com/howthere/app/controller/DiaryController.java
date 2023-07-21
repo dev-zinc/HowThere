@@ -27,10 +27,11 @@ public class DiaryController {
     @PostMapping("write")
     public void write() {;}
 
-    //http://localhost:10000/diary/modify
-    @GetMapping("modify")
-    public void goToModifyForm() {;}
-
-    @PostMapping("modify")
-    public void modify() {;}
+    //write 페이지에서 modify
+//    //http://localhost:10000/diary/modify
+//    @GetMapping("modify")
+//    public void goToModifyForm() {;}
+//
+//    @PostMapping("modify")
+//    public void modify() {;}
 }

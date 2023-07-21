@@ -102,7 +102,8 @@
 }
 
 #search-box {
-    margin: 0 auto;
+    margin-left: 25%;
+    margin-right: 30%;
     position: relative;
     max-width: 400px;
 }
@@ -147,7 +148,7 @@
     padding: 16px;
     border-radius: 32px;
     border: none;
-    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    background: linear-gradient(to right,#BB84E8 0%,#BB84E8 50%,#BB84E8 100%);
     transition: box-shadow 0.2s ease;
     transition-property: box-shadow,max-width,min-width;
     display: block;
