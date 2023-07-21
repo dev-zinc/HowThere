@@ -1,0 +1,54 @@
+.my-house-block{
+
+}
+.my-house-img-wrap{
+    max-height: 100px;
+    max-width: 200px;
+}
+.my-house-img-wrap > img{
+    object-fit: cover;
+    width: 200px;
+    height: 100px;
+    border-radius: 13px;
+}
+.my-house-content{
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    margin: 20px 0 !important;
+    padding: 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+}
+.house-title{
+    font-size: 25px;
+    font-weight: 800;
+    margin: 10px;
+}
+.address-info{
+    margin: 10px;
+    font-size: 16px;
+}
+.btn-box > button{
+    height: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    padding: 15px;
+    margin-right: 5px;
+}
+.hosting-btn{
+    background: #BB84E8;
+}
+.hosting-btn:hover{
+    filter: drop-shadow(0px 0px 10px #BB84ff);
+    box-shadow: 0 0 10px #BB84ff;
+}
+.modify-btn{
+    background: #BB84E8;
+}
+.delete-btn{
+    background: #717171;
+}

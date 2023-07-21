@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleag.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/account/menu.css">
+    <link rel="stylesheet" href="/css/host/host-inn.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <title>내 숙소 목록</title>
+</head>
+<body>
+<div th:replace="~{/layout/header :: header}"></div>
+<main>
+    <div id="content-box" style="min-height: 567px;">
+        <div id="content-box-main" class="d-flex justify-content-center">
+            <section id="brief-user-info">
+                <div class="info-wrap">
+                    <h1 tabindex="-1">계정</h1>
+                    <div class="info">
+                        <span style="font-weight: 600;">사용자 이름 · </span>
+                        <span>user@email</span>
+                    </div>
+                </div>
+            </section>
+            <div class="my-house-container grid">
+                <!-- -->
+                <div class="my-house-block">
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
+                            </div>
+                        </div>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
+                            </div>
+                        </div>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
+                    <div class="my-house-content flex">
+                        <div style="display: flex;">
+                            <div class="my-house-img-wrap">
+                                <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                            </div>
+                            <div class="menu-description">
+                                <div class="house-title">구좌읍, 제주시</div>
+                                <div class="address-info">제주특별자치도 제주시 구좌읍 한동로1길 25</div>
+                            </div>
+                        </div>
+                        <div class="btn-box">
+                            <button class="hosting-btn">호스팅</button>
+                            <button class="modify-btn">수정</button>
+                            <button class="delete-btn">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="account-deactivate">
+                <div style="margin-top:52px;margin-bottom:7px">
+                    <div class="deactivate-text">계정을 비활성화하셔야 하나요?</div>
+                </div>
+                <a href="/account-delete/reasons" style="text-decoration: underline">
+                    지금 처리하기
+                </a>
+            </section>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</html>
