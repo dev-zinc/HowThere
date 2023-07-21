@@ -50,41 +50,34 @@
                 <div class="board-list-wrap" style="overflow: auto">
                     <div class="board-view">
                         <div class="name">
-                            <h2>새로운 프로그램이 오픈합니다~!!</h2>
-                            <input type="button" class="button-update" value="공지사항 수정">
+                            <h2>공지사항 작성</h2>
+                            <div>
+                                <input type="button" class="button-list" value="목록으로">
+                                <input type="button" class="button-write" value="공지사항 작성">
+                            </div>
                         </div>
-                        <div class="info">
-                            <dl>
-                                <dt>공지사항 번호</dt>
-                                <dd>10</dd>
-                            </dl>
-                            <dl>
-                                <dt>관리자 번호</dt>
-                                <dd>1</dd>
-                            </dl>
-                            <dl>
-                                <dt>작성날짜</dt>
-                                <dd>2023.07.16</dd>
-                            </dl>
-                            <dl>
-                                <dt>공개여부</dt>
-                                <dd>공개</dd>
-                            </dl>
-                        </div>
-                        <div class="content">
-                            <img src="/img/img.png" style="height: 200px"><br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!
+                        <div class="input-wrapper">
+                            <div class="input-title">
+                                <dl>
+                                    <dt>제목</dt>
+                                    <dd><input type="text" placeholder="제목 입력"/></dd>
+                                </dl>
+                            </div>
+                            <div class="input-content">
+                                <dl>
+                                    <dt>내용</dt>
+                                    <dd><textarea placeholder="내용 입력"></textarea></dd>
+                                </dl>
+                            </div>
+                            <div class="input-file">
+                                <dl>
+                                    <dt>파일 첨부</dt>
+                                    <dd>
+                                        <input style="display: none" type="file" id="input-file"/>
+                                        <label class="input-file-label" for="input-file">업로드</label>
+                                    </dd>
+                                </dl>
+                            </div>
                         </div>
                     </div>
                 </div>
