@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/member/*")
 public class MemberController {
+    //http://localhost:10000/member/login
     @GetMapping("login")
     public void login() {;}
 
+    //http://localhost:10000/member/join
     @GetMapping("join")
     public void join() {;}
 
+    //http://localhost:10000/member/connect
     @GetMapping("connect")
     public void connect() {;}
 }
