@@ -40,9 +40,10 @@ nav.menu{
 
 .logo img{
     width: 100%;
-    object-fit: cover;
+    height: 30px;
+    object-fit: fill;
+    padding: 6px 0px;
 }
-
 .menu li a{
     height: 55px;
     line-height:55px;
