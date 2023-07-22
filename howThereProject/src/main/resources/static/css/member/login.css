@@ -295,7 +295,7 @@ input {
     padding-right: 24px;
     transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1),transform 0.1s cubic-bezier(0.2,0,0,1);
     border: none;
-    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    background: linear-gradient(to right,#BB84E8 0%,#BB84E8 50%,#BB84E8 100%);
     width: 100%;
 }
 
@@ -344,7 +344,7 @@ button-main-wrapper{
     opacity: 0;
     background-size: 200% 200%;
     transition: opacity 1.25s;
-    background-image: radial-gradient( circle at center,#FF385C 0%,#e61e4d 27.5%,#e31c5f 40%,#d70466 57.5%,#bd1e59 75%,#bd1e59 100% );
+    background-image: radial-gradient( circle at center,#BB84E8 0%,#BB84E8 27.5%,#BB84E8 40%,#BB84E8 57.5%,#BB84E8 75%,#BB84E8 100% );
 }
 
 .button-content{
