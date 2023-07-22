@@ -39,6 +39,7 @@
 @media screen and (min-width: 400px) {
   #flight-datepicker {
     display: flex;
+    justify-content: space-around
   }
 }
 #flight-datepicker .form-item {
