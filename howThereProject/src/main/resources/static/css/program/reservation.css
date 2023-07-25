@@ -2,12 +2,6 @@
     margin: 2%;
 }
 
-.content-border {
-    border-top-color: rgb(221, 221, 221);
-    border-top-width: 1px;
-    border-top-style: solid;
-}
-
 .date-container {
     /*position: absolute;*/
     top: 0;

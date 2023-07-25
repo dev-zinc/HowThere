@@ -363,3 +363,26 @@ b {
 .card-item .right-section {
     text-align: end;
 }
+
+.content-border {
+    border-top-color: rgb(221, 221, 221);
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.car-location {
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 8px;
+}
+
+.car-location > h2 {
+    color: inherit;
+    font-size: 1em;
+    font-weight: inherit;
+    line-height: inherit;
+}
