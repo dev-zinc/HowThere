@@ -30,4 +30,10 @@ public class ProgramController {
         mv.setViewName("program/reservation");
         return mv;
     }
+
+    @GetMapping("/rent")
+    public ModelAndView rent(HttpServletRequest req, ModelAndView mv) {
+        mv.setViewName("program/rent");
+        return mv;
+    }
 }

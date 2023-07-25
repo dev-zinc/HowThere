@@ -81,7 +81,7 @@ svg:not(:root) {
     color: #161616;
     text-decoration: none;
     cursor: pointer;
-    box-shadow: 0 1px 3px 0 rgba(37,32,31,.3);
+    box-shadow: 0 1px 3px 0 rgba(37, 32, 31, .3);
     border-radius: 0.75rem;
     height: 100%;
 }
@@ -96,7 +96,7 @@ svg:not(:root) {
     transition: opacity .2s ease-in-out;
     opacity: 0;
     pointer-events: none;
-    box-shadow: 0 4px 14px 0 rgba(37,32,31,.25);
+    box-shadow: 0 4px 14px 0 rgba(37, 32, 31, .25);
     border-radius: 0.75rem;
 }
 
@@ -207,4 +207,159 @@ b {
     line-height: 1rem;
     font-weight: 400;
     margin: 0;
+}
+
+.car-container {
+    margin-bottom: 6rem;
+}
+
+#indicativeDeals {
+    margin-bottom: 1.5rem;
+}
+
+#indicativeDeals .header {
+    color: #161616;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.deals-list {
+    display: flex;
+    margin-right: -1rem;
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+
+.deals-list .panel {
+    width: 33.3%;
+    display: flex !important;
+    margin-bottom: 1.5rem;
+    padding-right: 1rem;
+}
+
+.deal-card {
+    width: 100%;
+}
+
+.card-item {
+    display: flex !important;
+    height: 11.75rem;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    position: relative;
+    background-color: #fff;
+    color: #161616;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 1px 3px 0 rgba(37, 32, 31, .3);
+    border-radius: 0.75rem;
+}
+
+.card-item:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    transition: opacity .2s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 14px 0 rgba(37, 32, 31, .25);
+    border-radius: 0.75rem;
+}
+
+.car-model {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.seater {
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 1rem !important;
+    color: #545860;
+}
+
+.capacity-main {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    min-width: 6.8125rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.capacity-item {
+    display: flex;
+    padding-right: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.capacity-icon > svg {
+    display: flex;
+    width: 2.375rem;
+    height: 2.375rem;
+    margin-bottom: 0.375rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #0062e3;
+    text-align: center;
+    fill: #fff;
+}
+
+.capacity-item .text {
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.price-text {
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.price-text .price {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.panel-img {
+    width: 8.5rem;
+    height: 5.625rem;
+    margin-top: 0.5625rem;
+    margin-left: auto;
+}
+
+.car-img {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    transition: opacity .4s ease-in-out;
+    border-style: none;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.card-item .right-section {
+    text-align: end;
 }
