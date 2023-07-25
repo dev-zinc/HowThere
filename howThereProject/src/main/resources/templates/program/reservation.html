@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" xmlns="" xmlns:th="http://www.thymeleag.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		name="viewport">
+	<meta content="ie=edge" http-equiv="X-UA-Compatible">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" rel="stylesheet">-->
+	<link href="/css/layout/index.css" rel="stylesheet">
+	<link href="/css/program/reservation.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<title>예약 확정!</title>
+</head>
+
+<body>
+	<div th:replace="~{/layout/header :: header}"></div>
+	<main>
+		<div class="main-container">
+			<div style="padding-left: 80px; padding-right: 80px;">
+				<div style="margin-left: auto; margin-right: auto; max-width: 1120px;">
+					<div style="display: flex; justify-content: center;">
+						<h2>예약이 확정됐습니다!</h2>
+					</div>
+					<div class="rent-container">
+						<div class="rent-header">
+							<h2>렌터카</h2>
+						</div>
+						<div class="rent-slide">
+							<div class="arrow">
+								<button class="prev" disabled type="button">
+									<span
+										style="line-height:1rem;display:inline-block;margin-top:0.25rem;vertical-align:top">
+										<svg height="16" style="width:1rem;height:1rem" viewBox="0 0 24 24" width="16"
+											xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M15.905 19.113a1.496 1.496 0 01-2.008 0l-5.948-6.397a1 1 0 01-.004-1.358l6.012-6.532a1.427 1.427 0 011.948.138 1.572 1.572 0 01.103 1.997L11.37 12.04l4.535 4.97a1.72 1.72 0 010 2.104z">
+											</path>
+										</svg>
+									</span>
+								</button>
+								<button class="next">
+									<span
+										style="line-height:1rem;display:inline-block;margin-top:0.25rem;vertical-align:top">
+										<svg height="16" style="width:1rem;height:1rem" viewBox="0 0 24 24" width="16"
+											xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M8.095 4.887a1.496 1.496 0 012.008 0l5.948 6.397a1 1 0 01.003 1.358l-6.01 6.532a1.427 1.427 0 01-1.949-.138 1.572 1.572 0 01-.103-1.997l4.638-5.078-4.535-4.97a1.72 1.72 0 010-2.104z">
+											</path>
+										</svg>
+									</span>
+								</button>
+							</div>
+							<div class="rent-body">
+
+							</div>
+							<!-- 렌트카 카드 슬라이드 -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div th:replace="~{/layout/footer :: footer}"></div>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+	const rentBody = document.querySelector(".rent-body");
+	let html = "";
+
+	for (let i = 0; i < 3; i++) {
+		html += `
+		<div style="width: 33.3%; flex-shrink: 0;">
+			<div style="height: 100%; padding: 0.75rem 0.75rem 1.5rem;">
+				<div class="card">
+					<div class="img-box">
+						<div>
+							<div class="img" style="height:0;padding-bottom:46.93877551020408%">
+								<img alt="서울 렌터카" src="https://content.skyscnr.com/db465e93dcaad614e9bfcaddb5865e36/GettyImages-505777764.jpg?crop=960px:640px&amp;quality=100">
+							</div>
+						</div>
+					</div>
+					<div class="content-box">
+						<div class="left-section">
+							<h3>서울 렌터카</h3>
+							<p class="caption">
+								<b>가장 인기 있는 차종:</b> 소형
+							</p>
+						</div>
+						<div class="right-section">
+							<div class="price">
+								<div class="leading-right">
+									<span class="text">최저가</span>
+								</div>
+								<div class="column-container">
+									<span class="head-text">₩77,764</span>
+									<span class="text">/일</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		`;
+	}
+	rentBody.innerHTML = html;
+</script>
+
+</html>
