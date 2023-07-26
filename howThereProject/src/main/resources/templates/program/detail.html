@@ -11,6 +11,7 @@
     <link href="/css/layout/index.css" rel="stylesheet">
     <link href="/css/program/detail.css" rel="stylesheet">
     <link href="/css/program/datePicker.css" rel="stylesheet">
+	<!--		<link rel="stylesheet" href="/css/layout/datepicker.css">-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title>프로그램 리스트</title>
@@ -32,11 +33,10 @@
                                                 <div style="padding-top:24px">
                                                     <section>
                                                         <div style="margin-bottom: 4px;">
-                                                            <span
-																style="font-size: 26px; line-height:30px;font-weight:  600;">
-                                                                <h1
-																	style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;">
+                                                            <span style="font-size: 26px; line-height:30px;font-weight:  600;">
+                                                                <h1 style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;">
                                                                     역사적인 토리노를 만날 수 있는 노블룸</h1>
+																<h4>₩286,200 /박</h4>
                                                             </span>
 															</span>
                                                         </div>
@@ -265,21 +265,22 @@
                                                         <h2>Sudong-myeon, Namyangju-si에서 4박</h2>
                                                         <div class="input-daterange input-group" id="flight-datepicker">
                                                             <div class="form-item">
-                                                                <label>체크인</label><span
-																class="fontawesome-calendar"></span>
-                                                                <input class="input-sm form-control"
-																	   data-date-format="DD, MM d" id="start-date"
-																	   name="start" placeholder="Select depart date"
-																	   type="text"/><span
-																class="date-text date-depart"></span>
+                                                                <label>체크인</label><span class="fontawesome-calendar"></span>
+																<!--																<input class="input-sm form-control"-->
+																<!--																	   data-date-format="DD, MM d" id="start-date"-->
+																<!--																	   name="start" placeholder="Select depart date"-->
+																<!--																	   type="text"/>-->
+																<!--																<span class="date-text date-depart"></span>-->
+																<input class="search-input " id="startDate" name="startDate" placeholder="날짜 추가" type="text">
                                                             </div>
                                                             <div class="form-item">
-                                                                <label>체크아웃</label><span
-																class="fontawesome-calendar"></span>
-                                                                <input class="input-sm form-control"
-																	   data-date-format="DD, MM d" id="end-date" name="end"
-																	   placeholder="Select return date" type="text"/><span
-																class="date-text date-return"></span>
+                                                                <label>체크아웃</label>
+																<!--																<span class="fontawesome-calendar"></span>-->
+																<!--																<input class="input-sm form-control"-->
+																<!--																	   data-date-format="DD, MM d" id="end-date" name="end"-->
+																<!--																	   placeholder="Select return date" type="text"/>-->
+																<!--																<span class="date-text date-return"></span>-->
+																<input class="search-input " id="endDate" name="endDate" placeholder="날짜 추가" type="text">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -601,20 +602,34 @@
                                                     </div>
                                                 </div>
 												<div style="padding-top: 20px; padding-bottom: 20px;">
-												<div class="content-border" ></div>
+												<div class="content-border"></div>
 												<div class="room-description">
 													<h2>호스팅 지역</h2>
 												</div>
 												<div class="map-container" style="margin: 0;">
 													<div id="map" style="width:1120px;height:400px; margin: auto"></div>
 												</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            	</div>
 
+												<div>
+													<div style="display: flex; justify-content: space-around;">
+														<button class="reservation">
+															<span style="left: 0; right: 0; border-radius: 8px;">
+																<span class="reservation-span">
+
+																</span>
+																<span style="display: block;position: relative;pointer-events: none;">예약하기</span>
+															</span>
+														</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
                     </div>
                 </section>
             </div>
@@ -623,27 +638,33 @@
     <div th:replace="~{/layout/footer :: footer}"></div>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>-->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d" type="text/javascript"></script>
 <script>
-    var dateSelect = $('#flight-datepicker');
-	var dateDepart = $('#start-date');
-	var dateReturn = $('#end-date');
-	var spanDepart = $('.date-depart');
-	var spanReturn = $('.date-return');
-	var spanDateFormat = 'ddd, MMMM D yyyy';
+	const dateDepart = $('#startDate');
+	const dateReturn = $('#endDate');
 
-	dateSelect.datepicker({
-		autoclose: true,
-		format: "mm/dd",
-		maxViewMode: 0,
-		startDate: "now"
+	$("#startDate, #endDate").datepicker({
+		dateFormat: 'yy-mm-dd',
+		prevText: '<',
+		nextText: '>',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년',
+		minDate: 0
 	}).on('change', function () {
-		var start = $.format.date(dateDepart.datepicker('getDate'), spanDateFormat);
-		var end = $.format.date(dateReturn.datepicker('getDate'), spanDateFormat);
-		spanDepart.text(start);
-		spanReturn.text(end);
+		// const startDate = dateDepart.val();
+		// const endDate = dateReturn.val() === "" ? startDate : dateReturn.val();
+		//
+		// if (startDate > endDate)
+		// 	dateReturn.val(startDate);
+		// else
+		// 	dateDepart.val(endDate);
 	});
 
 

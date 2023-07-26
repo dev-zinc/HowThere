@@ -1,0 +1,29 @@
+.main-container {
+    margin: 2%;
+}
+
+.date-container {
+    /*position: absolute;*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+}
+
+#flight-datepicker {
+    display: flex;
+    justify-content: space-around
+}
+
+.form-item {
+    margin: 12px 24px 0 0;
+    position: relative;
+}

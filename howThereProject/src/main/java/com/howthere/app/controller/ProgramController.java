@@ -2,7 +2,6 @@ package com.howthere.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +22,18 @@ public class ProgramController {
     @GetMapping("/detail")
     public ModelAndView detail(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/detail");
+        return mv;
+    }
+
+    @GetMapping("/reservation")
+    public ModelAndView reservation(HttpServletRequest req, ModelAndView mv) {
+        mv.setViewName("program/reservation");
+        return mv;
+    }
+
+    @GetMapping("/rent")
+    public ModelAndView rent(HttpServletRequest req, ModelAndView mv) {
+        mv.setViewName("program/rent");
         return mv;
     }
 }
