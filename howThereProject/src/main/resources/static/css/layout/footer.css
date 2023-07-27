@@ -146,3 +146,14 @@ footer{
         display: inline-block;
     }
 }
+
+footer h3{
+    display: block;
+    font-size: 1.17em !important;
+    margin-block-start: 1em!important;
+    margin-block-end: 1em!important;
+    margin-inline-start: 0px!important;
+    margin-inline-end: 0px!important;
+    font-weight: bold!important;
+    margin-top: 0!important;
+}
