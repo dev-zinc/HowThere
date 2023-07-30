@@ -1,19 +1,15 @@
 package com.howthere.app.entity;
 
 import com.howthere.app.auditing.Period;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "TBL_ANSWER")
-@Getter
-@Setter
-@ToString
 @Entity
+@Table(name = "TBL_ANSWER")
+@Getter @ToString(callSuper = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Answer extends Period {
     @Id
     @GeneratedValue
@@ -23,6 +19,6 @@ public class Answer extends Period {
     @NotNull
     private String answerContent;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     private OneToOneQuestion oneToOneQuestion;
 }

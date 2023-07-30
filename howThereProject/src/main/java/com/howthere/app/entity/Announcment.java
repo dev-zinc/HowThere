@@ -1,9 +1,7 @@
 package com.howthere.app.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.howthere.app.auditing.Period;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +11,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TBL_ANNOUNCMENT")
-@Getter
-@Setter
-@ToString
-public class Announcment {
+@Getter @ToString(callSuper = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Announcment extends Period {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
