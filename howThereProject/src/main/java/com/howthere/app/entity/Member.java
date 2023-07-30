@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(schema = "TBL_MEMBER")
+@Table(name = "TBL_MEMBER")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
@@ -29,10 +29,10 @@ public class Member extends Period {
     @NotNull private LocalDateTime memberBirthDate;
     @NotNull private String memberProfile;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @NotNull private LoginType memberLoginType;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @ColumnDefault("'MEMBER'")
     private MemberType memberType;
 

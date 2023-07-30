@@ -6,14 +6,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(schema = "TBL_FILE")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "TBL_FILE")
+@Getter @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
-public class FileEntity {
+public abstract class FileEntity {
     @Id @GeneratedValue @EqualsAndHashCode.Include
     private Long id;
-    @NotNull
-    private String filePath;
+    @NotNull private String filePath;
     @NotNull private String fileUuid; //"0000-0000-0000-0000.png"
     @NotNull private String fileName;
     @NotNull private Long fileSize;

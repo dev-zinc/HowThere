@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "TBL_RENT_CAR_FILE")
+@Table(name = "TBL_RENT_CAR_FILE")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RentCarFile extends FileEntity {
