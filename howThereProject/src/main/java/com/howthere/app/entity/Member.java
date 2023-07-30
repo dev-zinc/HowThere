@@ -1,6 +1,6 @@
 package com.howthere.app.entity;
 
-import com.howthere.app.audit.Period;
+import com.howthere.app.auditing.Period;
 import com.howthere.app.type.LoginType;
 import com.howthere.app.type.MemberType;
 import lombok.*;
@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,12 +24,12 @@ public class Member extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    private String memberEmail;
-    private String memberName;
-    private LocalDateTime memberBirthDate;
-    private String memberProfile;
-    private LoginType memberLoginType;
-    private MemberType memberType;
+    @NotNull private String memberEmail;
+    @NotNull private String memberName;
+    @NotNull private LocalDateTime memberBirthDate;
+    @NotNull private String memberProfile;
+    @NotNull private LoginType memberLoginType;
+    @NotNull private MemberType memberType;
     private boolean deleted = Boolean.FALSE;
 
     @Builder
