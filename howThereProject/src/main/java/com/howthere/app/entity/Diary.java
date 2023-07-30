@@ -28,4 +28,12 @@ public class Diary extends Period {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
     private List<DiaryReply> diaryReplys = new ArrayList<>();
+
+    @Builder
+    public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member) {
+        this.diaryTitle = diaryTitle;
+        this.diaryContent = diaryContent;
+        this.diaryViewCount = diaryViewCount;
+        this.member = member;
+    }
 }
