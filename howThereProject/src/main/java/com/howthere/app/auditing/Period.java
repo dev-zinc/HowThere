@@ -1,4 +1,4 @@
-package com.jpa.expert.auditing;
+package com.howthere.app.auditing;
 
 import lombok.Getter;
 
@@ -25,7 +25,6 @@ public class Period {
     public void update(){
         this.updatedDate = LocalDateTime.now();
     }
-
 }
 
 
