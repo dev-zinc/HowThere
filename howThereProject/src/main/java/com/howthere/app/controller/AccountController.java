@@ -1,5 +1,6 @@
 package com.howthere.app.controller;
 
+import com.howthere.app.util.OutSeoulUrlConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,22 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/account/*")
 public class AccountController {
     //http://localhost:10000/account/menu
-    @GetMapping("menu")
-    public void menu() {;}
+    @GetMapping(OutSeoulUrlConst.ACCOUNT_MENU)
+    public void menu() {
+        ;
+    }
 
     //http://localhost:10000/account/setting
-    @GetMapping("setting")
-    public void setting() {;}
+    @GetMapping(OutSeoulUrlConst.ACCOUNT_SETTING)
+    public void setting() {
+        ;
+    }
 
     //http://localhost:10000/account/payment
-    @GetMapping("payment")
-    public void payment() {;}
+    @GetMapping(OutSeoulUrlConst.ACCOUNT_PAYMENT)
+    public void payment() {
+        ;
+    }
 
     //http://localhost:10000/account/diary
-    @GetMapping("diary")
-    public void diary() {;}
+    @GetMapping(OutSeoulUrlConst.ACCOUNT_DIARY)
+    public void diary() {
+        ;
+    }
 
     //http://localhost:10000/account/program
-    @GetMapping("program")
-    public void program() {;}
+    @GetMapping(OutSeoulUrlConst.ACCOUNT_PROGRAM)
+    public void program() {
+        ;
+    }
 }
