@@ -1,30 +1,21 @@
 package com.howthere.app.auditing;
 
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 @Getter
 public class Period {
-    @Column(updatable = false)
+    @CreatedDate
     private LocalDateTime createdDate;
+    @LastModifiedDate
     private LocalDateTime updatedDate;
-
-    @PrePersist
-    public void create(){
-        this.createdDate = LocalDateTime.now();
-        this.updatedDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void update(){
-        this.updatedDate = LocalDateTime.now();
-    }
 }
 
 
