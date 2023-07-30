@@ -61,17 +61,16 @@
     box-shadow: 0 0 16px #EBEBEB;
 }
 .btn-box{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    gap: 5px;
 }
 .btn-box button{
-    height: 50px;
+    height: 33px;
     border: none;
     border-radius: 24px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    padding : 12px;
 }
 .cancle-btn{
     background: #717171;
