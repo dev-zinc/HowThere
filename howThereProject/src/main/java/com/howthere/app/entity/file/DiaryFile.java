@@ -14,5 +14,5 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryFile extends FileEntity {
     //@ManyToOne(fetch = FetchType.LAZY)
-    //private Announce announce;
+    //private Diary diary;
 }
