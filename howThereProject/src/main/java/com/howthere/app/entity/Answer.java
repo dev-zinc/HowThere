@@ -1,14 +1,12 @@
 package com.howthere.app.entity;
 
+import com.howthere.app.auditing.Period;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "TBL_ANSWER")
@@ -16,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @ToString
 @Entity
-public class Answer {
+public class Answer extends Period {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
@@ -24,4 +22,7 @@ public class Answer {
 
     @NotNull
     private String answerContent;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private OneToOneQuestion oneToOneQuestion;
 }

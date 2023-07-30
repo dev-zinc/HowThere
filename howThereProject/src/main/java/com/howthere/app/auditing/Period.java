@@ -1,4 +1,4 @@
-package com.jpa.expert.auditing;
+package com.howthere.app.auditing;
 
 import lombok.Getter;
 
