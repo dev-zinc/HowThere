@@ -1,18 +1,16 @@
 package com.howthere.app.entity.file;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.howthere.app.entity.Announcment;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_ANNOUNCE_FILE")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AnnounceFile extends FileEntity {
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //private Announce announce;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Announcment announcment;
 }
