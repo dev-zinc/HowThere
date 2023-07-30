@@ -1,9 +1,7 @@
 package com.howthere.app.entity;
 
 import com.howthere.app.auditing.Period;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "TBL_RENT_CAR_COMPANY")
 @Getter @ToString
+@NoArgsConstructor
 public class RentCarCompany extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
