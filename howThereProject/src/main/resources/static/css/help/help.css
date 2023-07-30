@@ -1,0 +1,14 @@
+#nav{
+    min-height: 100vh;
+}
+
+.multiline-text {
+    white-space: pre-line;
+}
+.img_class{
+    width: 50%;
+    height: 30%;
+}
+#nav-var:hover{
+    background-color: white;
+}
