@@ -4,20 +4,20 @@ import com.howthere.app.auditing.Period;
 import com.howthere.app.type.LoginType;
 import com.howthere.app.type.MemberType;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(schema = "TBL_MEMBER")
-@Getter @ToString(callSuper = true, exclude = {})
+@Table(name = "TBL_MEMBER")
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 @SQLDelete(sql = "UPDATE TBL_MEMBER SET DELETED = 1 WHERE ID = ?")
 @Where(clause = "DELETED = 0")
 public class Member extends Period {
@@ -28,8 +28,14 @@ public class Member extends Period {
     @NotNull private String memberName;
     @NotNull private LocalDateTime memberBirthDate;
     @NotNull private String memberProfile;
+
+    @Enumerated(EnumType.STRING)
     @NotNull private LoginType memberLoginType;
-    @NotNull private MemberType memberType;
+
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault("'MEMBER'")
+    private MemberType memberType;
+
     private boolean deleted = Boolean.FALSE;
 
     @Builder
