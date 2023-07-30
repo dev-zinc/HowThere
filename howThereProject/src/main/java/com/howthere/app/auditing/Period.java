@@ -25,7 +25,6 @@ public class Period {
     public void update(){
         this.updatedDate = LocalDateTime.now();
     }
-
 }
 
 
