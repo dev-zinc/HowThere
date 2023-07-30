@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "TBL_ANNOUNCE_FILE")
+@Table(name = "TBL_ANNOUNCE_FILE")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryFile extends FileEntity {
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //private Announce announce;
+    //@ManyToOne(join, fetch = FetchType.LAZY)
+    //private Diary diary;
 }
