@@ -11,7 +11,8 @@ import javax.validation.constraints.NotNull;
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class FileEntity extends Period {
-    @Id @GeneratedValue @EqualsAndHashCode.Include
+    @Id @GeneratedValue
+    @EqualsAndHashCode.Include
     private Long id;
     @NotNull private String filePath;
     @NotNull private String fileUuid; //"0000-0000-0000-0000.png"
