@@ -4,11 +4,12 @@ import com.howthere.app.HowThereApplication;
 import com.howthere.app.entity.Diary;
 import com.howthere.app.entity.Member;
 import com.howthere.app.entity.file.DiaryFile;
-import com.howthere.app.repository.file.DiaryFileRepository;
-import com.howthere.app.repository.DiaryRepository;
-import com.howthere.app.repository.MemberRepository;
+
 import java.util.UUID;
 
+import com.howthere.app.repository.diary.DiaryRepository;
+import com.howthere.app.repository.file.DiaryFileRepository;
+import com.howthere.app.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
