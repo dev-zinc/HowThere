@@ -2,6 +2,7 @@ package com.howthere.app.entity.rentCar;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.type.RentCarType;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -9,10 +10,8 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(exclude = "rentCar")
+@Getter @ToString(exclude = {"rentCarCompany"})
 @Table(name = "TBL_RENT_CAR")
-@SQLDelete(sql = "UPDATE TBL_RENT_CAR SET DELETED = 1 WHERE ID = ?")
-@Where(clause = "DELETED = 0")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RentCar extends Period {
     @Id @GeneratedValue
@@ -23,7 +22,6 @@ public class RentCar extends Period {
     private String rentCarName;
     private Integer rentCarPrice;
 
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     private RentCarCompany rentCarCompany;
 
