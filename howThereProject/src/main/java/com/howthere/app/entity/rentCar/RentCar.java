@@ -1,18 +1,15 @@
-package com.howthere.app.entity;
+package com.howthere.app.entity.rentCar;
 
 import com.howthere.app.auditing.Period;
-import com.howthere.app.entity.rentCarType.RentCarType;
-import com.howthere.app.type.LoginType;
-import com.howthere.app.type.MemberType;
+import com.howthere.app.type.RentCarType;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "rentCar")
 @Table(name = "TBL_RENT_CAR")
 @SQLDelete(sql = "UPDATE TBL_RENT_CAR SET DELETED = 1 WHERE ID = ?")
 @Where(clause = "DELETED = 0")
@@ -30,8 +27,9 @@ public class RentCar extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private RentCarCompany rentCarCompany;
 
+
     @Builder
-    public   RentCar(RentCarType rentCarType, String rentCarName, Integer rentCarPrice, RentCarCompany rentCarCompany) {
+    public RentCar(RentCarType rentCarType, String rentCarName, Integer rentCarPrice, RentCarCompany rentCarCompany) {
         this.rentCarType = rentCarType;
         this.rentCarName = rentCarName;
         this.rentCarPrice = rentCarPrice;

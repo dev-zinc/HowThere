@@ -1,10 +1,8 @@
-package com.howthere.app.entity;
+package com.howthere.app.entity.rentCar;
 
 import com.howthere.app.auditing.Period;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.howthere.app.entity.Member;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -25,7 +23,13 @@ public class RentCarPayment extends Period {
     @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
     private RentCarHistory rentCarHistory;
 
-    //@ManyToOne
-    //private Member member;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
+    @Builder
+    public RentCarPayment(String paymentContent, RentCarHistory rentCarHistory, Member member) {
+        this.paymentContent = paymentContent;
+        this.rentCarHistory = rentCarHistory;
+        this.member = member;
+    }
 }
