@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <header th:replace="~{/diary/diary-header :: diary-header}"></header>
+    <div th:replace="~{/layout/header :: header}"></div>
     <main>
         <div id="content-box" class="d-flex justify-content-center">
             <div id="content-box-main" class="article-format">
@@ -50,7 +50,22 @@
                     <div class="content">
                         <div class="slight-divider"></div>
                         <h1 class="article-title">&quot;글 제목&quot;</h1>
-                        <div class="slight-divider title-last"></div>
+                        <div class="slight-divider"></div>
+                        <div class="count-icons flex">
+                            <div id="view-count" class="counter">
+                                <img class="count-img" src="/img/diary/eye.svg" alt="조회수">
+                                <span>0</span>
+                            </div>
+                            <div id="like-count" class="counter">
+                                <img class="count-img" src="/img/diary/heart.svg" alt="좋아요 수">
+                                <!--<img class="count-img" src="/img/diary/full-heart.svg" alt="눈">-->
+                                <span>0</span>
+                            </div>
+                            <div id="comment-count" class="counter">
+                                <img class="count-img" src="/img/diary/comment.svg" alt="댓글 수">
+                                <span>0</span>
+                            </div>
+                        </div>
                         <div class="page-section">
                             <div class="image-section">
                                 <div class="diary-img" style="--dls-liteimage-height:100%;--dls-liteimage-width:100%;--dls-liteimage-background-image:url('data:image/png;base64,null');--dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">
@@ -106,6 +121,68 @@
                         </div>
                     </div>
                     <div class="slight-divider middle-line"></div>
+                </section>
+                <section id="comment" class="flex">
+                    <div id="writeComment" class="flex">
+                        <div class="member-profile flex">
+                            <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
+                                <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240" alt="w">
+                            </div>
+                            <span class="writer">찬</span>
+                        </div>
+                        <label>
+                            <textarea class="comment-writer" placeholder="댓글을 입력하세요"></textarea>
+                        </label>
+                        <div class="modify-button">
+                            <span>게시</span>
+                        </div>
+                    </div>
+                    <div class="heavy-divider" style="margin: 0 0 20px 20px;"></div>
+                    <section id="comments">
+                        <div class="comment">
+                            <div class="comment-wrapper flex">
+                                <div class="member-profile">
+                                    <span style="font-weight: 700;">종혁</span>
+                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
+                                        <span style="display: inline">2023년 7월</span>
+                                    </div>
+                                </div>
+                                <div style="height: 40px; width: 40px; display: block; position: relative;">
+                                    <a class="img-link" href="" target="_blank">
+                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
+                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="line-height: 24px;">
+                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-wrapper flex">
+                                <div class="member-profile">
+                                    <span style="font-weight: 700;">종혁</span>
+                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
+                                        <span style="display: inline">2023년 7월</span>
+                                    </div>
+                                </div>
+                                <div style="height: 40px; width: 40px; display: block; position: relative;">
+                                    <a class="img-link" href="" target="_blank">
+                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
+                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="line-height: 24px;">
+                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="modify-button more">
+                        <span>후기 n개 더보기</span>
+                    </div>
                 </section>
             </div>
         </div>

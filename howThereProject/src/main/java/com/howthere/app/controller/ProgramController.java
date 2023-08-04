@@ -11,26 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/program")
 public class ProgramController {
 
-    // localhost:10000/program/list
+    // http://localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/list");
         return mv;
     }
 
-    // localhost:10000/program/detail
+    // http://localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/detail");
         return mv;
     }
 
+    // http://localhost:10000/program/reservation
     @GetMapping("/reservation")
     public ModelAndView reservation(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/reservation");
         return mv;
     }
 
+    // http://localhost:10000/program/rent
     @GetMapping("/rent")
     public ModelAndView rent(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/rent");

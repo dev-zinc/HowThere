@@ -132,11 +132,19 @@ li{
     list-style: none;
 }
 .btn{
-    background-color: #e61e4d 27.5%;
+    background-color: white;
 }
 a{
     color : black;
 }
 #head-boot{
     height: 100px;
+}
+#first-page-btn{
+    border-color: #BB84E8;
+    color: #BB84E8;
+}
+#first-page-btn:hover{
+    background-color: #BB84E8;
+    color: white;
 }
