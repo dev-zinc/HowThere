@@ -10,7 +10,7 @@
 }
 
 .content {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .article-title {
@@ -25,9 +25,6 @@
     margin: 0 0 16px;
 }
 
-.content>.title-last {
-    margin-bottom: 30px;
-}
 
 .page-section {
 
@@ -146,7 +143,7 @@ h2.section-title {
     display: block;
 }
 
-.modify .modify-button {
+.modify-button {
     font-size: 17px;
     font-weight: 600;
     line-height: 20px;
@@ -157,10 +154,10 @@ h2.section-title {
     cursor: pointer;
 }
 
-.modify .modify-button:first-child:hover {
+.modify-button:hover {
     background-color: #DDDDDD;
 }
-.modify .modify-button:first-child {
+.modify-button {
     border: 1px solid #222222;
     margin-right: 10%;
 }
@@ -173,4 +170,120 @@ h2.section-title {
     color: #FFFFFF;
 }
 
+.count-icons {
+    position: relative;
+    width: 40%;
+    float: left;
+    justify-content: left;
+    margin: 15px 0;
+}
+
+.counter {
+    position: relative;
+    margin-right: 10%;
+}
+
+.counter span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #999999;
+}
+
+.count-img {
+    width: 20px;
+    height: 20px;
+    color: #999999;
+}
+
+.comment {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100%;
+    position: relative;
+    margin: 0 0 20px 20px;
+    min-height: 40px;
+}
+
+.comment-wrapper {
+    margin-bottom: 16px;
+    justify-content: left;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.member-profile {
+    margin-left: 12px;
+    color: #222222;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.writer {
+    font-size: 24px;
+    font-weight: 700;
+    transform: translateX(50%) translateY(23%);
+}
+
+#writeComment, #comment {
+    flex-direction: column;
+}
+
+#writeComment>.member-profile {
+    width: 60px !important;
+    height: 60px !important;
+    flex-direction: row;
+}
+
+.date-wrapper {
+    color: #717171;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.img-link {
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    outline-style: none;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.member-img {
+    height: 100%;
+    width: 100%;
+    position: static;
+    border-radius: 50%;
+}
+
+.comment-writer {
+    border-radius: 5px;
+    margin: 10px;
+    position: relative;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    padding: 0;
+    resize: none;
+    overflow: hidden;
+    width: 100%;
+    height: 80px;
+}
+
+#writeComment .modify-button {
+    border: 1px solid #222222;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: 10% !important;
+    margin-right: 0 !important;
+}
+
+.more {
+    width: 20% !important;
+    margin-left: 5%;
+    margin-bottom: 20px;
+}
 

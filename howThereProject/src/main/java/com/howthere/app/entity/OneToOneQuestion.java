@@ -1,11 +1,11 @@
 package com.howthere.app.entity;
 
 import com.howthere.app.auditing.Period;
+import com.howthere.app.type.OneToOneQuestionType;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "TBL_ONE_TO_ONE_QUESTION")
