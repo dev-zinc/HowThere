@@ -1,9 +1,7 @@
 package com.howthere.app.entity.file;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.howthere.app.entity.House;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +10,13 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HouseFile extends FileEntity {
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //private House house;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private House house;
     private boolean thumb = Boolean.FALSE;
+
+    @Builder
+    public HouseFile(String filePath, String fileUuid, String fileName, Long fileSize, House house) {
+        super(filePath, fileUuid, fileName, fileSize);
+        this.house = house;
+    }
 }

@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "TBL_ANNOUNCMENT")
+@Table(name = "TBL_ANNOUNCEMENT")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Announcment extends Period {
+public class Announcement extends Period {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
