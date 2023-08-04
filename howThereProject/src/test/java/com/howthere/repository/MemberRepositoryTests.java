@@ -2,7 +2,7 @@ package com.howthere.repository;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.entity.Member;
-import com.howthere.app.repository.MemberRepository;
+import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.type.LoginType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
