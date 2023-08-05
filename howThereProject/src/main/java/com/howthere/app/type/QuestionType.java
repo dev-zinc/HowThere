@@ -1,5 +1,5 @@
 package com.howthere.app.type;
 
-public enum OneToOneQuestionType {
+public enum QuestionType {
     EVENT, PAY, CANCLE, BENEFIT, USE, MEMBER
 }

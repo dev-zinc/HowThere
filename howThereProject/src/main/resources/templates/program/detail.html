@@ -11,10 +11,9 @@
     <link href="/css/layout/index.css" rel="stylesheet">
     <link href="/css/program/detail.css" rel="stylesheet">
     <link href="/css/program/datePicker.css" rel="stylesheet">
-	<!--		<link rel="stylesheet" href="/css/layout/datepicker.css">-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <title>프로그램 리스트</title>
+    <title>프로그램 상세</title>
 </head>
 
 <body>
@@ -22,13 +21,13 @@
     <main>
         <div class="d-flex justify-content-space-around" id="content-box">
             <div class="content" id="content-box-main">
-                <section id="program-main-container">
+                <section class="left-section" id="program-main-container">
                     <div class="content-wrap">
                         <div class="program-grid">
                             <div>
                                 <div class="program-title">
                                     <div data-reactroot="" style="--gp-section-max-width:1120px">
-                                        <div style="padding-left: 80px; padding-right: 80px">
+                                        <div>
                                             <div class="title-box">
                                                 <div style="padding-top:24px">
                                                     <section>
@@ -253,34 +252,6 @@
                                                                     있으며, 호텔급 재료로 만들어진 내부 공간도 이용하실 수
                                                                     있습니다.<br><br>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <div class="content-border"></div>
-                                                    <div class="date-container">
-                                                        <h1><span class="fontawesome-plane"></span></h1>
-                                                        <h2>Sudong-myeon, Namyangju-si에서 4박</h2>
-                                                        <div class="input-daterange input-group" id="flight-datepicker">
-                                                            <div class="form-item">
-                                                                <label>체크인</label><span class="fontawesome-calendar"></span>
-																<!--																<input class="input-sm form-control"-->
-																<!--																	   data-date-format="DD, MM d" id="start-date"-->
-																<!--																	   name="start" placeholder="Select depart date"-->
-																<!--																	   type="text"/>-->
-																<!--																<span class="date-text date-depart"></span>-->
-																<input class="search-input " id="startDate" name="startDate" placeholder="날짜 추가" type="text">
-                                                            </div>
-                                                            <div class="form-item">
-                                                                <label>체크아웃</label>
-																<!--																<span class="fontawesome-calendar"></span>-->
-																<!--																<input class="input-sm form-control"-->
-																<!--																	   data-date-format="DD, MM d" id="end-date" name="end"-->
-																<!--																	   placeholder="Select return date" type="text"/>-->
-																<!--																<span class="date-text date-return"></span>-->
-																<input class="search-input " id="endDate" name="endDate" placeholder="날짜 추가" type="text">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -602,28 +573,14 @@
                                                     </div>
                                                 </div>
 												<div style="padding-top: 20px; padding-bottom: 20px;">
-												<div class="content-border"></div>
-												<div class="room-description">
-													<h2>호스팅 지역</h2>
-												</div>
-												<div class="map-container" style="margin: 0;">
-													<div id="map" style="width:1120px;height:400px; margin: auto"></div>
-												</div>
-                                            	</div>
-
-												<div>
-													<div style="display: flex; justify-content: space-around;">
-														<button class="reservation">
-															<span style="left: 0; right: 0; border-radius: 8px;">
-																<span class="reservation-span">
-
-																</span>
-																<span style="display: block;position: relative;pointer-events: none;">예약하기</span>
-															</span>
-														</button>
+													<div class="content-border"></div>
+													<div class="room-description">
+														<h2>호스팅 지역</h2>
 													</div>
-												</div>
-
+													<div class="map-container" style="margin: 0;">
+														<div id="map" style="width:1120px;height:400px; margin: auto"></div>
+													</div>
+                                            	</div>
 											</div>
 										</div>
 									</div>
@@ -632,6 +589,26 @@
 						</div>
                     </div>
                 </section>
+				<section class="right-section">
+                        <div class="grid">
+                            <div class="grid between">
+                                <div>체크인</div>
+                                <div><input class="search-input " id="startDate" name="startDate" placeholder="날짜 추가" type="text"></div>
+                            </div>
+                            <div class="grid between">
+                                <div>체크아웃</div>
+                                <div><input class="search-input " id="endDate" name="endDate" placeholder="날짜 추가" type="text"></div>
+                            </div>
+                            <div class="grid between">
+                                <div>가격/박</div>
+                                <div><input class="date" id="price" min="0" step="10" type="number"></div>
+                            </div>
+                        </div>
+                        <div class="btn-box flex">
+                            <button class="reservation-btn"><span>예약하기</span></button>
+                            <button class="cancle-btn"><span>취소</span></button>
+                        </div>
+				</section>
             </div>
         </div>
     </main>
@@ -658,13 +635,11 @@
 		yearSuffix: '년',
 		minDate: 0
 	}).on('change', function () {
-		// const startDate = dateDepart.val();
-		// const endDate = dateReturn.val() === "" ? startDate : dateReturn.val();
-		//
-		// if (startDate > endDate)
-		// 	dateReturn.val(startDate);
-		// else
-		// 	dateDepart.val(endDate);
+		const startDate = dateDepart.val();
+		const endDate = dateReturn.val() === "" ? startDate : dateReturn.val();
+
+		if (startDate > endDate)
+			dateDepart.val(endDate);
 	});
 
 
