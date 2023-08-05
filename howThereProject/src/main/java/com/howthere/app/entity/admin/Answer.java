@@ -1,7 +1,6 @@
 package com.howthere.app.entity.admin;
 
 import com.howthere.app.auditing.Period;
-import com.howthere.app.entity.admin.OneToOneQuestion;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,5 +20,5 @@ public class Answer extends Period {
     private String answerContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private OneToOneQuestion oneToOneQuestion;
+    private Question question;
 }

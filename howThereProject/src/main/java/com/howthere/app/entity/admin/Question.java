@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "TBL_ONE_TO_ONE_QUESTION")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OneToOneQuestion extends Period {
+public class Question extends Period {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
