@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AnnounceFile extends FileEntity {
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "ANNOUNCEMENT_ID")
     private Announcement announcement;
 
     @Builder

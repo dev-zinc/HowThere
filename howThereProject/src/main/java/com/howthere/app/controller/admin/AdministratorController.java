@@ -1,10 +1,13 @@
 package com.howthere.app.controller.admin;
 
+import com.howthere.app.domain.program.ProgramDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdministratorController {
     //http://localhost:10000/administrator/program
     @GetMapping("program")
-    public void program() {;}
+    public List<ProgramDTO> program() {
+        return null;
+    }
 
     //http://localhost:10000/administrator/stay
     @GetMapping("stay")
