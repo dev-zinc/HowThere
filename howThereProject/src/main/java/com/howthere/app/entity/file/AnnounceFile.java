@@ -1,7 +1,6 @@
 package com.howthere.app.entity.file;
 
-import com.howthere.app.entity.Announcement;
-import com.howthere.app.entity.Diary;
+import com.howthere.app.entity.admin.Announcement;
 import lombok.*;
 
 import javax.persistence.*;
