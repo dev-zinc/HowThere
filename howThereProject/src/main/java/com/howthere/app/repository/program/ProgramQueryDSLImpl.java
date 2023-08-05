@@ -1,5 +1,6 @@
 package com.howthere.app.repository.program;
 
+import com.howthere.app.config.QueryDSLConfiguration;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
@@ -16,7 +17,7 @@ import static com.howthere.app.entity.program.QProgram.program;
 
 @RequiredArgsConstructor
 public class ProgramQueryDSLImpl implements ProgramQueryDSL {
-    private JPAQueryFactory queryDSL;
+    private final JPAQueryFactory queryDSL;
     private final QBean<ProgramDTO> programDTOQuery = Projections.fields(ProgramDTO.class,
             program.id, program.house.member.id, program.createdDate,
             program.house.houseAddress, program.programName, program.programContent, program.verified

@@ -1,5 +1,6 @@
 package com.howthere.app.domain.program;
 
+import com.howthere.app.type.Verified;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,11 @@ public class ProgramDTO {
     private String programAddress;
     private String programName;
     private String programContent;
-    private boolean verified;
+    private Verified verified;
 
     @Builder
-    public ProgramDTO(Long memberId, LocalDateTime createdDate, String programAddress, String programName, String programContent, boolean verified) {
+    public ProgramDTO(Long memberId, LocalDateTime createdDate, String programAddress, String programName,
+                      String programContent, Verified verified) {
         this.memberId = memberId;
         this.createdDate = createdDate;
         this.programAddress = programAddress;
