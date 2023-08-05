@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/one_to_one_question/*")
-public class OneToOneQuestionController {
+public class QuestionController {
     // http://localhost:10000/one_to_one_question/one_to_one_question
     @GetMapping("one_to_one_question")
     public void question() {;}
