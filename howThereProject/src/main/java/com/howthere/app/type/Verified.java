@@ -1,5 +1,5 @@
 package com.howthere.app.type;
 
-public enum VeriFied {
+public enum Verified {
     Y, N
 }

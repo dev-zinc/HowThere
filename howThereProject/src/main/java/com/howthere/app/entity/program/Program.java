@@ -2,7 +2,7 @@ package com.howthere.app.entity.program;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
-import com.howthere.app.type.VeriFied;
+import com.howthere.app.type.Verified;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -34,7 +34,7 @@ public class Program extends Period {
     private Integer programPrice;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private VeriFied veriFied;
+    private Verified verified;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "HOUSE_ID")
