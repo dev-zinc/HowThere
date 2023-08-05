@@ -1,6 +1,6 @@
 package com.howthere.app.entity.file;
 
-import com.howthere.app.entity.House;
+import com.howthere.app.entity.house.House;
 import lombok.*;
 
 import javax.persistence.*;

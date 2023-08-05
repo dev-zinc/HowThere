@@ -1,8 +1,8 @@
 package com.howthere.repository;
 
 import com.howthere.app.HowThereApplication;
-import com.howthere.app.entity.Diary;
-import com.howthere.app.entity.Member;
+import com.howthere.app.entity.diary.Diary;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.file.DiaryFile;
 
 import java.util.UUID;

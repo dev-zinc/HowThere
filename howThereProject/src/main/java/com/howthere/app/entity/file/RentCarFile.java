@@ -1,6 +1,6 @@
 package com.howthere.app.entity.file;
 
-import com.howthere.app.entity.rentCar.RentCar;
+import com.howthere.app.entity.rent.RentCar;
 import lombok.*;
 
 import javax.persistence.Entity;
