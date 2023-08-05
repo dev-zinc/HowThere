@@ -1,6 +1,6 @@
 package com.howthere.app.entity.file;
 
-import com.howthere.app.entity.Diary;
+import com.howthere.app.entity.diary.Diary;
 import lombok.*;
 
 import javax.persistence.Entity;
