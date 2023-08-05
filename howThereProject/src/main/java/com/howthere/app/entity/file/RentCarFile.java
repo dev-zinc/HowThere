@@ -3,17 +3,14 @@ package com.howthere.app.entity.file;
 import com.howthere.app.entity.rent.RentCar;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_RENT_CAR_FILE")
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RentCarFile extends FileEntity {
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "RENT_CAR_ID")
     private RentCar rentCar;
 
     @Builder

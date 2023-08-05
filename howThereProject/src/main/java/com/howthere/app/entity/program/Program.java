@@ -37,6 +37,6 @@ public class Program extends Period {
     private VeriFied veriFied;
 
     @NotNull
-    @ManyToOne @JoinColumn(name = "house_id")
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "HOUSE_ID")
     private House house;
 }
