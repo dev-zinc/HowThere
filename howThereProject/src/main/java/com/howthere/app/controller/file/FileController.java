@@ -29,7 +29,7 @@ public class FileController {
 
     // TODO: 2023-08-04 파일 저장로직으로 옮기기
     @Value("${file-root}")
-    private final String FILE_ROOT;
+    private String FILE_ROOT;
 
 //    파일 업로드
     @PostMapping("upload")
