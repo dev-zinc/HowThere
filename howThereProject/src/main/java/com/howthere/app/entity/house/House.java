@@ -1,6 +1,7 @@
 package com.howthere.app.entity.house;
 
 import com.howthere.app.auditing.Period;
+import com.howthere.app.embed.Address;
 import com.howthere.app.entity.member.Member;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,8 +27,8 @@ public class House extends Period {
     private Double houseLatitude;
     @NotNull
     private Double houseLongitude;
-    @NotNull
-    private String houseAddress;
+    @Embedded
+    private Address address;
     @NotNull
     private Integer houseMaxHeadCount;
     @NotNull
