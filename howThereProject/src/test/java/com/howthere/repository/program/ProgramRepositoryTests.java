@@ -3,6 +3,7 @@ package com.howthere.repository.program;
 import antlr.collections.impl.IntRange;
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.embed.Address;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
@@ -43,7 +44,7 @@ public class ProgramRepositoryTests {
         House house = houseRepository.findById(2L).orElseThrow(RuntimeException::new);
 //        House house = House.builder()
 //                .houseMaxHeadCount(10)
-//                .houseAddress("address")
+//                .houseAddress(Address.builder().address("add").addressDetail("det").latitude(0.1).longitude(0.2).build())
 //                .houseLatitude(0.1)
 //                .houseLongitude(0.2)
 //                .houseTitle("title")
