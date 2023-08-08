@@ -1,6 +1,8 @@
 const $container = $('.board-list');
-const PAGE_SIZE = 10;
-const PAGE_SET_SIZE = 5;
+const $pageContainer = $('.board-page');
+
+const ELEMENT_SIZE_PER_PAGE = 10;
+const PAGE_SET_SIZE = 10;
 const $searchInput = $('input.select');
 
 const $prevButton = $('.button.prev');
@@ -8,76 +10,100 @@ const $nextButton = $('.button.next');
 const $firstButton = $('.button.first');
 const $lastButton = $('.button.last');
 
-const administratorService = (() => {
-    let page;
-    let header, appender, requestURL;
+function AdministratorService(requestURL, header, appender) {
+    this.requestURL = requestURL;
+    this.header = header;
+    this.appender = appender;
 
-    function init() {
-        page = getPage(0);
-        setPage(page);
+    this.page = undefined;
+    this.keyword = '';
+
+    this.init = function() {
+        this.getPagePromise(0).then(json => {
+            this.page = json;
+            let html = this.header;
+            this.page.content.forEach(e => html += appender(e));
+            $container.html(html);
+            this.setPageButtons();
+        });
     }
 
-    function registerEvents(get) {
-        $searchInput.on('search', function () {
-            keyword = $(this).text();
-            get()
+    this.registerEvents = () => {
+        $searchInput.on('search', () => {
+            this.keyword = $searchInput.text();
         });
 
         //< 이전 세트로
-        $prevButton.on('click', function (e) {
+        $prevButton.on('click', (e) => {
             e.preventDefault();
-            page = prevSet(page);
-            get()
+            if (this.page.number <= PAGE_SET_SIZE) return;
+            this.prevSet(this.page.number);
         });
 
         //> 다음 세트로
-        $nextButton.on('click', function (e) {
+        $nextButton.on('click', (e) => {
             e.preventDefault();
-            page = nextSet(page);
+            if (this.page.size < 10) return;
+            this.nextSet(this.page.number);
         });
 
         //<< 첫 세트로
-        $firstButton.on('click', function (e) {
+        $firstButton.on('click', (e) => {
             e.preventDefault();
-            page = 1;
-            get(++page)
+            if (this.page.number <= PAGE_SET_SIZE) return;
+            this.shiftPage(0);
         });
 
         //>> 마지막 세트로
-        $lastButton.on('click', function (e) {
+        $lastButton.on('click', (e) => {
             e.preventDefault();
-            page;
+            if (this.page.size < 10) return;
+            this.shiftPage(this.page.totalPages - 1);
         });
     }
 
-    function getPage(page, keyword) {
-        let req = requestURL + "?" +
-                    page ? `size=${PAGE_SIZE}&page=` + page + "&" : "" +
-                    keyword ? "keyword=" + keyword : "";
+    this.getPagePromise = function(page, keyword) {
+        const req = this.requestURL + "?" +
+                    (page ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
+                    (keyword ? "keyword=" + keyword : "");
         return fetch(req).then(response => response.json());
     }
 
-    function setPage(page) {
-        let html = header;
-        page.content.forEach(e => html += appender(e));
-        $container.html(html);
-
-        page.first ? $firstButton.show() : $firstButton.hide();
-        page.last ? $lastButton.show() : $lastButton.hide();
-        page.number / PAGE_SET_SIZE !== 0 ? $prevButton.show() : $prevButton.hide();
-        page.number / PAGE_SET_SIZE !== page.totalPages / PAGE_SET_SIZE - 1 ? $nextButton.show() : $nextButton.hide();
-        page.first ? $firstButton.show() : $firstButton.hide();
+    this.shiftPage = function (page) {
+        this.getPagePromise(page).then(json => this.page = json);
     }
 
-    function prevSet(page) {
-        return ((page / PAGE_SET_SIZE)) * PAGE_SET_SIZE + 1;
+    this.setPageButtons = function (pageNumber) {
+        let pageSet = Math.floor(this.page.number / PAGE_SET_SIZE) + 1;
+        let totalSet = this.page.totalPages % PAGE_SET_SIZE
+        let html = `
+            <a class="button first"><<</a>
+            <a class="button prev"><</a>
+        `;
+
+        for (let i = 0; i < this.page.size; i++) {
+            html += `<a id="${this.page.number}" class="number">${this.page.pageable.offset + i + 1}</a>`;
+        }
+
+        html += `
+            <a class="button next">></a>
+            <a class="button last">>></a>
+        `;
+
+        $pageContainer.html(html);
+        $pageContainer.find(`#${this.page.number}`).addClass("active");
+        $pageContainer.filter((i, a) => $(a).hasClass("number")).eq((i, a) => {
+            $(a).on('click', () => {
+
+            });
+        });
     }
 
-    function nextSet(page) {
-        return ((page / PAGE_SET_SIZE) + 2) * PAGE_SET_SIZE + 1;
+    this.prevSet = function (page) {
+        this.shiftPage(((page / PAGE_SET_SIZE)) * PAGE_SET_SIZE + 1);
     }
 
-    return {
-        init:init, registerEvents:registerEvents, header:header, appender:appender, requestURL:requestURL
-    };
-})();
+    this.nextSet = function (page) {
+        this.shiftPage(((page / PAGE_SET_SIZE) + 2) * PAGE_SET_SIZE + 1);
+    }
+}
