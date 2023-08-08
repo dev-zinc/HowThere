@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -66,7 +69,8 @@ public class ProgramRepositoryTests {
 
     @Test
     public void findAllWithLimitTest() {
-        programRepository.findAllWithLimit(PageRequest.of(1, 10), null)
-                .map(ProgramDTO::toString).forEach(log::info);
+        Page<ProgramDTO> page = programRepository.findAllWithLimit(PageRequest.ofSize(10), null);
+
+        assertThat(page.stream().count()).isEqualTo(10L);
     }
 }

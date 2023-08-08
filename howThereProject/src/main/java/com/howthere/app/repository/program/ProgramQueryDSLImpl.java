@@ -29,7 +29,13 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
         BooleanExpression hasKeyword = keyword != null ? program.programName.contains(keyword) : null;
 
         final List<ProgramDTO> programDTOs = queryDSL
-                .select(programDTOQuery).from(program).where(hasKeyword).fetch();
+                .select(programDTOQuery)
+                .from(program)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .where(hasKeyword)
+                .orderBy(program.id.asc())
+                .fetch();
         Long count = queryDSL.select(program.count()).from(program).fetchOne();
         return new PageImpl<>(programDTOs, pageable, count == null ? 0 : count);
     }
