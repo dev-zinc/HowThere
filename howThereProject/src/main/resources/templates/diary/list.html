@@ -13,20 +13,20 @@
     <title>일기장 목록</title>
 </head>
 <body>
-<div th:replace="~{/layout/header :: header}"></div>
+<div th:replace="~{/layout/diary-header :: diary-header}"></div>
     <main>
         <div id="content-box" class="d-flex justify-content-center">
             <div id="content-box-main" class="content">
                 <section id="diary-main-container">
                     <div class="subtitle flex">
-                        <h2 tabindex="-1">거기어때 이용자들의 생생한 기록을 바로 만나보세요</h2>
+                        <h2 tabindex="-1">아웃서울 이용자들의 생생한 이용기록을 바로 만나보세요</h2>
                     </div>
                     <nav class="category-nav">
                         <div class="category-nav-wrapper flex">
-                            <div class="nav-tabs selected">카테고리1</div>
-                            <div class="nav-tabs">카테고리2</div>
-                            <div class="nav-tabs">카테고리3</div>
-                            <div class="nav-tabs">카테고리4</div>
+                            <div class="nav-tabs selected">최신순</div>
+                            <div class="nav-tabs">인기순</div>
+<!--                            <div class="nav-tabs">카테고리3</div>-->
+<!--                            <div class="nav-tabs">카테고리4</div>-->
                         </div>
                         <div class="slight-divider"></div>
                     </nav>
