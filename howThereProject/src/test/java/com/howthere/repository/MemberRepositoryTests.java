@@ -31,7 +31,6 @@ public class MemberRepositoryTests {
                 .memberLoginType(LoginType.KAKAO)
                 .memberBirthDate(LocalDateTime.now())
                 .build();
-
         memberRepository.save(member);
     }
 
@@ -41,5 +40,4 @@ public class MemberRepositoryTests {
             throw new RuntimeException();
         });
     }
-
 }

@@ -265,3 +265,7 @@ input.select:focus{
 .board-page a.number.active{
     font-weight: bold;
 }
+
+a.button, a.number {
+    cursor: pointer;
+}
