@@ -28,11 +28,11 @@ public class Diary extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private House house;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<DiaryLike> diaryLikes = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<DiaryReply> diaryReplies = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+//    private List<DiaryLike> diaryLikes = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+//    private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member, House house) {
@@ -41,5 +41,17 @@ public class Diary extends Period {
         this.diaryViewCount = diaryViewCount;
         this.member = member;
         this.house = house;
+    }
+
+    public void setDiaryTitle(String diaryTitle) {
+        this.diaryTitle = diaryTitle;
+    }
+
+    public void setDiaryContent(String diaryContent) {
+        this.diaryContent = diaryContent;
+    }
+
+    public void setDiaryViewCount(Integer diaryViewCount) {
+        this.diaryViewCount = diaryViewCount;
     }
 }
