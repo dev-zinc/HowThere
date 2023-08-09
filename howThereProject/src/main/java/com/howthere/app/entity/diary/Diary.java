@@ -1,9 +1,12 @@
 package com.howthere.app.entity.diary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "TBL_DIARY")
 @Getter @ToString
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Diary extends Period {
     @Id @GeneratedValue
@@ -20,11 +24,14 @@ public class Diary extends Period {
     private Long id;
     @NotNull private String diaryTitle;
     @NotNull private String diaryContent;
+    @ColumnDefault(value = "0")
     @NotNull private Integer diaryViewCount;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private House house;
 
@@ -35,10 +42,9 @@ public class Diary extends Period {
 //    private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
-    public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member, House house) {
+    public Diary(String diaryTitle, String diaryContent, Member member, House house) {
         this.diaryTitle = diaryTitle;
         this.diaryContent = diaryContent;
-        this.diaryViewCount = diaryViewCount;
         this.member = member;
         this.house = house;
     }
