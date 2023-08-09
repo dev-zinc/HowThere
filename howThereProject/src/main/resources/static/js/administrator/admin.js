@@ -5,105 +5,117 @@ const ELEMENT_SIZE_PER_PAGE = 10;
 const PAGE_SET_SIZE = 10;
 const $searchInput = $('input.select');
 
-const $prevButton = $('.button.prev');
-const $nextButton = $('.button.next');
-const $firstButton = $('.button.first');
-const $lastButton = $('.button.last');
-
 function AdministratorService(requestURL, header, appender) {
-    this.requestURL = requestURL;
-    this.header = header;
-    this.appender = appender;
-
     this.page = undefined;
     this.keyword = '';
 
-    this.init = function() {
-        this.getPagePromise(0).then(json => {
-            this.page = json;
-            let html = this.header;
-            this.page.content.forEach(e => html += appender(e));
-            $container.html(html);
-            this.setPageButtons();
-        });
-    }
+    $searchInput.on('search', () => {
+        this.keyword = $searchInput.text();
+    });
 
-    this.registerEvents = () => {
-        $searchInput.on('search', () => {
-            this.keyword = $searchInput.text();
-        });
-
-        //< 이전 세트로
-        $prevButton.on('click', (e) => {
-            e.preventDefault();
-            if (this.page.number <= PAGE_SET_SIZE) return;
-            this.prevSet(this.page.number);
-        });
-
-        //> 다음 세트로
-        $nextButton.on('click', (e) => {
-            e.preventDefault();
-            if (this.page.size < 10) return;
-            this.nextSet(this.page.number);
-        });
-
-        //<< 첫 세트로
-        $firstButton.on('click', (e) => {
-            e.preventDefault();
-            if (this.page.number <= PAGE_SET_SIZE) return;
-            this.shiftPage(0);
-        });
-
-        //>> 마지막 세트로
-        $lastButton.on('click', (e) => {
-            e.preventDefault();
-            if (this.page.size < 10) return;
-            this.shiftPage(this.page.totalPages - 1);
-        });
+    //fn
+    let getOffset = () => {
+        if(this.page) {
+            return Math.floor(this.page.number / PAGE_SET_SIZE)
+        }
+        return -1;
     }
 
     this.getPagePromise = function(page, keyword) {
-        const req = this.requestURL + "?" +
+        const req = requestURL + "?" +
                     (page ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
                     (keyword ? "keyword=" + keyword : "");
         return fetch(req).then(response => response.json());
     }
 
+    /**
+     * @param page 1부터 카운트
+     */
     this.shiftPage = function (page) {
-        this.getPagePromise(page).then(json => this.page = json);
-    }
+        page = page - 1;
+        console.log(page);
+        this.getPagePromise(page).then(json => {
+            let prevOffset = getOffset();
 
-    this.setPageButtons = function (pageNumber) {
-        let pageSet = Math.floor(this.page.number / PAGE_SET_SIZE) + 1;
-        let totalSet = this.page.totalPages % PAGE_SET_SIZE
-        let html = `
-            <a class="button first"><<</a>
-            <a class="button prev"><</a>
-        `;
-
-        for (let i = 0; i < this.page.size; i++) {
-            html += `<a id="${this.page.number}" class="number">${this.page.pageable.offset + i + 1}</a>`;
-        }
-
-        html += `
-            <a class="button next">></a>
-            <a class="button last">>></a>
-        `;
-
-        $pageContainer.html(html);
-        $pageContainer.find(`#${this.page.number}`).addClass("active");
-        $pageContainer.filter((i, a) => $(a).hasClass("number")).eq((i, a) => {
-            $(a).on('click', () => {
-
-            });
+            this.page = json;
+            let html = header;
+            this.page.content.forEach(e => html += appender(e));
+            $container.html(html);
+            this.setPageButtons(prevOffset);
         });
     }
 
-    this.prevSet = function (page) {
-        this.shiftPage(((page / PAGE_SET_SIZE)) * PAGE_SET_SIZE + 1);
+    this.setPageButtons = function (prevOffset) {
+        let pageOffset = getOffset();
+        let lastOffset = Math.floor(this.page.totalPages / 10);
+
+        console.log("prevOffset: " + prevOffset);
+        console.log("pageOffset: " + pageOffset);
+
+        if(prevOffset == pageOffset) return;
+
+        //settings =====================================================
+        let html = '';
+
+        html += `
+            <a class="button ${pageOffset > 0 ? 'first' : 'blocked'}"><<</a>
+            <a class="button ${pageOffset > 0 ? 'prev' : 'blocked'}"><</a>
+        `;
+
+        for (let i = 0; i < PAGE_SET_SIZE; i++) {
+            let idx = (pageOffset) * PAGE_SET_SIZE + i + 1;
+            if(idx > this.page.totalPages) break;
+            html += `<a class="number">${idx}</a>`;
+        }
+
+        html += `
+            <a class="button ${pageOffset < lastOffset ? 'next' : 'blocked'}">></a>
+            <a class="button ${pageOffset < lastOffset ? 'last' : 'blocked'}">>></a>
+        `;
+
+        $pageContainer.html(html);
+
+        //events ====================================================
+        $('a.number').each((i, a) => {
+            let $a = $(a);
+            let idx = $a.text();
+            if(this.page.number + 1 == idx) $a.addClass("active");
+            $a.on('click', () => {
+                $('.active').removeClass("active");
+                $a.addClass("active");
+                this.shiftPage(idx);
+            });
+        });
+
+        $('a.blocked').each((i, a) => $(a).on('click', e => e.preventDefault()));
+
+        //< 이전 세트로
+        $('.button.prev').on('click', (e) => {
+            e.preventDefault();
+            let prevPageNumber = (getOffset() - 1) * PAGE_SET_SIZE;
+            this.shiftPage(prevPageNumber);
+        });
+
+        //> 다음 세트로
+        $('.button.next').on('click', (e) => {
+            e.preventDefault();
+            let nextPageNumber = (getOffset() + 1) * PAGE_SET_SIZE + 1;
+            this.shiftPage(nextPageNumber);
+        });
+
+        //<< 첫 세트로
+        $('.button.first').on('click', (e) => {
+            e.preventDefault();
+            this.shiftPage(0);
+        });
+
+        //>> 마지막 세트로
+        $('.button.last').on('click', (e) => {
+            e.preventDefault();
+            this.shiftPage(this.page.totalPages);
+        });
     }
 
-    this.nextSet = function (page) {
-        this.shiftPage(((page / PAGE_SET_SIZE) + 2) * PAGE_SET_SIZE + 1);
-    }
+    //init
+    this.shiftPage(1);
 }
