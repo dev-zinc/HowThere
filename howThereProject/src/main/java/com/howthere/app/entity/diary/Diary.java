@@ -28,7 +28,7 @@ public class Diary extends Period {
     private List<DiaryLike> diaryLikes = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<DiaryReply> diaryReplys = new ArrayList<>();
+    private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member) {

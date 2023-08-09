@@ -1,4 +1,4 @@
-package com.howthere.app.controller.diray;
+package com.howthere.app.controller.diary;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

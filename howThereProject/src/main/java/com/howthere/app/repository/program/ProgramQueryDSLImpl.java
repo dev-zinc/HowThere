@@ -1,8 +1,10 @@
 package com.howthere.app.repository.program;
 
 import com.howthere.app.domain.program.ProgramDTO;
-import com.howthere.app.entity.program.Program;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.QBean;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,16 +17,26 @@ import static com.howthere.app.entity.program.QProgram.program;
 
 @RequiredArgsConstructor
 public class ProgramQueryDSLImpl implements ProgramQueryDSL {
-    private JPAQueryFactory query;
+    private final JPAQueryFactory queryDSL;
+    private final QBean<ProgramDTO> programDTOQuery = Projections.fields(ProgramDTO.class,
+            program.id, ExpressionUtils.as(program.house.member.id, "memberId"), program.createdDate,
+            ExpressionUtils.as(program.house.houseAddress.address, "programAddress"), program.programName,
+            program.programContent, program.verified
+    );
 
     @Override
     public Page<ProgramDTO> findAllWithLimit(Pageable pageable, String keyword) {
-        final List<ProgramDTO> programDTOs = query.select(
-                Projections.fields(ProgramDTO.class,
-                    program.id
-                )
-        ).from(program).where(program.programName.contains(keyword)).fetch();
-        Long count = query.select(program.count()).from(program).fetchOne();
+        BooleanExpression hasKeyword = keyword != null ? program.programName.contains(keyword) : null;
+
+        final List<ProgramDTO> programDTOs = queryDSL
+                .select(programDTOQuery)
+                .from(program)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .where(hasKeyword)
+                .orderBy(program.id.asc())
+                .fetch();
+        Long count = queryDSL.select(program.count()).from(program).fetchOne();
         return new PageImpl<>(programDTOs, pageable, count == null ? 0 : count);
     }
 }
