@@ -23,7 +23,7 @@ public class House extends Period {
     @NotNull
     private String houseContent;
     @Embedded
-    private Address address;
+    private Address houseAddress;
     @NotNull
     private Integer houseMaxHeadCount;
     @NotNull
@@ -38,7 +38,7 @@ public class House extends Period {
     public House(@NotNull String houseTitle, @NotNull String houseContent, Address address, @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
         this.houseTitle = houseTitle;
         this.houseContent = houseContent;
-        this.address = address;
+        this.houseAddress = address;
         this.houseMaxHeadCount = houseMaxHeadCount;
         this.houseMaxPetCount = houseMaxPetCount;
         this.member = member;

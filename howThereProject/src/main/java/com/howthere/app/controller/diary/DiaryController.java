@@ -1,4 +1,4 @@
-package com.howthere.app.controller.diray;
+package com.howthere.app.controller.diary;
 
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.service.diary.DiaryService;

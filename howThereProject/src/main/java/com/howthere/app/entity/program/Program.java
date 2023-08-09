@@ -2,7 +2,8 @@ package com.howthere.app.entity.program;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
-import com.howthere.app.type.VeriFied;
+import com.howthere.app.type.Verified;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -34,9 +35,21 @@ public class Program extends Period {
     private Integer programPrice;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private VeriFied veriFied;
+    private Verified verified;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "HOUSE_ID")
     private House house;
+
+    @Builder
+    public Program(LocalDateTime programStartDate, LocalDateTime programEndDate, String programName,
+                   String programContent, Integer programPrice, Verified verified, House house) {
+        this.programStartDate = programStartDate;
+        this.programEndDate = programEndDate;
+        this.programName = programName;
+        this.programContent = programContent;
+        this.programPrice = programPrice;
+        this.verified = verified;
+        this.house = house;
+    }
 }
