@@ -22,12 +22,12 @@ public class House extends Period {
     private String houseTitle;
     @NotNull
     private String houseContent;
-    @NotNull
-    private Double houseLatitude;
-    @NotNull
-    private Double houseLongitude;
     @Embedded
     private Address address;
+    @NotNull
+    private Integer houseMaxHeadCount;
+    @NotNull
+    private Integer houseMaxPetCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "host_id")
@@ -35,12 +35,12 @@ public class House extends Period {
     private Member member;
 
     @Builder
-    public House(@NotNull String houseTitle, @NotNull String houseContent, @NotNull Double houseLatitude, @NotNull Double houseLongitude, Address address, Member member) {
+    public House(@NotNull String houseTitle, @NotNull String houseContent, Address address, @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
         this.houseTitle = houseTitle;
         this.houseContent = houseContent;
-        this.houseLatitude = houseLatitude;
-        this.houseLongitude = houseLongitude;
         this.address = address;
+        this.houseMaxHeadCount = houseMaxHeadCount;
+        this.houseMaxPetCount = houseMaxPetCount;
         this.member = member;
     }
 }
