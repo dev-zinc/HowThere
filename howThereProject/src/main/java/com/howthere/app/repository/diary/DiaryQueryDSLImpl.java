@@ -3,16 +3,15 @@ package com.howthere.app.repository.diary;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.diary.QDiary;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 
 import static com.howthere.app.entity.diary.QDiary.diary;
 
-
+@RequiredArgsConstructor
 public class DiaryQueryDSLImpl implements DiaryQueryDSL {
     @Autowired
     private JPAQueryFactory query;
@@ -26,15 +25,32 @@ public class DiaryQueryDSLImpl implements DiaryQueryDSL {
 
     @Override
     public Page<Diary> findAllWithPaging(Pageable pageable) {
-        List<Diary> diarys = query.select(diary).from(diary)
+        final List<Diary> diarys = query.select(diary).from(diary)
                 .orderBy(diary.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(diary.count()).from(diary).fetchOne();
+        final Long count = query.select(diary.count()).from(diary).fetchOne();
 
         return new PageImpl<>(diarys, pageable, count);
+    }
+
+    @Override
+    public Slice<Diary> findAllWithSlice(Pageable pageable) {
+        List<Diary> diarys = query.selectFrom(diary)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize() + 1)
+                .fetch();
+
+        boolean hasNext = false;
+
+        if(diarys.size() > pageable.getPageSize()){
+            hasNext = true;
+            diarys.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(diarys, pageable, hasNext);
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.diary.DiaryRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
+import com.howthere.app.service.diary.DiaryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class DiaryRepositoryTests {
     @Autowired
     private DiaryRepository diaryRepository;
     @Autowired
+    private DiaryService diaryService;
+    @Autowired
     private MemberRepository memberRepository;
     @Autowired
     private HouseRepository houseRepository;
@@ -36,15 +39,15 @@ public class DiaryRepositoryTests {
 //        final Member member = memberRepository.findById(1L).orElseThrow(RuntimeException::new);
 //
 //        Address address = Address.builder()
-//                .address("서울시 강남구 대치동")
+//                .address("test")
 //                .addressDetail("123-4")
 //                .latitude(123D)
 //                .longitude(123D)
 //                .build();
 //
 //        House house = House.builder()
-//                .houseTitle("테스트 숙소1")
-//                .houseContent("테스트 숙소 내용1")
+//                .houseTitle("test house content 1")
+//                .houseContent("test house content 1")
 //                .houseMaxHeadCount(3)
 //                .houseMaxPetCount(1)
 //                .member(member)
@@ -54,12 +57,12 @@ public class DiaryRepositoryTests {
 //        houseRepository.save(house);
 
         final Member member = memberRepository.findById(2L).orElseThrow(RuntimeException::new);
-        final House house = houseRepository.findById(3L).orElseThrow(RuntimeException::new);
+        final House house = houseRepository.findById(221L).orElseThrow(RuntimeException::new);
 
         for (int i=0; i<100; i++) {
             Diary diary = Diary.builder()
-                    .diaryTitle("일기 제목 테스트" + (i + 1))
-                    .diaryContent("일기 내용 테스트" + (i + 1))
+                    .diaryTitle("title" + (i + 1))
+                    .diaryContent("content" + (i + 1))
                     .diaryViewCount(i)
                     .member(member)
                     .house(house)
@@ -76,7 +79,9 @@ public class DiaryRepositoryTests {
     @Test
     public void findAllWithPagingTest(){
 //        컨트롤러에서 page - 1로 넣을 것! 지금은 그냥 0을 넣음 (1페이지)
-        Page<Diary> diarysWithPaging = diaryRepository.findAllWithPaging(PageRequest.of(0, 10));
+//        Page<Diary> diarysWithPaging = diaryRepository.findAllWithPaging(PageRequest.of(0, 10));
+//        log.info(diarysWithPaging.getContent().toString());
+        Page<Diary> diarysWithPaging = diaryService.getList(PageRequest.of(0, 10));
         log.info(diarysWithPaging.getContent().toString());
     }
 
