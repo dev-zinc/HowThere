@@ -67,20 +67,8 @@
                         <input type="button" class="button-delete" value="프로그램 삭제">
                     </div>
                     <div class="board-list">
-                        <div class="top">
-                            <div class="checkbox"></div>
-                            <div class="program-id">프로그램 번호</div>
-                            <div class="program-type">지역</div>
-                            <div class="program-name">제목</div>
-                            <div class="program-content">내용</div>
-                            <div class="program-register-date">작성 날짜</div>
-                            <div class="member-id">회원 번호</div>
-                            <div class="program-is-blinded">공개여부</div>
-                        </div>
-
                         <!-- -->
                         <!-- -->
-
                     </div>
                     <div class="board-page"></div>
                 </div>
@@ -102,18 +90,20 @@
             <div class="program-content">내용</div>
             <div class="program-register-date">작성 날짜</div>
             <div class="member-id">회원 번호</div>
-            <div class="program-is-blinded">공개여부</div>
+            <div class="program-is-blinded">승인 여부</div>
         </div>`,
         (program) => `
         <div class="program">
             <div class="checkbox"><input type="checkbox"></div>
             <div class="program-id">${program.id}</div>
-            <div class="program-type">${program.id}</div>
-            <div class="program-name">${program.id}</div>
-            <div class="program-content">${program.id}</div>
-            <div class="program-register-date">${program.id}</div>
-            <div class="member-id">${program.id}</div>
-            <div class="program-is-blinded">${program.id}</div>
+            <div class="program-type">${program.programAddress}</div>
+            <div class="program-name">${program.programName}</div>
+            <div class="program-content">
+                ${program.programContent.length < 20 ? program.programContent : program.programContent.substring(0, 21)}
+            </div>
+            <div class="program-register-date">${program.createdDate.substring(0, 10)}</div>
+            <div class="member-id">${program.memberId}</div>
+            <div class="program-is-blinded">${program.verified}</div>
         </div>`
     );
 </script>

@@ -1,9 +1,10 @@
 const $container = $('.board-list');
 const $pageContainer = $('.board-page');
+const $deleteButton = $('input.button-delete');
+const $searchInput = $('input.select');
 
 const ELEMENT_SIZE_PER_PAGE = 10;
 const PAGE_SET_SIZE = 10;
-const $searchInput = $('input.select');
 
 function AdministratorService(requestURL, header, appender) {
     this.page = undefined;
@@ -33,7 +34,6 @@ function AdministratorService(requestURL, header, appender) {
      */
     this.shiftPage = function (page) {
         page = page - 1;
-        console.log(page);
         this.getPagePromise(page).then(json => {
             let prevOffset = getOffset();
 
@@ -48,10 +48,7 @@ function AdministratorService(requestURL, header, appender) {
     this.setPageButtons = function (prevOffset) {
         let pageOffset = getOffset();
         let lastOffset = Math.floor(this.page.totalPages / 10);
-
-        console.log("prevOffset: " + prevOffset);
-        console.log("pageOffset: " + pageOffset);
-
+        console.log(this.page);
         if(prevOffset == pageOffset) return;
 
         //settings =====================================================
@@ -116,6 +113,16 @@ function AdministratorService(requestURL, header, appender) {
         });
     }
 
-    //init
+    //init ==================================================
     this.shiftPage(1);
+
+    $deleteButton.on('click', () => {
+        $container.children().not('top').each((i, e) => {
+            let checked = $(e).first().children().first().first().is(":checked");
+
+            console.log(checked);
+            console.log($(e).first().children().first().first());
+        });
+    });
 }
+
