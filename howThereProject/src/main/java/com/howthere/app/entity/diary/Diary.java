@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "TBL_DIARY")
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Diary extends Period {
@@ -25,7 +25,7 @@ public class Diary extends Period {
     @NotNull private String diaryTitle;
     @NotNull private String diaryContent;
     @ColumnDefault(value = "0")
-    @NotNull private Integer diaryViewCount;
+    private Integer diaryViewCount;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,11 +35,11 @@ public class Diary extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private House house;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-//    private List<DiaryLike> diaryLikes = new ArrayList<>();
-//
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-//    private List<DiaryReply> diaryReplies = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    private List<DiaryLike> diaryLikes = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, Member member, House house) {

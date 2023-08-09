@@ -57,13 +57,12 @@ public class DiaryRepositoryTests {
 //        houseRepository.save(house);
 
         final Member member = memberRepository.findById(2L).orElseThrow(RuntimeException::new);
-        final House house = houseRepository.findById(221L).orElseThrow(RuntimeException::new);
+        final House house = houseRepository.findById(3L).orElseThrow(RuntimeException::new);
 
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<150; i++) {
             Diary diary = Diary.builder()
                     .diaryTitle("title" + (i + 1))
                     .diaryContent("content" + (i + 1))
-                    .diaryViewCount(i)
                     .member(member)
                     .house(house)
                     .build();

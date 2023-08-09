@@ -12,10 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 
@@ -28,7 +25,7 @@ public class DiaryController {
 
     //http://localhost:10000/diary/list
     @GetMapping("list")
-    public void list(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public void list(Model model, @PageableDefault(page = 0, size = 8) Pageable pageable) {
         final Page<Diary> pagination = diaryService.getList(pageable);
         model.addAttribute("pagination", pagination);
 //        model.addAttribute("test", 1);
@@ -36,24 +33,33 @@ public class DiaryController {
 
     @GetMapping("api/list")
     @ResponseBody
-    public Slice<Diary> list(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Slice<Diary> diarys = diaryService.getListBySlice(pageable);
+    public Slice<DiaryDTO> list(@PageableDefault(page = 0, size = 8) Pageable pageable) {
+        Slice<DiaryDTO> diarys = diaryService.getListBySlice(pageable);
 
         return diaryService.getListBySlice(pageable);
     }
 
     //http://localhost:10000/diary/article
-    @GetMapping("article")
-    public void article() {;}
+    @GetMapping("article/{id}")
+    public String article(@PathVariable Long id, Model model) {
+        diaryService.getDiary(id).ifPresent((diary) -> {
+            model.addAttribute("diary", diary);
+        });
+        return "/diary/article";
+    }
 
     //http://localhost:10000/diary/write
     @GetMapping("write")
-    public void goToWriteForm() {;}
+    public void goToWriteForm(Model model) {
+        model.addAttribute("diary", new DiaryDTO());
+    }
 
     @PostMapping("write")
     public RedirectView write(DiaryDTO diaryDTO) {
+        diaryDTO.setMemberId(1L);
+        diaryDTO.setHouseId(3L);
         diaryService.write(diaryDTO);
-        return new RedirectView("/diary/llist");
+        return new RedirectView("/diary/list");
     }
 
     //write 페이지에서 modify
