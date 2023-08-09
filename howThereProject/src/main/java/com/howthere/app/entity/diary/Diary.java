@@ -1,6 +1,7 @@
 package com.howthere.app.entity.diary;
 
 import com.howthere.app.auditing.Period;
+import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import lombok.*;
 
@@ -24,6 +25,9 @@ public class Diary extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private House house;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
     private List<DiaryLike> diaryLikes = new ArrayList<>();
 
@@ -31,10 +35,11 @@ public class Diary extends Period {
     private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
-    public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member) {
+    public Diary(String diaryTitle, String diaryContent, Integer diaryViewCount, Member member, House house) {
         this.diaryTitle = diaryTitle;
         this.diaryContent = diaryContent;
         this.diaryViewCount = diaryViewCount;
         this.member = member;
+        this.house = house;
     }
 }
