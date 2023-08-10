@@ -15,6 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 @Slf4j
@@ -25,23 +29,21 @@ public class DiaryController {
 
     //http://localhost:10000/diary/list
     @GetMapping("list")
-    public void list(Model model, @PageableDefault(page = 0, size = 8) Pageable pageable) {
-        final Page<Diary> pagination = diaryService.getList(pageable);
-        model.addAttribute("pagination", pagination);
-//        model.addAttribute("test", 1);
+    public void list(@RequestParam(defaultValue = "") String keyword, Model model) {
+        model.addAttribute("keyword", keyword);
     }
 
     @GetMapping("api/list")
     @ResponseBody
-    public Slice<DiaryDTO> list(@PageableDefault(page = 0, size = 8) Pageable pageable) {
-        Slice<DiaryDTO> diarys = diaryService.getListBySlice(pageable);
-
-        return diaryService.getListBySlice(pageable);
+    public Slice<DiaryDTO> list(@PageableDefault(page = 0, size = 8) Pageable pageable, @RequestParam(defaultValue = "") String keyword) {
+        Slice<DiaryDTO> diarys = diaryService.getListBySlice(pageable, keyword);
+        return diarys;
     }
 
     //http://localhost:10000/diary/article
     @GetMapping("article/{id}")
     public String article(@PathVariable Long id, Model model) {
+        diaryService.updateViewCount(id);
         diaryService.getDiary(id).ifPresent((diary) -> {
             model.addAttribute("diary", diary);
         });
@@ -59,14 +61,30 @@ public class DiaryController {
         diaryDTO.setMemberId(1L);
         diaryDTO.setHouseId(3L);
         diaryService.write(diaryDTO);
-        return new RedirectView("/diary/list");
+        return new RedirectView("/diary/article/" + diaryService.getDiaryId());
     }
 
     //write 페이지에서 modify
-//    //http://localhost:10000/diary/modify
-//    @GetMapping("modify")
-//    public void goToModifyForm() {;}
-//
-//    @PostMapping("modify")
-//    public void modify() {;}
+    //http://localhost:10000/diary/modify
+    @GetMapping("modify/{id}")
+    public String goToModifyForm(@PathVariable Long id, Model model) {
+        diaryService.getDiary(id).ifPresent((diary) -> {
+            model.addAttribute("diary", diary);
+        });
+        return "/diary/modify";
+    }
+
+    @PostMapping("modify")
+    public RedirectView modify(DiaryDTO diaryDTO) {
+        diaryDTO.setMemberId(1L);
+        diaryDTO.setHouseId(3L);
+        diaryService.update(diaryDTO);
+        return new RedirectView("/diary/article/" + diaryDTO.getId());
+    }
+
+    @GetMapping("delete/{id}")
+    public RedirectView delete(@PathVariable Long id) {
+        diaryService.remove(id);
+        return new RedirectView("/diary/list");
+    }
 }

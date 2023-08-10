@@ -172,10 +172,11 @@ h2.section-title {
 
 .count-icons {
     position: relative;
-    width: 40%;
+    width: 100%;
     float: left;
     justify-content: left;
     margin: 15px 0;
+    padding-right: 40%;
 }
 
 .counter {

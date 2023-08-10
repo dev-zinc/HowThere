@@ -54,7 +54,7 @@
                         <div class="count-icons flex">
                             <div id="view-count" class="counter">
                                 <img class="count-img" src="/img/diary/eye.svg" alt="조회수">
-                                <span>0</span>
+                                <span th:text="${diary.diaryViewCount}"></span>
                             </div>
                             <div id="like-count" class="counter">
                                 <img class="count-img" src="/img/diary/heart.svg" alt="좋아요 수">
@@ -198,5 +198,14 @@
 <script th:inline="javascript">
     const diary = [[${diary}]];
     document.querySelector(".page-section").innerHTML = diary.diaryContent;
+</script>
+<script>
+    $("#modify").on('click', () => {
+        location.href = `/diary/modify/${diary.id}`
+    })
+
+    $("#delete").on('click', () => {
+        location.href = `/diary/delete/${diary.id}`
+    })
 </script>
 </html>

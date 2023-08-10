@@ -26,7 +26,8 @@
             </div>
             <section id="search-box">
                 <form class="diary-search-form flex">
-                    <input type="search" value=""
+                    <input name="keyword"
+                            type="search" th:value="${keyword}"
                            class="diary-search-input"
                            placeholder="내용, 지역 등으로 검색"
                            autocomplete="off">

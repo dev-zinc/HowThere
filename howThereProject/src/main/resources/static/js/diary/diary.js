@@ -12,7 +12,15 @@ onClickEachNavs((i, btn) => {
 });
 
 //검색창 focus 시 show
-searchButton.hide();
+// searchButton.hide();
+
+/* 검색 */
+$("button.search-button").on("click", function(){
+    keyword = $(this).prev().val();
+    console.log(keyword);
+    page = 0;
+    location.href = `/diary/list?keyword=${keyword}`;
+});
 
 // 일기 넣기
 // console.log(pagination);
@@ -43,12 +51,13 @@ searchButton.hide();
 //     $('div.diary-grid').html(text);
 // }
 
-
 let page = 0;
 function getList(){
-    fetch(`api/list?page=${page}`)
+    fetch(`api/list?page=${page}&keyword=${keyword}`)
         .then((response) => response.json())
         .then((diarys) => {
+            console.log(diarys);
+            console.log(keyword);
             let text = "";
             diarys.content.forEach(diary => {
                 text += `

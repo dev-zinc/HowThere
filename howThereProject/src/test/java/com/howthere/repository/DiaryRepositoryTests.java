@@ -88,10 +88,17 @@ public class DiaryRepositoryTests {
     public void updateByIdTest(){
         Optional<Diary> foundDiary = diaryRepository.findById(104L);
         foundDiary.ifPresent(diary -> {
-            diary.setDiaryTitle("수정된 일기 제목");
             diaryRepository.update(diary);
         });
 
     }
 
+
+    @Test
+    public  void updateViewCountTest(){
+        Optional<Diary> foundDiary = diaryRepository.findById(154L);
+        foundDiary.ifPresent(diary -> {
+            diaryRepository.updateViewCount(diary);
+        });
+    }
 }

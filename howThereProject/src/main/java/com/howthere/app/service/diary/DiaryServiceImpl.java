@@ -23,14 +23,14 @@ public class DiaryServiceImpl implements DiaryService {
     private final MemberRepository memberRepository;
     private final HouseRepository houseRepository;
 
-    @Override
-    public Page<Diary> getList(Pageable pageable) {
-        return diaryRepository.findAllWithPaging(pageable);
-    }
+//    @Override
+//    public Page<Diary> getList(Pageable pageable) {
+//        return diaryRepository.findAllWithPaging(pageable);
+//    }
 
     @Override
-    public Slice<DiaryDTO> getListBySlice(Pageable pageable) {
-        return diaryRepository.findAllWithSlice(pageable);
+    public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword) {
+        return diaryRepository.findAllWithSlice(pageable, keyword);
     }
 
     @Override
@@ -39,12 +39,33 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public Long getDiaryId() {
+        return diaryRepository.findId();
+    }
+
+    @Override
     public Optional<Diary> getDiary(Long id) {
         return diaryRepository.findById(id);
     }
 
+    @Override
+    public void update(DiaryDTO diaryDTO) {
+        diaryRepository.update(toEntity(diaryDTO));
+    }
+
+    @Override
+    public void updateViewCount(Long id) {
+        diaryRepository.updateViewCount(diaryRepository.findById(id).get());
+    }
+
+    @Override
+    public void remove(Long id) {
+        diaryRepository.deleteById(id);
+    }
+
     public Diary toEntity(DiaryDTO diaryDTO){
         return Diary.builder()
+                .id(diaryDTO.getId())
                 .diaryTitle(diaryDTO.getDiaryTitle())
                 .diaryContent(diaryDTO.getDiaryContent())
                 .member(memberRepository.findById(diaryDTO.getMemberId()).get())

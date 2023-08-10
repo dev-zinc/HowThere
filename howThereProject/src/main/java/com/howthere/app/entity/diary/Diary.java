@@ -42,22 +42,11 @@ public class Diary extends Period {
     private List<DiaryReply> diaryReplies = new ArrayList<>();
 
     @Builder
-    public Diary(String diaryTitle, String diaryContent, Member member, House house) {
+    public Diary(Long id, String diaryTitle, String diaryContent, Member member, House house) {
+        this.id = id;
         this.diaryTitle = diaryTitle;
         this.diaryContent = diaryContent;
         this.member = member;
         this.house = house;
-    }
-
-    public void setDiaryTitle(String diaryTitle) {
-        this.diaryTitle = diaryTitle;
-    }
-
-    public void setDiaryContent(String diaryContent) {
-        this.diaryContent = diaryContent;
-    }
-
-    public void setDiaryViewCount(Integer diaryViewCount) {
-        this.diaryViewCount = diaryViewCount;
     }
 }
