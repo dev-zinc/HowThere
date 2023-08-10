@@ -36,7 +36,6 @@ public class DiaryFileRepositoryTests {
         final Diary diary = Diary.builder()
                 .diaryTitle("title")
                 .diaryContent("content")
-                .diaryViewCount(124)
                 .member(member)
                 .build();
 

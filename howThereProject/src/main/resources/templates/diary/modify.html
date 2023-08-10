@@ -38,7 +38,7 @@
                     </li>
                 </ol>
             </nav>
-            <form id="write-form" th:action="@{/diary/write}" method="post" th:object="${diary}">
+            <form id="write-form" th:action="@{/diary/modify}" method="post" th:object="${diary}">
                 <div class="write-diary-text flex">
                     <span class="write-text">글 제목</span>
                     <label class="input-label flex" for="diary-title">
@@ -49,9 +49,10 @@
 
                 <div id="summernote"></div>
                 <input id="content-input" th:field="*{diaryContent}" type="hidden">
+                <input id="id-input" th:field="*{id}" type="hidden">
             </form>
             <div id="diary-submit">
-                <span>게시</span>
+                <span>수정</span>
             </div>
         </div>
     </div>
@@ -62,7 +63,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="/js/diary/write.js"></script>
+<script th:inline="javascript">
+    const diary = [[${diary}]];
+    // console.log(diary.id);
+    // console.log(diary.member.memberName);
+    // console.log(diary.houseId);
+</script>
 <script>
+    $('#summernote').summernote('pasteHTML', diary.diaryContent);
     $('#diary-submit').on('click', () => {
         diaryContent = $("#summernote").summernote('code');
         $('#content-input').val(diaryContent);

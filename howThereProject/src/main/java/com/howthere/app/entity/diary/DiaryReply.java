@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TBL_DIARY_REPLY")
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryReply extends Period {
     @Id @GeneratedValue

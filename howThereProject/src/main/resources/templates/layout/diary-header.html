@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>거기어때</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/layout/diary-header.js"></script>
 </head>
 <body>
     <div class="header-wrap" style="position: sticky;top: 0; background-color:#FFFFFF; z-index: 100;" th:fragment="diary-header">
@@ -24,7 +26,8 @@
             </div>
             <section id="search-box">
                 <form class="diary-search-form flex">
-                    <input type="search" value=""
+                    <input name="keyword"
+                            type="search" th:value="${keyword}"
                            class="diary-search-input"
                            placeholder="내용, 지역 등으로 검색"
                            autocomplete="off">
@@ -74,7 +77,6 @@
                 </nav>
             </div>
         </header>
-        <script src="/js/layout/header.js"></script>
     </div>
 </body>
 </html>
