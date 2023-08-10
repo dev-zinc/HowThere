@@ -29,8 +29,8 @@ public class DiaryServiceImpl implements DiaryService {
 //    }
 
     @Override
-    public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword) {
-        return diaryRepository.findAllWithSlice(pageable, keyword);
+    public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword, String order) {
+        return diaryRepository.findAllWithSlice(pageable, keyword, order);
     }
 
     @Override

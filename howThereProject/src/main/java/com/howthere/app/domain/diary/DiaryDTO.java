@@ -23,10 +23,10 @@ public class DiaryDTO {
     private Long houseId;
     private String diaryTitle;
     private String diaryContent;
-    private Integer diaryViewCount;
+    private Long diaryViewCount;
 
     @QueryProjection
-    public DiaryDTO(Long id, Long memberId, String memberName, Long houseId, String diaryTitle, String diaryContent, Integer diaryViewCount) {
+    public DiaryDTO(Long id, Long memberId, String memberName, Long houseId, String diaryTitle, String diaryContent, Long diaryViewCount) {
         this.id = id;
         this.memberId = memberId;
         this.memberName = memberName;
