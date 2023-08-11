@@ -8,9 +8,11 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity @Table(name = "TBL_HOUSE")
-@ToString @Getter
-@NoArgsConstructor
+@Table(name = "TBL_HOUSE")
+@Entity
+@ToString
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class House extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
@@ -20,10 +22,6 @@ public class House extends Period {
     private String houseTitle;
     @NotNull
     private String houseContent;
-    @NotNull
-    private Double houseLatitude;
-    @NotNull
-    private Double houseLongitude;
     @Embedded
     private Address houseAddress;
     @NotNull
@@ -37,13 +35,10 @@ public class House extends Period {
     private Member member;
 
     @Builder
-    public House(String houseTitle, String houseContent, Double houseLatitude, Double houseLongitude,
-                 Address houseAddress, Integer houseMaxHeadCount, Integer houseMaxPetCount, Member member) {
+    public House(@NotNull String houseTitle, @NotNull String houseContent, Address address, @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
         this.houseTitle = houseTitle;
         this.houseContent = houseContent;
-        this.houseLatitude = houseLatitude;
-        this.houseLongitude = houseLongitude;
-        this.houseAddress = houseAddress;
+        this.houseAddress = address;
         this.houseMaxHeadCount = houseMaxHeadCount;
         this.houseMaxPetCount = houseMaxPetCount;
         this.member = member;
