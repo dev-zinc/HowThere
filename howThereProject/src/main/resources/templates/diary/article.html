@@ -41,7 +41,7 @@
                             </li>
                             <li class="path-content inline-flex">
                                 <a class="path">
-                                    <span>글 제목</span>
+                                    <span>일기 상세보기</span>
                                 </a>
                             </li>
                         </ol>
@@ -49,49 +49,49 @@
                     <a id="article-content"></a>
                     <div class="content">
                         <div class="slight-divider"></div>
-                        <h1 class="article-title">&quot;글 제목&quot;</h1>
+                        <h1 class="article-title" th:text="${diary.diaryTitle}"></h1>
                         <div class="slight-divider"></div>
                         <div class="count-icons flex">
                             <div id="view-count" class="counter">
                                 <img class="count-img" src="/img/diary/eye.svg" alt="조회수">
-                                <span>0</span>
+                                <span th:text="${diary.diaryViewCount}"></span>
                             </div>
                             <div id="like-count" class="counter">
                                 <img class="count-img" src="/img/diary/heart.svg" alt="좋아요 수">
                                 <!--<img class="count-img" src="/img/diary/full-heart.svg" alt="눈">-->
                                 <span>0</span>
                             </div>
-                            <div id="comment-count" class="counter">
+                            <div class="counter">
                                 <img class="count-img" src="/img/diary/comment.svg" alt="댓글 수">
-                                <span>0</span>
+                                <span id="comment-count">0</span>
                             </div>
                         </div>
                         <div class="page-section">
-                            <div class="image-section">
-                                <div class="diary-img" style="--dls-liteimage-height:100%;--dls-liteimage-width:100%;--dls-liteimage-background-image:url('data:image/png;base64,null');--dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">
-                                    <img class="article-img" style="--dls-liteimage-object-fit:cover" aria-hidden="true" alt="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다." elementtiming="LCP-target" loading="lazy" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg" data-original-uri="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg">
-                                </div>
-                            </div>
-                            <div class="text-section">
-                                <span>
-                                    에어비앤비를 통해 멋진 숙소를 예약하려는 게스트부터 에어비앤비에서 체험을 진행하고 싶은 신규 호스트까지,
-                                    에어비앤비 커뮤니티 구성원이 궁금해하는 주요 정보를 한자리에 모았습니다. 먼저 기본적인 정보를 확인하세요.
-                                    커뮤니티 일원이 되신 것을 환영합니다!
-                                </span>
-                            </div>
-                            <div class="text-section header">
-                                <div>
-                                    <h2 class="section-title">에어비앤비 커뮤니티</h2>
-                                    <span>
-                                        에어비앤비 커뮤니티는 교감과 소속감을 기반으로 합니다.
-                                        에어비앤비는 호스트와 게스트의 안전을 매우 중요하게 생각합니다.
-                                        호스트는 퀄리티 기준을 충족하고 유지해야 하며, 호스트의 개인 프로필과 숙소 역시 검증을 거쳐야 합니다.
-                                        개인정보를 암호화하고 신뢰할 수 있는 결제 시스템을 구축하여 사이트와 앱 사용자를 안전하게 보호하기 위해 노력하고 있으며,
-                                        커뮤니티 지원 팀을 연중무휴로 운영하여 궁금하신 사항을 해결해드리고 있습니다.
-                                    </span>
-                                    <hr aria-hidden="true">
-                                </div>
-                            </div>
+<!--                            <div class="image-section">-->
+<!--                                <div class="diary-img" style="&#45;&#45;dls-liteimage-height:100%;&#45;&#45;dls-liteimage-width:100%;&#45;&#45;dls-liteimage-background-image:url('data:image/png;base64,null');&#45;&#45;dls-liteimage-background-size:cover" role="img" aria-busy="false" aria-label="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다.">-->
+<!--                                    <img class="article-img" style="&#45;&#45;dls-liteimage-object-fit:cover" aria-hidden="true" alt="한 사람이 인테리어가 돋보이는 공간으로 이어지는 미닫이 유리문을 열고 있습니다." elementtiming="LCP-target" loading="lazy" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg" data-original-uri="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/617b2ba9b187491e7c56dfca/getting-started-on-airbnb-optimized.jpg">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="text-section">-->
+<!--                                <span>-->
+<!--                                    에어비앤비를 통해 멋진 숙소를 예약하려는 게스트부터 에어비앤비에서 체험을 진행하고 싶은 신규 호스트까지,-->
+<!--                                    에어비앤비 커뮤니티 구성원이 궁금해하는 주요 정보를 한자리에 모았습니다. 먼저 기본적인 정보를 확인하세요.-->
+<!--                                    커뮤니티 일원이 되신 것을 환영합니다!-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                            <div class="text-section header">-->
+<!--                                <div>-->
+<!--                                    <h2 class="section-title">에어비앤비 커뮤니티</h2>-->
+<!--                                    <span>-->
+<!--                                        에어비앤비 커뮤니티는 교감과 소속감을 기반으로 합니다.-->
+<!--                                        에어비앤비는 호스트와 게스트의 안전을 매우 중요하게 생각합니다.-->
+<!--                                        호스트는 퀄리티 기준을 충족하고 유지해야 하며, 호스트의 개인 프로필과 숙소 역시 검증을 거쳐야 합니다.-->
+<!--                                        개인정보를 암호화하고 신뢰할 수 있는 결제 시스템을 구축하여 사이트와 앱 사용자를 안전하게 보호하기 위해 노력하고 있으며,-->
+<!--                                        커뮤니티 지원 팀을 연중무휴로 운영하여 궁금하신 사항을 해결해드리고 있습니다.-->
+<!--                                    </span>-->
+<!--                                    <hr aria-hidden="true">-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </section>
@@ -108,11 +108,11 @@
                                 </picture>
                             </div>
                             <div class="profile-text flex">
-                                <h1>사용자</h1>
+                                <h1 th:text="${diary.member.memberName}"></h1>
                             </div>
                         </div>
                     </div>
-                    <div class="modify flex">
+                    <div th:if="${memberId == diary.member.id}" class="modify flex">
                         <div id="modify" class="modify-button">
                             <span>수정하기</span>
                         </div>
@@ -139,46 +139,46 @@
                     </div>
                     <div class="heavy-divider" style="margin: 0 0 20px 20px;"></div>
                     <section id="comments">
-                        <div class="comment">
-                            <div class="comment-wrapper flex">
-                                <div class="member-profile">
-                                    <span style="font-weight: 700;">종혁</span>
-                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
-                                        <span style="display: inline">2023년 7월</span>
-                                    </div>
-                                </div>
-                                <div style="height: 40px; width: 40px; display: block; position: relative;">
-                                    <a class="img-link" href="" target="_blank">
-                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div style="line-height: 24px;">
-                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="comment-wrapper flex">
-                                <div class="member-profile">
-                                    <span style="font-weight: 700;">종혁</span>
-                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
-                                        <span style="display: inline">2023년 7월</span>
-                                    </div>
-                                </div>
-                                <div style="height: 40px; width: 40px; display: block; position: relative;">
-                                    <a class="img-link" href="" target="_blank">
-                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div style="line-height: 24px;">
-                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
-                            </div>
-                        </div>
+<!--                        <div class="comment">-->
+<!--                            <div class="comment-wrapper flex">-->
+<!--                                <div class="member-profile">-->
+<!--                                    <span style="font-weight: 700;">종혁</span>-->
+<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
+<!--                                        <span style="display: inline">2023년 7월</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
+<!--                                    <a class="img-link" href="" target="_blank">-->
+<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
+<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="line-height: 24px;">-->
+<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="comment">-->
+<!--                            <div class="comment-wrapper flex">-->
+<!--                                <div class="member-profile">-->
+<!--                                    <span style="font-weight: 700;">종혁</span>-->
+<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
+<!--                                        <span style="display: inline">2023년 7월</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
+<!--                                    <a class="img-link" href="" target="_blank">-->
+<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
+<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="line-height: 24px;">-->
+<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </section>
                     <div class="modify-button more">
                         <span>후기 n개 더보기</span>
@@ -194,5 +194,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/layout/top-btn.js"></script>
 <script src="/js/modal/modal.js"></script>
+<script th:inline="javascript">
+    const diary = [[${diary}]];
+    const memberId = [[${memberId}]];
+    document.querySelector(".page-section").innerHTML = diary.diaryContent;
+</script>
 <script src="/js/diary/article.js"></script>
+<script src="/js/layout/diary-header.js"></script>
 </html>
