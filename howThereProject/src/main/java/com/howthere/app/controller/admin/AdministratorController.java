@@ -1,6 +1,8 @@
 package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.entity.member.Member;
+import com.howthere.app.service.member.MemberService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequestMapping("/administrator/*")
 public class AdministratorController {
     private final ProgramService programService;
+    private final MemberService memberService;
 
     //http://localhost:10000/administrator/program
     @GetMapping("program")
@@ -32,20 +35,40 @@ public class AdministratorController {
     }
 
     //http://localhost:10000/administrator/stay
-    @GetMapping("stay")
+    @GetMapping("house")
     public void stay() {;}
+
+    @GetMapping("api/house")
+    public void stay(@PageableDefault Pageable pageable, String keyword) {
+
+    }
 
     //http://localhost:10000/administrator/reservation
     @GetMapping("reservation")
     public void reserve() {;}
 
+    @GetMapping("api/reservation")
+    public void reserve(@PageableDefault Pageable pageable, String keyword) {
+
+    }
+
     //http://localhost:10000/administrator/member
     @GetMapping("member")
     public void member() {;}
 
+    @GetMapping("api/member")
+    public Page<Member> member(@PageableDefault Pageable pageable, String keyword) {
+        return memberService.getMembers(pageable, keyword);
+    }
+
     //http://localhost:10000/administrator/notice
     @GetMapping("notice")
     public void notice() {;}
+
+    @GetMapping("api/notice")
+    public void notice(@PageableDefault Pageable pageable, String keyword) {
+
+    }
 
     //http://localhost:10000/administrator/notice/detail
     @GetMapping("notice/detail")
@@ -62,6 +85,11 @@ public class AdministratorController {
     //http://localhost:10000/administrator/inquiry
     @GetMapping("inquiry")
     public void inquiry() {;}
+
+    @GetMapping("api/inquiry")
+    public void inquiry(@PageableDefault Pageable pageable, String keyword) {
+
+    }
 
     //http://localhost:10000/administrator/inquiry/detail
     @GetMapping("inquiry/detail")

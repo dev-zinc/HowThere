@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.logo-img {
+    height: auto !important;
+}
+
+.logo {
+    margin: 0 auto !important;
+    height: 9% !important;
+}

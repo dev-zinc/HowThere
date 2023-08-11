@@ -37,6 +37,8 @@ function AdministratorService(requestURL, header, appender) {
         this.getPagePromise(page).then(json => {
             let prevOffset = getOffset();
 
+            console.log(json);
+
             this.page = json;
             let html = header;
             this.page.content.forEach(e => html += appender(e));
