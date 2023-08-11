@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_DIARY_LIKE")
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryLike {
     @Id @GeneratedValue

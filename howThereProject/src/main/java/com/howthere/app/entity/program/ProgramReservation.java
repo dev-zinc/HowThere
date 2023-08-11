@@ -2,7 +2,7 @@ package com.howthere.app.entity.program;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.member.Member;
-import com.howthere.app.type.VeriFied;
+import com.howthere.app.type.Verified;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -21,7 +21,7 @@ public class ProgramReservation extends Period {
     private Long id;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private VeriFied veriFied;
+    private Verified veriFied;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "host_id")

@@ -1,4 +1,4 @@
-package com.howthere.repository;
+package com.howthere.repository.diary;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.entity.diary.Diary;
@@ -36,7 +36,6 @@ public class DiaryFileRepositoryTests {
         final Diary diary = Diary.builder()
                 .diaryTitle("title")
                 .diaryContent("content")
-                .diaryViewCount(124)
                 .member(member)
                 .build();
 

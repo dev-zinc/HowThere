@@ -3,9 +3,7 @@ package com.howthere.app.entity.house;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.embed.Address;
 import com.howthere.app.entity.member.Member;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,8 +12,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @ToString
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class House extends Period {
-    @Id
+    @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -23,12 +22,8 @@ public class House extends Period {
     private String houseTitle;
     @NotNull
     private String houseContent;
-    @NotNull
-    private Double houseLatitude;
-    @NotNull
-    private Double houseLongitude;
     @Embedded
-    private Address address;
+    private Address houseAddress;
     @NotNull
     private Integer houseMaxHeadCount;
     @NotNull
@@ -38,4 +33,14 @@ public class House extends Period {
     @JoinColumn(name = "host_id")
     @ToString.Exclude
     private Member member;
+
+    @Builder
+    public House(@NotNull String houseTitle, @NotNull String houseContent, Address address, @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
+        this.houseTitle = houseTitle;
+        this.houseContent = houseContent;
+        this.houseAddress = address;
+        this.houseMaxHeadCount = houseMaxHeadCount;
+        this.houseMaxPetCount = houseMaxPetCount;
+        this.member = member;
+    }
 }
