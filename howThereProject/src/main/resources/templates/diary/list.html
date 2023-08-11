@@ -23,8 +23,8 @@
                     </div>
                     <nav class="category-nav">
                         <div class="category-nav-wrapper flex">
-                            <div class="nav-tabs selected">최신순</div>
-                            <div class="nav-tabs">인기순</div>
+                            <div id="recent" class="nav-tabs selected">최신순</div>
+                            <div id="popular" class="nav-tabs">인기순</div>
 <!--                            <div class="nav-tabs">카테고리3</div>-->
 <!--                            <div class="nav-tabs">카테고리4</div>-->
                         </div>
@@ -122,6 +122,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script th:inline="javascript">
     let keyword = [[${keyword}]];
+    let order = [[${order}]];
 </script>
 <script src="/js/layout/nav-tabs.js"></script>
 <script src="/js/diary/diary.js"></script>

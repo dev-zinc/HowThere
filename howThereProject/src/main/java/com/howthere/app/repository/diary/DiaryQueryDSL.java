@@ -13,7 +13,7 @@ public interface DiaryQueryDSL {
 //    public Page<Diary> findAllWithPaging(Pageable pageable);
 
 //    일기 목록 더보기, 무한 스크롤 처리
-    public Slice<DiaryDTO> findAllWithSlice(Pageable pageable, String keyword);
+    public Slice<DiaryDTO> findAllWithSlice(Pageable pageable, String keyword, String order);
 
 //    작성한 일기 id 가져오기
     public Long findId();

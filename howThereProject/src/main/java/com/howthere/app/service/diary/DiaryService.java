@@ -17,7 +17,7 @@ public interface DiaryService {
 //    public Page<Diary> getList(Pageable pageable);
 
 //    일기 목록 더보기, 무한 스크롤 처리
-    public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword);
+    public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword, String order);
 
 //    일기 작성
     public void write(DiaryDTO diaryDTO);

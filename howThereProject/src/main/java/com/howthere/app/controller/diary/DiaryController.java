@@ -29,14 +29,15 @@ public class DiaryController {
 
     //http://localhost:10000/diary/list
     @GetMapping("list")
-    public void list(@RequestParam(defaultValue = "") String keyword, Model model) {
+    public void list(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "") String order, Model model) {
         model.addAttribute("keyword", keyword);
+        model.addAttribute("order", order);
     }
 
     @GetMapping("api/list")
     @ResponseBody
-    public Slice<DiaryDTO> list(@PageableDefault(page = 0, size = 8) Pageable pageable, @RequestParam(defaultValue = "") String keyword) {
-        Slice<DiaryDTO> diarys = diaryService.getListBySlice(pageable, keyword);
+    public Slice<DiaryDTO> list(@PageableDefault(page = 0, size = 8) Pageable pageable, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "") String order) {
+        Slice<DiaryDTO> diarys = diaryService.getListBySlice(pageable, keyword, order);
         return diarys;
     }
 

@@ -5,6 +5,7 @@ import com.howthere.app.domain.diary.QDiaryDTO;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.diary.QDiary;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -45,9 +46,10 @@ public class DiaryQueryDSLImpl implements DiaryQueryDSL {
 //    }
 
     @Override
-    public Slice<DiaryDTO> findAllWithSlice(Pageable pageable, String keyword) {
+    public Slice<DiaryDTO> findAllWithSlice(Pageable pageable, String keyword, String order) {
         BooleanExpression diaryTitleContains = keyword == null || keyword == "" ? null : diary.diaryTitle.contains(keyword);
         BooleanExpression diaryContentContains = keyword == null || keyword == "" ? null : diary.diaryContent.contains(keyword);
+        OrderSpecifier<Long> orderSort = order.equals("recent") || order.equals("") ? diary.id.desc() : diary.diaryViewCount.desc();
 
         List<DiaryDTO> diarys = query.select(
                 new QDiaryDTO(
@@ -60,11 +62,8 @@ public class DiaryQueryDSLImpl implements DiaryQueryDSL {
                         diary.diaryViewCount
                         )
                 ).from(diary)
-                .join(diary.member)
-                .join(diary.house)
-//                .fetchJoin()
                 .where(diaryTitleContains.or(diaryContentContains))
-                .orderBy(diary.id.desc())
+                .orderBy(orderSort)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize() + 1)
                 .fetch();

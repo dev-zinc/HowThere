@@ -25,7 +25,7 @@ public class Diary extends Period {
     @NotNull private String diaryTitle;
     @NotNull private String diaryContent;
     @ColumnDefault(value = "0")
-    private Integer diaryViewCount;
+    private Long diaryViewCount;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
