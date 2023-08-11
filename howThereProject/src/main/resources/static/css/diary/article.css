@@ -288,3 +288,27 @@ h2.section-title {
     margin-bottom: 20px;
 }
 
+/* 댓글 수정 삭제 버튼 */
+.buttons{
+    margin-left: 10px;
+}
+.buttons button{
+    border: 1px solid #222222;
+    border-radius: 3px;
+    font-size: 13px;
+    background: none;
+    margin-top: 15px;
+    margin-right: 2px;
+    padding: 0 2px;
+}
+
+.modify-content-wrapper {
+    display: none;
+}
+
+.modify-content-wrapper button{
+    border: 1px solid #222222;
+    border-radius: 3px;
+    background: none;
+    margin-right: 2px;
+}
