@@ -11,4 +11,7 @@ public interface DiaryReplyQueryDSL {
 
 //    댓글 수정
     public void update(DiaryReply diaryReply);
+
+//    댓글 수
+    public Long countReply(Long id);
 }

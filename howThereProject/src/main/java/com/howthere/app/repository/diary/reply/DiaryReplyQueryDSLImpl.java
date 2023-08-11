@@ -55,4 +55,9 @@ public class DiaryReplyQueryDSLImpl implements DiaryReplyQueryDSL {
                 .set(QDiaryReply.diaryReply.replyContent, diaryReply.getReplyContent())
                 .where(QDiaryReply.diaryReply.id.eq(diaryReply.getId())).execute();
     }
+
+    @Override
+    public Long countReply(Long id) {
+        return query.select(diaryReply.count()).from(diaryReply).where(diaryReply.diary.id.eq(id)).fetchOne();
+    }
 }

@@ -39,4 +39,9 @@ public class DiaryReplyController {
     public void remove(@PathVariable Long id){
         diaryReplyService.remove(id);
     }
+
+    @GetMapping("count/{id}")
+    public Long getReplyCount(@PathVariable Long id){
+        return diaryReplyService.getReplyCount(id);
+    }
 }

@@ -40,6 +40,11 @@ public class DiaryReplyServiceImpl implements DiaryReplyService {
         diaryReplyRepository.deleteById(id);
     }
 
+    @Override
+    public Long getReplyCount(Long id) {
+        return diaryReplyRepository.countReply(id);
+    }
+
     public DiaryReply toEntity(DiaryReplyDTO diaryReplyDTO){
         return DiaryReply.builder()
                 .id(diaryReplyDTO.getId())

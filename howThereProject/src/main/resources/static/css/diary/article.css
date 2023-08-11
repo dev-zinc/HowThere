@@ -301,3 +301,14 @@ h2.section-title {
     margin-right: 2px;
     padding: 0 2px;
 }
+
+.modify-content-wrapper {
+    display: none;
+}
+
+.modify-content-wrapper button{
+    border: 1px solid #222222;
+    border-radius: 3px;
+    background: none;
+    margin-right: 2px;
+}

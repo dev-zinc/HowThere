@@ -18,4 +18,7 @@ public interface DiaryReplyService {
 
 //    댓글 삭제
     public void remove(Long id);
+
+//    댓글 수
+    public Long getReplyCount(Long id);
 }

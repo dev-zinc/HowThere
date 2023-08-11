@@ -61,9 +61,9 @@
                                 <!--<img class="count-img" src="/img/diary/full-heart.svg" alt="눈">-->
                                 <span>0</span>
                             </div>
-                            <div id="comment-count" class="counter">
+                            <div class="counter">
                                 <img class="count-img" src="/img/diary/comment.svg" alt="댓글 수">
-                                <span>0</span>
+                                <span id="comment-count">0</span>
                             </div>
                         </div>
                         <div class="page-section">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modify flex">
+                    <div th:if="${memberId == diary.member.id}" class="modify flex">
                         <div id="modify" class="modify-button">
                             <span>수정하기</span>
                         </div>

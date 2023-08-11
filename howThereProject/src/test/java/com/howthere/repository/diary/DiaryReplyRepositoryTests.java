@@ -66,4 +66,10 @@ public class DiaryReplyRepositoryTests {
     public void deleteTest(){
         diaryReplyRepository.deleteById(258L);
     }
+
+    @Test
+    public void countTest(){
+        Long count = diaryReplyRepository.countReply(6L);
+        log.info(count.toString());
+    }
 }
