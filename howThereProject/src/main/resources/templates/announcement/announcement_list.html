@@ -41,14 +41,21 @@
                   <hr>
                 </th:block>
               </ul>
-              <div class="d-flex justify-content-center">
-                <a href="#" class="btn" style="background-color:#BB84E8; color:white ">다음</a>
-                <a href="#" class="btn" style="color: black;">1</a>
-                <a href="#" class="btn"  style="color: black;">2</a>
-                <a href="#" class="btn"  style="color: black;">3</a>
-                <a href="#" class="btn"  style="color: black;">4</a>
-                <a href="#" class="btn"  style="color: black;">5</a>
-                <a href="#" class="btn" style="background-color:#BB84E8; color:white">이전</a>
+              <div class="d-flex justify-content-center" th:with="
+                  nowPage = ${page.number + 1},
+                  pageSize = ${page.size},
+                  totalPages = ${page.totalPages},
+                  endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                  startPage = ${endPage - pageSize + 1},
+                  realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                  first = ${page.first}, last = ${page.last}
+              ">
+                <a th:if="${!first}" th:href="@{/announcement/announcement_list(page=${nowPage - 2})}" class="btn" style="background-color:#BB84E8; color:white;">이전</a>
+                <th:block th:each="pageNum : ${#numbers.sequence(startPage, realEndPage)}">
+                  <a th:if="${nowPage != pageNum}" th:href="@{/announcement/announcement_list(page=${pageNum - 1})}" class="btn" style="color: black;" th:text="${pageNum}"></a>
+                  <span th:unless="${nowPage != pageNum}" th:text="${pageNum}" class="btn" style="font-weight: 600;cursor: default;"></span>
+                </th:block>
+                <a th:if="${!last}" th:href="@{/announcement/announcement_list(page=${nowPage})}" class="btn" style="background-color:#BB84E8; color:white">다음</a>
               </div>
           </div>
         </div>
