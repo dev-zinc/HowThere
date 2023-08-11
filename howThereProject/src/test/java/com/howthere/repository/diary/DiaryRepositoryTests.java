@@ -1,4 +1,4 @@
-package com.howthere.repository;
+package com.howthere.repository.diary;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.embed.Address;
@@ -80,8 +80,8 @@ public class DiaryRepositoryTests {
 //        컨트롤러에서 page - 1로 넣을 것! 지금은 그냥 0을 넣음 (1페이지)
 //        Page<Diary> diarysWithPaging = diaryRepository.findAllWithPaging(PageRequest.of(0, 10));
 //        log.info(diarysWithPaging.getContent().toString());
-        Page<Diary> diarysWithPaging = diaryService.getList(PageRequest.of(0, 10));
-        log.info(diarysWithPaging.getContent().toString());
+//        Page<Diary> diarysWithPaging = diaryService.getList(PageRequest.of(0, 10));
+//        log.info(diarysWithPaging.getContent().toString());
     }
 
     @Test

@@ -1,39 +1,82 @@
-// const $deleteButton = $("div.delete");
-// const $modifyButton = $("div.modify");
-//
-// $deleteButton.on("click", function () {
-//    showWarnModal("해당 일기를 삭제합니다. \n Y/N")
-// });
-//
-// $modifyButton.on("click", function () {
-//
-// });
+$("#modify").on('click', () => {
+    location.href = `/diary/modify/${diary.id}`
+})
 
+$("#delete").on('click', () => {
+    location.href = `/diary/delete/${diary.id}`
+})
+
+// console.log(diary.id);
+/* 댓글 */
+let page = 0;
 function getList(){
-   fetch(`api/article/${id}`)
-       .then((response) => response.json())
-       .then((diarys) => {
-          console.log(diarys);
-          console.log(keyword);
-          let text = "";
-          diarys.content.forEach(diary => {
-             text += `
-                            <a href="/diary/article/${diary.id}" class="diary-article">
-                                <div class="img-wrap">
-                                    <div class="diary-img" style="--dls-liteimage-height: 254px; --dls-liteimage-width: auto; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
-                                        <picture>
-                                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg"
-                                                 style="--dls-liteimage-object-fit: cover;">
-                                        </picture>
-                                        <div class="background-img" style="--dls-liteimage-background-size: cover; --dls-liteimage-background-image: url(https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg);"></div>
+    fetch(`http://localhost:10000/diary-replies/list/${diary.id}?page=${page}`)
+        .then((response) => response.json())
+        .then((diaryReplies) => {
+            // console.log(diaryReplies);
+            let text = "";
+            diaryReplies.content.forEach(diaryReply => {
+                text += `
+                        <div class="comment">
+                            <div class="comment-wrapper flex">
+                        `
+                if(memberId == diaryReply.memberId){
+                    text += `
+                            <div class="buttons">
+                                <button class="reply-modify">수정</button>
+                                <button class="reply-delete">삭제</button>
+                            </div>
+                            `
+                }
+                text += `
+                                <div class="member-profile">
+                                    <span style="font-weight: 700;">${diaryReply.memberName}</span>
+                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
+                                        <span style="display: inline">2023년 7월</span>
                                     </div>
                                 </div>
-                                <div class="diary-title">${diary.diaryTitle}</div>
-                            </a>
+                                <div style="height: 40px; width: 40px; display: block; position: relative;">
+                                    <a class="img-link" href="" target="_blank">
+                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
+                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="line-height: 24px;">
+                                <span>${diaryReply.replyContent}</span>
+                            </div>
+                        </div>
                         `
-          });
-          document.querySelector(".diary-grid").innerHTML += text;
-       });
+            });
+            document.querySelector("#comments").innerHTML += text;
+            if(diaryReplies.last){
+                $(".more").css('display', 'none');
+            }
+        });
 }
 
 $(document).ready(getList());
+/* 댓글 더보기 */
+$(".more").on('click', () => {
+   page++;
+   getList();
+});
+/* 댓글 작성 */
+$(".modify-button").on('click', () => {
+    let replyContent = $(".comment-writer").val();
+    fetch(`http://localhost:10000/diary-replies/write`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        body: JSON.stringify({memberId: memberId, diaryId: diary.id, replyContent: replyContent})
+    })
+    .then((response) => {
+        if(response.ok){
+            page = 0;
+            $(".comment-writer").val("");
+            document.querySelector("#comments").innerHTML = "";
+            getList();
+        }
+    })
+});
+

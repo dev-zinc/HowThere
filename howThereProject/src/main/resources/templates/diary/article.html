@@ -139,46 +139,46 @@
                     </div>
                     <div class="heavy-divider" style="margin: 0 0 20px 20px;"></div>
                     <section id="comments">
-                        <div class="comment">
-                            <div class="comment-wrapper flex">
-                                <div class="member-profile">
-                                    <span style="font-weight: 700;">종혁</span>
-                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
-                                        <span style="display: inline">2023년 7월</span>
-                                    </div>
-                                </div>
-                                <div style="height: 40px; width: 40px; display: block; position: relative;">
-                                    <a class="img-link" href="" target="_blank">
-                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div style="line-height: 24px;">
-                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="comment-wrapper flex">
-                                <div class="member-profile">
-                                    <span style="font-weight: 700;">종혁</span>
-                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">
-                                        <span style="display: inline">2023년 7월</span>
-                                    </div>
-                                </div>
-                                <div style="height: 40px; width: 40px; display: block; position: relative;">
-                                    <a class="img-link" href="" target="_blank">
-                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div style="line-height: 24px;">
-                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>
-                            </div>
-                        </div>
+<!--                        <div class="comment">-->
+<!--                            <div class="comment-wrapper flex">-->
+<!--                                <div class="member-profile">-->
+<!--                                    <span style="font-weight: 700;">종혁</span>-->
+<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
+<!--                                        <span style="display: inline">2023년 7월</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
+<!--                                    <a class="img-link" href="" target="_blank">-->
+<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
+<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="line-height: 24px;">-->
+<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="comment">-->
+<!--                            <div class="comment-wrapper flex">-->
+<!--                                <div class="member-profile">-->
+<!--                                    <span style="font-weight: 700;">종혁</span>-->
+<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
+<!--                                        <span style="display: inline">2023년 7월</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
+<!--                                    <a class="img-link" href="" target="_blank">-->
+<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
+<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="line-height: 24px;">-->
+<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </section>
                     <div class="modify-button more">
                         <span>후기 n개 더보기</span>
@@ -194,18 +194,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/layout/top-btn.js"></script>
 <script src="/js/modal/modal.js"></script>
-<script src="/js/diary/article.js"></script>
 <script th:inline="javascript">
     const diary = [[${diary}]];
+    const memberId = [[${memberId}]];
     document.querySelector(".page-section").innerHTML = diary.diaryContent;
 </script>
-<script>
-    $("#modify").on('click', () => {
-        location.href = `/diary/modify/${diary.id}`
-    })
-
-    $("#delete").on('click', () => {
-        location.href = `/diary/delete/${diary.id}`
-    })
-</script>
+<script src="/js/diary/article.js"></script>
+<script src="/js/layout/diary-header.js"></script>
 </html>

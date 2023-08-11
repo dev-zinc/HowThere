@@ -23,6 +23,7 @@ public class Diary extends Period {
     @EqualsAndHashCode.Include
     private Long id;
     @NotNull private String diaryTitle;
+    @Lob
     @NotNull private String diaryContent;
     @ColumnDefault(value = "0")
     private Long diaryViewCount;
