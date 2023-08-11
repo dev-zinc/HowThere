@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -52,21 +53,13 @@ public class HostController {
 
     @PostMapping("write")
     public void registerHouse(MultipartHttpServletRequest req) {
-        final String houseName = req.getParameter("houseName");
-        final String address = req.getParameter("address");
-        final String addressDetail = req.getParameter("addressDetail");
-        final String summernote = req.getParameter("content");
-        final String guestCnt = req.getParameter("maxGuestCnt");
-        final String petCnt = req.getParameter("maxPetCnt");
-        req.getFileNames().forEachRemaining(System.out::println);
-        final List<MultipartFile> files = req.getFiles("files");
-        files.forEach(v -> {
-            System.out.println(v.getOriginalFilename());
-        });
-        final List<MultipartFile> images = req.getFiles("houseImg");
-        images.forEach(v -> {
-            System.out.println(v.getOriginalFilename());
-        });
+        final String body = req.getParameter("body");
+
+        final List<MultipartFile> files = req.getFiles("uploadFile");
+        for (MultipartFile file : files) {
+            System.out.println(file.getOriginalFilename());
+        }
+        System.out.println(body);
     }
 
     @PostMapping("upload")

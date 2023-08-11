@@ -99,32 +99,72 @@ function registerHouse() {
 }
 
 function submit() {
-    const form = document.querySelector("#form");
+    // const form = document.querySelector("#form");
+    // const files = document.querySelector("input[name='houseImg']").files;
+    // const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
+    // const maxPetCnt = document.querySelector("input[name='maxPetCnt']");
+    // maxGuestCnt.value = document.querySelector("#maxGuestCnt").innerHTML;
+    // maxPetCnt.value = document.querySelector("#maxPetCnt").innerHTML;
+    // for (let i = 0; i < files.length; i++) {
+    //     const image = files[i];
+    //     form.append(image)
+    // }
+    // form.append(maxGuestCnt);
+    // form.append(maxPetCnt);
+    // form.submit();
+    upload();
+}
+
+function upload() {
     const files = document.querySelector("input[name='houseImg']").files;
+    const formData = new FormData();
+
+    const houseTitle = document.querySelector("input[name='houseName']").value;
+    const address = document.querySelector("input[name='address']").value;
+    const addressDetail = document.querySelector("input[name='addressDetail']").value;
+    const houseContent = document.querySelector("#summernote").value;
     const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
     const maxPetCnt = document.querySelector("input[name='maxPetCnt']");
     maxGuestCnt.value = document.querySelector("#maxGuestCnt").innerHTML;
     maxPetCnt.value = document.querySelector("#maxPetCnt").innerHTML;
-    for (let i = 0; i < files.length; i++) {
-        const image = files[i];
-        form.append(image);
+
+    const param = {
+        houseTitle: houseTitle,
+        address: address,
+        addressDetail: addressDetail,
+        houseContent: houseContent,
+        maxGuestCnt: maxGuestCnt.value,
+        maxPetCnt: maxPetCnt.value
     }
-    form.append(maxGuestCnt);
-    form.append(maxPetCnt);
-    form.submit();
-}
 
-function upload(){
-    const files = document.querySelector("input[name='houseImg']").files;
-    const formData = new FormData();
-
+    formData.append("body", JSON.stringify(param));
     for (let i = 0; i < files.length; i++) {
         const image = files[i];
         formData.append('uploadFile', image);
     }
 
-    fetch("/host/upload", {
+    fetch("/host/write", {
         method: "POST",
         body: formData
-    }).then(res => console.log(res));
+    }).then(res => {
+
+    });
+}
+const imageTag = document.getElementById("thumbImgFile");
+imageTag.addEventListener('change', function () {
+    document.querySelector("#thumbImg").style.display = "block";
+    loadImg(this); // 이미지 파일을 읽어 img src 에 넣는 함수
+});
+function loadImg(value) {
+    if (value.files && value.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.querySelector("#thumbSvg").style.display = "none";
+            document.querySelector("#thumbImg")
+                .setAttribute('src', e.target.result);
+        }
+
+        reader.readAsDataURL(value.files[0]);
+    }
 }
