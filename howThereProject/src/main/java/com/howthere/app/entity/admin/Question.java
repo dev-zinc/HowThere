@@ -2,7 +2,7 @@ package com.howthere.app.entity.admin;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.member.Member;
-import com.howthere.app.type.OneToOneQuestionType;
+import com.howthere.app.type.QuestionType;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
@@ -19,7 +19,7 @@ public class Question extends Period {
     private Long id;
     @NonNull private String oneToOneQuestionContent;
     @Enumerated(EnumType.STRING)
-    @NonNull private OneToOneQuestionType oneToOneQuestionType;
+    @NonNull private QuestionType oneToOneQuestionType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
