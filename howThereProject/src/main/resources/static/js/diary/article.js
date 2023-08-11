@@ -32,7 +32,7 @@ function getList(){
                                 <div class="member-profile">
                                     <span style="font-weight: 700;">${diaryReply.memberName}</span>
                                     <div class="date-wrapper" style="display: flex; align-items: baseline;">
-                                        <span style="display: inline">2023년 7월</span>
+                                        <span style="display: inline">${elapsedTime(diaryReply.createdDate)}</span>
                                     </div>
                                 </div>
                                 <div style="height: 40px; width: 40px; display: block; position: relative;">
@@ -62,7 +62,12 @@ function getList(){
         });
 }
 
-$(document).ready(getList());
+$(document).ready(() => {
+    getList();
+    getReplyCount();
+    checkLike();
+    getLikeCount();
+});
 
 /* 댓글 더보기 */
 $(".more").on('click', () => {
@@ -147,4 +152,85 @@ function getReplyCount() {
     })
 }
 
-getReplyCount();
+
+
+//작성시간 함수
+function elapsedTime(date) {
+    const start = new Date(date);
+    const end = new Date();
+
+    const diff = (end - start) / 1000;
+
+    const times = [
+        { name: '년', milliSeconds: 60 * 60 * 24 * 365 },
+        { name: '개월', milliSeconds: 60 * 60 * 24 * 30 },
+        { name: '일', milliSeconds: 60 * 60 * 24 },
+        { name: '시간', milliSeconds: 60 * 60 },
+        { name: '분', milliSeconds: 60 },
+    ];
+
+    for (const value of times) {
+        const betweenTime = Math.floor(diff / value.milliSeconds);
+
+        if (betweenTime > 0) {
+            return `${betweenTime}${value.name} 전`;
+        }
+    }
+    return '방금 전';
+}
+
+/* 좋아요 */
+$(".like").on('click', (e) => {
+    if($(".like").attr('src') == "/img/diary/heart.svg"){
+        fetch(`http://localhost:10000/diary-likes/like`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({memberId: memberId, diaryId: diary.id})
+        })
+        .then((response) => {
+            if(response.ok){
+                $(".like").attr('src', '/img/diary/full-heart.svg');
+                getLikeCount();
+            }
+        })
+    } else {
+        fetch(`http://localhost:10000/diary-likes/delete/${memberId}/${diary.id}`, {
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        })
+        .then((response) => {
+            if(response.ok){
+                $(".like").attr('src', '/img/diary/heart.svg');
+                getLikeCount();
+            }
+        })
+        $(".like").attr('src', '/img/diary/heart.svg');
+    }
+});
+
+function checkLike(){
+    fetch(`http://localhost:10000/diary-likes/get/${memberId}/${diary.id}`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    })
+    .then((response) => response.json())
+    .then((check) => {
+        if(check){
+            $(".like").attr('src', '/img/diary/full-heart.svg');
+        } else{
+            $(".like").attr('src', '/img/diary/heart.svg');
+        }
+    })
+}
+
+function getLikeCount() {
+    let id = diary.id
+    fetch(`http://localhost:10000/diary-likes/count/${id}`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    })
+        .then((response) => response.json())
+        .then((count) => {
+            $("#like-count").text(count);
+        })
+}
