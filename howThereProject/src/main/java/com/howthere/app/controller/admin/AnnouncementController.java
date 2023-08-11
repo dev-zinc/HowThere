@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,10 @@ public class AnnouncementController {
 
     // http://localhost:10000/announcement/announcement_list
     @GetMapping("announcement_list")
-    public void announcementList() {;}
+    public void announcementList(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+        Page<AnnouncementDTO> announcementList = announcementService.getAnnouncementList(pageable);
+        model.addAttribute("page", announcementList);
+    }
 
     // http://localhost:10000/announcement/announcement
     @GetMapping("announcement")
@@ -32,7 +36,7 @@ public class AnnouncementController {
     // http://localhost:10000/announcement/list
     @GetMapping("list")
     @ResponseBody
-    public Page<AnnouncementDTO> getList(@PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+    public Page<AnnouncementDTO> getList(@PageableDefault(page = 0, size = 10) Pageable pageable){
         return announcementService.getAnnouncementList(pageable);
     }
 }

@@ -23,48 +23,23 @@
       <div id="content-box-main" class="d-flex justify-content-center mt-5 mb-5">
         <div id="center-box">
           <div>
-            <a href="#">
+            <a href="/">
               <span class="route">홈</span>
             </a>
             >
-            <a href="#">
-              <span class="route">더보기</span>
-            </a>
-            >
-            <a href="#">
-              <span class="route">공지사항</span>
-            </a>
-            >
+            <span class="route">공지사항</span>
           </div>
           <div class="mt-5 mb-5">
               <h3><strong>공지사항</strong></h3>
               <hr>
               <ul>
-                <li class="d-flex align-items-center">
-                  <a href="#">공지사항1</a>
-                </li>
-                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                <hr>
-                <li class=" d-flex align-items-center justify-content-between">
-                  <a href="#">공지사항2</a>
-                  <a href="#" class="mr-5"><i class="bi bi-arrow-down"></i></a>
-                </li>
-                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                <hr>
-                <li class=" d-flex align-items-center">
-                  <a href="#">공지사항3</a>
-                </li>
-                <li  class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                <hr>
-                <li class=" d-flex align-items-center">
-                  <a href="#">공지사항4</a>
-                </li>
-                <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                <hr>
-                <li class="d-flex align-items-center">
-                  <a href="#">공지사항5</a>
-                </li>
-                <li class="d-flex align-items-center"  style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <th:block th:if="page.content.size != 0" th:each="notice:${page.content}">
+                  <li class=" d-flex align-items-center justify-content-between" >
+                    <a href="#" th:text="${notice.announcementTitle}">공지사항2</a>
+                  </li>
+                  <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)" th:text="${notice.createdDate.toString().split('T')[0]}"></li>
+                  <hr>
+                </th:block>
               </ul>
               <div class="d-flex justify-content-center">
                 <a href="#" class="btn" style="background-color:#BB84E8; color:white ">다음</a>

@@ -2,7 +2,6 @@ package com.howthere.app.repository.admin;
 
 import com.howthere.app.domain.AnnouncementDTO;
 import com.howthere.app.entity.admin.Announcement;
-import com.howthere.app.entity.admin.QAnnouncement;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +24,16 @@ public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
                         AnnouncementDTO.class,
                         announcement.id,
                         announcement.announcementTitle,
-                        announcement.announcementContent
-                )).from(announcement).fetch();
-        return new PageImpl<>(announcementList, pageable, announcementList.size());
+                        announcement.announcementContent,
+                        announcement.createdDate,
+                        announcement.updatedDate
+                )).from(announcement)
+                .orderBy(announcement.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        final Long count = query.select(announcement.count()).from(announcement).fetchOne();
+        return new PageImpl<>(announcementList, pageable, count);
     }
 }

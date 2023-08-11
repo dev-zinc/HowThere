@@ -38,13 +38,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable) {
-        Page<Announcement> announcements = announcementRepository.findAll(pageable);
-        List<AnnouncementDTO> dtoList = new ArrayList<>();
 
-        for(Announcement announcement : announcements.getContent()){
-            dtoList.add(toDTO(announcement));
-        }
-
-        return new PageImpl<>(dtoList, pageable, announcementRepository.count());
+        return announcementRepository.findAllQueryDSL(pageable);
     }
 }
