@@ -22,10 +22,10 @@ function AdministratorService(requestURL, header, appender) {
         return -1;
     }
 
-    this.getPagePromise = function(page, keyword) {
+    this.getPagePromise = function(page) {
         const req = requestURL + "?" +
-                    (page ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
-                    (keyword ? "keyword=" + keyword : "");
+                    (page != undefined ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
+                    (this.keyword != '' ? "keyword=" + this.keyword : "");
         return fetch(req).then(response => response.json());
     }
 
@@ -33,8 +33,7 @@ function AdministratorService(requestURL, header, appender) {
      * @param page 1부터 카운트
      */
     this.shiftPage = function (page) {
-        page = page - 1;
-        this.getPagePromise(page).then(json => {
+        this.getPagePromise(page - 1).then(json => {
             let prevOffset = getOffset();
 
             this.page = json;
@@ -48,7 +47,6 @@ function AdministratorService(requestURL, header, appender) {
     this.setPageButtons = function (prevOffset) {
         let pageOffset = getOffset();
         let lastOffset = Math.floor(this.page.totalPages / 10);
-        console.log(this.page);
         if(prevOffset == pageOffset) return;
 
         //settings =====================================================
