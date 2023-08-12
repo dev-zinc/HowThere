@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface AnnouncementQueryDSL {
     // TODO: 2023-08-05 페이징 처리해서 조회(최신순)
-    public Page<AnnouncementDTO> findAllQueryDSL(Pageable pageable);
+    public Page<AnnouncementDTO> findAllQueryDSL(Pageable pageable, String keyword);
 }
