@@ -22,4 +22,10 @@ public class Announcement extends Period {
     @NotNull private String announcementTitle;
     @NotNull private String announcementContent;
 
+    @Builder
+    public Announcement(Long id, @NotNull String announcementTitle, @NotNull String announcementContent) {
+        this.id = id;
+        this.announcementTitle = announcementTitle;
+        this.announcementContent = announcementContent;
+    }
 }
