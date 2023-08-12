@@ -1,5 +1,5 @@
 function searchAddress(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
         $("#address-search-btn").trigger("click");
     }
 }
@@ -36,10 +36,12 @@ function openAddressSearchPopup() {
                 // 정상적으로 검색이 완료됐으면
                 if (status === daum.maps.services.Status.OK) {
 
-                    var result = results[0]; //첫번째 결과의 값을 활용
+                    const result = results[0]; //첫번째 결과의 값을 활용
 
                     // 해당 주소에 대한 좌표를 받아서
-                    var coords = new daum.maps.LatLng(result.y, result.x);
+                    const coords = new daum.maps.LatLng(result.y, result.x);
+                    document.querySelector("#lat").value = coords.La;
+                    document.querySelector("#lon").value = coords.Ma;
                     // 지도를 보여준다.
                     mapContainer.style.display = "block";
                     map.relayout();
@@ -87,74 +89,20 @@ $(function () {
     })
 });
 
-function registerHouse() {
-    // const form = document.querySelector("#form");
-    // const files = document.querySelector("#imgFileAddBtn").files;
-    // const guestCnt = document.querySelector("#maxGuestCnt").innerHTML;
-    // const petCnt = document.querySelector("#maxPetCnt").innerHTML;
-    // form.append(files);
-    // form.append(guestCnt);
-    // form.append(petCnt);
-    return true;
-}
-
-function submit() {
-    // const form = document.querySelector("#form");
-    // const files = document.querySelector("input[name='houseImg']").files;
-    // const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
-    // const maxPetCnt = document.querySelector("input[name='maxPetCnt']");
-    // maxGuestCnt.value = document.querySelector("#maxGuestCnt").innerHTML;
-    // maxPetCnt.value = document.querySelector("#maxPetCnt").innerHTML;
-    // for (let i = 0; i < files.length; i++) {
-    //     const image = files[i];
-    //     form.append(image)
-    // }
-    // form.append(maxGuestCnt);
-    // form.append(maxPetCnt);
-    // form.submit();
-    upload();
-}
-
-function upload() {
-    const files = document.querySelector("input[name='houseImg']").files;
-    const formData = new FormData();
-
-    const houseTitle = document.querySelector("input[name='houseName']").value;
-    const address = document.querySelector("input[name='address']").value;
-    const addressDetail = document.querySelector("input[name='addressDetail']").value;
-    const houseContent = document.querySelector("#summernote").value;
+function beforeSubmit() {
     const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
     const maxPetCnt = document.querySelector("input[name='maxPetCnt']");
     maxGuestCnt.value = document.querySelector("#maxGuestCnt").innerHTML;
     maxPetCnt.value = document.querySelector("#maxPetCnt").innerHTML;
-
-    const param = {
-        houseTitle: houseTitle,
-        address: address,
-        addressDetail: addressDetail,
-        houseContent: houseContent,
-        maxGuestCnt: maxGuestCnt.value,
-        maxPetCnt: maxPetCnt.value
-    }
-
-    formData.append("body", JSON.stringify(param));
-    for (let i = 0; i < files.length; i++) {
-        const image = files[i];
-        formData.append('uploadFile', image);
-    }
-
-    fetch("/host/write", {
-        method: "POST",
-        body: formData
-    }).then(res => {
-
-    });
+    return true;
 }
+
 const imageTag = document.getElementById("thumbImgFile");
 imageTag.addEventListener('change', function () {
     document.querySelector("#thumbImg").style.display = "block";
-    loadImg(this); // 이미지 파일을 읽어 img src 에 넣는 함수
+    loadImg(this);
 });
+
 function loadImg(value) {
     if (value.files && value.files[0]) {
         const reader = new FileReader();

@@ -3,7 +3,6 @@ package com.howthere.app.controller.member;
 import com.howthere.app.service.member.HostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/host/*")
@@ -52,14 +44,22 @@ public class HostController {
     }
 
     @PostMapping("write")
-    public void registerHouse(MultipartHttpServletRequest req) {
-        final String body = req.getParameter("body");
+    public void registerHouse(HttpServletRequest req, @RequestParam("thumbnail") MultipartFile multipartFile, @RequestParam("houseImg") List<MultipartFile> multipartFiles) {
+//        final String body = req.getParameter("body");
+//        System.out.println(body);
+        final String houseName = req.getParameter("houseName");
+        final String address = req.getParameter("address");
+        final String addressDetail = req.getParameter("addressDetail");
+        final String summernote = req.getParameter("content");
+        final String guestCnt = req.getParameter("maxGuestCnt");
+        final String petCnt = req.getParameter("maxPetCnt");
+        final String lat = req.getParameter("lat");
+        final String lon = req.getParameter("lon");
 
-        final List<MultipartFile> files = req.getFiles("uploadFile");
-        for (MultipartFile file : files) {
+        System.out.println(multipartFile.getOriginalFilename());
+        for (MultipartFile file : multipartFiles) {
             System.out.println(file.getOriginalFilename());
         }
-        System.out.println(body);
     }
 
     @PostMapping("upload")
