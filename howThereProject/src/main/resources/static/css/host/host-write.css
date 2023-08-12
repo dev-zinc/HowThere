@@ -6,11 +6,11 @@ main {
     gap: 80px;
 }
 
-main > form {
+main > section {
     display: flex;
 }
 
-main > form > div {
+main > section > div {
     width: 800px;
     margin-bottom: 50px;
 }

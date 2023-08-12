@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleag.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/diary/diary.css">
-    <link rel="stylesheet" href="/css/host/host-write.css">
-    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		  name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/diary/diary.css" rel="stylesheet">
+    <link href="/css/host/host-write.css" rel="stylesheet">
+    <link href="/css/summernote/summernote-lite.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="/js/summernote/summernote-lite.js"></script>
@@ -19,7 +19,8 @@
     <div th:replace="~{/layout/header :: header}"></div>
     <div>
         <main>
-            <form method="post" action="/host/write" onsubmit="return false;">
+<!--            <form action="/host/write" enctype="multipart/form-data" id="form" method="post">-->
+			<section>
                 <div>
                     <nav class="current-path">
                         <ol class="path-wrap flex">
@@ -28,9 +29,9 @@
                                     <span>내 계정</span>
                                 </a>
                                 <span class="inline-flex">
-                                <span class="arrow" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" aria-hidden="true" role="presentation" focusable="false">
-                                        <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                                <span aria-hidden="true" class="arrow">
+                                    <svg aria-hidden="true" focusable="false" role="presentation" style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28" fill="none"></path>
                                     </svg>
                                 </span>
                             </span>
@@ -45,39 +46,39 @@
                     <hr/>
                     <input type="hidden">
                     <div class="houseName-wrap">
-                        <input type="text" name="houseName" placeholder="숙소의 이름을 정해주세요">
+                        <input name="houseName" placeholder="숙소의 이름을 정해주세요" type="text">
                     </div>
                     <div class="info-wrap">
                         <section class="address-sction">
                             <div>
-                                <input type="text" id="searchAddress" placeholder="주소">
-                                <input type="button" onclick="openAddressSearchPopup()" id="address-search-btn" value="검색">
+                                <input id="searchAddress" placeholder="주소" type="text">
+                                <input id="address-search-btn" onclick="openAddressSearchPopup()" type="button" value="검색">
                                 <br>
                                 <div id="map"></div>
                                 <div class="address-wrap">
-                                    <input type="hidden" id="sido">
-                                    <input type="hidden" id="sigungo">
                                     <div class="hidden">
                                         <div>주소</div>
-                                        <input id="address" type="text" disabled>
+                                        <input id="address" name="address" type="text" readonly>
                                     </div>
                                     <div class="hidden">
                                         <div>상세주소</div>
-                                        <input id="addressDetail" type="text">
+                                        <input id="addressDetail" name="addressDetail" type="text">
                                     </div>
                                 </div>
                             </div>
                         </section>
                     </div>
-                    <textarea name="content" id="summernote" cols="30" rows="10"></textarea>
+                    <textarea cols="30" id="summernote" name="content" rows="10"></textarea>
                 </div>
-            </form>
+			</section>
+<!--            </form>-->
             <div class="side-wrap">
                 <div style="width: 100%">
                     <label for="thumbImgFile" style="width: 100%;">
-                        <input type="file" class="hidden" id="thumbImgFile">
+                        <input class="hidden" id="thumbImgFile" type="file">
                         <div class="thumb">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="height: 32px; width: 32px; fill: currentcolor;"><path d="M27 3a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM8.89 19.04l-.1.08L3 24.92V25a2 2 0 0 0 1.85 2H18.1l-7.88-7.88a1 1 0 0 0-1.32-.08zm12.5-6-.1.08-7.13 7.13L20.92 27H27a2 2 0 0 0 2-1.85v-5.73l-6.3-6.3a1 1 0 0 0-1.31-.08zM27 5H5a2 2 0 0 0-2 2v15.08l4.38-4.37a3 3 0 0 1 4.1-.14l.14.14 1.13 1.13 7.13-7.13a3 3 0 0 1 4.1-.14l.14.14L29 16.59V7a2 2 0 0 0-1.85-2zM8 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
+							<img id="thumbImg" src="" alt="thumbnail" style="display: none; width: inherit; height: inherit;">
+                            <svg id="thumbSvg" aria-hidden="true" focusable="false" role="presentation" style="height: 32px; width: 32px; fill: currentcolor;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27 3a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM8.89 19.04l-.1.08L3 24.92V25a2 2 0 0 0 1.85 2H18.1l-7.88-7.88a1 1 0 0 0-1.32-.08zm12.5-6-.1.08-7.13 7.13L20.92 27H27a2 2 0 0 0 2-1.85v-5.73l-6.3-6.3a1 1 0 0 0-1.31-.08zM27 5H5a2 2 0 0 0-2 2v15.08l4.38-4.37a3 3 0 0 1 4.1-.14l.14.14 1.13 1.13 7.13-7.13a3 3 0 0 1 4.1-.14l.14.14L29 16.59V7a2 2 0 0 0-1.85-2zM8 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
                         </div>
                     </label>
                     <div style="margin-bottom: 30px">
@@ -86,9 +87,9 @@
                                 <label for="imgFileAddBtn">
                                     <div class="img-add-btn etc-img" draggable="true">
                                         <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 32px; width: 32px; stroke: rgb(113, 113, 113); stroke-width: 2; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                                            <svg  aria-hidden="true" focusable="false" role="presentation" style="display: block; fill: none; height: 32px; width: 32px; stroke: rgb(113, 113, 113); stroke-width: 2; overflow: visible;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 16h28M16 2v28"></path></svg>
                                         </div>
-                                        <input type="file" multiple class="hidden" id="imgFileAddBtn">
+                                        <input class="hidden" name="houseImg" id="imgFileAddBtn" multiple type="file" >
                                     </div>
                                 </label>
                             </li>
@@ -99,45 +100,47 @@
                     <div>
                         <h3>최대인원</h3>
                         <div class="count-btn-wrap">
-                            <button type="button" class="count maxCount" data-for="maxGuestCnt" data-oper="minus">
+                            <button class="count maxCount" data-for="maxGuestCnt" data-oper="minus" type="button">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28"></path></svg>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 16h28"></path></svg>
                                 </span>
                             </button>
                             <div>
                                 <span id="maxGuestCnt">0</span>
+								<input type="hidden" name="maxGuestCnt">
                             </div>
-                            <button type="button" class="count maxCount" data-for="maxGuestCnt" data-oper="plus">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                            <button class="count maxCount" data-for="maxGuestCnt" data-oper="plus" type="button">
+                                <svg aria-hidden="true" focusable="false" role="presentation" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 16h28M16 2v28"></path></svg>
                             </button>
                         </div>
                     </div>
                     <div>
                         <h3>반려동물</h3>
                         <div class="count-btn-wrap">
-                            <button type="button" class="count maxCount" data-for="maxPetCnt" data-oper="minus">
+                            <button class="count maxCount" data-for="maxPetCnt" data-oper="minus" type="button">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28"></path></svg>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 16h28"></path></svg>
                                 </span>
                             </button>
                             <div>
                                 <span id="maxPetCnt">0</span>
+								<input type="hidden" name="maxPetCnt">
                             </div>
-                            <button type="button" class="count maxCount" data-for="maxPetCnt" data-oper="plus">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
+                            <button class="count maxCount" data-for="maxPetCnt" data-oper="plus" type="button">
+                                <svg aria-hidden="true" focusable="false" role="presentation" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 16h28M16 2v28"></path></svg>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="write-btn-wrap">
-                    <button  class="write">
+                    <button class="write">
                         <span>
                             <div>
-                                <div style="padding-left: 8px;padding-right: 4px;">등록</div>
+                                <div style="padding-left: 8px;padding-right: 4px;" onclick="submit()">등록</div>
                             </div>
                         </span>
                     </button>
-                    <button  class="cancle">
+                    <button class="cancle">
                         <span>
                             <div>
                                 <div style="padding-left: 8px;padding-right: 4px;">취소</div>
