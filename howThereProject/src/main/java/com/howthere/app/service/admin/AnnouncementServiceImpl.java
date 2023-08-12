@@ -22,7 +22,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public AnnouncementDTO getAnnouncementById(Long id) {
-        Announcement announcement = announcementRepository.findById(id).orElseThrow(() -> new RuntimeException());
+        Announcement announcement = announcementRepository.findById(id).orElseThrow(RuntimeException::new);
         return toDTO(announcement);
     }
 

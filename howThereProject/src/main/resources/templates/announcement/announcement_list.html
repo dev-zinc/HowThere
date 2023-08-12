@@ -35,7 +35,7 @@
               <ul>
                 <th:block th:if="page.content.size != 0" th:each="notice:${page.content}">
                   <li class=" d-flex align-items-center justify-content-between" >
-                    <a href="#" th:text="${notice.announcementTitle}">공지사항2</a>
+                    <a th:href="@{/announcement/announcement(id=${notice.id},page=${page.number})}" th:text="${notice.announcementTitle}">공지사항2</a>
                   </li>
                   <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)" th:text="${notice.createdDate.toString().split('T')[0]}"></li>
                   <hr>
