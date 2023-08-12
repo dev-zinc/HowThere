@@ -53,7 +53,7 @@
                 <div class="member-email">이메일</div>
                 <div class="member-birth">생년월일</div>
                 <div class="member-register-date">가입일</div>
-                <div class="member-is-remaining">죽었나?</div>
+                <div class="member-is-remaining">휴면계정 여부</div>
             </div>
         `,
         (member) => `
@@ -63,12 +63,14 @@
                     <div class="member-id">${member.id}</div>
                     <div class="member-name">${member.memberName}</div>
                     <div class="member-email">${member.memberEmail}</div>
-                    <div class="member-birth">${member.memberBirthDate}</div>
-                    <div class="member-register-date">${member.createdDate}</div>
-                    <div class="member-is-remaining">${member.deleted}</div>
+                    <div class="member-birth">${member.memberBirthDate.substring(0, 10)}</div>
+                    <div class="member-register-date">${member.createdDate.substring(0, 10)}</div>
+                    <div class="member-is-remaining">${member.deleted ? '휴면' : '활성'}</div>
                 </a>
             </div>
         `
     );
+
+    $('.member-is-remaining').each((i, e) => $(e).css('color', member.deleted ? 'red' : 'green'));
 </script>
 </html>
