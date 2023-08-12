@@ -56,10 +56,10 @@
                                 <img class="count-img" src="/img/diary/eye.svg" alt="조회수">
                                 <span th:text="${diary.diaryViewCount}"></span>
                             </div>
-                            <div id="like-count" class="counter">
-                                <img class="count-img" src="/img/diary/heart.svg" alt="좋아요 수">
-                                <!--<img class="count-img" src="/img/diary/full-heart.svg" alt="눈">-->
-                                <span>0</span>
+                            <div class="counter">
+                                <img class="count-img like" src="/img/diary/heart.svg" alt="좋아요 수">
+<!--                                <img class="count-img" src="/img/diary/full-heart.svg" alt="눈">-->
+                                <span id="like-count">0</span>
                             </div>
                             <div class="counter">
                                 <img class="count-img" src="/img/diary/comment.svg" alt="댓글 수">

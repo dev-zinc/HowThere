@@ -14,6 +14,7 @@ public class ProgramController {
     // http://localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv) {
+        // TODO: 2023/08/05 지도 지우고 무한 스크롤로 변경
         mv.setViewName("program/list");
         return mv;
     }
@@ -36,6 +37,13 @@ public class ProgramController {
     @GetMapping("/rent")
     public ModelAndView rent(HttpServletRequest req, ModelAndView mv) {
         mv.setViewName("program/rent");
+        return mv;
+    }
+
+    // TODO: 2023/08/05  렌트카 예약 페이지 구현
+    @GetMapping("/rent/reservation")
+    public ModelAndView rentReservation(HttpServletRequest req, ModelAndView mv) {
+        mv.setViewName("program/rent-reservation");
         return mv;
     }
 }

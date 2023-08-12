@@ -1,4 +1,4 @@
-package com.howthere.repository;
+package com.howthere.app.repository;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.entity.member.Member;

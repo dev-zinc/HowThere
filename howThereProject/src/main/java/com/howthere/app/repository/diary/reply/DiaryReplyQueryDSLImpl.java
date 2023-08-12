@@ -31,7 +31,9 @@ public class DiaryReplyQueryDSLImpl implements DiaryReplyQueryDSL {
                         diaryReply.replyContent,
                         diaryReply.member.id,
                         diaryReply.member.memberName,
-                        diaryReply.diary.id
+                        diaryReply.diary.id,
+                        diaryReply.createdDate,
+                        diaryReply.updatedDate
                 )
             ).from(diaryReply)
             .where(diaryReply.diary.id.eq(id))

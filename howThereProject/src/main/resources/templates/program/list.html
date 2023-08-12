@@ -200,9 +200,6 @@
                 </div>
             </section>
         </div>
-        <div class="map-container">
-            <div id="map" style="width:800px;height:800px;"></div>
-        </div>
     </div>
 </main>
 <div th:replace="~{/layout/footer :: footer}"></div>
@@ -212,7 +209,7 @@
 <script>
     const picGrid = document.querySelector(".program-grid");
     let html = "";
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 15; i++) {
         html += `
             <div class="program-pic">
                 <div class="img-wrap">
