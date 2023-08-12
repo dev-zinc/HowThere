@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -28,47 +26,21 @@ public class AdministratorController {
     @GetMapping("program")
     public void program() {;}
 
-    @GetMapping("api/program")
-    @ResponseBody
-    public Page<ProgramDTO> program(@PageableDefault Pageable pageable, String keyword) {
-        return programService.getPrograms(pageable, keyword);
-    }
-
     //http://localhost:10000/administrator/stay
     @GetMapping("house")
-    public void stay() {;}
-
-    @GetMapping("api/house")
-    public void stay(@PageableDefault Pageable pageable, String keyword) {
-
-    }
+    public void house() {;}
 
     //http://localhost:10000/administrator/reservation
     @GetMapping("reservation")
     public void reserve() {;}
 
-    @GetMapping("api/reservation")
-    public void reserve(@PageableDefault Pageable pageable, String keyword) {
-
-    }
-
     //http://localhost:10000/administrator/member
     @GetMapping("member")
     public void member() {;}
 
-    @GetMapping("api/member")
-    public Page<Member> member(@PageableDefault Pageable pageable, String keyword) {
-        return memberService.getMembers(pageable, keyword);
-    }
-
     //http://localhost:10000/administrator/notice
     @GetMapping("notice")
     public void notice() {;}
-
-    @GetMapping("api/notice")
-    public void notice(@PageableDefault Pageable pageable, String keyword) {
-
-    }
 
     //http://localhost:10000/administrator/notice/detail
     @GetMapping("notice/detail")
@@ -86,11 +58,6 @@ public class AdministratorController {
     @GetMapping("inquiry")
     public void inquiry() {;}
 
-    @GetMapping("api/inquiry")
-    public void inquiry(@PageableDefault Pageable pageable, String keyword) {
-
-    }
-
     //http://localhost:10000/administrator/inquiry/detail
     @GetMapping("inquiry/detail")
     public String inquiryDetail() {
@@ -101,5 +68,43 @@ public class AdministratorController {
     @GetMapping("inquiry/write")
     public String inquiryWrite() {
         return "/administrator/inquiry-write";
+    }
+
+    //===============================================================REST
+
+    @GetMapping("api/inquiry")
+    @ResponseBody
+    public void inquiry(@PageableDefault Pageable pageable, String keyword) {
+
+    }
+
+    @GetMapping("api/program")
+    @ResponseBody
+    public Page<ProgramDTO> program(@PageableDefault Pageable pageable, String keyword) {
+        return programService.getPrograms(pageable, keyword);
+    }
+
+    @GetMapping("api/notice")
+    @ResponseBody
+    public void notice(@PageableDefault Pageable pageable, String keyword) {
+
+    }
+
+    @GetMapping("api/member")
+    @ResponseBody
+    public Page<Member> member(@PageableDefault Pageable pageable, String keyword) {
+        return memberService.getMembers(pageable, keyword);
+    }
+
+    @GetMapping("api/house")
+    @ResponseBody
+    public void house(@PageableDefault Pageable pageable, String keyword) {
+
+    }
+
+    @GetMapping("api/reservation")
+    @ResponseBody
+    public void reserve(@PageableDefault Pageable pageable, String keyword) {
+
     }
 }
