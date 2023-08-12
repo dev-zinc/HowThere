@@ -18,7 +18,7 @@ public interface AnnouncementService {
     public void remove(AnnouncementDTO announcementDTO);
 
 //    리스트 가져오기(페이징 처리)
-    public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable);
+    public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable, String keyword);
 
 //    DTO로 변환
     default AnnouncementDTO toDTO(Announcement announcement){

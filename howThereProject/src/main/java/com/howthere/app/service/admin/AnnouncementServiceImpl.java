@@ -37,8 +37,8 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
-    public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable) {
+    public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable, String keyword) {
 
-        return announcementRepository.findAllQueryDSL(pageable, null);
+        return announcementRepository.findAllQueryDSL(pageable, keyword);
     }
 }

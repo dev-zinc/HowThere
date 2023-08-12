@@ -45,6 +45,4 @@ public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
         final Long count = query.select(announcement.count()).from(announcement).fetchOne();
         return new PageImpl<>(announcementList, pageable, count != null ? count : 0);
     }
-
-
 }

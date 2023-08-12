@@ -1,7 +1,10 @@
 package com.howthere.app.controller.admin;
 
+import com.howthere.app.domain.AnnouncementDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.entity.member.Member;
+import com.howthere.app.service.admin.AnnouncementService;
+import com.howthere.app.service.house.HouseService;
 import com.howthere.app.service.member.MemberService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AdministratorController {
     private final ProgramService programService;
     private final MemberService memberService;
+    private final AnnouncementService announcementService;
+//    private final OneToOneService oneToOneService;
+    private final HouseService houseService;
+//    private final ReservationService reservationService;
 
     //http://localhost:10000/administrator/program
     @GetMapping("program")
@@ -86,8 +93,8 @@ public class AdministratorController {
 
     @GetMapping("api/notice")
     @ResponseBody
-    public void notice(@PageableDefault Pageable pageable, String keyword) {
-
+    public Page<AnnouncementDTO> notice(@PageableDefault Pageable pageable, String keyword) {
+        return announcementService.getAnnouncementList(pageable, keyword);
     }
 
     @GetMapping("api/member")
@@ -99,7 +106,7 @@ public class AdministratorController {
     @GetMapping("api/house")
     @ResponseBody
     public void house(@PageableDefault Pageable pageable, String keyword) {
-
+//        return houseService.getHouses();
     }
 
     @GetMapping("api/reservation")
