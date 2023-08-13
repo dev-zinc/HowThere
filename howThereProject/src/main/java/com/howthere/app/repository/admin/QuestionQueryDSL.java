@@ -1,7 +1,7 @@
 package com.howthere.app.repository.admin;
 
-import com.howthere.app.domain.QuestionDTO;
-import com.howthere.app.domain.QuestionDetailDTO;
+import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.admin.QuestionDetailDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

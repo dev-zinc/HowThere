@@ -1,8 +1,7 @@
 package com.howthere.app.repository.admin;
 
-import com.howthere.app.domain.QuestionDTO;
-import com.howthere.app.domain.QuestionDetailDTO;
-import com.howthere.app.entity.admin.QAnswer;
+import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.util.StringUtils;

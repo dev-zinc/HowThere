@@ -8,3 +8,12 @@
     margin: 0 auto !important;
     height: 9% !important;
 }
+
+.not-found {
+    color: #545860;
+    height: 400px !important;
+    justify-content: center;
+    font-size: 30px !important;
+    font-weight: 400;
+    text-align: center;
+}

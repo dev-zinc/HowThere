@@ -1,6 +1,6 @@
 package com.howthere.app.controller.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.service.admin.AnnouncementService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class AnnouncementController {
     // http://localhost:10000/announcement/announcement_list
     @GetMapping("announcement_list")
     public void announcementList(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
-        Page<AnnouncementDTO> announcementList = announcementService.getAnnouncementList(pageable);
+        Page<AnnouncementDTO> announcementList = announcementService.getAnnouncementList(pageable, null);
         model.addAttribute("page", announcementList);
     }
 
@@ -40,6 +40,6 @@ public class AnnouncementController {
     @GetMapping("list")
     @ResponseBody
     public Page<AnnouncementDTO> getList(@PageableDefault(page = 0, size = 10) Pageable pageable){
-        return announcementService.getAnnouncementList(pageable);
+        return announcementService.getAnnouncementList(pageable, null);
     }
 }

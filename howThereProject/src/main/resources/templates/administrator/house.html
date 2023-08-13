@@ -52,7 +52,7 @@
                 <div class="stay-name">이름</div>
                 <div class="stay-content">설명</div>
                 <div class="stay-register-date">등록 날짜</div>
-                <div class="member-id">회원 번호</div>
+                <div class="member-id">호스트 번호</div>
             </div>
         `,
         (house) => `
@@ -62,7 +62,7 @@
                 <div class="stay-type">${house.houseAddress}</div>
                 <div class="stay-name"><a href="">${house.houseTitle}</a></div>
                 <div class="stay-content">${house.houseContent}</div>
-                <div class="stay-register-date">${house.createdDate}</div>
+                <div class="stay-register-date">${house.createdDate.substring(0, 10)}</div>
                 <div class="member-id">${house.memberId}</div>
             </div>
         `

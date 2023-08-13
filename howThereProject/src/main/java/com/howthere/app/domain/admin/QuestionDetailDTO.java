@@ -1,4 +1,4 @@
-package com.howthere.app.domain;
+package com.howthere.app.domain.admin;
 
 
 import com.howthere.app.type.QuestionType;
