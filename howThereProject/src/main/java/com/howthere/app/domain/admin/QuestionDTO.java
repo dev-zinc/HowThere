@@ -1,16 +1,18 @@
-package com.howthere.app.domain;
-
+package com.howthere.app.domain.admin;
 
 import com.howthere.app.type.QuestionType;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 @Data
-public class QuestionDetailDTO {
+@NoArgsConstructor
+public class QuestionDTO {
     private Long id;
     private String oneToOneQuestionContent;
     private QuestionType oneToOneQuestionType;
-    private Long answerId;
-    private String answerContent;
+    private LocalDateTime createdDate;
 }

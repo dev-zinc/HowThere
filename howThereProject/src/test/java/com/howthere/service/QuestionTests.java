@@ -1,8 +1,8 @@
 package com.howthere.service;
 
 import com.howthere.app.HowThereApplication;
-import com.howthere.app.domain.QuestionDTO;
-import com.howthere.app.domain.QuestionDetailDTO;
+import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.howthere.app.entity.admin.Question;
 import com.howthere.app.repository.admin.QuestionRepository;
 import com.howthere.app.service.admin.QuestionService;
@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Transactional

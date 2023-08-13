@@ -1,6 +1,6 @@
 package com.howthere.app.repository.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

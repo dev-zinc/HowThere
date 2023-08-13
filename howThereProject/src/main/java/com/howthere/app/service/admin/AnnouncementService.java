@@ -1,6 +1,6 @@
 package com.howthere.app.service.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.entity.admin.Announcement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +16,7 @@ public interface AnnouncementService {
     void remove(AnnouncementDTO announcementDTO);
 
 //    리스트 가져오기(페이징 처리)
-    Page<AnnouncementDTO> getAnnouncementList(Pageable pageable);
+    Page<AnnouncementDTO> getAnnouncementList(Pageable pageable, String keyword);
 
 //    DTO로 변환
     default AnnouncementDTO toDTO(Announcement announcement){
@@ -37,4 +37,5 @@ public interface AnnouncementService {
                 .announcementContent(announcementDTO.getAnnouncementContent())
                 .build();
     }
+
 }
