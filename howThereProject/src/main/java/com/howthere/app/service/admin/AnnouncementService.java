@@ -5,20 +5,18 @@ import com.howthere.app.entity.admin.Announcement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.time.format.DateTimeFormatter;
-
 public interface AnnouncementService {
 //    조회
-    public AnnouncementDTO getAnnouncementById(Long id);
+    AnnouncementDTO getAnnouncementById(Long id);
 
 //    저장, 수정
-    public void save(AnnouncementDTO announcementDTO);
+    void save(AnnouncementDTO announcementDTO);
 
 //    삭제
-    public void remove(AnnouncementDTO announcementDTO);
+    void remove(AnnouncementDTO announcementDTO);
 
 //    리스트 가져오기(페이징 처리)
-    public Page<AnnouncementDTO> getAnnouncementList(Pageable pageable);
+    Page<AnnouncementDTO> getAnnouncementList(Pageable pageable);
 
 //    DTO로 변환
     default AnnouncementDTO toDTO(Announcement announcement){
