@@ -1,6 +1,6 @@
 package com.howthere.app.repository.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.howthere.app.entity.admin.QAnnouncement.announcement;
-import static com.howthere.app.entity.program.QProgram.program;
 
 @RequiredArgsConstructor
 public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
@@ -45,6 +44,4 @@ public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
         final Long count = query.select(announcement.count()).from(announcement).fetchOne();
         return new PageImpl<>(announcementList, pageable, count != null ? count : 0);
     }
-
-
 }
