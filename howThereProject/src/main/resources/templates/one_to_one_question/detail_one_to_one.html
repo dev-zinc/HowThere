@@ -38,7 +38,8 @@
                     <hr>
                     <div id="question" class="mb-3" th:utext="${qna.oneToOneQuestionContent}"></div>
                     <hr>
-                    <div id="answer" class="mb-3" th:utext="${qna.answerContent}"></div>
+                    <div th:if="${qna.answerContent == null}" id="answer" class="mb-3">아직 답변이 달리지 않았습니다.</div>
+                    <div th:unless="${qna.answerContent == null}" id="answer" class="mb-3" th:utext="${qna.answerContent}"></div>
                 </div>
             </div>
         </div>        
