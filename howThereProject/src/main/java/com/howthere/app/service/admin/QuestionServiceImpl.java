@@ -1,7 +1,6 @@
 package com.howthere.app.service.admin;
 
-import com.howthere.app.domain.QuestionDTO;
-import com.howthere.app.domain.QuestionDetailDTO;
+import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.entity.admin.Question;
 import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.howthere.app.repository.admin.AnswerRepository;

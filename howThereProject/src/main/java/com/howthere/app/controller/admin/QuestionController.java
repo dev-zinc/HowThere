@@ -1,6 +1,6 @@
 package com.howthere.app.controller.admin;
 
-import com.howthere.app.domain.QuestionDTO;
+import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.service.admin.QuestionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
