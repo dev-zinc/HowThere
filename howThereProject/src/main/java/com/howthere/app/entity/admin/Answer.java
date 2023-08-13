@@ -21,4 +21,11 @@ public class Answer extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
+
+    @Builder
+    public Answer(Long id, @NotNull String answerContent, Question question) {
+        this.id = id;
+        this.answerContent = answerContent;
+        this.question = question;
+    }
 }

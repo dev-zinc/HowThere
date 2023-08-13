@@ -28,11 +28,13 @@ public class QuestionTests {
 
     @Test
     public void saveTest(){
-        QuestionDTO dto = new QuestionDTO();
-        dto.setOneToOneQuestionContent("content test");
-        dto.setOneToOneQuestionType(QuestionType.EVENT);
-        Question question = questionService.toEntity(dto);
-        questionRepository.save(question);
+        for (int i = 1; i <= 100; i++) {
+            QuestionDTO dto = new QuestionDTO();
+            dto.setOneToOneQuestionContent("content test" + i);
+            dto.setOneToOneQuestionType(QuestionType.EVENT);
+            Question question = questionService.toEntity(dto);
+            questionRepository.save(question);
+        }
     }
 
     @Test
