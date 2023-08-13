@@ -7,6 +7,10 @@ import com.howthere.app.entity.admin.Question;
 
 public interface QuestionService {
 
+    QuestionDetailDTO findQnAByQuetionId(Long id);
+
+    Long qustionSave(QuestionDTO dto);
+
     void answerSave(QuestionDetailDTO dto);
 
     default Question toEntity(QuestionDTO dto){

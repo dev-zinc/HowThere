@@ -3,7 +3,9 @@ package com.howthere.service;
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.QuestionDTO;
 import com.howthere.app.domain.QuestionDetailDTO;
+import com.howthere.app.entity.admin.Answer;
 import com.howthere.app.entity.admin.Question;
+import com.howthere.app.repository.admin.AnswerRepository;
 import com.howthere.app.repository.admin.QuestionRepository;
 import com.howthere.app.service.admin.QuestionService;
 import com.howthere.app.type.QuestionType;
@@ -41,5 +43,17 @@ public class QuestionTests {
     public void findQnAByIdTest(){
         QuestionDetailDTO dto = questionRepository.findQnAById(204L);
         log.info(dto.toString());
+    }
+
+    @Test
+    public void answerSaveTest(){
+        Question question = questionRepository.findById(306L).orElseThrow(RuntimeException::new);
+        QuestionDetailDTO detailDTO = QuestionDetailDTO.builder()
+                .id(question.getId())
+                .answerContent("대답이야")
+                .oneToOneQuestionContent(question.getOneToOneQuestionContent())
+                .oneToOneQuestionType(question.getOneToOneQuestionType())
+                .build();
+        questionService.answerSave(detailDTO);
     }
 }

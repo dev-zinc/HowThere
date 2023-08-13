@@ -21,3 +21,26 @@ hr{
 #question-box{
     height: 100vh;
 }
+#questionType{
+    color: black;
+    font-size: 25px;
+    font-weight: 800;
+    background: none;
+    border: none;
+    appearance: none;
+    font-family: inherit;
+}
+#question::before{
+    content: "질문 : ";
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#answer::before{
+    content: "답변 : ";
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
