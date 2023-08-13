@@ -57,7 +57,7 @@ public class AnnouncementRepositoryTest {
 //        all.getContent().forEach(el -> {
 //            log.info(el.toString());
 //        });
-        Page<AnnouncementDTO> announcementList = announcementService.getAnnouncementList(createDate);
+        Page<AnnouncementDTO> announcementList = announcementService.getAnnouncementList(createDate, null);
 
         log.info(announcementList.toString());
     }
