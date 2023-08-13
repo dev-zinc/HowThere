@@ -65,12 +65,10 @@
                     <div class="member-email">${member.memberEmail}</div>
                     <div class="member-birth">${member.memberBirthDate.substring(0, 10)}</div>
                     <div class="member-register-date">${member.createdDate.substring(0, 10)}</div>
-                    <div class="member-is-remaining">${member.deleted ? '휴면' : '활성'}</div>
+                    <div class="member-is-remaining" style="color: ${member.deleted ? 'red' : 'green'}">${member.deleted ? '휴면' : '활성'}</div>
                 </a>
             </div>
         `
     );
-
-    $('.member-is-remaining').each((i, e) => $(e).css('color', member.deleted ? 'red' : 'green'));
 </script>
 </html>

@@ -1,11 +1,9 @@
 package com.howthere.app.service.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.entity.admin.Announcement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.time.format.DateTimeFormatter;
 
 public interface AnnouncementService {
 //    조회

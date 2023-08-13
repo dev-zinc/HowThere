@@ -10,8 +10,10 @@ function AdministratorService(requestURL, header, appender) {
     this.page = undefined;
     this.keyword = '';
 
-    $searchInput.on('search', () => {
-        this.keyword = $searchInput.text();
+    $searchInput.on('keyup', (e) => {
+        if(e.keyCode !== 13) return;
+        this.keyword = $searchInput.val();
+        this.shiftPage(1);
     });
 
     //fn
@@ -34,20 +36,25 @@ function AdministratorService(requestURL, header, appender) {
      */
     this.shiftPage = function (page) {
         this.getPagePromise(page - 1).then(json => {
-            let prevOffset = getOffset();
-
             this.page = json;
             let html = header;
+
+            if(this.page.content.length == 0) {
+                $container.html(html + `<div class="program not-found"><span>검색 결과가 없습니다.</span></div>`);
+                $pageContainer.html("");
+                return;
+            }
+
             this.page.content.forEach(e => html += appender(e));
             $container.html(html);
-            this.setPageButtons(prevOffset);
+
+            this.setPageButtons();
         });
     }
 
-    this.setPageButtons = function (prevOffset) {
+    this.setPageButtons = function () {
         let pageOffset = getOffset();
         let lastOffset = Math.floor(this.page.totalPages / 10);
-        if(prevOffset == pageOffset) return;
 
         //settings =====================================================
         let html = '';

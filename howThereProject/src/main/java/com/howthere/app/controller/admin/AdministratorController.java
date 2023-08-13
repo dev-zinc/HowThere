@@ -1,6 +1,7 @@
 package com.howthere.app.controller.admin;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
@@ -105,8 +106,8 @@ public class AdministratorController {
 
     @GetMapping("api/house")
     @ResponseBody
-    public void house(@PageableDefault Pageable pageable, String keyword) {
-//        return houseService.getHouses();
+    public Page<HouseDTO> house(@PageableDefault Pageable pageable, String keyword) {
+        return houseService.getHouses(pageable, keyword);
     }
 
     @GetMapping("api/reservation")

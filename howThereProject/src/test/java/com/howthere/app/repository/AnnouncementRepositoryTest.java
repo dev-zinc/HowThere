@@ -1,6 +1,6 @@
 package com.howthere.app.repository;
 
-import com.howthere.app.domain.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.entity.admin.Announcement;
 import com.howthere.app.repository.admin.AnnouncementRepository;
 import com.howthere.app.service.admin.AnnouncementService;

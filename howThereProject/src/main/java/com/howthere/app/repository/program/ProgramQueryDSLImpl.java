@@ -26,7 +26,9 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
 
     @Override
     public Page<ProgramDTO> findAllWithLimit(Pageable pageable, String keyword) {
-        BooleanExpression hasKeyword = keyword != null ? program.programName.contains(keyword) : null;
+        BooleanExpression hasKeyword = keyword != null
+                ? program.programName.contains(keyword).or(program.programContent.contains(keyword))
+                : null;
 
         final List<ProgramDTO> programDTOs = queryDSL
                 .select(programDTOQuery)
@@ -36,7 +38,7 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
                 .where(hasKeyword)
                 .orderBy(program.id.asc())
                 .fetch();
-        Long count = queryDSL.select(program.count()).from(program).fetchOne();
+        Long count = queryDSL.select(program.count()).from(program).where(hasKeyword).fetchOne();
         return new PageImpl<>(programDTOs, pageable, count == null ? 0 : count);
     }
 }
