@@ -22,10 +22,8 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<QuestionDTO> findMyQuestions(Long memberId, String searchText, Pageable pageable) {
+    public Page<QuestionDTO> findMyQuestions(Long memberId, Pageable pageable) {
         BooleanExpression isMemberId = memberId == null ? null : question.member.id.eq(memberId);
-        BooleanExpression searchTextContains = StringUtils.isNullOrEmpty(searchText)
-                ? null : question.oneToOneQuestionContent.contains(searchText);
 
         List<QuestionDTO> dtoList = query
                 .select(Projections.fields(QuestionDTO.class
@@ -35,15 +33,14 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                     ,question.createdDate
                 ))
                 .from(question)
-                .where(isMemberId, searchTextContains)
+                .where(isMemberId)
+                .orderBy(question.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long size = query.select(question.count())
                 .from(question)
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .fetchOne();
 
         return new PageImpl<>(dtoList, pageable, size);
@@ -63,5 +60,38 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                 .on(answer.question.id.eq(question.id))
                 .where(question.id.eq(id))
                 .fetchOne();
+    }
+
+    @Override
+    public Page<QuestionDetailDTO> findQnAByMemberIdAndSearchText(String searchText, Pageable pageable) {
+        BooleanExpression searchTextContains = StringUtils.isNullOrEmpty(searchText)
+                ? null : question.oneToOneQuestionContent.contains(searchText);
+
+        List<QuestionDetailDTO> dtoList = query
+                .select(Projections.fields(QuestionDetailDTO.class
+                        , question.id
+                        , question.oneToOneQuestionContent
+                        , question.oneToOneQuestionType
+                        , question.createdDate
+                        , answer.answerContent
+                        , answer.id.as("answerId")
+                ))
+                .from(question)
+                .leftJoin(answer)
+                .on(answer.question.id.eq(question.id))
+                .where(searchTextContains)
+                .orderBy(question.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long size = query.select(question.count())
+                .from(question)
+                .leftJoin(answer)
+                .on(answer.question.id.eq(question.id))
+                .where(searchTextContains)
+                .fetchOne();
+
+        return new PageImpl<>(dtoList, pageable, size);
     }
 }

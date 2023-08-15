@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en" xmlns:th="http://www.thymeleag.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,32 +32,31 @@
                     </div>
                 </div>
                 <hr>
-                <ul>
-                    <li class="d-flex align-items-center">
-                        <a href="#">질문1</a>
-                    </li>
-                    <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                    <hr>
-                    <li class=" d-flex align-items-center justify-content-between">
-                        <a href="#">질문1</a>
-                    </li>
-                    <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                    <hr>
-                    <li class=" d-flex align-items-center">
-                        <a href="#">질문1</a>
-                    </li>
-                    <li  class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                    <hr>
-                    <li class=" d-flex align-items-center">
-                        <a href="#">질문1</a>
-                    </li>
-                    <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)">2023-00-00</li>
-                    <hr>
-                    <li class="d-flex align-items-center">
-                        <a href="#">질문1</a>
-                    </li>
-                    <li class="d-flex align-items-center"  style="color: rgba(0,0,0,0.38)">2023-00-00</li>
+                <ul class="question-list">
+                    <th:block th:each="question:${page.content}">
+                        <li class="d-flex align-items-center" >
+                            <a th:href="@{/one_to_one_question/detail_one_to_one(id=${question.id})}" th:text="${question.oneToOneQuestionContent}">질문1</a>
+                        </li>
+                        <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)" th:text="${question.createdDate.toString().substring(0, 10)}">2023-00-00</li>
+                        <hr>
+                    </th:block>
                 </ul>
+                <div class="d-flex justify-content-center" th:with="
+                      nowPage = ${page.number + 1},
+                      pageSize = ${page.size},
+                      totalPages = ${page.totalPages},
+                      endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                      startPage = ${endPage - pageSize + 1},
+                      realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                      first = ${page.first}, last = ${page.last}
+                ">
+                    <a th:if="${!first}" th:href="@{/one_to_one_question/question_list(page=${nowPage - 2})}" class="btn" style="background-color:#BB84E8; color:white;">이전</a>
+                    <th:block th:each="pageNum : ${#numbers.sequence(startPage, realEndPage)}">
+                        <a th:if="${nowPage != pageNum}" th:href="@{/one_to_one_question/question_list(page=${pageNum - 1})}" class="btn" style="color: black;" th:text="${pageNum}"></a>
+                        <span th:unless="${nowPage != pageNum}" th:text="${pageNum}" class="btn" style="font-weight: 600;cursor: default;"></span>
+                    </th:block>
+                    <a th:if="${!last}" th:href="@{/one_to_one_question/question_list(page=${nowPage})}" class="btn" style="background-color:#BB84E8; color:white">다음</a>
+                </div>
             </div>
         </div>
     </div>
