@@ -11,13 +11,15 @@ import javax.servlet.http.HttpSession;
 
 public interface QuestionService {
 
-    QuestionDetailDTO findQnAByQuetionId(Long id);
+    QuestionDetailDTO findQnAByQuestionId(Long id);
 
-    Long qustionSave(QuestionDTO dto);
+    Long questionSave(QuestionDTO dto);
 
     void answerSave(QuestionDetailDTO dto);
 
     Page<QuestionDTO> getMyQuestions(Pageable pageable, HttpSession session);
+
+    Page<QuestionDTO> getQuestions(Pageable pageable, String keyword);
 
     Page<QuestionDetailDTO> getQnAs(String searchText, Pageable pageable);
 

@@ -1,6 +1,7 @@
 package com.howthere.app.domain.house;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class HouseDTO {
     private String houseAddress;
     private String houseTitle;
     private String houseContent;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime createdDate;
     private Long memberId;
 

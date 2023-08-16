@@ -29,7 +29,7 @@ public class QuestionController {
 
     @PostMapping("write")
     public String write(QuestionDTO dto){
-        Long id = questionService.qustionSave(dto);
+        Long id = questionService.questionSave(dto);
         return "redirect:/one_to_one_question/detail_one_to_one?id=" + id;
     }
 
@@ -43,7 +43,7 @@ public class QuestionController {
     // http://localhost:10000/one_to_one_question/detail_one_to_one
     @GetMapping("detail_one_to_one")
     public void questionDetail(Long id, Model model) {
-        model.addAttribute("qna", questionService.findQnAByQuetionId(id));
+        model.addAttribute("qna", questionService.findQnAByQuestionId(id));
     }
 
 

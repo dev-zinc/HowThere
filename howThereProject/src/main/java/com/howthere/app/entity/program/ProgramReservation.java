@@ -21,12 +21,17 @@ public class ProgramReservation extends Period {
     private Long id;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private Verified veriFied;
+    private Verified verified;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    @ToString.Exclude
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "host_id")
     @ToString.Exclude
-    private Member member;
+    private Member host;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "program_id")

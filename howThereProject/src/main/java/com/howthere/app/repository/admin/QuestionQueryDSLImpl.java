@@ -3,6 +3,7 @@ package com.howthere.app.repository.admin;
 import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.QBean;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.util.StringUtils;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -20,6 +21,13 @@ import static com.howthere.app.entity.admin.QQuestion.question;
 public class QuestionQueryDSLImpl implements QuestionQueryDSL {
 
     private final JPAQueryFactory query;
+
+    private final QBean<QuestionDTO> questionDTO = Projections.fields(QuestionDTO.class
+            , question.id
+            , question.oneToOneQuestionContent
+            , question.oneToOneQuestionType
+            ,question.createdDate
+    );
 
     @Override
     public Page<QuestionDTO> findMyQuestions(Long memberId, Pageable pageable) {
@@ -44,6 +52,22 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                 .fetchOne();
 
         return new PageImpl<>(dtoList, pageable, size);
+    }
+
+    @Override
+    public Page<QuestionDTO> findAllWithKeyword(Pageable pageable, String keyword) {
+        final BooleanExpression hasKeyword = keyword != null
+                ? question.oneToOneQuestionContent.contains(keyword)
+                : null;
+        final List<QuestionDTO> questionDTOs = query
+                .select(questionDTO)
+                .from(question)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .where(hasKeyword)
+                .fetch();
+        final Long count = query.select(question.count()).from(question).fetchOne();
+        return new PageImpl<>(questionDTOs, pageable, count != null ? count : 0);
     }
 
     @Override

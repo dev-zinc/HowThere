@@ -1,12 +1,16 @@
 package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
+import com.howthere.app.service.admin.QuestionService;
 import com.howthere.app.service.house.HouseService;
 import com.howthere.app.service.member.MemberService;
+import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +30,9 @@ public class AdministratorController {
     private final ProgramService programService;
     private final MemberService memberService;
     private final AnnouncementService announcementService;
-//    private final OneToOneService oneToOneService;
+    private final QuestionService questionService;
     private final HouseService houseService;
-//    private final ReservationService reservationService;
+    private final ProgramReservationService programReservationService;
 
     //http://localhost:10000/administrator/program
     @GetMapping("program")
@@ -82,8 +86,8 @@ public class AdministratorController {
 
     @GetMapping("api/inquiry")
     @ResponseBody
-    public void inquiry(@PageableDefault Pageable pageable, String keyword) {
-
+    public Page<QuestionDTO> inquiry(@PageableDefault Pageable pageable, String keyword) {
+        return questionService.getQuestions(pageable, keyword);
     }
 
     @GetMapping("api/program")
@@ -112,7 +116,7 @@ public class AdministratorController {
 
     @GetMapping("api/reservation")
     @ResponseBody
-    public void reserve(@PageableDefault Pageable pageable, String keyword) {
-
+    public Page<ProgramReservationDTO> reserve(@PageableDefault Pageable pageable, String keyword) {
+        return programReservationService.getProgramReservations(pageable, keyword);
     }
 }
