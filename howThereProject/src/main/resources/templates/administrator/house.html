@@ -43,7 +43,7 @@
 <script src="/js/administrator/admin.js"></script>
 <script>
     let service = new PaginationService(
-        "api/house",
+        "house",
         `
             <div class="top">
                 <div class="checkbox"></div>
@@ -56,7 +56,7 @@
             </div>
         `,
         (house) => `
-            <div class="element">
+            <div class="element stay">
                 <div class="checkbox"><input type="checkbox"></div>
                 <div class="stay-id">${house.id}</div>
                 <div class="stay-type">${house.houseAddress}</div>
@@ -65,7 +65,7 @@
                 <div class="stay-register-date">${house.createdDate.substring(0, 10)}</div>
                 <div class="member-id">${house.memberId}</div>
             </div>
-        `
+        `, true
     );
 </script>
 </html>

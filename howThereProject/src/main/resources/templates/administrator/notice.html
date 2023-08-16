@@ -44,7 +44,7 @@
 <script src="/js/administrator/admin.js"></script>
 <script>
     let service = new PaginationService(
-        "api/notice",
+        "notice",
         `
             <div class="top">
                 <div class="checkbox"></div>
@@ -57,7 +57,7 @@
             </div>
         `,
         (notice) => `
-            <div class="element">
+            <div class="element notice">
                 <div class="checkbox"><input type="checkbox"></div>
                 <div class="notice-id">${notice.id}</div>
                 <div class="notice-name">${notice.id}</div>
@@ -66,7 +66,7 @@
                 <div class="member-id">${notice.id}</div>
                 <div class="notice-is-blinded">${notice.id}</div>
             </div>
-        `
+        `, true
     );
 </script>
 </html>

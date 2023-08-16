@@ -14,6 +14,7 @@ import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jdt.internal.compiler.env.IGenericType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -38,9 +39,21 @@ public class AdministratorController {
     @GetMapping("program")
     public void program() {;}
 
+    //http://localhost:10000/administrator/notice/detail
+    @GetMapping("program/detail")
+    public String programDetail() {
+        return "/program/detail";
+    }
+
     //http://localhost:10000/administrator/stay
     @GetMapping("house")
     public void house() {;}
+
+    //http://localhost:10000/administrator/notice/detail
+    @GetMapping("house/detail")
+    public String houseDetail() {
+        return "/house/detail";
+    }
 
     //http://localhost:10000/administrator/reservation
     @GetMapping("reservation")

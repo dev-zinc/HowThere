@@ -7,23 +7,22 @@ const $searchInput = $('input.select');
 const ELEMENT_SIZE_PER_PAGE = 10;
 const PAGE_SET_SIZE = 10;
 
+function select(name) {
+    $('li.active').removeClass('active');
+    $(`li.${name}`).addClass('active');
+}
+
 class PaginationService {
-    constructor(requestURL, header, appender, isDetailed) {
-        this.requestURL = requestURL;
+    constructor(request, header, appender, isDetailed, init) {
+        this.request = request;
         this.header = header;
         this.appender = appender;
-
+        this.isDetailed = isDetailed;
         this.page = undefined;
         this.keyword = '';
 
         //init
         this.shiftPage(1);
-
-        if(isDetailed) {
-            $('.element').each((i, e) => {
-
-            });
-        }
 
         $searchInput.on('keyup', (e) => {
             if(e.keyCode !== 13) return;
@@ -39,6 +38,10 @@ class PaginationService {
                 console.log($(e).first().children().first().first());
             });
         });
+
+        select(request);
+
+        if(init) init(this);
     }
 
     //fn
@@ -50,7 +53,7 @@ class PaginationService {
     }
 
     getPagePromise(page) {
-        const req = this.requestURL + "?" +
+        const req = `api/${this.request}?` +
                     (page != undefined ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
                     (this.keyword != '' ? "keyword=" + this.keyword : "");
         return fetch(req).then(response => response.json());
@@ -72,6 +75,11 @@ class PaginationService {
 
             this.page.content.forEach(e => html += this.appender(e));
             $container.html(html);
+
+            if(this.isDetailed) {
+                $('.element').each((i, e) => $(e)
+                    .on('click', () => location.href = `${request}/detail?id=${this.page.content[i].id}`));
+            }
 
             this.setPageButtons();
         });

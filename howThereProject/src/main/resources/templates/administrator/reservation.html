@@ -43,7 +43,7 @@
 <script src="/js/administrator/admin.js"></script>
 <script>
     let service = new PaginationService(
-        "api/reservation",
+        "reservation",
         `
         <div class="top">
             <div class="checkbox"></div>
@@ -57,7 +57,7 @@
         </div>
         `,
         (reservation) => `
-        <div class="element">
+        <div class="element reservation">
             <div class="checkbox"><input type="checkbox"></div>
             <div class="reservation-id">${reservation.id}</div>
             <div class="program-id">${reservation.programName}</div>

@@ -43,7 +43,7 @@
 <script src="/js/administrator/admin.js"></script>
 <script>
     let service = new PaginationService(
-        "api/program",
+        "program",
         `<div class="top">
             <div class="checkbox"></div>
             <div class="program-id">프로그램 번호</div>
@@ -55,7 +55,7 @@
             <div class="program-is-blinded">승인 여부</div>
         </div>`,
         (program) => `
-        <div class="element">
+        <div class="element program">
             <div class="checkbox"><input type="checkbox"></div>
             <div class="program-id">${program.id}</div>
             <div class="program-type">${program.programAddress}</div>
@@ -63,10 +63,10 @@
             <div class="program-content">
                 ${program.programContent.length < 20 ? program.programContent : program.programContent.substring(0, 21)}
             </div>
-            <div class="program-register-date">${program.createdDate}</div>
+            <div class="program-register-date">${program.createdDate.substring(0, 10)}</div>
             <div class="member-id">${program.memberId}</div>
             <div class="program-is-blinded">${program.verified}</div>
-        </div>`
+        </div>`, true
     );
 </script>
 </html>

@@ -21,3 +21,11 @@
 .element {
     cursor: pointer !important;
 }
+
+li.active {
+    background-color: #dddddd;
+}
+
+li img {
+    margin-right: 10px;
+}
