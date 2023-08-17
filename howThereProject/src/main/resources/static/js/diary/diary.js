@@ -28,7 +28,7 @@ function getList(){
             diarys.content.forEach(diary => {
                 let src = "";
                 if(diary.diaryContent.split("img")[1]){
-                    src = diary.diaryContent.split("src")[1].split("\"")[1];
+                    src = diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0];
                 } else {
                     src = "https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg";
                 }
