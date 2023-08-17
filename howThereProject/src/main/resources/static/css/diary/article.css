@@ -27,7 +27,10 @@
 
 
 .page-section {
-
+    color: #222222;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
 }
 
 .text-section {
@@ -43,7 +46,13 @@
     height: 100%;
 }
 
-img.article-img {
+/*img.article-img {*/
+/*    position: relative !important;*/
+/*    width: 100% !important;*/
+/*    height: 100% !important;*/
+/*}*/
+
+.page-section img {
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
