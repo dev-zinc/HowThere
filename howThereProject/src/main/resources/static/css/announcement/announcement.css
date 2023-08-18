@@ -5,6 +5,8 @@ div {
 .title{
     padding-top: 20px;
     padding-bottom: 20px;
+    width: 100%;
+    word-break: break-all;
 }
 .ctt{
     padding-top: 20px;
@@ -48,4 +50,7 @@ div {
 #center-box{
     position: relative;
     width: 70%
+}
+.mt-5{
+    width: 600px;
 }

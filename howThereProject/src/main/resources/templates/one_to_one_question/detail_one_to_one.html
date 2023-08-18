@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en" xmlns:th="http://www.thymeleag.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,26 +22,24 @@
         <div id="content-box-main" class="p-5">
             <div id="question-box">
                 <div id="root">
-                    <a href="/">홈</a> > <a href="/account/menu">계정</a> > <a href="/one_to_one_question/question_list">1:1문의하기 목록</a> > <a href="#">질문 상세보기</a>
+                    <a href="/">홈</a> > <a href="/account/menu">계정</a> > <a href="/one_to_one_question/question_list">1:1문의하기 목록</a> > <span>질문 상세보기</span>
                 </div>
                 <div class="mt-3">
                     <div class="pt-3 pb-3">
-                        <h3>카테고리 유형 들어가는 곳</h3>
+                        <select id="questionType" th:value="${qna.oneToOneQuestionType}" disabled>
+                            <option value="EVENT">이벤트</option>
+                            <option value="PAY">예약/결제</option>
+                            <option value="CANCLE">취소/환불</option>
+                            <option value="BENEFIT">혜택받기</option>
+                            <option value="USE">이용문의</option>
+                            <option value="MEMBER">회원문의</option>
+                        </select>
                     </div>
                     <hr>
-                    <div class="mb-3">
-                        <p style="white-space: pre-line;">
-                            회원가입까지 완료 했습니다. 어떻게 신청하는지 알고 싶습니다.
-                        </p>
-                    </div>
+                    <div id="question" class="mb-3" th:utext="${qna.oneToOneQuestionContent}"></div>
                     <hr>
-                    <div class="mb-3">
-                        <p style="white-space: pre-line;">
-                            안녕하세요 아웃서울 팀입니다.
-
-                            해당 질문에 대한 답변입니다.
-                        </p>
-                    </div>
+                    <div th:if="${qna.answerContent == null}" id="answer" class="mb-3">아직 답변이 달리지 않았습니다.</div>
+                    <div th:unless="${qna.answerContent == null}" id="answer" class="mb-3" th:utext="${qna.answerContent}"></div>
                 </div>
             </div>
         </div>        

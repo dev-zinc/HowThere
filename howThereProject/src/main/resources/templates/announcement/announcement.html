@@ -23,39 +23,24 @@
 				<div class="d-flex justify-content-center">
 					<div>
 						<div>
-							<a href="#">
+							<a href="/">
 								<span class="route">홈</span>
 							</a>
 							>
-							<a href="#">
-								<span class="route">더보기</span>
-							</a>
-							>
-							<a href="#">
+							<a th:href="@{/announcement/announcement_list(page=${page.pageNumber})}">
 								<span class="route">공지사항</span>
 							</a>
 							>
-							<a href="#">
-								<span class="route">상세보기</span>
-							</a>
+							<span class="route">상세보기</span>
 						</div>
 						<div class="mt-5 mb-5">
-								<h1 class="title"><strong>공지 사항 상세보기 제목 부분</strong></h1>
-								<hr>
-								<div class="ctt">
-									<p class="multiline-text">
-									<img class="img_class" src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/blt62bdb3101b21b963/629f8790bf05100f50a8e1d2/AC_Guests_HG_KR_S@3x_(1).png" alt="사진1">
-
-
-									에어비앤비는 결제 계좌가 등록된 국가에 따라 여러 종류의 결제 수단을 지원합니다.
-
-									결제 페이지에서 국가를 선택하시면 이용 가능한 결제 수단이 표시됩니다.
-									</p>
-								</div>
+							<h1 class="title"><strong th:text="${announcement.announcementTitle}">공지 사항 상세보기 제목 부분</strong></h1>
+							<hr>
+							<div class="ctt" th:utext="${announcement.announcementContent}"></div>
 						</div>
 
 						<div class="d-flex justify-content-end mt-3 mr-3">
-							<a href="#" class="btn listBtn" style="background-color: #BB84E8; color:white">목록 보기</a>
+							<a th:href="@{/announcement/announcement_list(page=${page.pageNumber})}" class="btn listBtn" style="background-color: #BB84E8; color:white">목록 보기</a>
 						</div>
 					</div>
 

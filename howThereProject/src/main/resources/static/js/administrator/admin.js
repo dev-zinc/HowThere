@@ -10,8 +10,10 @@ function AdministratorService(requestURL, header, appender) {
     this.page = undefined;
     this.keyword = '';
 
-    $searchInput.on('search', () => {
-        this.keyword = $searchInput.text();
+    $searchInput.on('keyup', (e) => {
+        if(e.keyCode !== 13) return;
+        this.keyword = $searchInput.val();
+        this.shiftPage(1);
     });
 
     //fn
@@ -22,10 +24,10 @@ function AdministratorService(requestURL, header, appender) {
         return -1;
     }
 
-    this.getPagePromise = function(page, keyword) {
+    this.getPagePromise = function(page) {
         const req = requestURL + "?" +
-                    (page ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
-                    (keyword ? "keyword=" + keyword : "");
+                    (page != undefined ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
+                    (this.keyword != '' ? "keyword=" + this.keyword : "");
         return fetch(req).then(response => response.json());
     }
 
@@ -33,23 +35,26 @@ function AdministratorService(requestURL, header, appender) {
      * @param page 1부터 카운트
      */
     this.shiftPage = function (page) {
-        page = page - 1;
-        this.getPagePromise(page).then(json => {
-            let prevOffset = getOffset();
-
+        this.getPagePromise(page - 1).then(json => {
             this.page = json;
             let html = header;
+
+            if(this.page.content.length == 0) {
+                $container.html(html + `<div class="program not-found"><span>검색 결과가 없습니다.</span></div>`);
+                $pageContainer.html("");
+                return;
+            }
+
             this.page.content.forEach(e => html += appender(e));
             $container.html(html);
-            this.setPageButtons(prevOffset);
+
+            this.setPageButtons();
         });
     }
 
-    this.setPageButtons = function (prevOffset) {
+    this.setPageButtons = function () {
         let pageOffset = getOffset();
         let lastOffset = Math.floor(this.page.totalPages / 10);
-        console.log(this.page);
-        if(prevOffset == pageOffset) return;
 
         //settings =====================================================
         let html = '';

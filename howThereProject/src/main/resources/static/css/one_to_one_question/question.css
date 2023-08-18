@@ -38,3 +38,9 @@ li > a{
 #head-boot{
     height: 100px;
 }
+
+.question-list>li>a{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

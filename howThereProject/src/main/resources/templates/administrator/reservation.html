@@ -7,43 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>숙소 관리</title>
     <link rel="stylesheet" href="/css/administrator/reservation.css">
+    <link rel="stylesheet" href="/css/administrator/admin.css">
 </head>
 <body>
 <div class="wrap">
-    <nav class="menu">
-        <div class="logo">
-            <img src="/img/out-seoul.png" alt="">
-        </div>
-        <hr>
-        <ul class="menu-list">
-            <li><a href="/main"> <span><img
-                    src="/img/site_icon.png">&nbsp;&nbsp;사이트 바로가기</span>
-                <hr>
-            <li><a href="/administrator/program"> <span><img
-                    src="/img/program_icon.png">&nbsp;&nbsp;프로그램 관리</span>
-            </a></li>
-            <hr>
-            <li><a href="/administrator/stay"> <span><img
-                    src="/img/stay_icon.png">&nbsp;&nbsp;숙소 관리</span>
-            </a></li>
-            <hr>
-            <li><a href="/administrator/reservation" class="active"> <span><img
-                    src="/img/reserve_icon.png">&nbsp;&nbsp;예약 내역 관리</span>
-            </a></li>
-            <hr>
-            <li><a href="/administrator/member"> <span><img
-                    src="/img/member_icon.png">&nbsp;&nbsp;회원 관리</span>
-            </a></li>
-            <hr>
-            <li><a href="/administrator/notice"> <span><img
-                    src="/img/notice_icon.png">&nbsp;&nbsp;공지사항 관리</span>
-            </a></li>
-            <hr>
-            <li><a href="/administrator/inquiry"> <span><img
-                    src="/img/inquiry_icon.png">&nbsp;&nbsp;문의사항 관리</span>
-            </a></li>
-        </ul>
-    </nav>
+    <nav th:replace="~{/layout/side-nav :: side-nav}"></nav>
     <div class="title">
         <span>예약 내역 관리</span>
     </div>
@@ -58,127 +26,12 @@
                         <input type="button" class="button-delete" value="예약 삭제">
                     </div>
                     <div class="board-list">
-                        <div class="top">
-                            <div class="checkbox"></div>
-                            <div class="reservation-id">예약 번호</div>
-                            <div class="program-id">프로그램 번호</div>
-                            <div class="stay-id">숙소 번호</div>
-                            <div class="reservation-register-date">예약 날짜</div>
-                            <div class="member-id">회원 번호</div>
-                            <div class="boss-id">사장 회원 번호</div>
-                            <div class="reservation-is-blinded">예약취소여부</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
-                        <div class="reservation">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="reservation-id">10</div>
-                            <div class="program-id">4</div>
-                            <div class="stay-id">23</div>
-                            <div class="reservation-register-date">2023.04.16</div>
-                            <div class="member-id">2</div>
-                            <div class="boss-id">55</div>
-                            <div class="reservation-is-blinded">예약취소</div>
-                        </div>
+                        <!-- -->
+                        <!-- -->
                     </div>
                     <div class="board-page">
-                        <a href="" class="button first"><<</a>
-                        <a href="" class="button prev"><</a>
-                        <a href="" class="number active">1</a>
-                        <a href="" class="number">2</a>
-                        <a href="" class="number">3</a>
-                        <a href="" class="number">4</a>
-                        <a href="" class="number">5</a>
-                        <a href="" class="button next">></a>
-                        <a href="" class="button last">>></a>
+                        <!-- -->
+                        <!-- -->
                     </div>
                 </div>
             </div>
@@ -186,4 +39,35 @@
     </section>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="/js/administrator/admin.js"></script>
+<script>
+    let service = new AdministratorService(
+        "api/reservation",
+        `
+        <div class="top">
+            <div class="checkbox"></div>
+            <div class="reservation-id">예약 번호</div>
+            <div class="program-id">프로그램 번호</div>
+            <div class="stay-id">숙소 번호</div>
+            <div class="reservation-register-date">예약 날짜</div>
+            <div class="member-id">회원 번호</div>
+            <div class="boss-id">사장 회원 번호</div>
+            <div class="reservation-is-blinded">예약취소여부</div>
+        </div>
+        `,
+        (reservation) => `
+        <div class="reservation">
+            <div class="checkbox"><input type="checkbox"></div>
+            <div class="reservation-id">${reservation.id}</div>
+            <div class="program-id">${reservation.id}</div>
+            <div class="stay-id">${reservation.id}</div>
+            <div class="reservation-register-date">${reservation.id}</div>
+            <div class="member-id">${reservation.id}</div>
+            <div class="boss-id">${reservation.id}</div>
+            <div class="reservation-is-blinded">${reservation.id}</div>
+        </div>
+        `
+    );
+</script>
 </html>

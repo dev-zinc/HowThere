@@ -2,6 +2,7 @@ package com.howthere.app.entity.file;
 
 import com.howthere.app.entity.diary.Diary;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 

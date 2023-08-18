@@ -258,3 +258,7 @@ input.select:focus{
 .board-page a.number.active{
     font-weight: bold;
 }
+
+.member-is-remaining {
+    font-weight: 600;
+}
