@@ -78,7 +78,7 @@ class PaginationService {
 
             if(this.isDetailed) {
                 $('.element').each((i, e) => $(e)
-                    .on('click', () => location.href = `${request}/detail?id=${this.page.content[i].id}`));
+                    .on('click', () => location.href = `${this.request}/detail?id=${this.page.content[i].id}`));
             }
 
             this.setPageButtons();
