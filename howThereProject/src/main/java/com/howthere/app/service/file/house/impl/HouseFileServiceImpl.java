@@ -1,10 +1,14 @@
 package com.howthere.app.service.file.house.impl;
 
 import com.howthere.app.config.ConstantPool;
+import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.service.file.house.HouseFileService;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,40 +30,9 @@ import java.util.UUID;
 @Slf4j
 class HouseFileServiceImpl implements HouseFileService {
 
+//    private static final String BASE_PATH = ConstantPool.getFileRootPath();
+    private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/room";
     private final HouseFileRepository houseFileRepository;
-    private static final String BASE_PATH = ConstantPool.getFileRootPath();
-
-    @Override
-    public List<HouseFile> registerHouse(House saved, MultipartFile thumbnail, List<MultipartFile> images) {
-        try {
-            final List<HouseFile> houseFileList = new ArrayList<>();
-            final Image thumbnailImage = getImage(thumbnail, saved);
-
-            final HouseFile thumbnailFile = HouseFile.builder()
-                    .filePath(thumbnailImage.path)
-                    .fileUuid(thumbnailImage.uuid)
-                    .fileName(thumbnailImage.originalFilename)
-                    .fileSize(thumbnailImage.fileSize)
-                    .house(saved)
-                    .thumb(true)
-                    .build();
-            houseFileList.add(thumbnailFile);
-            for (MultipartFile v : images) {
-                final Image image = getImage(v, saved);
-                houseFileList.add(HouseFile.builder()
-                        .filePath(image.path)
-                        .fileName(image.originalFilename)
-                        .fileUuid(image.uuid)
-                        .fileSize(image.fileSize)
-                        .house(saved)
-                        .build());
-            }
-            return houseFileRepository.saveAll(houseFileList);
-        } catch (Exception e) {
-            log.error("House File Save Error", e);
-            return Collections.emptyList();
-        }
-    }
 
     private static Image getImage(MultipartFile multipartFile, House house) throws IOException {
         final String originalFilename = multipartFile.getOriginalFilename();
@@ -72,8 +45,8 @@ class HouseFileServiceImpl implements HouseFileService {
         String temp = "";
         try {
             final Path path = Paths.get(BASE_PATH)
-                    .resolve(String.valueOf(LocalDateTime.now().getYear()))
-                    .resolve(String.valueOf(house.getId()));
+                .resolve(String.valueOf(LocalDateTime.now().getYear()))
+                .resolve(String.valueOf(house.getId()));
             final Path file = path.resolve(uuid);
             if (!Files.exists(path)) {
                 Files.createDirectories(path);
@@ -91,7 +64,57 @@ class HouseFileServiceImpl implements HouseFileService {
         }
     }
 
+    @Override
+    public List<HouseFile> registerHouse(House saved, MultipartFile thumbnail,
+        List<MultipartFile> images) throws IOException {
+        try {
+            final List<HouseFile> houseFileList = new ArrayList<>();
+            final Image thumbnailImage = getImage(thumbnail, saved);
+
+            final HouseFile thumbnailFile = HouseFile.builder()
+                .filePath(thumbnailImage.path)
+                .fileUuid(thumbnailImage.uuid)
+                .fileName(thumbnailImage.originalFilename)
+                .fileSize(thumbnailImage.fileSize)
+                .house(saved)
+                .thumb(true)
+                .build();
+            houseFileList.add(thumbnailFile);
+            for (MultipartFile v : images) {
+                final Image image = getImage(v, saved);
+                houseFileList.add(HouseFile.builder()
+                    .filePath(image.path)
+                    .fileName(image.originalFilename)
+                    .fileUuid(image.uuid)
+                    .fileSize(image.fileSize)
+                    .house(saved)
+                    .build());
+            }
+            return houseFileRepository.saveAll(houseFileList);
+        } catch (Exception e) {
+            log.error("House File Save Error", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public void setHouseThumbnailList(List<HouseDTO> houseDTOList) {
+        final List<Long> houseIdList = houseDTOList.stream()
+            .map(HouseDTO::getId)
+            .collect(Collectors.toList());
+
+        final List<HouseFile> fileList = houseFileRepository.findByHouseIdInAndThumb(
+            houseIdList, true);
+        for (int i = 0; i < houseDTOList.size(); i++) {
+            final HouseDTO houseDTO = houseDTOList.get(i);
+            final HouseFile houseFile = fileList.get(i);
+
+            houseDTO.setThumbnail(houseFile.getFilePath() + "/" + houseFile.getFileUuid());
+        }
+    }
+
     private static class Image {
+
         public final String originalFilename;
         public final String uuid;
         public final long fileSize;

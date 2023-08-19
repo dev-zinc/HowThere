@@ -12,7 +12,7 @@ public interface HouseService {
 
     Page<HouseDTO> getHouses(Pageable pageable, String keyword);
 
-    House save(HttpServletRequest req);
+    House registerHouse(HttpServletRequest req);
 
     default House toEntity(HouseDTO houseDTO, Member member) {
         return House.builder()
@@ -29,4 +29,6 @@ public interface HouseService {
             .member(member)
             .build();
     }
+
+    House getHouse(Long id);
 }

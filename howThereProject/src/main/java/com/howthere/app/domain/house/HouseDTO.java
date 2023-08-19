@@ -27,6 +27,7 @@ public class HouseDTO {
     private LocalDateTime createdDate;
     private Long memberId;
 
+    private String thumbnail;
     @Builder
     public HouseDTO(Long id, String houseAddress, String houseAddressDetail, Double lat, Double lon,
         String houseTitle, String houseContent, Integer houseMaxHeadCount, Integer houseMaxPetCount,
@@ -43,14 +44,17 @@ public class HouseDTO {
         this.createdDate = createdDate;
         this.memberId = memberId;
     }
-
-    @Builder
-    public HouseDTO(String houseAddress, String houseTitle, String houseContent,
-        LocalDateTime createdDate, Long memberId) {
-        this.houseAddress = houseAddress;
-        this.houseTitle = houseTitle;
-        this.houseContent = houseContent;
-        this.createdDate = createdDate;
-        this.memberId = memberId;
+    public void withThumbnail(String filePath){
+        this.thumbnail = filePath;
     }
+//
+//    @Builder
+//    public HouseDTO(String houseAddress, String houseTitle, String houseContent,
+//        LocalDateTime createdDate, Long memberId) {
+//        this.houseAddress = houseAddress;
+//        this.houseTitle = houseTitle;
+//        this.houseContent = houseContent;
+//        this.createdDate = createdDate;
+//        this.memberId = memberId;
+//    }
 }

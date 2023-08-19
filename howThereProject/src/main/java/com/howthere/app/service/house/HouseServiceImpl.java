@@ -25,7 +25,7 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public House save(HttpServletRequest req) {
+    public House registerHouse(HttpServletRequest req) {
         final String houseTitle = req.getParameter("houseTitle");
         final String address = req.getParameter("address");
         final String addressDetail = req.getParameter("addressDetail");
@@ -50,5 +50,12 @@ public class HouseServiceImpl implements HouseService {
             .build();
 
         return houseRepository.save(toEntity(houseDTO, test));
+    }
+
+    @Override
+    public House getHouse(Long id) {
+        return houseRepository.findById(id).orElseThrow(() -> {
+            return new RuntimeException("Not Found House By Id : " + id);
+        });
     }
 }

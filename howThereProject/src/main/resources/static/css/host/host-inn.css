@@ -52,3 +52,19 @@
 .delete-btn{
     background: #717171;
 }
+.register-btn{
+    background: #BB84E8;
+}
+.page-ul {
+    display: flex;
+    list-style: none;
+}
+.none {
+    display: none;
+}
+
+.not-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
