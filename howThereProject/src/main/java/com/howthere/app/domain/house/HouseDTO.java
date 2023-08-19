@@ -1,5 +1,6 @@
 package com.howthere.app.domain.house;
 
+import com.howthere.app.embed.Address;
 import lombok.*;
 import org.springframework.stereotype.Component;
 

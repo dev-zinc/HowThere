@@ -15,8 +15,9 @@ public class HouseFile extends FileEntity {
     private boolean thumb = Boolean.FALSE;
 
     @Builder
-    public HouseFile(String filePath, String fileUuid, String fileName, Long fileSize, House house) {
+    public HouseFile(String filePath, String fileUuid, String fileName, Long fileSize, House house, boolean thumb) {
         super(filePath, fileUuid, fileName, fileSize);
         this.house = house;
+        this.thumb =thumb;
     }
 }

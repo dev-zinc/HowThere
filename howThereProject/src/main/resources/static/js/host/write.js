@@ -40,8 +40,8 @@ function openAddressSearchPopup() {
 
                     // 해당 주소에 대한 좌표를 받아서
                     const coords = new daum.maps.LatLng(result.y, result.x);
-                    document.querySelector("#lat").value = coords.La;
-                    document.querySelector("#lon").value = coords.Ma;
+                    document.querySelector("#latitude").value = coords.La;
+                    document.querySelector("#longitude").value = coords.Ma;
                     // 지도를 보여준다.
                     mapContainer.style.display = "block";
                     map.relayout();
@@ -88,6 +88,8 @@ $(function () {
         }
     })
 });
+
+// TODO: submit 하기 전에 필수 데이터 있는지 검증 절차 필요함.
 
 function beforeSubmit() {
     const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
