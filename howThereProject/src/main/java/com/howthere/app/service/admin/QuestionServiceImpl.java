@@ -20,12 +20,12 @@ public class QuestionServiceImpl implements QuestionService {
     private final AnswerRepository answerRepository;
 
     @Override
-    public QuestionDetailDTO findQnAByQuetionId(Long id) {
+    public QuestionDetailDTO findQnAByQuestionId(Long id) {
         return questionRepository.findQnAById(id);
     }
 
     @Override
-    public Long qustionSave(QuestionDTO dto) {
+    public Long questionSave(QuestionDTO dto) {
         Question question = questionRepository.save(toEntity(dto));
         return question.getId();
     }
@@ -43,6 +43,11 @@ public class QuestionServiceImpl implements QuestionService {
             id = Long.parseLong(temp);
         }
         return questionRepository.findMyQuestions(id, pageable);
+    }
+
+    @Override
+    public Page<QuestionDTO> getQuestions(Pageable pageable, String keyword) {
+        return questionRepository.findAllWithKeyword(pageable, keyword);
     }
 
     @Override

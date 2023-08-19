@@ -42,32 +42,30 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/js/administrator/admin.js"></script>
 <script>
-    let service = new AdministratorService(
-        "api/inquiry",
+    let service = new PaginationService(
+        "inquiry",
         `
             <div class="top">
                 <div class="checkbox"></div>
                 <div class="inquiry-id">문의사항 번호</div>
-                <div class="inquiry-name">제목</div>
+                <div class="inquiry-id">문의 종류</div>
                 <div class="inquiry-content">내용</div>
                 <div class="inquiry-register-date">작성 날짜</div>
                 <div class="member-id">회원 번호</div>
                 <div class="inquiry-is-answered">답변여부</div>
             </div>
         `,
-        (inquiry) => {
-            `
-                <div class="inquiry">
-                    <div class="checkbox"><input type="checkbox"></div>
-                    <div class="inquiry-id">${inquiry.id}</div>
-                    <div class="inquiry-name">${inquiry.id}</div>
-                    <div class="inquiry-content">${inquiry.id}</div>
-                    <div class="inquiry-register-date">${inquiry.id}</div>
-                    <div class="member-id">${inquiry.id}</div>
-                    <div class="inquiry-is-answered">${inquiry.id}</div>
-                </div>
-            `
-        }
+        (inquiry) => `
+            <div class="element inquiry">
+                <div class="checkbox"><input type="checkbox"></div>
+                <div class="inquiry-id">${inquiry.id}</div>
+                <div class="inquiry-id">${inquiry.oneToOneQuestionType}</div>
+                <div class="inquiry-content">${inquiry.oneToOneQuestionContent}</div>
+                <div class="inquiry-register-date">${inquiry.createdDate}</div>
+                <div class="member-id">${inquiry.id}</div>
+                <div class="inquiry-is-answered">${inquiry.id}</div>
+            </div>
+        `, true
     );
 </script>
 </html>

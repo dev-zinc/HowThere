@@ -43,8 +43,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/js/administrator/admin.js"></script>
 <script>
-    let service = new AdministratorService(
-        "api/member",
+    let service = new PaginationService(
+        "member",
         `
             <div class="top">
                 <div class="checkbox"></div>
@@ -53,11 +53,11 @@
                 <div class="member-email">이메일</div>
                 <div class="member-birth">생년월일</div>
                 <div class="member-register-date">가입일</div>
-                <div class="member-is-remaining">휴면계정 여부</div>
+                <div class="member-is-remaining">계정 활성/휴면 여부</div>
             </div>
         `,
         (member) => `
-            <div class="member">
+            <div class="element member">
                 <a href="">
                     <div class="checkbox"><input type="checkbox"></div>
                     <div class="member-id">${member.id}</div>

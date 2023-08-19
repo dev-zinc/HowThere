@@ -196,6 +196,7 @@
 <script src="/js/modal/modal.js"></script>
 <script th:inline="javascript">
     const diary = [[${diary}]];
+    console.log(diary.diaryContent);
     const memberId = [[${memberId}]];
     document.querySelector(".page-section").innerHTML = diary.diaryContent;
 </script>

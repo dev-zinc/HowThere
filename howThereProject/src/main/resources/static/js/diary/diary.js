@@ -26,13 +26,19 @@ function getList(){
         .then((diarys) => {
             let text = "";
             diarys.content.forEach(diary => {
+                let src = "";
+                if(diary.diaryContent.split("img")[1]){
+                    src = diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0];
+                } else {
+                    src = "https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg";
+                }
                 text += `
                             <a href="/diary/article/${diary.id}" class="diary-article">
                                 <div class="img-wrap">
                                     <div class="diary-img" style="--dls-liteimage-height: 254px; --dls-liteimage-width: auto; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
                                         <picture>
-                                            <img src="https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg"
-                                                 style="--dls-liteimage-object-fit: cover;">
+                                            <img src="${src}"
+                                                 style="--dls-liteimage-object-fit: cover; background: #D8D8D8">
                                         </picture>
                                         <div class="background-img" style="--dls-liteimage-background-size: cover; --dls-liteimage-background-image: url(https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfbcc7f32e0cd6ff5/getting-started-on-airbnb-optimized.jpg);"></div>
                                     </div>
@@ -51,9 +57,10 @@ $(document).ready(getList());
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     const windowHeight = window.innerHeight;
-    const bodyHeight = document.body.clientHeight;
-    // console.log(currentScroll + 100, bodyHeight);
-    if(currentScroll + 160 >= bodyHeight * (page + 1)){
+    const bodyHeight = document.body.scrollHeight;
+    // console.log(currentScroll + windowHeight + 20, bodyHeight);
+    if(currentScroll + windowHeight - 0.5 >= bodyHeight){
+        // currentScroll + windowHeight >= bodyHeight
         page++;
         getList();
     }

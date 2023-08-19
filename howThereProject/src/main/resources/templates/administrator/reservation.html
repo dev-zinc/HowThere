@@ -42,30 +42,30 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/js/administrator/admin.js"></script>
 <script>
-    let service = new AdministratorService(
-        "api/reservation",
+    let service = new PaginationService(
+        "reservation",
         `
         <div class="top">
             <div class="checkbox"></div>
             <div class="reservation-id">예약 번호</div>
-            <div class="program-id">프로그램 번호</div>
-            <div class="stay-id">숙소 번호</div>
+            <div class="program-id">프로그램 이름</div>
+            <div class="stay-id">숙소 이름</div>
             <div class="reservation-register-date">예약 날짜</div>
             <div class="member-id">회원 번호</div>
-            <div class="boss-id">사장 회원 번호</div>
-            <div class="reservation-is-blinded">예약취소여부</div>
+            <div class="boss-id">호스트 번호</div>
+            <div class="reservation-is-blinded">예약 승인 여부</div>
         </div>
         `,
         (reservation) => `
-        <div class="reservation">
+        <div class="element reservation">
             <div class="checkbox"><input type="checkbox"></div>
             <div class="reservation-id">${reservation.id}</div>
-            <div class="program-id">${reservation.id}</div>
-            <div class="stay-id">${reservation.id}</div>
-            <div class="reservation-register-date">${reservation.id}</div>
-            <div class="member-id">${reservation.id}</div>
-            <div class="boss-id">${reservation.id}</div>
-            <div class="reservation-is-blinded">${reservation.id}</div>
+            <div class="program-id">${reservation.programName}</div>
+            <div class="stay-id">${reservation.houseTitle}</div>
+            <div class="reservation-register-date">${reservation.reservedDate}</div>
+            <div class="member-id">${reservation.memberId}</div>
+            <div class="boss-id">${reservation.hostId}</div>
+            <div class="reservation-is-blinded" style="${reservation.verified == 'Y' ? 'green' : 'red'}">${reservation.verified == 'Y' ? '승인됨' : '반려됨'}</div>
         </div>
         `
     );
