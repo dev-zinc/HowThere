@@ -19,4 +19,5 @@ public class QuestionDTO {
     private QuestionType oneToOneQuestionType;
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime createdDate;
+    private String answerContent;
 }

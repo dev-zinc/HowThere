@@ -2,9 +2,11 @@ package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramReservationDTO;
+import com.howthere.app.entity.admin.Question;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
 import com.howthere.app.service.admin.QuestionService;
@@ -19,9 +21,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @Slf4j
@@ -85,7 +90,9 @@ public class AdministratorController {
 
     //http://localhost:10000/administrator/inquiry/detail
     @GetMapping("inquiry/detail")
-    public String inquiryDetail() {
+    public String inquiryDetail(Long id, Model model) {
+        QuestionDTO questionDTO = questionService.;
+        model.addAttribute("inquiry", questionDTO);
         return "/administrator/inquiry-detail";
     }
 

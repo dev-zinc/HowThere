@@ -20,6 +20,11 @@ public class QuestionServiceImpl implements QuestionService {
     private final AnswerRepository answerRepository;
 
     @Override
+    public Question findById(Long id) {
+        return questionRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
+    @Override
     public QuestionDetailDTO findQnAByQuestionId(Long id) {
         return questionRepository.findQnAById(id);
     }
@@ -48,6 +53,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Page<QuestionDTO> getQuestions(Pageable pageable, String keyword) {
         return questionRepository.findAllWithKeyword(pageable, keyword);
+    }
+
+    @Override
+    public QuestionDTO findQuestion(Long id) {
+        return questionRepository.findDTOById(id).orElseThrow(RuntimeException::new);
     }
 
     @Override

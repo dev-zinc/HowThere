@@ -61,11 +61,16 @@
                 <div class="inquiry-id">${inquiry.id}</div>
                 <div class="inquiry-id">${inquiry.oneToOneQuestionType}</div>
                 <div class="inquiry-content">${inquiry.oneToOneQuestionContent}</div>
-                <div class="inquiry-register-date">${inquiry.createdDate}</div>
+                <div class="inquiry-register-date">${inquiry.createdDate.substring(0, 10)}</div>
                 <div class="member-id">${inquiry.id}</div>
-                <div class="inquiry-is-answered">${inquiry.id}</div>
+                <div class="inquiry-is-answered" style="font-weight: 400; color: ${inquiry.answerContent ? 'green' : 'red'}">
+                    ${inquiry.answerContent ? '답변 완료' : '미답변'}
+                </div>
             </div>
-        `, true
+        `,
+        (inquiry) => {
+
+        }
     );
 </script>
 </html>

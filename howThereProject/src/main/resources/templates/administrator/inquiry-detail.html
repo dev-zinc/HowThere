@@ -61,12 +61,12 @@
                         </div>
                     </div>
                     <div class="comment">
-                        <div class="comment-content">
+                        <textarea class="comment-content">
                             문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 <br>
                             문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 <br>
                             문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 <br>
                             문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 문의사항 답변 <br>
-                        </div>
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -74,4 +74,7 @@
     </section>
 </div>
 </body>
+<script th:inline="javascript">
+    let inquiry = [[${inquiry}]];
+</script>
 </html>

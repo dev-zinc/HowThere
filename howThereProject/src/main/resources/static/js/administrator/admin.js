@@ -77,8 +77,13 @@ class PaginationService {
             $container.html(html);
 
             if(this.isDetailed) {
-                $('.element').each((i, e) => $(e)
-                    .on('click', () => location.href = `${this.request}/detail?id=${this.page.content[i].id}`));
+                $('.element').each((i, e) => $(e).on('click', () => {
+                    fetch(`${this.request}/detail`, {
+                        method: 'POST',
+                        headers: {"Content-type": "application/json:charset:utf-8"},
+                        body: JSON.stringify(this.page.content[i])
+                    });
+                }));
             }
 
             this.setPageButtons();
