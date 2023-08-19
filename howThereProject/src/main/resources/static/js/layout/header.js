@@ -149,7 +149,7 @@ let isLogin = false;
 const headerProfileMenu = {
     login : "<div id='headerProfileMenu'>" +
         "<a href='/member/logout'><div><b>로그아웃</b></div></a>" +
-        "<a href=''><div>1:1 문의</div></a>" +
+        "<a href='/one_to_one_question/question_list'><div>1:1 문의</div></a>" +
         "<a href='/announcement/announcement_list'><div>공지사항</div></a>" +
         "<a href='/help/help'><div>도움말</div></a>" +
         "</div>",
