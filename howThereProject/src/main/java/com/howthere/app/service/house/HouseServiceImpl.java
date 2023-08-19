@@ -50,6 +50,7 @@ public class HouseServiceImpl implements HouseService {
                 .houseMaxHeadCount(guestCnt)
                 .houseMaxPetCount(petCnt)
                 .address(addressEntity)
+                // TODO: 2023/08/19 멤버 가져오는 로직 수정 필요 
                 .member(memberRepository.findById(1L).get())
                 .build();
         return houseRepository.save(house);

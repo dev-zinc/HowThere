@@ -35,7 +35,6 @@ public class HostController {
     //    http://localhost:10000/host/inn
     @GetMapping("inn")
     public void inn() {
-
     }
 
     //    http://localhost:10000/host/hosting
