@@ -4,6 +4,7 @@ import com.howthere.app.auditing.Period;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,9 @@ public class AnnouncementDTO {
     private Long id;
     private String announcementTitle;
     private String announcementContent;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime updatedDate;
 
     @Builder

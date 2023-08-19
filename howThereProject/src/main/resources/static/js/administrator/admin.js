@@ -1,3 +1,4 @@
+
 const $container = $('.board-list');
 const $pageContainer = $('.board-page');
 const $deleteButton = $('input.button-delete');
@@ -6,26 +7,53 @@ const $searchInput = $('input.select');
 const ELEMENT_SIZE_PER_PAGE = 10;
 const PAGE_SET_SIZE = 10;
 
-function AdministratorService(requestURL, header, appender) {
-    this.page = undefined;
-    this.keyword = '';
+function select(name) {
+    $('li.active').removeClass('active');
+    $(`li.${name}`).addClass('active');
+}
 
-    $searchInput.on('keyup', (e) => {
-        if(e.keyCode !== 13) return;
-        this.keyword = $searchInput.val();
+class PaginationService {
+    constructor(request, header, appender, isDetailed, init) {
+        this.request = request;
+        this.header = header;
+        this.appender = appender;
+        this.isDetailed = isDetailed;
+        this.page = undefined;
+        this.keyword = '';
+
+        //init
         this.shiftPage(1);
-    });
+
+        $searchInput.on('keyup', (e) => {
+            if(e.keyCode !== 13) return;
+            this.keyword = $searchInput.val();
+            this.shiftPage(1);
+        });
+
+        $deleteButton.on('click', () => {
+            $container.children().not('top').each((i, e) => {
+                let checked = $(e).first().children().first().first().is(":checked");
+
+                console.log(checked);
+                console.log($(e).first().children().first().first());
+            });
+        });
+
+        select(request);
+
+        if(init) init(this);
+    }
 
     //fn
-    let getOffset = () => {
+    getOffset() {
         if(this.page) {
             return Math.floor(this.page.number / PAGE_SET_SIZE)
         }
         return -1;
     }
 
-    this.getPagePromise = function(page) {
-        const req = requestURL + "?" +
+    getPagePromise(page) {
+        const req = `api/${this.request}?` +
                     (page != undefined ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
                     (this.keyword != '' ? "keyword=" + this.keyword : "");
         return fetch(req).then(response => response.json());
@@ -34,10 +62,10 @@ function AdministratorService(requestURL, header, appender) {
     /**
      * @param page 1부터 카운트
      */
-    this.shiftPage = function (page) {
+    shiftPage(page) {
         this.getPagePromise(page - 1).then(json => {
             this.page = json;
-            let html = header;
+            let html = this.header;
 
             if(this.page.content.length == 0) {
                 $container.html(html + `<div class="program not-found"><span>검색 결과가 없습니다.</span></div>`);
@@ -45,15 +73,20 @@ function AdministratorService(requestURL, header, appender) {
                 return;
             }
 
-            this.page.content.forEach(e => html += appender(e));
+            this.page.content.forEach(e => html += this.appender(e));
             $container.html(html);
+
+            if(this.isDetailed) {
+                $('.element').each((i, e) => $(e)
+                    .on('click', () => location.href = `${this.request}/detail?id=${this.page.content[i].id}`));
+            }
 
             this.setPageButtons();
         });
     }
 
-    this.setPageButtons = function () {
-        let pageOffset = getOffset();
+    setPageButtons() {
+        let pageOffset = this.getOffset();
         let lastOffset = Math.floor(this.page.totalPages / 10);
 
         //settings =====================================================
@@ -94,14 +127,14 @@ function AdministratorService(requestURL, header, appender) {
         //< 이전 세트로
         $('.button.prev').on('click', (e) => {
             e.preventDefault();
-            let prevPageNumber = (getOffset() - 1) * PAGE_SET_SIZE;
+            let prevPageNumber = (this.getOffset() - 1) * PAGE_SET_SIZE;
             this.shiftPage(prevPageNumber);
         });
 
         //> 다음 세트로
         $('.button.next').on('click', (e) => {
             e.preventDefault();
-            let nextPageNumber = (getOffset() + 1) * PAGE_SET_SIZE + 1;
+            let nextPageNumber = (this.getOffset() + 1) * PAGE_SET_SIZE + 1;
             this.shiftPage(nextPageNumber);
         });
 
@@ -117,17 +150,4 @@ function AdministratorService(requestURL, header, appender) {
             this.shiftPage(this.page.totalPages);
         });
     }
-
-    //init ==================================================
-    this.shiftPage(1);
-
-    $deleteButton.on('click', () => {
-        $container.children().not('top').each((i, e) => {
-            let checked = $(e).first().children().first().first().is(":checked");
-
-            console.log(checked);
-            console.log($(e).first().children().first().first());
-        });
-    });
 }
-

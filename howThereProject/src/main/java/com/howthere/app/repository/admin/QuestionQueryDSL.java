@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface QuestionQueryDSL {
     public Page<QuestionDTO> findMyQuestions(Long memberId, Pageable pageable);
+    public Page<QuestionDTO> findAllWithKeyword(Pageable pageable, String keyword);
     public QuestionDetailDTO findQnAById(Long id);
     public Page<QuestionDetailDTO> findQnAByMemberIdAndSearchText(String searchText, Pageable pageable);
 }

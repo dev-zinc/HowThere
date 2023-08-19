@@ -17,3 +17,15 @@
     font-weight: 400;
     text-align: center;
 }
+
+.element {
+    cursor: pointer !important;
+}
+
+li.active {
+    background-color: #dddddd;
+}
+
+li img {
+    margin-right: 10px;
+}
