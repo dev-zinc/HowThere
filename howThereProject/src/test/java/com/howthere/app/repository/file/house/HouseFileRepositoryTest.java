@@ -6,6 +6,10 @@ import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
+import com.howthere.app.type.LoginType;
+import com.howthere.app.type.MemberType;
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -45,7 +49,7 @@ class HouseFileRepositoryTest {
 //                .memberType(MemberType.MEMBER)
 //                .build();
 //        memberRepository.save(member);
-        final Member member = memberRepository.findById(1L).get();
+//        final Member member = memberRepository.findById(1L).get();
 
 //        final Address address = Address.builder()
 //                .latitude(127.0)
@@ -63,28 +67,38 @@ class HouseFileRepositoryTest {
 //                .build();
 //        houseRepository.save(house);
 
-        final House house = houseRepository.findById(3L).get();
-        final HouseFile file = HouseFile.builder()
-                .filePath("/dev/" + house.getMember().getId())
-                .fileUuid(UUID.randomUUID().toString() + ".png")
-                .fileName("사진")
-                .fileSize(440L)
-                .house(house)
-                .thumb(true)
-                .build();
-        List<HouseFile> roomImgList = new ArrayList<>();
-        roomImgList.add(file);
-        for (int i = 0; i < 5; i++) {
-            final HouseFile roomImg = HouseFile.builder()
-                    .filePath("/dev/" + house.getMember().getId())
-                    .fileUuid(UUID.randomUUID().toString() + ".png")
-                    .fileName("사진 " + (i + 1))
-                    .fileSize(440L)
-                    .house(house)
-                    .build();
-            roomImgList.add(roomImg);
-        }
+//        final House house = houseRepository.findById(3L).get();
+//        final HouseFile file = HouseFile.builder()
+//                .filePath("/dev/" + house.getMember().getId())
+//                .fileUuid(UUID.randomUUID().toString() + ".png")
+//                .fileName("사진")
+//                .fileSize(440L)
+//                .house(house)
+//                .thumb(true)
+//                .build();
+//        List<HouseFile> roomImgList = new ArrayList<>();
+//        roomImgList.add(file);
+//        for (int i = 0; i < 5; i++) {
+//            final HouseFile roomImg = HouseFile.builder()
+//                    .filePath("/dev/" + house.getMember().getId())
+//                    .fileUuid(UUID.randomUUID().toString() + ".png")
+//                    .fileName("사진 " + (i + 1))
+//                    .fileSize(440L)
+//                    .house(house)
+//                    .build();
+//            roomImgList.add(roomImg);
+//        }
 
-        fileRepository.saveAll(roomImgList);
+//        fileRepository.saveAll(roomImgList);
+    }
+
+    @Test
+    void findHouseIdList(){
+        final List<Long> houseIdList = houseRepository.findAll()
+            .stream()
+            .map(House::getId)
+            .collect(Collectors.toList());
+        final List<HouseFile> byHouseIdIn = fileRepository.findByHouseIdInAndThumb(houseIdList, true);
+        byHouseIdIn.forEach(System.out::println);
     }
 }
