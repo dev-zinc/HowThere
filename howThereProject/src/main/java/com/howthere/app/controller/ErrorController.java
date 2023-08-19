@@ -18,4 +18,10 @@ public class ErrorController {
     // http://localhost:10000/error/error_page500
     @GetMapping("error_page500")
     public void errorPage500() {;}
+
+    @GetMapping("403")
+    public void error403(){;}
+
+    @GetMapping("401")
+    public void error401(){;}
 }
