@@ -256,6 +256,13 @@ section.body{
     background-color: white;
 }
 
+.comment-content:focus{
+    border: 1px solid gray;
+    outline: none;
+}
+
+textarea::placeholder {font-family: Arial; color: #333;}
+
 
 .button-write {
     border-radius: 10px;

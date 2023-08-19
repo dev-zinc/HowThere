@@ -1,14 +1,14 @@
 package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
-import com.howthere.app.domain.admin.QuestionDetailDTO;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramReservationDTO;
-import com.howthere.app.entity.admin.Question;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
+import com.howthere.app.service.admin.AnswerService;
 import com.howthere.app.service.admin.QuestionService;
 import com.howthere.app.service.house.HouseService;
 import com.howthere.app.service.member.MemberService;
@@ -16,7 +16,6 @@ import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jdt.internal.compiler.env.IGenericType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -39,6 +38,7 @@ public class AdministratorController {
     private final QuestionService questionService;
     private final HouseService houseService;
     private final ProgramReservationService programReservationService;
+    private final AnswerService answerService;
 
     //http://localhost:10000/administrator/program
     @GetMapping("program")
@@ -91,15 +91,16 @@ public class AdministratorController {
     //http://localhost:10000/administrator/inquiry/detail
     @GetMapping("inquiry/detail")
     public String inquiryDetail(Long id, Model model) {
-        QuestionDTO questionDTO = questionService.;
+        QuestionDTO questionDTO = questionService.findQuestion(id);
         model.addAttribute("inquiry", questionDTO);
+        model.addAttribute("answer", new AnswerDTO());
         return "/administrator/inquiry-detail";
     }
 
-    //http://localhost:10000/administrator/inquiry/write
-    @GetMapping("inquiry/write")
-    public String inquiryWrite() {
-        return "/administrator/inquiry-write";
+    @PostMapping("inquiry/write")
+    public RedirectView save(AnswerDTO answerDTO) {
+        answerService.save(answerDTO);
+        return new RedirectView("inquiry");
     }
 
     //===============================================================REST

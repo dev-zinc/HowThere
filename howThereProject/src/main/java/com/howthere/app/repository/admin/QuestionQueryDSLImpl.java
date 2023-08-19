@@ -25,6 +25,7 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
 
     private final QBean<QuestionDTO> questionDTO = Projections.fields(QuestionDTO.class,
             question.id,
+            question.member.memberName.as("memberName"),
             question.oneToOneQuestionContent,
             question.oneToOneQuestionType,
             question.createdDate,
