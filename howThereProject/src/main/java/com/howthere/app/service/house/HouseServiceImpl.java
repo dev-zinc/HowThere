@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class HouseServiceImpl implements HouseService {
@@ -15,5 +17,10 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Page<HouseDTO> getHouses(Pageable pageable, String keyword) {
         return houseRepository.findWithLimitAndKeyword(pageable, keyword);
+    }
+
+    @Override
+    public void deleteAllBy(List<Long> ids) {
+        houseRepository.deleteAllById(ids);
     }
 }

@@ -40,19 +40,8 @@ public class ProgramRepositoryTests {
 
     @Test
     public void saveTest() {
-        Member member = memberRepository.findById(1L).orElseThrow(RuntimeException::new);
-        House house = houseRepository.findById(2L).orElseThrow(RuntimeException::new);
-//        House house = House.builder()
-//                .houseMaxHeadCount(10)
-//                .houseAddress(Address.builder().address("add").addressDetail("det").latitude(0.1).longitude(0.2).build())
-//                .houseLatitude(0.1)
-//                .houseLongitude(0.2)
-//                .houseTitle("title")
-//                .houseContent("content")
-//                .houseMaxPetCount(2)
-//                .member(member)
-//                .build();
-//        houseRepository.save(house);
+        Member member = memberRepository.findAll().stream().findFirst().orElseThrow(RuntimeException::new);
+        House house = houseRepository.findAll().stream().findFirst().orElseThrow(RuntimeException::new);
 
         IntStream.range(0, 100).forEach(i -> {
             Program program = Program.builder()

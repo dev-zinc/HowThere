@@ -23,7 +23,7 @@
                         <div class="ask-wrap">
                             <input type="text" placeholder="프로그램 검색" class="select">
                         </div>
-                        <input type="button" class="button-delete" value="프로그램 삭제">
+                        <input type="submit" class="button-delete" value="승인/반려 상태 변경">
                     </div>
                     <div class="board-list">
                         <!-- -->
@@ -65,8 +65,12 @@
             </div>
             <div class="program-register-date">${program.createdDate.substring(0, 10)}</div>
             <div class="member-id">${program.memberId}</div>
-            <div class="program-is-blinded">${program.verified}</div>
-        </div>`, true
+            <div class="program-is-blinded" style="color: ${program.verified == 'Y' ? 'green' : 'red'}">
+                ${program.verified == 'Y' ? '승인' : '반려'}
+            </div>
+        </div>`,
+        true,
+        "modify"
     );
 </script>
 </html>

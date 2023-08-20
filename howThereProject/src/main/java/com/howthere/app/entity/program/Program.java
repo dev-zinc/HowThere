@@ -3,10 +3,7 @@ package com.howthere.app.entity.program;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.type.Verified;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -19,6 +16,7 @@ import java.time.LocalDateTime;
 @ToString
 @Getter
 @DynamicInsert
+@NoArgsConstructor
 public class Program extends Period {
     @Id @EqualsAndHashCode.Include
     @GeneratedValue
@@ -40,6 +38,10 @@ public class Program extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "HOUSE_ID")
     private House house;
+
+    public void setVerified(Verified verified) {
+        this.verified = verified;
+    }
 
     @Builder
     public Program(LocalDateTime programStartDate, LocalDateTime programEndDate, String programName,

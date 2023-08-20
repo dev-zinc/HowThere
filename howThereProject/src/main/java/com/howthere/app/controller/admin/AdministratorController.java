@@ -21,11 +21,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -125,6 +124,13 @@ public class AdministratorController {
         return programService.getPrograms(pageable, keyword);
     }
 
+    @PostMapping("api/program/modify")
+    @ResponseBody
+    public void programModify(@RequestBody List<Long> ids) {
+        programService.modifyAllBy(ids);
+    }
+
+
     @GetMapping("api/notice")
     @ResponseBody
     public Page<AnnouncementDTO> notice(@PageableDefault Pageable pageable, String keyword) {
@@ -141,6 +147,12 @@ public class AdministratorController {
     @ResponseBody
     public Page<HouseDTO> house(@PageableDefault Pageable pageable, String keyword) {
         return houseService.getHouses(pageable, keyword);
+    }
+
+    @PostMapping("api/house/delete")
+    @ResponseBody
+    public void house(@RequestBody List<Long> ids) {
+        houseService.deleteAllBy(ids);
     }
 
     @GetMapping("api/reservation")
