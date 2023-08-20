@@ -21,8 +21,7 @@ public class MemberController {
     //http://localhost:10000/member/login
     @GetMapping("login")
     public String login() {
-        MemberDTO member = (MemberDTO)session.getAttribute("member");
-        return member == null ? "/member/login" : "redirect:/";
+        return session.getAttribute("member") == null ? "/member/login" : "redirect:/";
     }
 
     //http://localhost:10000/member/join

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleag.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head >
     <meta charset="UTF-8">
     <title>거기어때</title>
@@ -274,6 +274,9 @@
                 </nav>
             </div>
         </header>
+        <script th:inline="javascript">
+            const memberInfo = [[${session.member}]];
+        </script>
         <script src="/js/layout/header.js"></script>
     </div>
 </body>
