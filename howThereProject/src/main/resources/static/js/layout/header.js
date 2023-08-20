@@ -136,22 +136,16 @@ const noneLoginHeaderProfileIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" vi
     "                                    </path>\n" +
     "                                </svg>";
 
-fetch("/member/info")
-    .then(rep => rep.json())
-    .then(json => {
-        const {memberProfile} = json;
-        const profileIcon = memberProfile ? `<img src="${json.memberProfile}">` : noneLoginHeaderProfileIcon;
-        document.querySelector(".header-profile-icon").innerHTML = profileIcon;
-        isLogin = true;
-    });
+const profileIcon = memberInfo?.memberProfile ? `<img src="${memberInfo.memberProfile}">` : noneLoginHeaderProfileIcon;
+document.querySelector(".header-profile-icon").innerHTML = profileIcon;
 
-let isLogin = false;
 const headerProfileMenu = {
     login : "<div id='headerProfileMenu'>" +
-        "<a href='/member/logout'><div><b>로그아웃</b></div></a>" +
+        "<a href='/account/menu'><div><b>마이페이지</b></div></a>" +
         "<a href='/one_to_one_question/question_list'><div>1:1 문의</div></a>" +
         "<a href='/announcement/announcement_list'><div>공지사항</div></a>" +
         "<a href='/help/help'><div>도움말</div></a>" +
+        "<a href='/member/logout'><div><b>로그아웃</b></div></a>" +
         "</div>",
     noneLogin : "<div id='headerProfileMenu'>" +
         "<a href='/member/login'><div><b>로그인</b></div></a>" +
@@ -163,7 +157,7 @@ function showHeaderProfilMenu(){
     if(document.getElementById('headerProfileMenu')){
         return;
     }
-    $(".header-profile").append(headerProfileMenu[isLogin ? 'login' : 'noneLogin']);
+    $(".header-profile").append(headerProfileMenu[memberInfo ? 'login' : 'noneLogin']);
 }
 
 $("body").click(function(e){

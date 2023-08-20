@@ -159,7 +159,7 @@ main{
 
 .panel-main-welcome{
     margin-top: 8px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 42px !important;
 }
 
 .panel-main-title{
@@ -169,6 +169,7 @@ main{
     font-weight: 600 !important;
     margin-bottom: 8px !important;
     margin-top: 0;
+    text-align: center;
 }
 
 .email-wrapper{
