@@ -1,7 +1,6 @@
 package com.howthere.app.service.house;
 
 import com.howthere.app.domain.house.HouseDTO;
-import com.howthere.app.embed.Address;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.house.HouseRepository;
@@ -53,9 +52,16 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public House getHouse(Long id) {
-        return houseRepository.findById(id).orElseThrow(() -> {
-            return new RuntimeException("Not Found House By Id : " + id);
-        });
+    public HouseDTO getHouse(Long id) {
+//        houseRepository.findById(id).orElseThrow(() -> {
+//            return new RuntimeException("Not Found House By Id : " + id);
+//        });
+        // TODO: 2023/08/20 MapStruct or toDTO 구현
+        return houseRepository.getHouse(id);
+    }
+
+    @Override
+    public Page<HouseDTO> getMyHouses(Pageable pageable, Long id) {
+        return houseRepository.findAllByIdWithPaging(pageable, id);
     }
 }

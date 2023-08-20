@@ -1,6 +1,5 @@
 package com.howthere.app.repository.file.house;
 
-import com.howthere.app.embed.Address;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
@@ -18,9 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @SpringBootTest
 @Transactional
@@ -40,15 +37,15 @@ class HouseFileRepositoryTest {
 
     @Test
     void test() {
-//        final Member member = Member.builder()
-//                .memberEmail("asd@asd.com")
-//                .memberBirthDate(LocalDateTime.of(2000, 11, 11, 11, 11))
-//                .memberLoginType(LoginType.KAKAO)
-//                .memberName("KIM")
-//                .memberProfile("PRO")
-//                .memberType(MemberType.MEMBER)
-//                .build();
-//        memberRepository.save(member);
+        final Member member = Member.builder()
+                .memberEmail("bcf@bcf.com")
+                .memberBirthDate(LocalDateTime.of(1990, 11, 11, 11, 11))
+                .memberLoginType(LoginType.KAKAO)
+                .memberName("LEE")
+                .memberProfile("PRO")
+                .memberType(MemberType.MEMBER)
+                .build();
+        memberRepository.save(member);
 //        final Member member = memberRepository.findById(1L).get();
 
 //        final Address address = Address.builder()
@@ -98,7 +95,7 @@ class HouseFileRepositoryTest {
             .stream()
             .map(House::getId)
             .collect(Collectors.toList());
-        final List<HouseFile> byHouseIdIn = fileRepository.findByHouseIdInAndThumb(houseIdList, true);
+        final List<HouseFile> byHouseIdIn = fileRepository.findByHouseIdInAndThumbOrderByHouseIdDesc(houseIdList, true);
         byHouseIdIn.forEach(System.out::println);
     }
 }

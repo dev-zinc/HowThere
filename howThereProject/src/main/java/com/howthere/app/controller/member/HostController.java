@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -45,7 +46,8 @@ public class HostController {
     public ModelAndView write(ModelAndView mv ,@RequestParam(value = "id", required = false) Long id) {
         mv.setViewName("/host/write");
         if(!Objects.isNull(id)) {
-            final House house = houseService.getHouse(id);
+            final HouseDTO house = houseService.getHouse(id);
+            mv.setViewName("/host/edit");
             mv.addObject("house", house);
         }
         return mv;
@@ -54,9 +56,11 @@ public class HostController {
     //    http://localhost:10000/host/inn
     @GetMapping("inn")
     public ModelAndView inn(
-        @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+        HttpSession session
+        ,@PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
         ModelAndView mv) {
-        final Page<HouseDTO> pagination = houseService.getHouses(pageable, null);
+
+        final Page<HouseDTO> pagination = houseService.getMyHouses(pageable, 1L);
         final List<HouseDTO> houseDTOList = pagination.getContent();
         if (!houseDTOList.isEmpty()) {
             houseFileService.setHouseThumbnailList(houseDTOList);

@@ -1,14 +1,11 @@
 package com.howthere.app.service.file.house.impl;
 
-import com.howthere.app.config.ConstantPool;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.service.file.house.HouseFileService;
 import java.util.stream.Collectors;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +18,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -103,7 +99,7 @@ class HouseFileServiceImpl implements HouseFileService {
             .map(HouseDTO::getId)
             .collect(Collectors.toList());
 
-        final List<HouseFile> fileList = houseFileRepository.findByHouseIdInAndThumb(
+        final List<HouseFile> fileList = houseFileRepository.findByHouseIdInAndThumbOrderByHouseIdDesc(
             houseIdList, true);
         for (int i = 0; i < houseDTOList.size(); i++) {
             final HouseDTO houseDTO = houseDTOList.get(i);

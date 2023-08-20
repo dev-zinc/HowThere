@@ -17,8 +17,6 @@ import org.springframework.data.domain.Pageable;
 @RequiredArgsConstructor
 public class HouseQueryDSLImpl implements HouseQueryDSL {
 
-    private final JPAQueryFactory query;
-
     private static final QBean<HouseDTO> houseDTO = Projections.fields(HouseDTO.class,
         house.id,
         ExpressionUtils.as(house.houseAddress.address, "houseAddress"),
@@ -32,6 +30,7 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
         house.createdDate,
         ExpressionUtils.as(house.member.id, "memberId")
     );
+    private final JPAQueryFactory query;
 
     @Override
     public Page<HouseDTO> findWithLimitAndKeyword(Pageable pageable, String keyword) {
@@ -49,5 +48,29 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
         Long count = query.select(house.count()).from(house).where(hasKeyword).fetchOne();
 
         return new PageImpl<>(houseDTOs, pageable, count != null ? count : 0);
+    }
+
+    @Override
+    public Page<HouseDTO> findAllByIdWithPaging(Pageable pageable, Long memberId) {
+
+        final List<HouseDTO> houseDTOs =
+            query.select(houseDTO)
+                .from(house)
+                .where(house.member.id.eq(memberId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .orderBy(house.id.desc())
+                .fetch();
+        Long count = query.select(house.count()).from(house).where(house.member.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(houseDTOs, pageable, count != null ? count : 0);
+    }
+
+    @Override
+    public HouseDTO getHouse(Long id) {
+        return query.select(houseDTO)
+            .from(house)
+            .where(house.id.eq(id))
+            .fetchOne();
     }
 }

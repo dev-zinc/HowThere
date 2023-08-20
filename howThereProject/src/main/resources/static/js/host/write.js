@@ -19,6 +19,17 @@ const marker = new daum.maps.Marker({
   map: map
 });
 
+init();
+function init() {
+  const lat = document.querySelector("#latitude").value;
+  const lon = document.querySelector("#longitude").value;
+  if (nullCheck(lat) || nullCheck(lon)) {
+    const markerPosition = new kakao.maps.LatLng(lon, lat);
+    map.setCenter(markerPosition);
+    marker.setPosition(markerPosition);
+  }
+}
+
 function openAddressSearchPopup() {
   new daum.Postcode({
     oncomplete: function (data) {
@@ -89,15 +100,13 @@ $(function () {
   })
 });
 
-// TODO: submit 하기 전에 필수 데이터 있는지 검증 절차 필요함.
-
 function beforeSubmit() {
   const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']");
   const maxPetCnt = document.querySelector("input[name='maxPetCnt']");
   maxGuestCnt.value = document.querySelector("#maxGuestCnt").innerHTML;
   maxPetCnt.value = document.querySelector("#maxPetCnt").innerHTML;
   if (validation()) {
-       document.querySelector("#form").submit();
+    document.querySelector("#form").submit();
   }
 }
 

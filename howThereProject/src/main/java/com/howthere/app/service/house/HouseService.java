@@ -30,5 +30,7 @@ public interface HouseService {
             .build();
     }
 
-    House getHouse(Long id);
+    HouseDTO getHouse(Long id);
+
+    Page<HouseDTO> getMyHouses(Pageable pageable, Long id);
 }
