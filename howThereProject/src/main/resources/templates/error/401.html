@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에러 페이지</title>
+    <link rel="stylesheet" href="/css/error/error_page.css ">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div th:replace="~{/layout/header :: header}"></div>
+<div id="content-box" class=" mt-5 mb-5">
+    <div id="content-box-main" class="c1voot80 dir dir-ltr">
+        <div>
+            <div class="h8i5hv0 dir dir-ltr">
+                <h1 tabindex="-1" class="hpipapi dir dir-ltr" elementtiming="LCP-target">
+                    인증에 실패하였습니다.
+                </h1>
+            </div>
+            <div class="d12u3ps5 dir dir-ltr">
+                <div class=" mt-5 mb-5">
+                    다음은 도움이 될 만한 웹페이지 링크입니다.
+                </div>
+                <ul class="ljt9wxn dir dir-ltr">
+                    <li class="lgydpc4 dir dir-ltr">
+                        <a href="/" class="lgydpc4 dir dir-ltr">홈</a>
+                    </li>
+                </ul>
+                <ul class="ljt9wxn dir dir-ltr">
+                    <li class="lgydpc4 dir dir-ltr">
+                        <a href="/one_to_one_question/one_to_one_question" class="lgydpc4 dir dir-ltr">1:1 문의하기</a>
+                    </li>
+                </ul>
+                <ul class="ljt9wxn dir dir-ltr">
+                    <li class="lgydpc4 dir dir-ltr">
+                        <a href="#" class="lgydpc4 dir dir-ltr">아웃 서울 호스팅하기</a>
+                    </li>
+                </ul>
+                <ul class="ljt9wxn dir dir-ltr">
+                    <li class="lgydpc4 dir dir-ltr">
+                        <a href="#" class="lgydpc4 dir dir-ltr">신뢰와 안전</a>
+                    </li>
+                </ul>
+                <ul class="ljt9wxn dir dir-ltr">
+                    <li class="lgydpc4 dir dir-ltr">
+                        <a href="#" class="lgydpc4 dir dir-ltr">사이트맵</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m94tuun dir dir-ltr">
+            <div class="dqra4ro bmwtyu7 dir dir-ltr">
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
+</body>
+<script src="/js/layout/index.js"></script>
+</html>

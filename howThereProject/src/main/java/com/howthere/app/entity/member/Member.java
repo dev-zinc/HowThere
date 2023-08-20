@@ -11,7 +11,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "TBL_MEMBER")
@@ -24,10 +24,10 @@ public class Member extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    @NotNull private String memberEmail;
-    @NotNull private String memberName;
-    @NotNull private LocalDateTime memberBirthDate;
-    @NotNull private String memberProfile;
+    private String memberEmail;
+    private String memberName;
+    private LocalDate memberBirthDate;
+    private String memberProfile;
 
     @Enumerated(EnumType.STRING)
     @NotNull private LoginType memberLoginType;
@@ -39,7 +39,7 @@ public class Member extends Period {
     private boolean deleted = Boolean.FALSE;
 
     @Builder
-    public Member(String memberEmail, String memberName, LocalDateTime memberBirthDate, String memberProfile, LoginType memberLoginType, MemberType memberType) {
+    public Member(String memberEmail, String memberName, LocalDate memberBirthDate, String memberProfile, LoginType memberLoginType, MemberType memberType) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberBirthDate = memberBirthDate;

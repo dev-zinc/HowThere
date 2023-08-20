@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootTest(classes = HowThereApplication.class)
@@ -27,9 +28,8 @@ public class MemberRepositoryTests {
                 .memberEmail("member@email")
                 .memberName("name")
                 .memberProfile("2023/07/25.png")
-                .memberBirthDate(LocalDateTime.now())
+                .memberBirthDate(LocalDate.now())
                 .memberLoginType(LoginType.KAKAO)
-                .memberBirthDate(LocalDateTime.now())
                 .build();
         memberRepository.save(member);
     }

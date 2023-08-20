@@ -40,6 +40,7 @@
                         <li class="d-flex align-items-center" style="color: rgba(0,0,0,0.38)" th:text="${question.createdDate.toString().substring(0, 10)}">2023-00-00</li>
                         <hr>
                     </th:block>
+                    <li th:if="${page.content.size()} == 0">문의한 글이 없습니다.</li>
                 </ul>
                 <div class="d-flex justify-content-center" th:with="
                       nowPage = ${page.number + 1},
@@ -51,7 +52,7 @@
                       first = ${page.first}, last = ${page.last}
                 ">
                     <a th:if="${!first}" th:href="@{/one_to_one_question/question_list(page=${nowPage - 2})}" class="btn" style="background-color:#BB84E8; color:white;">이전</a>
-                    <th:block th:each="pageNum : ${#numbers.sequence(startPage, realEndPage)}">
+                    <th:block th:if="${startPage} < ${realEndPage}" th:each="pageNum : ${#numbers.sequence(startPage, realEndPage)}">
                         <a th:if="${nowPage != pageNum}" th:href="@{/one_to_one_question/question_list(page=${pageNum - 1})}" class="btn" style="color: black;" th:text="${pageNum}"></a>
                         <span th:unless="${nowPage != pageNum}" th:text="${pageNum}" class="btn" style="font-weight: 600;cursor: default;"></span>
                     </th:block>

@@ -580,15 +580,19 @@ header.after {
     width: 30px;
     z-index: 1;
 }
-
-@supports (overflow-clip-margin:1px) and (selector(:has([data-profile-menu])
-
-)) {
-    header {
-        /* contain: strict; */
-        overflow-clip-margin: 4px;
-    }
+.header-profile-icon > img{
+    width: 29px;
+    border-radius: 50%;
 }
+
+/*@supports (overflow-clip-margin:1px) and (selector(:has([data-profile-menu])*/
+
+/*)) {*/
+/*    header {*/
+/*        !* contain: strict; *!*/
+/*        overflow-clip-margin: 4px;*/
+/*    }*/
+/*}*/
 
 @media (min-width: 744px) {
     header {
