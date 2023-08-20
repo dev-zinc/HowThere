@@ -1,5 +1,6 @@
 package com.howthere.app.repository.house;
 
+import static com.howthere.app.entity.file.QHouseFile.houseFile;
 import static com.howthere.app.entity.house.QHouse.house;
 
 import com.howthere.app.domain.house.HouseDTO;
@@ -30,6 +31,20 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
         house.createdDate,
         ExpressionUtils.as(house.member.id, "memberId")
     );
+    private static final QBean<HouseDTO> editHouseDTO = Projections.fields(HouseDTO.class,
+        house.id,
+        ExpressionUtils.as(house.houseAddress.address, "houseAddress"),
+        ExpressionUtils.as(house.houseAddress.addressDetail, "houseAddressDetail"),
+        ExpressionUtils.as(house.houseAddress.latitude, "lat"),
+        ExpressionUtils.as(house.houseAddress.longitude, "lon"),
+        house.houseTitle,
+        house.houseContent,
+        house.houseMaxHeadCount,
+        house.houseMaxPetCount,
+        house.createdDate,
+        ExpressionUtils.as(house.member.id, "memberId"),
+        ExpressionUtils.as(houseFile.filePath.append("/").append(houseFile.fileUuid), "thumbnail")
+    );
     private final JPAQueryFactory query;
 
     @Override
@@ -52,25 +67,32 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
 
     @Override
     public Page<HouseDTO> findAllByIdWithPaging(Pageable pageable, Long memberId) {
-
         final List<HouseDTO> houseDTOs =
-            query.select(houseDTO)
-                .from(house)
-                .where(house.member.id.eq(memberId))
+            query.select(editHouseDTO)
+                .from(houseFile)
+                .join(house)
+                .on(house.id.eq(houseFile.house.id)
+                    .and(house.member.id.eq(memberId)))
+                .where(houseFile.thumb.isTrue())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(house.id.desc())
                 .fetch();
-        Long count = query.select(house.count()).from(house).where(house.member.id.eq(memberId)).fetchOne();
+        Long count = query.select(house.count())
+            .from(house)
+            .where(house.member.id.eq(memberId))
+            .fetchOne();
 
         return new PageImpl<>(houseDTOs, pageable, count != null ? count : 0);
     }
 
     @Override
     public HouseDTO getHouse(Long id) {
-        return query.select(houseDTO)
+        return query.select(editHouseDTO)
             .from(house)
             .where(house.id.eq(id))
+            .join(houseFile)
+            .on(houseFile.house.id.eq(id).and(houseFile.thumb.isTrue()))
             .fetchOne();
     }
 }

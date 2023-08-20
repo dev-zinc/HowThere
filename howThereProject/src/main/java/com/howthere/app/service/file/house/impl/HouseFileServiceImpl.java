@@ -93,22 +93,6 @@ class HouseFileServiceImpl implements HouseFileService {
         }
     }
 
-    @Override
-    public void setHouseThumbnailList(List<HouseDTO> houseDTOList) {
-        final List<Long> houseIdList = houseDTOList.stream()
-            .map(HouseDTO::getId)
-            .collect(Collectors.toList());
-
-        final List<HouseFile> fileList = houseFileRepository.findByHouseIdInAndThumbOrderByHouseIdDesc(
-            houseIdList, true);
-        for (int i = 0; i < houseDTOList.size(); i++) {
-            final HouseDTO houseDTO = houseDTOList.get(i);
-            final HouseFile houseFile = fileList.get(i);
-
-            houseDTO.setThumbnail(houseFile.getFilePath() + "/" + houseFile.getFileUuid());
-        }
-    }
-
     private static class Image {
 
         public final String originalFilename;

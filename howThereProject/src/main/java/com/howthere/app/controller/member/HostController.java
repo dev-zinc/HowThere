@@ -61,12 +61,8 @@ public class HostController {
         ,@PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
         ModelAndView mv) {
 
-        // TODO: 2023/08/20 로그인 작업 완료 시 수정 예정 
+        // TODO: 2023/08/20 로그인 작업 완료 시 수정 예정
         final Page<HouseDTO> pagination = houseService.getMyHouses(pageable, 1L);
-        final List<HouseDTO> houseDTOList = pagination.getContent();
-        if (!houseDTOList.isEmpty()) {
-            houseFileService.setHouseThumbnailList(houseDTOList);
-        }
         mv.addObject("pagination", pagination);
         mv.setViewName("/host/inn");
         return mv;

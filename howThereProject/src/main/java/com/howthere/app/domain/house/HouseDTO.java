@@ -47,14 +47,4 @@ public class HouseDTO {
     public void withThumbnail(String filePath){
         this.thumbnail = filePath;
     }
-//
-//    @Builder
-//    public HouseDTO(String houseAddress, String houseTitle, String houseContent,
-//        LocalDateTime createdDate, Long memberId) {
-//        this.houseAddress = houseAddress;
-//        this.houseTitle = houseTitle;
-//        this.houseContent = houseContent;
-//        this.createdDate = createdDate;
-//        this.memberId = memberId;
-//    }
 }
