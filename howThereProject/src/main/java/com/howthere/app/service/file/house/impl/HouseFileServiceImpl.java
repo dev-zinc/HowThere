@@ -1,5 +1,6 @@
 package com.howthere.app.service.file.house.impl;
 
+import com.howthere.app.config.ConstantPool;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
@@ -26,8 +27,7 @@ import java.util.UUID;
 @Slf4j
 class HouseFileServiceImpl implements HouseFileService {
 
-//    private static final String BASE_PATH = ConstantPool.getFileRootPath();
-    private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/room";
+    private static final String BASE_PATH = ConstantPool.getFileRootPath();
     private final HouseFileRepository houseFileRepository;
 
     private static Image getImage(MultipartFile multipartFile, House house) throws IOException {
