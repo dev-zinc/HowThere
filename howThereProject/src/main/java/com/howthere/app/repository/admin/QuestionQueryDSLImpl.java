@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.howthere.app.entity.admin.QAnswer.answer;
 import static com.howthere.app.entity.admin.QQuestion.question;
@@ -22,11 +23,14 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
 
     private final JPAQueryFactory query;
 
-    private final QBean<QuestionDTO> questionDTO = Projections.fields(QuestionDTO.class
-            , question.id
-            , question.oneToOneQuestionContent
-            , question.oneToOneQuestionType
-            ,question.createdDate
+    private final QBean<QuestionDTO> questionDTO = Projections.fields(QuestionDTO.class,
+            question.id,
+            question.member.memberName.as("memberName"),
+            question.oneToOneQuestionContent,
+            question.oneToOneQuestionType,
+            question.createdDate,
+            answer.id.as("answerId"),
+            answer.answerContent
     );
 
     @Override
@@ -61,13 +65,25 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                 : null;
         final List<QuestionDTO> questionDTOs = query
                 .select(questionDTO)
-                .from(question)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .where(hasKeyword)
+                .from(question)
+                .leftJoin(answer)
+                .on(answer.question.id.eq(question.id).and(hasKeyword))
                 .fetch();
+
         final Long count = query.select(question.count()).from(question).fetchOne();
         return new PageImpl<>(questionDTOs, pageable, count != null ? count : 0);
+    }
+
+    @Override
+    public Optional<QuestionDTO> findDTOById(Long id) {
+        return Optional.ofNullable(query
+                .select(questionDTO)
+                .from(question)
+                .leftJoin(answer)
+                .on(answer.question.id.eq(question.id).and(question.id.eq(id)))
+                .fetchOne());
     }
 
     @Override

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 public interface QuestionService {
 
+    Question findById(Long id);
     QuestionDetailDTO findQnAByQuestionId(Long id);
 
     Long questionSave(QuestionDTO dto);
@@ -20,6 +21,8 @@ public interface QuestionService {
     Page<QuestionDTO> getMyQuestions(Pageable pageable, HttpSession session);
 
     Page<QuestionDTO> getQuestions(Pageable pageable, String keyword);
+
+    QuestionDTO findQuestion(Long id);
 
     Page<QuestionDetailDTO> getQnAs(String searchText, Pageable pageable);
 

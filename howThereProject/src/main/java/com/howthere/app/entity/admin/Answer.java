@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TBL_ANSWER")
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = {"question"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Answer extends Period {
     @Id
@@ -19,8 +19,13 @@ public class Answer extends Period {
     @NotNull
     private String answerContent;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
     private Question question;
+
+    public void setAnswerContent(String answerContent) {
+        this.answerContent = answerContent;
+    }
 
     @Builder
     public Answer(Long id, @NotNull String answerContent, Question question) {
