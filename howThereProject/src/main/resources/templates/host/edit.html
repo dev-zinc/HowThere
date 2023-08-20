@@ -75,7 +75,7 @@
                 <div class="side-wrap">
                     <div style="width: 100%">
                         <label for="thumbImgFile" style="width: 100%;">
-                            <input class="hidden" id="thumbImgFile" name="thumbnail" type="file">
+                            <input class="hidden" accept="image/*" id="thumbImgFile" name="thumbnail" type="file">
                             <div class="thumb">
                                 <img alt="thumbnail" id="thumbImg" th:src="|/host/load-thumbnail?filePath=${house.thumbnail}|" style="width: inherit; height: inherit;">
                                 <svg aria-hidden="true" focusable="false" id="thumbSvg" role="presentation" style="display: none; height: 32px; width: 32px; fill: currentcolor;" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -86,6 +86,11 @@
                         <div style="margin-bottom: 30px">
                             <ol class="imgOl">
                                 <li>
+                                    <div class="add-filename-list" >
+                                        <div th:each="image:${house.fileList}">
+                                            <img alt="숙소 사진" th:src="|/host/load-thumbnail?filePath=${image}|" style="width: 110px; height: 65px">
+                                        </div>
+                                    </div>
                                     <label for="imgFileAddBtn">
                                         <div class="img-add-btn etc-img" draggable="true">
                                             <div>
@@ -93,7 +98,7 @@
                                                     <path d="M2 16h28M16 2v28"></path>
                                                 </svg>
                                             </div>
-                                            <input class="hidden" id="imgFileAddBtn" multiple name="houseImg" type="file">
+                                            <input class="hidden" accept="image/*" id="imgFileAddBtn" multiple name="houseImg" type="file">
                                         </div>
                                     </label>
                                 </li>

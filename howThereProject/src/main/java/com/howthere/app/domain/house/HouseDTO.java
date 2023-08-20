@@ -1,6 +1,7 @@
 package com.howthere.app.domain.house;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class HouseDTO {
     private Long memberId;
 
     private String thumbnail;
+    private List<String> fileList;
     @Builder
     public HouseDTO(Long id, String houseAddress, String houseAddressDetail, Double lat, Double lon,
         String houseTitle, String houseContent, Integer houseMaxHeadCount, Integer houseMaxPetCount,

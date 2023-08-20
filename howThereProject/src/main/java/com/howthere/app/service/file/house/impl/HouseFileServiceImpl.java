@@ -6,6 +6,10 @@ import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.service.file.house.HouseFileService;
+import java.awt.Image;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -65,28 +69,36 @@ class HouseFileServiceImpl implements HouseFileService {
         List<MultipartFile> images) throws IOException {
         try {
             final List<HouseFile> houseFileList = new ArrayList<>();
-            final Image thumbnailImage = getImage(thumbnail, saved);
+            if (!thumbnail.isEmpty()) {
+                final Image thumbnailImage = getImage(thumbnail, saved);
 
-            final HouseFile thumbnailFile = HouseFile.builder()
-                .filePath(thumbnailImage.path)
-                .fileUuid(thumbnailImage.uuid)
-                .fileName(thumbnailImage.originalFilename)
-                .fileSize(thumbnailImage.fileSize)
-                .house(saved)
-                .thumb(true)
-                .build();
-            houseFileList.add(thumbnailFile);
-            for (MultipartFile v : images) {
-                final Image image = getImage(v, saved);
-                houseFileList.add(HouseFile.builder()
-                    .filePath(image.path)
-                    .fileName(image.originalFilename)
-                    .fileUuid(image.uuid)
-                    .fileSize(image.fileSize)
+                final HouseFile thumbnailFile = HouseFile.builder()
+                    .filePath(thumbnailImage.path)
+                    .fileUuid(thumbnailImage.uuid)
+                    .fileName(thumbnailImage.originalFilename)
+                    .fileSize(thumbnailImage.fileSize)
                     .house(saved)
-                    .build());
+                    .thumb(true)
+                    .build();
+                houseFileList.add(thumbnailFile);
             }
-            return houseFileRepository.saveAll(houseFileList);
+            for (MultipartFile v : images) {
+                if(!v.isEmpty()){
+                    final Image image = getImage(v, saved);
+                    houseFileList.add(HouseFile.builder()
+                        .filePath(image.path)
+                        .fileName(image.originalFilename)
+                        .fileUuid(image.uuid)
+                        .fileSize(image.fileSize)
+                        .house(saved)
+                        .build());
+                }
+            }
+            if (!houseFileList.isEmpty()) {
+                return houseFileRepository.saveAll(houseFileList);
+            } else {
+                return Collections.emptyList();
+            }
         } catch (Exception e) {
             log.error("House File Save Error", e);
             throw e;

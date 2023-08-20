@@ -18,15 +18,18 @@ const geocoder = new daum.maps.services.Geocoder();
 const marker = new daum.maps.Marker({
   map: map
 });
+let isEdit = false;
 
-init();
-function init() {
+edit();
+
+function edit() {
   const lat = document.querySelector("#latitude").value;
   const lon = document.querySelector("#longitude").value;
   if (nullCheck(lat) || nullCheck(lon)) {
     const markerPosition = new kakao.maps.LatLng(lon, lat);
     map.setCenter(markerPosition);
     marker.setPosition(markerPosition);
+    isEdit = true;
   }
 }
 
@@ -110,10 +113,33 @@ function beforeSubmit() {
   }
 }
 
-const imageTag = document.getElementById("thumbImgFile");
-imageTag.addEventListener('change', function () {
+const thumbnailTag = document.getElementById("thumbImgFile");
+thumbnailTag.addEventListener('change', function () {
   document.querySelector("#thumbImg").style.display = "block";
   loadImg(this);
+});
+
+const imageTag = document.querySelector("#imgFileAddBtn");
+imageTag.addEventListener('change', function () {
+  const fileList = this.files;
+  const filenameListTag = document.querySelector(".add-filename-list");
+  if (fileList.length !== 0) {
+    filenameListTag.innerHTML = "";
+
+  }
+
+  for (let i = 0; i < fileList.length; i++) {
+    const imageElement = document.createElement("img");
+    imageElement.alt = "추가 사진";
+    imageElement.style.width = "110px";
+    imageElement.style.height = "65px";
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      imageElement.src = e.target.result;
+      filenameListTag.append(imageElement);
+    }
+    reader.readAsDataURL(fileList[i]);
+  }
 });
 
 function loadImg(value) {
@@ -153,15 +179,17 @@ function validation() {
     alert("소개글을 작성해주세요.");
     return false;
   }
-  const thumbnail = document.querySelector("input[name='thumbnail']").value;
-  if (!nullCheck(thumbnail)) {
-    alert("대표 사진을 등록해주세요.");
-    return false;
-  }
-  const houseImg = document.querySelector("input[name='houseImg']").value;
-  if (!nullCheck(houseImg)) {
-    alert("숙소 사진을 등록해주세요.");
-    return false;
+  if (!isEdit) {
+    const thumbnail = document.querySelector("input[name='thumbnail']").value;
+    if (!nullCheck(thumbnail)) {
+      alert("대표 사진을 등록해주세요.");
+      return false;
+    }
+    const houseImg = document.querySelector("input[name='houseImg']").value;
+    if (!nullCheck(houseImg)) {
+      alert("숙소 사진을 등록해주세요.");
+      return false;
+    }
   }
   const maxGuestCnt = document.querySelector("input[name='maxGuestCnt']").value;
   if (Number.parseInt(maxGuestCnt) === 0) {

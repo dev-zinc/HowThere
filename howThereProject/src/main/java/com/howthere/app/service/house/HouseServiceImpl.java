@@ -3,8 +3,11 @@ package com.howthere.app.service.house;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
+import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class HouseServiceImpl implements HouseService {
 
     private final HouseRepository houseRepository;
+    private final HouseFileRepository fileRepository;
     private final MemberRepository memberRepository;
 
     @Override
@@ -57,7 +61,15 @@ public class HouseServiceImpl implements HouseService {
 //            return new RuntimeException("Not Found House By Id : " + id);
 //        });
         // TODO: 2023/08/20 MapStruct or toDTO 구현
-        return houseRepository.getHouse(id);
+        final HouseDTO houseDTO = houseRepository.getHouse(id);
+        final List<String> filePathList = fileRepository.findByHouseIdAndThumb(houseDTO.getId(), false)
+            .stream()
+            .map(file -> {
+                return file.getFilePath() + "/" + file.getFileUuid();
+            })
+            .collect(Collectors.toList());
+        houseDTO.setFileList(filePathList);
+        return houseDTO;
     }
 
     @Override

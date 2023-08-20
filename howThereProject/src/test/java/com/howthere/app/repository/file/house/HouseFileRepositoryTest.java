@@ -88,14 +88,4 @@ class HouseFileRepositoryTest {
 
 //        fileRepository.saveAll(roomImgList);
     }
-
-    @Test
-    void findHouseIdList(){
-        final List<Long> houseIdList = houseRepository.findAll()
-            .stream()
-            .map(House::getId)
-            .collect(Collectors.toList());
-        final List<HouseFile> byHouseIdIn = fileRepository.findByHouseIdInAndThumbOrderByHouseIdDesc(houseIdList, true);
-        byHouseIdIn.forEach(System.out::println);
-    }
 }
