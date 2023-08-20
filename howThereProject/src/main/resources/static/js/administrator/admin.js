@@ -53,7 +53,7 @@ class PaginationService {
     }
 
     getPagePromise(page) {
-        const req = `api/${this.request}?` +
+        const req = `/administrator/api/${this.request}?` +
                     (page != undefined ? `size=${ELEMENT_SIZE_PER_PAGE}&page=` + page + "&" : "") +
                     (this.keyword != '' ? "keyword=" + this.keyword : "");
         return fetch(req).then(response => response.json());
@@ -77,7 +77,7 @@ class PaginationService {
             $container.html(html);
 
             if(this.isDetailed) $('.element').each((i, e) => $(e).on('click', () =>
-                    location.href = `${this.request}/detail?id=${this.page.content[i].id}`));
+                    location.href = `/administrator/${this.request}/detail?id=${this.page.content[i].id}`));
 
             this.setPageButtons();
         });

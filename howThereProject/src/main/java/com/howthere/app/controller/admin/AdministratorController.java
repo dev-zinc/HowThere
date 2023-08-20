@@ -99,8 +99,16 @@ public class AdministratorController {
 
     @PostMapping("inquiry/write")
     public RedirectView save(AnswerDTO answerDTO) {
+        log.info(answerDTO.toString());
         answerService.save(answerDTO);
-        return new RedirectView("inquiry");
+        return new RedirectView("");
+    }
+
+    @PostMapping("inquiry/modify")
+    public RedirectView modify(AnswerDTO answerDTO) {
+        log.info(answerDTO.toString());
+        answerService.modify(answerDTO);
+        return new RedirectView("");
     }
 
     //===============================================================REST

@@ -19,6 +19,7 @@ public class QuestionDTO {
     private String oneToOneQuestionContent;
     private QuestionType oneToOneQuestionType;
     private LocalDateTime createdDate;
+    private Long answerId;
     private String answerContent;
 
     public static DateTimeFormatter getFormat() {

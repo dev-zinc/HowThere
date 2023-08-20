@@ -23,6 +23,10 @@ public class Answer extends Period {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    public void setAnswerContent(String answerContent) {
+        this.answerContent = answerContent;
+    }
+
     @Builder
     public Answer(Long id, @NotNull String answerContent, Question question) {
         this.id = id;

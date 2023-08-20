@@ -29,6 +29,7 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
             question.oneToOneQuestionContent,
             question.oneToOneQuestionType,
             question.createdDate,
+            answer.id.as("answerId"),
             answer.answerContent
     );
 

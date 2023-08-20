@@ -1,21 +1,20 @@
 package com.howthere.app.domain.admin;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
-@Getter @Setter
+@Getter @Setter @ToString
 @Component
 @RequiredArgsConstructor
 public class AnswerDTO {
-    private String content;
+    private Long id;
     private Long questionId;
+    private String answerContent;
 
     @Builder
-    public AnswerDTO(String content, Long questionId) {
-        this.content = content;
+    public AnswerDTO(Long id, String answerContent, Long questionId) {
+        this.id = id;
+        this.answerContent = answerContent;
         this.questionId = questionId;
     }
 }
