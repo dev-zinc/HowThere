@@ -48,7 +48,7 @@
                                     <h2>실명</h2>
                                 </div>
                                 <div class="info-text">
-                                    <span>사용자 이름</span>
+                                    <span id="currentName" th:text="${member.memberName}"></span>
                                 </div>
                             </div>
 
@@ -59,23 +59,23 @@
 
                         <div id="name_modify" name="name" style="margin-bottom: 8px;">
                             <div class="input-wrap flex">
-                                <label class="input-label flex" for="first_name">
+                                <label class="input-label flex" for="inputName">
                                     <div class="label-content">
                                         <span>이름</span>
                                     </div>
-                                    <input name="first_name" id="first_name"
-                                           autocomplete="off" type="text" value="찬">
+                                    <input name="inputName" id="inputName"
+                                           autocomplete="off" type="text" value="">
                                 </label>
-                                <label class="input-label" for="last_name">
-                                    <div class="label-content" style="left: 10px;">
-                                        <span>성</span>
-                                    </div>
-                                    <input name="last_name" id="last_name"
-                                           autocomplete="off" type="text" value="이">
-                                </label>
+<!--                                <label class="input-label" for="last_name">-->
+<!--                                    <div class="label-content" style="left: 10px;">-->
+<!--                                        <span>성</span>-->
+<!--                                    </div>-->
+<!--                                    <input name="last_name" id="last_name"-->
+<!--                                           autocomplete="off" type="text" value="">-->
+<!--                                </label>-->
                             </div>
                             <div class="submit-button">
-                                <button type="submit">저장</button>
+                                <button type="button" onclick="updateMyInfo()">저장</button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                     <h2>이메일 주소</h2>
                                 </div>
                                 <div class="info-text">
-                                    <span>user@email</span>
+                                    <span th:text="${member.memberEmail}"></span>
                                 </div>
                             </div>
 
@@ -188,4 +188,7 @@
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/account/setting.js"></script>
+<script th:inline="javascript">
+  console.log([[${member}]])
+</script>
 </html>
