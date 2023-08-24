@@ -25,7 +25,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,9 +46,10 @@ public class HostController {
 
     //    http://localhost:10000/host/write
     @GetMapping("write")
-    public ModelAndView write(ModelAndView mv ,@RequestParam(value = "id", required = false) Long id) {
+    public ModelAndView write(ModelAndView mv,
+        @RequestParam(value = "id", required = false) Long id) {
         mv.setViewName("/host/write");
-        if(!Objects.isNull(id)) {
+        if (!Objects.isNull(id)) {
             final HouseDTO house = houseService.getHouse(id);
             mv.setViewName("/host/edit");
             mv.addObject("house", house);
@@ -58,7 +61,8 @@ public class HostController {
     @GetMapping("inn")
     public ModelAndView inn(
         HttpSession session
-        ,@PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+        ,
+        @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
         ModelAndView mv) {
 
         // TODO: 2023/08/20 로그인 작업 완료 시 수정 예정
@@ -70,7 +74,9 @@ public class HostController {
 
     //    http://localhost:10000/host/hosting
     @GetMapping("hosting")
-    public void hosting() {
+    public void hosting(@RequestParam(value = "id") Long id, Model model) {
+        final HouseDTO house = houseService.getHouse(id);
+        model.addAttribute("house", house);
     }
 
     @PostMapping("write")
@@ -88,7 +94,7 @@ public class HostController {
         }
     }
 
-    @GetMapping("load-thumbnail")
+    @GetMapping("load-image")
     public ResponseEntity<Resource> display(@RequestParam("filePath") String filePath) {
         final Resource resource = new FileSystemResource(filePath);
         if (!resource.exists()) {
@@ -100,7 +106,7 @@ public class HostController {
             header.add("Content-type", Files.probeContentType(path));
             return new ResponseEntity<>(resource, header, HttpStatus.OK);
         } catch (IOException e) {
-            log.error("load thumbnail error");
+            log.error("load image error");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

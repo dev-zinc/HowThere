@@ -31,7 +31,8 @@ import java.util.UUID;
 @Slf4j
 class HouseFileServiceImpl implements HouseFileService {
 
-    private static final String BASE_PATH = ConstantPool.getFileRootPath();
+//    private static final String BASE_PATH = ConstantPool.getFileRootPath();
+    private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/HowThere";
     private final HouseFileRepository houseFileRepository;
 
     private static Image getImage(MultipartFile multipartFile, House house) throws IOException {

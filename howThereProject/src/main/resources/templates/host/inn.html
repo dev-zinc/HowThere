@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="btn-box">
-                            <button class="hosting-btn">호스팅</button>
+                            <button class="hosting-btn" th:onclick="|location.href='@{/host/hosting(id=${house.id})}'|">호스팅</button>
                             <button class="modify-btn" th:onclick="|location.href='@{/host/write(id=${house.id})}'|">수정</button>
                             <button class="delete-btn">삭제</button>
                         </div>
