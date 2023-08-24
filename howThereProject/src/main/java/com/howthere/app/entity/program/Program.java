@@ -6,6 +6,7 @@ import com.howthere.app.type.Verified;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @ToString
 @Getter
 @DynamicInsert
+@NoArgsConstructor
 public class Program extends Period {
     @Id @EqualsAndHashCode.Include
     @GeneratedValue

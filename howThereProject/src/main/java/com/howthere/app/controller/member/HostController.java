@@ -2,6 +2,7 @@ package com.howthere.app.controller.member;
 
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.member.MemberDTO;
+import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.service.file.house.HouseFileService;
 import com.howthere.app.service.house.HouseService;
@@ -29,6 +30,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,6 +79,11 @@ public class HostController {
     public void hosting(@RequestParam(value = "id") Long id, Model model) {
         final HouseDTO house = houseService.getHouse(id);
         model.addAttribute("house", house);
+    }
+
+    @PostMapping("hosting")
+    public void registerProgram(@RequestBody ProgramDTO dto) {
+        System.out.println(dto);
     }
 
     @PostMapping("write")

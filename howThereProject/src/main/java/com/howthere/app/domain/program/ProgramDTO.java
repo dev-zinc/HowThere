@@ -1,5 +1,6 @@
 package com.howthere.app.domain.program;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.howthere.app.type.Verified;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,15 @@ public class ProgramDTO {
     private Long memberId;
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    private LocalDateTime endDate;
     private String programAddress;
     private String programName;
     private String programContent;
+    private Integer programPrice;
+    private String programStartDate;
+    private String programEndDate;
+    private Long houseId;
     private Verified verified;
 
     @Builder
