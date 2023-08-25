@@ -31,6 +31,7 @@ public class DiaryReplyQueryDSLImpl implements DiaryReplyQueryDSL {
                         diaryReply.replyContent,
                         diaryReply.member.id,
                         diaryReply.member.memberName,
+                        diaryReply.member.memberProfile,
                         diaryReply.diary.id,
                         diaryReply.createdDate,
                         diaryReply.updatedDate
@@ -56,6 +57,11 @@ public class DiaryReplyQueryDSLImpl implements DiaryReplyQueryDSL {
         query.update(QDiaryReply.diaryReply)
                 .set(QDiaryReply.diaryReply.replyContent, diaryReply.getReplyContent())
                 .where(QDiaryReply.diaryReply.id.eq(diaryReply.getId())).execute();
+    }
+
+    @Override
+    public void deleteByDiaryId(Long diaryId) {
+        query.delete(diaryReply).where(diaryReply.diary.id.eq(diaryId)).execute();
     }
 
     @Override

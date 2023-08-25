@@ -20,4 +20,9 @@ public class DiaryLikeQueryDSLImpl implements DiaryLikeQueryDSL {
     public Long countLike(Long id) {
         return query.select(diaryLike.count()).from(diaryLike).where(diaryLike.diary.id.eq(id)).fetchOne();
     }
+
+    @Override
+    public void deleteByDiaryId(Long diaryId) {
+        query.delete(diaryLike).where(diaryLike.diary.id.eq(diaryId)).execute();
+    }
 }

@@ -2,6 +2,8 @@ package com.howthere.app.service.diary;
 
 import com.howthere.app.domain.diary.DiaryDTO;
 import com.howthere.app.entity.diary.Diary;
+import com.howthere.app.entity.house.House;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public interface DiaryService {
     public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword, String order);
 
 //    일기 작성
-    public void write(DiaryDTO diaryDTO);
+    public Long write(DiaryDTO diaryDTO);
 
 //    작성한 일기 id 가져오기
     public Long getDiaryId();
@@ -36,13 +38,22 @@ public interface DiaryService {
 
 //    일기 삭제
     public void remove(Long id);
-//    default Diary toEntity(DiaryDTO diaryDTO){
-//        return Diary.builder()
-//                .diaryTitle(diaryDTO.getDiaryTitle())
-//                .diaryContent(diaryDTO.getDiaryContent())
-//                .member(diaryDTO.getMemberId())
-////                회원, 숙소 어떻게 가져올지 모르겠다.
-////                .member(diaryDTO.getMemberId())
-//                .build();
-//    }
+
+    default Diary toEntity(DiaryDTO diaryDTO){
+        return Diary.builder()
+                .id(diaryDTO.getId())
+                .diaryTitle(diaryDTO.getDiaryTitle())
+                .diaryContent(diaryDTO.getDiaryContent())
+                .build();
+    }
+
+    default Diary toEntity(DiaryDTO diaryDTO, Member member, House house){
+        return Diary.builder()
+                .id(diaryDTO.getId())
+                .diaryTitle(diaryDTO.getDiaryTitle())
+                .diaryContent(diaryDTO.getDiaryContent())
+                .member(member)
+                .house(house)
+                .build();
+    }
 }
