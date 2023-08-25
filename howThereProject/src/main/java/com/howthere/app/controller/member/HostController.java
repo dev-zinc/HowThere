@@ -80,10 +80,9 @@ public class HostController {
     }
 
     @PostMapping("hosting")
-    public RedirectView registerProgram(@RequestBody ProgramDTO dto) {
+    public void registerProgram(@RequestBody ProgramDTO dto) {
         programService.registerProgram(dto);
         // TODO: 2023/08/25 체크인 체크아웃 기간 확인해서 겹치면 코드 리턴
-        return new RedirectView("/host/inn");
     }
 
     @PostMapping("write")

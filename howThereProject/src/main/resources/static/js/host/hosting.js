@@ -60,7 +60,7 @@ function submit() {
     }
   }).then(res => {
     if (res.ok) {
-
+      location.replace("inn");
     }
   })
 }
