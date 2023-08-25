@@ -1,14 +1,16 @@
 package com.howthere.app.domain.program;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.howthere.app.type.Verified;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import com.howthere.app.type.Verified;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Component
 @Data
@@ -24,8 +26,8 @@ public class ProgramDTO {
     private String programName;
     private String programContent;
     private Integer programPrice;
-    private String programStartDate;
-    private String programEndDate;
+    private LocalDate programStartDate;
+    private LocalDate programEndDate;
     private Long houseId;
     private Verified verified;
 
