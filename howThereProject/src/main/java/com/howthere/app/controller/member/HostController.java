@@ -1,11 +1,11 @@
 package com.howthere.app.controller.member;
 
 import com.howthere.app.domain.house.HouseDTO;
-import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.service.file.house.HouseFileService;
 import com.howthere.app.service.house.HouseService;
+import com.howthere.app.service.program.ProgramService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +28,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +44,7 @@ public class HostController {
 
     private final HouseService houseService;
     private final HouseFileService houseFileService;
+    private final ProgramService programService;
 
     //    http://localhost:10000/host/write
     @GetMapping("write")
@@ -61,9 +61,7 @@ public class HostController {
 
     //    http://localhost:10000/host/inn
     @GetMapping("inn")
-    public ModelAndView inn(
-        HttpSession session
-        ,
+    public ModelAndView inn(HttpSession session,
         @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
         ModelAndView mv) {
 
@@ -82,8 +80,10 @@ public class HostController {
     }
 
     @PostMapping("hosting")
-    public void registerProgram(@RequestBody ProgramDTO dto) {
-        System.out.println(dto);
+    public RedirectView registerProgram(@RequestBody ProgramDTO dto) {
+        programService.registerProgram(dto);
+        // TODO: 2023/08/25 체크인 체크아웃 기간 확인해서 겹치면 코드 리턴
+        return new RedirectView("/host/inn");
     }
 
     @PostMapping("write")

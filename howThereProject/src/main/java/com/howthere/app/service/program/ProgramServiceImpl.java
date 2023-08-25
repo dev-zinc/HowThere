@@ -10,10 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProgramServiceImpl implements ProgramService {
+
     private final ProgramRepository programRepository;
 
     @Override
     public Page<ProgramDTO> getPrograms(Pageable pageable, String keyword) {
         return programRepository.findAllWithLimit(pageable, keyword);
+    }
+
+    @Override
+    public void registerProgram(ProgramDTO dto) {
+        programRepository.save(toEntity(dto));
     }
 }
