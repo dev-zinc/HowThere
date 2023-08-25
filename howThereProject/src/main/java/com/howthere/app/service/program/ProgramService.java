@@ -23,4 +23,6 @@ public interface ProgramService {
             .house(House.builder().id(dto.getHouseId()).build())
             .build();
     }
+
+    Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable);
 }

@@ -22,4 +22,9 @@ public class ProgramServiceImpl implements ProgramService {
     public void registerProgram(ProgramDTO dto) {
         programRepository.save(toEntity(dto));
     }
+
+    @Override
+    public Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable) {
+        return programRepository.findAllWithThumbnail(pageable);
+    }
 }

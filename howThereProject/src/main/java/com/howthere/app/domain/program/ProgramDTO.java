@@ -30,6 +30,7 @@ public class ProgramDTO {
     private LocalDate programEndDate;
     private Long houseId;
     private Verified verified;
+    private String thumbnail;
 
     @Builder
     public ProgramDTO(Long memberId, LocalDateTime createdDate, String programAddress, String programName,
