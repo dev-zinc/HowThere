@@ -39,7 +39,7 @@ class HouseFileRepositoryTest {
     void test() {
         final Member member = Member.builder()
                 .memberEmail("bcf@bcf.com")
-                .memberBirthDate(LocalDateTime.of(1990, 11, 11, 11, 11))
+                //.memberBirthDate(LocalDateTime.of(1990, 11, 11, 11, 11))
                 .memberLoginType(LoginType.KAKAO)
                 .memberName("LEE")
                 .memberProfile("PRO")
