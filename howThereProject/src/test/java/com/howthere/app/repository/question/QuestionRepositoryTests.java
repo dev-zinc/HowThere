@@ -1,4 +1,4 @@
-package com.howthere.repository.question;
+package com.howthere.app.repository.question;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.admin.QuestionDTO;
@@ -32,7 +32,7 @@ public class QuestionRepositoryTests {
 
     @Test
     public void saveTest() {
-        Member member = memberRepository.findById(1L).orElseThrow(RuntimeException::new);
+        Member member = memberRepository.findAll().stream().findFirst().orElseThrow(RuntimeException::new);
         Question question = Question.builder()
                 .oneToOneQuestionType(QuestionType.EVENT)
                 .oneToOneQuestionContent("content")

@@ -1,4 +1,4 @@
-package com.howthere.service;
+package com.howthere.app.service;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.admin.QuestionDTO;

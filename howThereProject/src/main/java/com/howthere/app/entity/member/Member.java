@@ -22,14 +22,15 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "TBL_MEMBER")
-@Getter
-@ToString(callSuper = true)
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
-@SQLDelete(sql = "UPDATE TBL_MEMBER SET DELETED = 1 WHERE ID = ?")
-@Where(clause = "DELETED = 0")
 public class Member extends Period {
 
     @Id
@@ -61,6 +62,14 @@ public class Member extends Period {
 //        this.memberLoginType = memberLoginType;
 //        this.memberType = memberType;
 //    }
+
+    public void setMemberBirthDate(LocalDate memberBirthDate) {
+        this.memberBirthDate = memberBirthDate;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     @Builder
     public Member(Long id, String memberEmail, String memberName, LocalDate memberBirthDate,

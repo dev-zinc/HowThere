@@ -13,7 +13,7 @@ function select(name) {
 }
 
 class PaginationService {
-    constructor(request, header, appender, isDetailed, init) {
+    constructor(request, header, appender, isDetailed, onClick) {
         this.request = request;
         this.header = header;
         this.appender = appender;
@@ -25,29 +25,34 @@ class PaginationService {
         this.shiftPage(1);
 
         $searchInput.on('keyup', (e) => {
-            if(e.keyCode !== 13) return;
+            if (e.keyCode !== 13) return;
             this.keyword = $searchInput.val();
             this.shiftPage(1);
         });
 
         $deleteButton.on('click', () => {
-            $container.children().not('top').each((i, e) => {
-                let checked = $(e).first().children().first().first().is(":checked");
-
-                console.log(checked);
-                console.log($(e).first().children().first().first());
+            let list = [];
+            $('.element').each((i, e) => {
+                let checked = $(e).find('input').is(':checked');
+                if (checked) {
+                    list.push(this.page.content[i].id);
+                }
             });
+            console.log(list);
+            fetch(`/administrator/api/${request}/${onClick}`, {
+                method: 'POST',
+                headers: { 'Content-type': "application/json;charset=utf-8" },
+                body: JSON.stringify(list)
+            }).then(_ => this.shiftPage(1), console.log);
         });
 
         select(request);
-
-        if(init) init(this);
     }
 
     //fn
     getOffset() {
         if(this.page) {
-            return Math.floor(this.page.number / PAGE_SET_SIZE)
+            return Math.floor(this.page.number / PAGE_SET_SIZE);
         }
         return -1;
     }
@@ -63,8 +68,10 @@ class PaginationService {
      * @param page 1부터 카운트
      */
     shiftPage(page) {
+        select(this.request);
         this.getPagePromise(page - 1).then(json => {
             this.page = json;
+            console.log(json);
             let html = this.header;
 
             if(this.page.content.length == 0) {
@@ -76,8 +83,13 @@ class PaginationService {
             this.page.content.forEach(e => html += this.appender(e));
             $container.html(html);
 
-            if(this.isDetailed) $('.element').each((i, e) => $(e).on('click', () =>
-                    location.href = `/administrator/${this.request}/detail?id=${this.page.content[i].id}`));
+            if(this.isDetailed) {
+                $('.element').each((i, element) => $(element).on('click', (e) => {
+                    if($(e.target).is('input')) return;
+                    if($(e.target).hasClass('checkbox')) return;
+                    location.href = `/administrator/${this.request}/detail?id=${this.page.content[i].id}`;
+                }));
+            }
 
             this.setPageButtons();
         });

@@ -3,11 +3,7 @@ package com.howthere.app.entity.program;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.type.Verified;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -40,8 +36,13 @@ public class Program extends Period {
     private Verified verified;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "HOUSE_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HOUSE_ID")
     private House house;
+
+    public void setVerified(Verified verified) {
+        this.verified = verified;
+    }
 
     @Builder
     public Program(LocalDateTime programStartDate, LocalDateTime programEndDate, String programName,

@@ -1,13 +1,9 @@
 package com.howthere.app.repository.house;
 
-import static com.howthere.app.entity.file.QHouseFile.houseFile;
-import static com.howthere.app.entity.house.QHouse.house;
-
 import com.howthere.app.domain.house.HouseDTO;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
-import com.querydsl.core.types.QList;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
@@ -15,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+
+import static com.howthere.app.entity.file.QHouseFile.houseFile;
+import static com.howthere.app.entity.house.QHouse.house;
 
 @RequiredArgsConstructor
 public class HouseQueryDSLImpl implements HouseQueryDSL {

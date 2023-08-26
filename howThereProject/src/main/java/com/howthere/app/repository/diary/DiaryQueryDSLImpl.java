@@ -4,12 +4,8 @@ import com.howthere.app.domain.diary.DiaryDTO;
 import com.howthere.app.domain.diary.QDiaryDTO;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.diary.QDiary;
-import com.howthere.app.entity.diary.QDiaryReply;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -19,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.howthere.app.entity.diary.QDiary.diary;
+
 
 @RequiredArgsConstructor
 public class DiaryQueryDSLImpl implements DiaryQueryDSL {
