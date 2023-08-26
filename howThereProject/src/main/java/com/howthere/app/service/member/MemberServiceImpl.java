@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
-        Member member = saveOrUpdate(attributes);
+        Member member = toMember(attributes);
 
         if(member.getId() == null){
             memberRepository.save(member);
@@ -72,7 +72,7 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
     }
 
     @Transactional
-    public Member saveOrUpdate(OAuthAttributes attributes){
+    public Member toMember(OAuthAttributes attributes){
         return memberRepository.findByMemberEmail(attributes.getEmail())
                 .orElse(attributes.toEntity());
     }
