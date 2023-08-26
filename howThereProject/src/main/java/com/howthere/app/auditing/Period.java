@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Period {
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime updatedDate;

@@ -1,12 +1,14 @@
 package com.howthere.app.embed;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor
+@Getter
 public class Address {
 
     private String address;

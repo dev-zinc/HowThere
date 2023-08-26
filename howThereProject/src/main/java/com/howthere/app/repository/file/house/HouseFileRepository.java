@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface HouseFileRepository extends JpaRepository<HouseFile, Long> {
 
     List<HouseFile> findByHouseIdAndThumb(Long id, boolean b);
+
+    List<HouseFile> findByHouseId(Long id);
 }

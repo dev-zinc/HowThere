@@ -16,7 +16,8 @@ public class RentCarDTO {
     private RentCarCompany rentCarCompany;
 
     @Builder
-    public RentCarDTO(Long id, RentCarType rentCarType, String rentCarName, Integer rentCarPrice, RentCarCompany rentCarCompany) {
+    public RentCarDTO(Long id, RentCarType rentCarType, String rentCarName, Integer rentCarPrice,
+        RentCarCompany rentCarCompany) {
         this.id = id;
         this.rentCarType = rentCarType;
         this.rentCarName = rentCarName;

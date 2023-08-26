@@ -163,6 +163,7 @@
             </section>
             <input id="latitude" name="latitude" type="hidden" th:value="${house.lat}">
             <input id="longitude" name="longitude" type="hidden" th:value="${house.lon}">
+            <input type="hidden" name="houseId" th:value="${house.id}">
         </form>
     </main>
 </div>
@@ -175,5 +176,6 @@
 <script src="/js/host/write.js"></script>
 <script th:inline="javascript">
   console.log([[${house}]])
+  const house = [[${house}]]
 </script>
 </html>

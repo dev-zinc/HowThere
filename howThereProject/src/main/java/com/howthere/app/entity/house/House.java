@@ -16,7 +16,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class House extends Period {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -40,7 +42,9 @@ public class House extends Period {
     private List<Program> programs;
 
     @Builder
-    public House(@NotNull String houseTitle, @NotNull String houseContent, Address address, @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
+    public House(Long id, @NotNull String houseTitle, @NotNull String houseContent, Address address,
+        @NotNull Integer houseMaxHeadCount, @NotNull Integer houseMaxPetCount, Member member) {
+        this.id = id;
         this.houseTitle = houseTitle;
         this.houseContent = houseContent;
         this.houseAddress = address;
