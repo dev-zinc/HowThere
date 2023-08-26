@@ -4,7 +4,6 @@ import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.type.Verified;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 

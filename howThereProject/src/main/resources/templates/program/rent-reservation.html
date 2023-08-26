@@ -6,8 +6,8 @@
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
 		  name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
     <link href="/css/layout/index.css" rel="stylesheet">
     <link href="/css/program/rent-reservation.css" rel="stylesheet">
     <link href="/css/program/datePicker.css" rel="stylesheet">
@@ -39,29 +39,29 @@
                                                             </span>
                                                         </div>
                                                         <div>
-															<div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+															<div class="carousel slide" data-bs-ride="carousel" id="carouselIndicators">
 																<div class="carousel-indicators">
-																	<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-																	<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-																	<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+																	<button aria-label="Slide 1" class="" data-bs-slide-to="0" data-bs-target="#carouselIndicators" type="button"></button>
+																	<button aria-label="Slide 2" class="" data-bs-slide-to="1" data-bs-target="#carouselIndicators" type="button"></button>
+																	<button aria-current="true" aria-label="Slide 3" class="active" data-bs-slide-to="2" data-bs-target="#carouselIndicators" type="button"></button>
 																</div>
 																<div class="carousel-inner">
 																	<div class="carousel-item">
-																		<img class="car-img" alt="미니" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
+																		<img alt="미니" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
 																	</div>
 																	<div class="carousel-item">
-																		<img class="car-img" alt="경차" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">
+																		<img alt="경차" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">
 																	</div>
 																	<div class="carousel-item active">
-																		<img class="car-img" alt="미니" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
+																		<img alt="미니" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
 																	</div>
 																</div>
-																<button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-																	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+																<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselIndicators" type="button">
+																	<span aria-hidden="true" class="carousel-control-prev-icon"></span>
 																	<span class="visually-hidden">Previous</span>
 																</button>
-																<button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-																	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+																<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselIndicators" type="button">
+																	<span aria-hidden="true" class="carousel-control-next-icon"></span>
 																	<span class="visually-hidden">Next</span>
 																</button>
 															</div>
@@ -105,7 +105,7 @@
                                                             <div>
                                                                 <div class="content info">
                                                                     <div class="icon">
-                                                                        <img src="/img/rent/car-insurance.png" alt="safety">
+                                                                        <img alt="safety" src="/img/rent/car-insurance.png">
                                                                     </div>
                                                                     <div class="text-box">
                                                                         <div class="title">
@@ -120,7 +120,7 @@
                                                             <div>
                                                                 <div class="content info">
                                                                     <div class="icon">
-                                                                        <img src="/img/rent/car.png" alt="convenience options">
+                                                                        <img alt="convenience options" src="/img/rent/car.png">
                                                                     </div>
                                                                     <div class="text-box">
                                                                         <div class="title">
@@ -172,10 +172,34 @@
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-crossorigin="anonymous"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script>
+		const dateDepart = $('#startDate');
+		const dateReturn = $('#endDate');
+
+		$("#startDate, #endDate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			prevText: '<',
+			nextText: '>',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			showMonthAfterYear: true,
+			yearSuffix: '년',
+			minDate: 0
+		}).on('change', function () {
+			const startDate = dateDepart.val();
+			const endDate = dateReturn.val() === "" ? startDate : dateReturn.val();
+
+			if (startDate > endDate)
+				dateDepart.val(endDate);
+		});
+</script>
 </html>

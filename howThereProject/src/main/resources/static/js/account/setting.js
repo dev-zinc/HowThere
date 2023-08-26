@@ -12,29 +12,44 @@ $emailModify.hide();
 $phoneNumbersModify.hide();
 
 $modifyButtons.each((i, button) => {
-    $(button).on('click', function (e) {
-        let showColor;
-        let text;
+  $(button).on('click', function (e) {
+    let showColor;
+    let text;
 
-        e.preventDefault()
-        if(isClicked.reduce((prev, next) => prev || next) && !isClicked[i]) return;
+    e.preventDefault()
+    if (isClicked.reduce((prev, next) => prev || next) && !isClicked[i]) {
+      return;
+    }
 
-        isClicked[i] = !isClicked[i];
+    isClicked[i] = !isClicked[i];
 
-        if(isClicked[i]) {
-            showColor = "#DDDDDD";
-            text = "취소";
-            modifyInputs[i].show();
-        } else {
-            showColor = "#222222";
-            text = "수정";
-            modifyInputs[i].hide();
-        }
+    if (isClicked[i]) {
+      showColor = "#DDDDDD";
+      text = "취소";
+      modifyInputs[i].show();
+    } else {
+      showColor = "#222222";
+      text = "수정";
+      modifyInputs[i].hide();
+    }
 
-        $(this).text(text);
-        $rows.filter(j => i != j).each((_, other) => {
-            $(other).css("color", showColor);
-            $(other).find(".info .info-text").css("color", showColor);
-        });
+    $(this).text(text);
+    $rows.filter(j => i != j).each((_, other) => {
+      $(other).css("color", showColor);
+      $(other).find(".info .info-text").css("color", showColor);
     });
+  });
 });
+
+function updateMyInfo() {
+  const name = document.querySelector("#inputName").value;
+  fetch(`/account/update?name=${name}`, {
+    method: "POST",
+  }).then(res => {
+    console.log(res)
+    if (res.ok) {
+      alert("수정되었습니다.");
+      document.querySelector("#currentName").innerHTML = name;
+    }
+  })
+}

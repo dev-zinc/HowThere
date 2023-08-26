@@ -48,7 +48,7 @@
                                     <h2>실명</h2>
                                 </div>
                                 <div class="info-text">
-                                    <span>사용자 이름</span>
+                                    <span id="currentName" th:text="${member.memberName}"></span>
                                 </div>
                             </div>
 
@@ -57,27 +57,27 @@
                             </div>
                         </div>
 
-                        <form id="name_modify" name="name" style="margin-bottom: 8px;">
+                        <div id="name_modify" name="name" style="margin-bottom: 8px;">
                             <div class="input-wrap flex">
-                                <label class="input-label flex" for="first_name">
+                                <label class="input-label flex" for="inputName">
                                     <div class="label-content">
                                         <span>이름</span>
                                     </div>
-                                    <input name="first_name" id="first_name"
-                                           autocomplete="off" type="text" value="찬">
+                                    <input name="inputName" id="inputName"
+                                           autocomplete="off" type="text" value="">
                                 </label>
-                                <label class="input-label" for="last_name">
-                                    <div class="label-content" style="left: 10px;">
-                                        <span>성</span>
-                                    </div>
-                                    <input name="last_name" id="last_name"
-                                           autocomplete="off" type="text" value="이">
-                                </label>
+<!--                                <label class="input-label" for="last_name">-->
+<!--                                    <div class="label-content" style="left: 10px;">-->
+<!--                                        <span>성</span>-->
+<!--                                    </div>-->
+<!--                                    <input name="last_name" id="last_name"-->
+<!--                                           autocomplete="off" type="text" value="">-->
+<!--                                </label>-->
                             </div>
                             <div class="submit-button">
-                                <button type="submit">저장</button>
+                                <button type="button" onclick="updateMyInfo()">저장</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                     <div class="info-block">
@@ -87,29 +87,29 @@
                                     <h2>이메일 주소</h2>
                                 </div>
                                 <div class="info-text">
-                                    <span>user@email</span>
+                                    <span th:text="${member.memberEmail}"></span>
                                 </div>
                             </div>
 
-                            <div class="info-modify">
-                                <button type="button" class="modify-button">수정</button>
-                            </div>
+<!--                            <div class="info-modify">-->
+<!--                                <button type="button" class="modify-button">수정</button>-->
+<!--                            </div>-->
                         </div>
 
-                        <form id="email_modify" name="email" style="margin-bottom: 8px;">
-                            <div class="input-wrap flex">
-                                <label class="input-label not-name flex" for="member-email">
-                                    <div class="label-content">
-                                        <span>이메일 주소</span>
-                                    </div>
-                                    <input name="email" id="member-email"
-                                           autocomplete="off" type="text" value="user@email">
-                                </label>
-                            </div>
-                            <div class="submit-button">
-                                <button type="submit">저장</button>
-                            </div>
-                        </form>
+<!--                        <form id="email_modify" name="email" style="margin-bottom: 8px;">-->
+<!--                            <div class="input-wrap flex">-->
+<!--                                <label class="input-label not-name flex" for="member-email">-->
+<!--                                    <div class="label-content">-->
+<!--                                        <span>이메일 주소</span>-->
+<!--                                    </div>-->
+<!--                                    <input name="email" id="member-email"-->
+<!--                                           autocomplete="off" type="text" value="user@email">-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                            <div class="submit-button">-->
+<!--                                <button type="submit">저장</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
                     </div>
                     <div class="info-block">
                         <div id="phone-numbers" class="info flex">
@@ -122,25 +122,25 @@
                                 </div>
                             </div>
 
-                            <div class="info-modify">
-                                <button type="button" class="modify-button">수정</button>
-                            </div>
+<!--                            <div class="info-modify">-->
+<!--                                <button type="button" class="modify-button">수정</button>-->
+<!--                            </div>-->
                         </div>
 
-                        <form id="phone_numbers_modify" name="name" style="margin-bottom: 8px;">
-                            <div class="input-wrap flex">
-                                <label class="input-label not-name flex" for="member-phone-numbers">
-                                    <div class="label-content">
-                                        <span>전화번호</span>
-                                    </div>
-                                    <input name="phone-numbers" id="member-phone-numbers"
-                                           autocomplete="off" type="text" value="010-1234-1234">
-                                </label>
-                            </div>
-                            <div class="submit-button">
-                                <button type="submit">저장</button>
-                            </div>
-                        </form>
+<!--                        <form id="phone_numbers_modify" name="name" style="margin-bottom: 8px;">-->
+<!--                            <div class="input-wrap flex">-->
+<!--                                <label class="input-label not-name flex" for="member-phone-numbers">-->
+<!--                                    <div class="label-content">-->
+<!--                                        <span>전화번호</span>-->
+<!--                                    </div>-->
+<!--                                    <input name="phone-numbers" id="member-phone-numbers"-->
+<!--                                           autocomplete="off" type="text" value="010-1234-1234">-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                            <div class="submit-button">-->
+<!--                                <button type="submit">저장</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
                     </div>
                 </div>
 
@@ -188,4 +188,7 @@
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/account/setting.js"></script>
+<script th:inline="javascript">
+  console.log([[${member}]])
+</script>
 </html>
