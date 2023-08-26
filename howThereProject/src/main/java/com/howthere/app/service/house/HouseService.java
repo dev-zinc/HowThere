@@ -4,6 +4,7 @@ import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.embed.Address;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,10 +13,11 @@ public interface HouseService {
 
     Page<HouseDTO> getHouses(Pageable pageable, String keyword);
 
-    House registerHouse(HttpServletRequest req);
+    House registerHouse(HttpServletRequest req) throws IOException;
 
     default House toEntity(HouseDTO houseDTO, Member member) {
         return House.builder()
+            .id(houseDTO.getId())
             .address(Address.builder()
                 .address(houseDTO.getHouseAddress())
                 .addressDetail(houseDTO.getHouseAddressDetail())
