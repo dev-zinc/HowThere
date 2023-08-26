@@ -68,6 +68,7 @@ class PaginationService {
      * @param page 1부터 카운트
      */
     shiftPage(page) {
+        select(this.request);
         this.getPagePromise(page - 1).then(json => {
             this.page = json;
             console.log(json);

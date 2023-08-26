@@ -18,8 +18,6 @@ import java.time.LocalDate;
 @Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
-@SQLDelete(sql = "UPDATE TBL_MEMBER SET DELETED = 1 WHERE ID = ?")
-@Where(clause = "DELETED = 0")
 public class Member extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
@@ -37,6 +35,14 @@ public class Member extends Period {
     private MemberType memberType;
 
     private boolean deleted = Boolean.FALSE;
+
+    public void setMemberBirthDate(LocalDate memberBirthDate) {
+        this.memberBirthDate = memberBirthDate;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     @Builder
     public Member(String memberEmail, String memberName, LocalDate memberBirthDate, String memberProfile, LoginType memberLoginType, MemberType memberType) {

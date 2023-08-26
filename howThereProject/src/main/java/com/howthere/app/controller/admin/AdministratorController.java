@@ -1,12 +1,7 @@
 package com.howthere.app.controller.admin;
 
-import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
-import com.howthere.app.domain.house.HouseDTO;
-import com.howthere.app.domain.program.ProgramDTO;
-import com.howthere.app.domain.program.ProgramReservationDTO;
-import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
 import com.howthere.app.service.admin.AnswerService;
 import com.howthere.app.service.admin.QuestionService;
@@ -16,15 +11,10 @@ import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -55,8 +45,9 @@ public class AdministratorController {
 
     //http://localhost:10000/administrator/notice/detail
     @GetMapping("house/detail")
-    public String houseDetail() {
-        return "/house/detail";
+    public String houseDetail(Long id, Model model) {
+        model.addAttribute("id", id);
+        return "/host/write";
     }
 
     //http://localhost:10000/administrator/reservation
@@ -108,56 +99,5 @@ public class AdministratorController {
         log.info(answerDTO.toString());
         answerService.modify(answerDTO);
         return new RedirectView("");
-    }
-
-    //===============================================================REST
-
-    @GetMapping("api/inquiry")
-    @ResponseBody
-    public Page<QuestionDTO> inquiry(@PageableDefault Pageable pageable, String keyword) {
-        return questionService.getQuestions(pageable, keyword);
-    }
-
-    @GetMapping("api/program")
-    @ResponseBody
-    public Page<ProgramDTO> program(@PageableDefault Pageable pageable, String keyword) {
-        return programService.getPrograms(pageable, keyword);
-    }
-
-    @PostMapping("api/program/modify")
-    @ResponseBody
-    public void programModify(@RequestBody List<Long> ids) {
-        programService.modifyAllBy(ids);
-    }
-
-
-    @GetMapping("api/notice")
-    @ResponseBody
-    public Page<AnnouncementDTO> notice(@PageableDefault Pageable pageable, String keyword) {
-        return announcementService.getAnnouncementList(pageable, keyword);
-    }
-
-    @GetMapping("api/member")
-    @ResponseBody
-    public Page<Member> member(@PageableDefault Pageable pageable, String keyword) {
-        return memberService.getMembers(pageable, keyword);
-    }
-
-    @GetMapping("api/house")
-    @ResponseBody
-    public Page<HouseDTO> house(@PageableDefault Pageable pageable, String keyword) {
-        return houseService.getHouses(pageable, keyword);
-    }
-
-    @PostMapping("api/house/delete")
-    @ResponseBody
-    public void house(@RequestBody List<Long> ids) {
-        houseService.deleteAllBy(ids);
-    }
-
-    @GetMapping("api/reservation")
-    @ResponseBody
-    public Page<ProgramReservationDTO> reserve(@PageableDefault Pageable pageable, String keyword) {
-        return programReservationService.getProgramReservations(pageable, keyword);
     }
 }

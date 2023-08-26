@@ -1,4 +1,4 @@
-package com.howthere.repository.question;
+package com.howthere.app.repository.question;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.admin.QuestionDTO;

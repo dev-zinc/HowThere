@@ -1,4 +1,4 @@
-package com.howthere.repository.program;
+package com.howthere.app.repository.program;
 
 import antlr.collections.impl.IntRange;
 import com.howthere.app.HowThereApplication;

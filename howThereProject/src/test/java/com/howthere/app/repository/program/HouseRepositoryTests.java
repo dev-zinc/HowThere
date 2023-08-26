@@ -1,4 +1,4 @@
-package com.howthere.repository.program;
+package com.howthere.app.repository.program;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.embed.Address;

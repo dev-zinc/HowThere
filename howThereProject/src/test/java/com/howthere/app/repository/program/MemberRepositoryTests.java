@@ -1,4 +1,4 @@
-package com.howthere.repository.program;
+package com.howthere.app.repository.program;
 
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.entity.member.Member;
@@ -36,5 +36,11 @@ public class MemberRepositoryTests {
                     .build();
             memberRepository.save(member);
         });
+    }
+
+    @Test
+    public void modifyTest() {
+        memberRepository.findByMemberEmail("3dollee@naver.com").ifPresent(member ->
+                member.setMemberBirthDate(LocalDate.of(2003, 7, 9)));
     }
 }
