@@ -20,11 +20,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class HouseServiceImpl implements HouseService {
-
     private final HouseRepository houseRepository;
     private final HouseFileRepository fileRepository;
     private final MemberRepository memberRepository;
@@ -32,6 +33,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Page<HouseDTO> getHouses(Pageable pageable, String keyword) {
         return houseRepository.findWithLimitAndKeyword(pageable, keyword);
+    }
+
+    @Override
+    public void deleteAllBy(List<Long> ids) {
+        houseRepository.deleteAllById(ids);
     }
 
     @Override

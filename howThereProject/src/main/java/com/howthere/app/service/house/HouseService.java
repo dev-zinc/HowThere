@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface HouseService {
+import java.util.List;
 
+public interface HouseService {
     Page<HouseDTO> getHouses(Pageable pageable, String keyword);
 
     House registerHouse(HttpServletRequest req) throws IOException;
@@ -35,4 +36,6 @@ public interface HouseService {
     HouseDTO getHouse(Long id);
 
     Page<HouseDTO> getMyHouses(Pageable pageable, Long id);
+
+    void deleteAllBy(List<Long> ids);
 }

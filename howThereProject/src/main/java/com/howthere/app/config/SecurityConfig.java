@@ -85,11 +85,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(ADMIN_PATH).hasRole(MemberType.ADMIN.name()) //ADMIN 권한이 있는 회원은 접근 가능
-                .antMatchers(QUESTION_PATH).hasRole(MemberType.MEMBER.name())
-                .antMatchers(ACCOUNT_PATH).hasRole(MemberType.MEMBER.name())
-                .antMatchers(DIARY_PATH).hasRole(MemberType.MEMBER.name())
-                .antMatchers(PROGRAM_PATH).hasRole(MemberType.MEMBER.name())
-                .antMatchers(HOST_PATH).hasRole(MemberType.MEMBER.name())
+                .antMatchers(QUESTION_PATH).hasAnyRole(MemberType.MEMBER.name(), MemberType.ADMIN.name())
+                .antMatchers(ACCOUNT_PATH).hasAnyRole(MemberType.MEMBER.name(), MemberType.ADMIN.name())
+                .antMatchers(DIARY_PATH).hasAnyRole(MemberType.MEMBER.name(), MemberType.ADMIN.name())
+                .antMatchers(PROGRAM_PATH).hasAnyRole(MemberType.MEMBER.name(), MemberType.ADMIN.name())
+                .antMatchers(HOST_PATH).hasAnyRole(MemberType.MEMBER.name(), MemberType.ADMIN.name())
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint();

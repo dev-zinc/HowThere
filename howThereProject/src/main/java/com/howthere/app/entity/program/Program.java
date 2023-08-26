@@ -53,6 +53,10 @@ public class Program extends Period {
     @JoinColumn(name = "HOUSE_ID")
     private House house;
 
+        this.verified = verified;
+    }
+
+    public void setVerified(Verified verified) {
     @Builder
     public Program(LocalDate programStartDate, LocalDate programEndDate, String programName,
         String programContent, Integer programPrice, Verified verified, House house) {

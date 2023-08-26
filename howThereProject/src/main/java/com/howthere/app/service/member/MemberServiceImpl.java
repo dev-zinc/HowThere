@@ -1,6 +1,7 @@
 package com.howthere.app.service.member;
 
 import com.howthere.app.domain.member.MemberDTO;
+import com.howthere.app.domain.member.MemberInfoDTO;
 import com.howthere.app.domain.member.OAuthAttributes;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.provider.MemberDetail;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +34,8 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
     private final HttpSession session;
 
     @Override
-    public Page<Member> getMembers(Pageable pageable, String keyword) {
-        return memberRepository.getMembers(pageable, keyword);
+    public Page<MemberInfoDTO> getMembers(Pageable pageable, String keyword) {
+        return memberRepository.getMemberInfoDTOs(pageable, keyword);
     }
 
     @Override
@@ -57,7 +59,7 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
-        Member member = saveOrUpdate(attributes);
+        Member member = toMember(attributes);
 
         if(member.getId() == null){
             memberRepository.save(member);
@@ -71,8 +73,14 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(member.getMemberType().getSecurityRole())), attributes.getAttributes(), attributes.getNameAttributeKey());
     }
 
+    @Override
     @Transactional
-    public Member saveOrUpdate(OAuthAttributes attributes){
+    public void modifyAllActivationById(List<Long> ids) {
+        memberRepository.findAllById(ids).forEach(member -> member.setDeleted(!member.isDeleted()));
+    }
+
+    @Transactional
+    public Member toMember(OAuthAttributes attributes){
         return memberRepository.findByMemberEmail(attributes.getEmail())
                 .orElse(attributes.toEntity());
     }

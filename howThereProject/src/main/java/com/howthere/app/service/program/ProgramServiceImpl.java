@@ -8,10 +8,14 @@ import com.howthere.app.service.file.house.HouseFileService;
 import com.howthere.app.service.house.HouseService;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.howthere.app.type.Verified;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +65,9 @@ public class ProgramServiceImpl implements ProgramService {
             .lat(program.getHouse().getHouseAddress().getLatitude())
             .lon(program.getHouse().getHouseAddress().getLongitude())
             .build();
+    @Transactional
+    public void modifyAllBy(List<Long> ids) {
+        programRepository.findAllById(ids).forEach(program ->
+            program.setVerified(program.getVerified() == Verified.Y ? Verified.N : Verified.Y));
     }
 }

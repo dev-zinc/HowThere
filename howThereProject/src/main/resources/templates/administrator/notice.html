@@ -53,18 +53,16 @@
                 <div class="notice-content">내용</div>
                 <div class="notice-register-date">작성 날짜</div>
                 <div class="member-id">관리자 번호</div>
-                <div class="notice-is-blinded">공개여부</div>
             </div>
         `,
         (notice) => `
             <div class="element notice">
                 <div class="checkbox"><input type="checkbox"></div>
                 <div class="notice-id">${notice.id}</div>
-                <div class="notice-name">${notice.id}</div>
-                <div class="notice-content">${notice.id}</div>
-                <div class="notice-register-date">${notice.id}</div>
-                <div class="member-id">${notice.id}</div>
-                <div class="notice-is-blinded">${notice.id}</div>
+                <div class="notice-name">${notice.announcementTitle}</div>
+                <div class="notice-content">${notice.announcementContent}</div>
+                <div class="notice-register-date">${notice.createdDate.substring(0, 10)}</div>
+                <div class="member-id">${notice.adminId}</div>
             </div>
         `, true
     );
