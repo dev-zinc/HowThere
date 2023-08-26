@@ -86,7 +86,6 @@ public class HostController {
     }
 
     @PostMapping("write")
-//    @Transactional(rollbackOn = IOException.class)
     public RedirectView registerHouse(HttpServletRequest req,
         @RequestParam("thumbnail") MultipartFile thumbnail,
         @RequestParam("houseImg") List<MultipartFile> images) {
