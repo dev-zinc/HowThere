@@ -57,10 +57,6 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public HouseDTO getHouse(Long id) {
-//        houseRepository.findById(id).orElseThrow(() -> {
-//            return new RuntimeException("Not Found House By Id : " + id);
-//        });
-        // TODO: 2023/08/20 MapStruct or toDTO 구현
         final HouseDTO houseDTO = houseRepository.getHouse(id);
         final List<String> filePathList = fileRepository.findByHouseIdAndThumb(houseDTO.getId(), false)
             .stream()
