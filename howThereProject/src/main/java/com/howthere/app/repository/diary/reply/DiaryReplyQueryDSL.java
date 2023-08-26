@@ -12,6 +12,9 @@ public interface DiaryReplyQueryDSL {
 //    댓글 수정
     public void update(DiaryReply diaryReply);
 
+//    댓글 전체 삭제
+    public void deleteByDiaryId(Long diaryId);
+
 //    댓글 수
     public Long countReply(Long id);
 }

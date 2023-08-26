@@ -2,6 +2,8 @@ package com.howthere.app.service.diary;
 
 import com.howthere.app.domain.diary.DiaryDTO;
 import com.howthere.app.entity.diary.Diary;
+import com.howthere.app.entity.house.House;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.diary.DiaryRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
@@ -33,9 +35,18 @@ public class DiaryServiceImpl implements DiaryService {
         return diaryRepository.findAllWithSlice(pageable, keyword, order);
     }
 
+//    @Override
+//    public void write(DiaryDTO diaryDTO) {
+//        diaryRepository.save(toEntity(diaryDTO));
+//    }
+
     @Override
-    public void write(DiaryDTO diaryDTO) {
-        diaryRepository.save(toEntity(diaryDTO));
+    public Long write(DiaryDTO diaryDTO) {
+        Member member = memberRepository.findById(diaryDTO.getMemberId()).orElseThrow();
+        House house = houseRepository.findById(diaryDTO.getHouseId()).orElseThrow();
+        Diary diary = diaryRepository.save(toEntity(diaryDTO, member, house));
+
+        return diary.getId();
     }
 
     @Override
@@ -55,7 +66,7 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public void updateViewCount(Long id) {
-        diaryRepository.updateViewCount(diaryRepository.findById(id).get());
+        diaryRepository.updateViewCount(diaryRepository.findById(id).orElseThrow());
     }
 
     @Override
@@ -63,13 +74,13 @@ public class DiaryServiceImpl implements DiaryService {
         diaryRepository.deleteById(id);
     }
 
-    public Diary toEntity(DiaryDTO diaryDTO){
-        return Diary.builder()
-                .id(diaryDTO.getId())
-                .diaryTitle(diaryDTO.getDiaryTitle())
-                .diaryContent(diaryDTO.getDiaryContent())
-                .member(memberRepository.findById(diaryDTO.getMemberId()).get())
-                .house(houseRepository.findById(diaryDTO.getHouseId()).get())
-                .build();
-    }
+//    public Diary toEntity(DiaryDTO diaryDTO){
+//        return Diary.builder()
+//                .id(diaryDTO.getId())
+//                .diaryTitle(diaryDTO.getDiaryTitle())
+//                .diaryContent(diaryDTO.getDiaryContent())
+//                .member(memberRepository.findById(diaryDTO.getMemberId()).get())
+//                .house(houseRepository.findById(diaryDTO.getHouseId()).get())
+//                .build();
+//    }
 }

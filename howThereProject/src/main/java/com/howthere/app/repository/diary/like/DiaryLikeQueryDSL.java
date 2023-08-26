@@ -6,4 +6,7 @@ public interface DiaryLikeQueryDSL {
 
 //    좋아요 수
     public Long countLike(Long id);
+
+//    좋아요 전체 삭제
+    public void deleteByDiaryId(Long diaryId);
 }
