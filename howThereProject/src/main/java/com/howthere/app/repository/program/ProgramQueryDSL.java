@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface ProgramQueryDSL {
     Page<ProgramDTO> findAllWithLimit(Pageable pageable, String keyword);
 
+    Page<ProgramDTO> findAllWithThumbnail(Pageable pageable);
 }

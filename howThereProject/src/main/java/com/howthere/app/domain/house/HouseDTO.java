@@ -1,30 +1,52 @@
 package com.howthere.app.domain.house;
 
-import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDateTime;
+import java.util.List;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
-@Getter @Setter
+@Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class HouseDTO {
+
     private Long id;
     private String houseAddress;
+    private String houseAddressDetail;
+    private Double lat;
+    private Double lon;
     private String houseTitle;
     private String houseContent;
-    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    private Integer houseMaxHeadCount;
+    private Integer houseMaxPetCount;
     private LocalDateTime createdDate;
     private Long memberId;
 
+    private String thumbnail;
+    private List<String> fileList;
     @Builder
-    public HouseDTO(String houseAddress, String houseTitle, String houseContent, LocalDateTime createdDate, Long memberId) {
+    public HouseDTO(Long id, String houseAddress, String houseAddressDetail, Double lat, Double lon,
+        String houseTitle, String houseContent, Integer houseMaxHeadCount, Integer houseMaxPetCount,
+        LocalDateTime createdDate, Long memberId) {
+        this.id = id;
         this.houseAddress = houseAddress;
+        this.houseAddressDetail = houseAddressDetail;
+        this.lat = lat;
+        this.lon = lon;
         this.houseTitle = houseTitle;
         this.houseContent = houseContent;
+        this.houseMaxHeadCount = houseMaxHeadCount;
+        this.houseMaxPetCount = houseMaxPetCount;
         this.createdDate = createdDate;
         this.memberId = memberId;
+    }
+    public void withThumbnail(String filePath){
+        this.thumbnail = filePath;
     }
 }

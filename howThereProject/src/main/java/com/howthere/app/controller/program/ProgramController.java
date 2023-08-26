@@ -1,28 +1,44 @@
 package com.howthere.app.controller.program;
 
+import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.service.program.ProgramService;
+import javax.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/program")
+@RequiredArgsConstructor
 public class ProgramController {
+
+    private final ProgramService programService;
 
     // http://localhost:10000/program/list
     @GetMapping("/list")
-    public ModelAndView list(HttpServletRequest req, ModelAndView mv) {
+    public ModelAndView list(HttpServletRequest req, ModelAndView mv,
+        @PageableDefault(page = 0, size = 5) Pageable pageable) {
         // TODO: 2023/08/05 지도 지우고 무한 스크롤로 변경
         mv.setViewName("program/list");
+        final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
+            pageable);
+        mv.addObject("pagination", programs);
         return mv;
     }
 
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
-    public ModelAndView detail(HttpServletRequest req, ModelAndView mv) {
+    public ModelAndView detail(@RequestParam Long id,HttpServletRequest req, ModelAndView mv) {
+        final ProgramDTO programDTO = programService.getProgram(id);
         mv.setViewName("program/detail");
+        mv.addObject("program", programDTO);
         return mv;
     }
 

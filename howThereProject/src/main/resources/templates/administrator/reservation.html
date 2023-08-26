@@ -23,7 +23,7 @@
                         <div class="ask-wrap">
                             <input type="text" placeholder="예약 내역 검색" class="select">
                         </div>
-                        <input type="button" class="button-delete" value="예약 삭제">
+                        <input type="button" class="button-delete" value="승인/반려 상태 변경">
                     </div>
                     <div class="board-list">
                         <!-- -->
@@ -62,12 +62,12 @@
             <div class="reservation-id">${reservation.id}</div>
             <div class="program-id">${reservation.programName}</div>
             <div class="stay-id">${reservation.houseTitle}</div>
-            <div class="reservation-register-date">${reservation.reservedDate}</div>
+            <div class="reservation-register-date">${reservation.reservedDate.substring(0, 10)}</div>
             <div class="member-id">${reservation.memberId}</div>
             <div class="boss-id">${reservation.hostId}</div>
-            <div class="reservation-is-blinded" style="${reservation.verified == 'Y' ? 'green' : 'red'}">${reservation.verified == 'Y' ? '승인됨' : '반려됨'}</div>
+            <div class="reservation-is-blinded" style="color: ${reservation.verified == 'Y' ? 'green' : 'red'}">${reservation.verified == 'Y' ? '승인됨' : '반려됨'}</div>
         </div>
-        `
+        `, false, "modify"
     );
 </script>
 </html>

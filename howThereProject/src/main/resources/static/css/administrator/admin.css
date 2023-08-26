@@ -29,3 +29,7 @@ li.active {
 li img {
     margin-right: 10px;
 }
+
+.number {
+    cursor: pointer !important;
+}

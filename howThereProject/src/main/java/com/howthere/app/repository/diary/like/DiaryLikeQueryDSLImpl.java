@@ -1,7 +1,5 @@
 package com.howthere.app.repository.diary.like;
 
-import com.howthere.app.entity.diary.DiaryLike;
-import com.howthere.app.entity.diary.QDiaryLike;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 

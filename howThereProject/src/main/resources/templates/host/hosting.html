@@ -1,200 +1,151 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleag.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/diary/article.css">
-    <link rel="stylesheet" href="/css/diary/diary.css">
-    <link rel="stylesheet" href="/css/host/hosting.css">
-    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/diary/article.css" rel="stylesheet">
+    <link href="/css/diary/diary.css" rel="stylesheet">
+    <link href="/css/host/hosting.css" rel="stylesheet">
+    <link href="/css/summernote/summernote-lite.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="/js/summernote/summernote-lite.js"></script>
-    <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
     <title>호스팅</title>
 </head>
 
 <body>
-    <div th:replace="~{/layout/header :: header}"></div>
-    <div>
-        <main>
-            <div id="content-box" class="d-flex justify-content-center">
-                <div id="hosting-content-box-main" class="article-format">
-                    <section id="left-article">
-                        <nav aria-label="이동 경로" class="current-path">
-                            <ol class="path-wrap flex">
-                                <li class="path-content inline-flex">
-                                    <a class="path" href="/diary/list">
-                                        <span>계정</span>
-                                    </a>
-                                    <span class="inline-flex">
-                                        <span class="arrow" aria-hidden="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+<div th:replace="~{/layout/header :: header}"></div>
+<div>
+    <main>
+        <div class="d-flex justify-content-center" id="content-box">
+            <div class="article-format" id="hosting-content-box-main">
+                <section id="left-article">
+                    <nav aria-label="이동 경로" class="current-path">
+                        <ol class="path-wrap flex">
+                            <li class="path-content inline-flex">
+                                <a class="path" href="/diary/list">
+                                    <span>계정</span>
+                                </a>
+                                <span class="inline-flex">
+                                        <span aria-hidden="true" class="arrow">
+                                            <svg aria-hidden="true" focusable="false"
+                                                 role="presentation"
+                                                 style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28" fill="none"></path>
                                             </svg>
                                         </span>
                                     </span>
-                                </li>
-                                <li class="path-content inline-flex">
-                                    <a class="path">
-                                        <span>내 숙소 목록</span>
-                                    </a>
-                                    <span class="inline-flex">
-                                        <span class="arrow" aria-hidden="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                            </li>
+                            <li class="path-content inline-flex">
+                                <a class="path">
+                                    <span>내 숙소 목록</span>
+                                </a>
+                                <span class="inline-flex">
+                                        <span aria-hidden="true" class="arrow">
+                                            <svg aria-hidden="true" focusable="false"
+                                                 role="presentation"
+                                                 style="display:block;fill:none;height:12px;width:12px;stroke:currentColor;stroke-width:2.6666666666666665;overflow:visible" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28" fill="none"></path>
                                             </svg>
                                         </span>
                                     </span>
-                                </li>
-                                <li class="path-content inline-flex">
-                                    <a class="path">
-                                        <span>호스팅</span>
-                                    </a>
-                                </li>
-                            </ol>
-                        </nav>
-                        <a id="article-content"></a>
-                        <div class="content">
-                            <div class="slight-divider"></div>
-                            <div>
-                                <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-indicators">
-                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0"
-                                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
-                                            aria-label="Slide 2"></button>
-                                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
-                                            aria-label="Slide 3"></button>
+                            </li>
+                            <li class="path-content inline-flex">
+                                <a class="path">
+                                    <span>호스팅</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <a id="article-content"></a>
+                    <div class="content">
+                        <div class="slight-divider"></div>
+                        <div>
+                            <div class="carousel slide" data-bs-ride="carousel" id="carouselIndicators">
+                                <div class="carousel-indicators">
+                                    <div th:each="image, i:${house.fileList}">
+                                        <button aria-current="true" class="active" data-bs-slide-to="0"
+                                                data-bs-target="#carouselIndicators" th:if="${i.index == 0}" type="button"></button>
+                                        <button th:attr="data-bs-slide-to=${i.index}, aria-current='true'" data-bs-target="#carouselIndicators" th:unless="${i.index == 0}"
+                                                type="button"></button>
                                     </div>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720"
-                                                class="d-block w-100" alt="...">
-                                        </div>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item" th:each="image:${house.fileList}">
+                                        <img alt="..."
+                                             class="d-block w-100" th:src="|/host/load-image?filePath=${image}|">
                                     </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselIndicators" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselIndicators" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
                                 </div>
-                            </div>
-                            <div class="slight-divider title-last"></div>
-                            <div id="map"></div>
-                            <div class="page-section">
-                                <div class="text-section">
-                                    <pre>
-                                    제주의 자연과 모던함의 만남.
-
-                        프라이빗 독채펜션 동춘house - Private house
-
-                        멋진 바다뷰, 우리들만의 공간
-
-                        밤하늘의 별과 오징어 배를 보며 스파를 즐길 수 있는 곳
-
-                        해외 부럽지 않은곳
-
-                        ★몰카안심zone.★
-                        No hidden camera guaranteed
-
-                        - 기준인원 6명 / 최대 수용인원 8명
-                        - 복층형 거실1
-                        - 방3 (1층 싱글침대 트리플 / 싱글침대 /
-                        2층 침대 퀸 트윈 )
-                        - 화장실2
-                        - 잔디마당
-                        - 3대 주차 가능
-                        - 공항 35분거리
-                        - 김녕해수욕장 10분
-                        - 김녕 미로공원 10분 (키즈)
-                        - 김녕 요트투어 10분
-                        - 함덕해수욕장 15분
-                        - 월정리해수욕장 5분
-                        - 평대리 15분
-                        - 비자림 15분
-                        - 세화해수욕장 10분
-                        - 성산일출봉 25분
-                        숙소
-                        제주스러운 동네 평대.
-                        이곳에서 잠시 멈추셨다 가는건 어떨까요..?
-
-                        2층으로 이루어진 독채팬션입니다
-
-                        모든 방이 오션뷰로 되어있으며
-                        창너머로 한라산을 보실수 있습니다
-
-                        호텔침구로 세팅되어있으며, 매번 손님 퇴실후 전문업체 세탁을 맡기고 있습니다.
-
-                        차로 3분거리에 김녕성세기해변.
-                        8분거리에 함덕. 월정리. 세화가 있습니다.
-                        성산은 25분. 공항은 35~40분거리에 있습니다.
-
-                        구좌의 시작. 평대에서 제주의 동부를 만끽하세요:)
-
-                                </pre>
-                                </div>
+                                <button class="carousel-control-prev" data-bs-slide="prev"
+                                        data-bs-target="#carouselIndicators" type="button">
+                                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" data-bs-slide="next"
+                                        data-bs-target="#carouselIndicators" type="button">
+                                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
-                    </section>
-                    <section id="right-section">
-                        <div class="grid">
-                            <div class="grid between">
-                                <div>체크인</div>
-                                <div><input class="date" type="text" id="hostingCheckIn"></div>
-                            </div>
-                            <div class="grid between">
-                                <div>체크아웃</div>
-                                <div><input class="date" type="text" id="hostingCheckOut"></div>
-                            </div>
-                            <div class="grid between">
-                                <div>가격/박</div>
-                                <div><input class="date" type="number" min="0" step="10"  id="price"></div>
+                        <div class="slight-divider title-last"></div>
+                        <div id="map"></div>
+                        <div class="page-section">
+                            <div class="text-section">
+                                <label for="summernote"></label><textarea cols="30" id="summernote" name="content" rows="10"></textarea>
+
                             </div>
                         </div>
-                        <div class="btn-box flex">
-                            <button class="hosting-btn"><span>호스팅</span></button>
-                            <button class="cancle-btn"><span>취소</span></button>
+                    </div>
+                </section>
+                <section id="right-section">
+                    <div class="grid">
+                        <div class="grid between">
+                            <div>체크인</div>
+                            <div><input class="date" id="hostingCheckIn" type="text"></div>
                         </div>
-                    </section>
-                </div>
+                        <div class="grid between">
+                            <div>체크아웃</div>
+                            <div><input class="date" id="hostingCheckOut" type="text"></div>
+                        </div>
+                        <div class="grid between">
+                            <div>가격/박</div>
+                            <div><input class="date" id="price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-box flex">
+                        <button class="hosting-btn" onclick="submit()"><span>호스팅</span></button>
+                        <button class="cancle-btn" onclick="location.href='/host/inn'">
+                            <span>취소</span></button>
+                    </div>
+                </section>
             </div>
-            <div th:replace="~{/layout/top-btn :: top-btn}"></div>
-        </main>
-    </div>
-    <footer th:replace="~{/layout/footer :: footer}"></footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        </div>
+        <div th:replace="~{/layout/top-btn :: top-btn}"></div>
+    </main>
+</div>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
+<script crossorigin="anonymous"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </body>
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d&libraries=services"></script>
+<script th:inline="javascript">
+  console.log([[${house}]])
+  const house = [[${house}]]
+  document.querySelectorAll('.carousel-item')[0].classList.add('active');
+</script>
 <script src="/js/host/hosting.js"></script>
-
 </html>
