@@ -71,7 +71,7 @@
                                     <div th:each="image, i:${house.fileList}">
                                         <button aria-current="true" class="active" data-bs-slide-to="0"
                                                 data-bs-target="#carouselIndicators" th:if="${i.index == 0}" type="button"></button>
-                                        <button data-bs-slide-to="1" data-bs-target="#carouselIndicators" th:unless="${i.index == 0}"
+                                        <button th:attr="data-bs-slide-to=${i.index}, aria-current='true'" data-bs-target="#carouselIndicators" th:unless="${i.index == 0}"
                                                 type="button"></button>
                                     </div>
                                 </div>
