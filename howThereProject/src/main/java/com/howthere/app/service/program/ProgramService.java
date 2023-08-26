@@ -25,4 +25,6 @@ public interface ProgramService {
     }
 
     Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable);
+
+    ProgramDTO getProgram(Long id);
 }

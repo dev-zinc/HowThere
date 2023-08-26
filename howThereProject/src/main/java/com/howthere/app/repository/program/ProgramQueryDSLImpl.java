@@ -4,6 +4,7 @@ import static com.howthere.app.entity.file.QHouseFile.houseFile;
 import static com.howthere.app.entity.program.QProgram.program;
 
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.type.Verified;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
@@ -24,6 +25,7 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
         ExpressionUtils.as(program.house.member.id, "memberId"),
         program.createdDate,
         ExpressionUtils.as(program.house.houseAddress.address, "programAddress"),
+        ExpressionUtils.as(program.house.houseAddress.addressDetail, "programAddressDetail"),
         program.programName,
         program.programContent,
         program.programStartDate,
@@ -58,6 +60,7 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
             .from(program)
             .innerJoin(houseFile)
             .on(houseFile.thumb.isTrue().and(houseFile.house.id.eq(program.house.id)))
+            .where(program.verified.eq(Verified.Y))
             .offset(pageable.getOffset())
             .limit(pageable.getPageSize())
             .orderBy(program.id.asc())

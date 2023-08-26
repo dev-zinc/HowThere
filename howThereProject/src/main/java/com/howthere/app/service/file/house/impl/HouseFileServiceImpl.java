@@ -105,6 +105,11 @@ class HouseFileServiceImpl implements HouseFileService {
         }
     }
 
+    @Override
+    public List<HouseFile> getHouseFile(Long id) {
+        return houseFileRepository.findByHouseId(id);
+    }
+
     private static class Image {
 
         public final String originalFilename;

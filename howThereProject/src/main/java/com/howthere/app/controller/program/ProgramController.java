@@ -36,7 +36,9 @@ public class ProgramController {
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam Long id,HttpServletRequest req, ModelAndView mv) {
+        final ProgramDTO programDTO = programService.getProgram(id);
         mv.setViewName("program/detail");
+        mv.addObject("program", programDTO);
         return mv;
     }
 
