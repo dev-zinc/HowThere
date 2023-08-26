@@ -115,7 +115,7 @@ section.body{
 
 .board-body{
     width: 90%;
-    height: 85%;
+    height: 100%;
     margin: 0 auto;
     background-color: white;
     /* box-shadow: 1px 1px 3px 1px gray; */

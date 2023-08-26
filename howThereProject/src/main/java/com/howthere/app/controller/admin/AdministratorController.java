@@ -1,7 +1,10 @@
 package com.howthere.app.controller.admin;
 
+import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.member.MemberDTO;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
 import com.howthere.app.service.admin.AnswerService;
 import com.howthere.app.service.admin.QuestionService;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -68,9 +73,14 @@ public class AdministratorController {
         return "/administrator/notice-detail";
     }
 
-    //http://localhost:10000/administrator/notice/write
-    @GetMapping("notice/write")
-    public String noticeWrite() {
+  // http://localhost:10000/administrator/notice/write
+  @GetMapping({"notice/write", "notice/modify"})
+  public String noticeWrite(AnnouncementDTO announcementDTO, Model model, HttpSession session) {
+        MemberDTO admin = (MemberDTO) session.getAttribute("member");
+        if(announcementDTO != null) {
+            model.addAttribute(announcementDTO);
+        }
+        model.addAttribute("adminId", admin.getId());
         return "/administrator/notice-write";
     }
 

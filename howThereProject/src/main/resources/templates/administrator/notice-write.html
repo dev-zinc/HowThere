@@ -20,36 +20,43 @@
             <div class="board-body">
                 <div class="board-list-wrap" style="overflow: auto">
                     <div class="board-view">
-                        <div class="name">
-                            <h2>공지사항 작성</h2>
-                            <div>
-                                <input type="button" class="button-list" value="목록으로">
-                                <input type="button" class="button-write" value="공지사항 작성">
+                        <form th:action="${notice != null ? 'modify' : 'write'}" method="post">
+                            <div class="name">
+                                <h2>공지사항 작성</h2>
+                                <div>
+                                    <input type="button" class="button-list" value="목록으로">
+                                    <input type="submit" class="button-write" value="게시하기">
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-wrapper">
-                            <div class="input-title">
-                                <dl>
-                                    <dt>제목</dt>
-                                    <dd><input type="text" placeholder="제목 입력"/></dd>
-                                </dl>
+                            <div class="input-wrapper">
+                                <div class="input-title">
+                                    <dl>
+                                        <dt>제목</dt>
+                                        <dd><input type="text" name="announcementTitle" placeholder="제목을 입력하세요"/></dd>
+                                    </dl>
+                                </div>
+                                <div class="input-content">
+                                    <dl>
+                                        <dt>내용</dt>
+                                        <dd><textarea name="announcementContent" placeholder="내용을 입력하세요"></textarea></dd>
+                                    </dl>
+                                </div>
+                                <input type="text" name="fileId" hidden="hidden">
+                                <div class="input-file">
+                                    <dl>
+                                        <dt>파일 첨부</dt>
+                                        <dd class="file-img-wrapper" style="display: flex; flex-direction: row">
+                                            <div class="img-wrapper">
+                                                <img src="" style="width: 150px; height: 150px; margin-left: 20px" alt="thumb"/>
+                                                <span class="delete-img">x</span>
+                                            </div>
+                                            <input style="display: none" type="file" id="input-file"/>
+                                            <label class="input-file-label" for="input-file">업로드</label>
+                                        </dd>
+                                    </dl>
+                                </div>
                             </div>
-                            <div class="input-content">
-                                <dl>
-                                    <dt>내용</dt>
-                                    <dd><textarea placeholder="내용 입력"></textarea></dd>
-                                </dl>
-                            </div>
-                            <div class="input-file">
-                                <dl>
-                                    <dt>파일 첨부</dt>
-                                    <dd>
-                                        <input style="display: none" type="file" id="input-file"/>
-                                        <label class="input-file-label" for="input-file">업로드</label>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,4 +64,43 @@
     </section>
 </div>
 </body>
+<script src="/js/administrator/detail.js"></script>
+<script th:inline="javascript">
+    let notice = [[${notice}]];
+</script>
+<script>
+    const $fileInput = $('.input-file-label');
+    const $fileImg = $('.file-img-wrapper');
+
+    const $x = $('.delete-img');
+    const $img = $('.img-wrapper');
+    $img.hide();
+    $x.on('click', () => {
+
+    });
+    let service = new DetailService('notice', function (e) {
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function(e) {
+            let url = e.target.result;
+            if(!url.includes('image')) return;
+
+            let form = new FormData();
+            form.enctype = 'multipart/form-data';
+            form.append("uploadFile", e.target.files[0]);
+            fetch('/files/upload', {
+                method: 'POST',
+                body: form
+            })
+                .then(response => response.text())
+                .then(fileName => fetch(`/files/display?fileName=t_${fileName}`))
+                .then(response => response.text())
+                .then(byteArray => {
+                    $img.prop('src', byteArray);
+                    $img.show();
+                    $fileInput.text('수정');
+                });
+        }
+    });
+</script>
 </html>
