@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService, OAuth2UserService<OAuth
 
     @Override
     public Page<MemberInfoDTO> getMembers(Pageable pageable, String keyword) {
-        return memberRepository.getMembers(pageable, keyword);
+        return memberRepository.getMemberInfoDTOs(pageable, keyword);
     }
 
     @Override
