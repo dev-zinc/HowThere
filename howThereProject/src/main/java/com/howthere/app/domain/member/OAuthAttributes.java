@@ -34,6 +34,8 @@ public class OAuthAttributes {
         log.info("========================{}", registrationId);
         if("naver".equals(registrationId)){
             return ofNaver(userNameAttributeName, attributes);
+        }else if("google".equals(registrationId)){
+            return ofGoogle(userNameAttributeName, attributes);
         }
         return ofKaKao(userNameAttributeName, attributes);
     }
@@ -66,6 +68,20 @@ public class OAuthAttributes {
                 .birthDate(LocalDate.parse(birthDay, DateTimeFormatter.ISO_DATE) )
                 .profile((String)naverAccount.get("profile_image"))
                 .loginType(LoginType.NAVER)
+                .attributes(attributes)
+                .build();
+    }
+
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes){
+        log.info("***************************");
+        log.info(attributes.toString());
+        return OAuthAttributes.builder()
+                .email((String)attributes.get("email"))
+                .name((String)attributes.get("name"))
+                .nameAttributeKey(userNameAttributeName)
+                .birthDate(null)
+                .profile((String)attributes.get("picture"))
+                .loginType(LoginType.GOOGLE)
                 .attributes(attributes)
                 .build();
     }
