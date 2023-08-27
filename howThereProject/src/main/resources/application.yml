@@ -74,6 +74,12 @@ spring:
             authorization-grant-type: authorization_code
             scope: account_email,profile_nickname, profile_image
 
+          google:
+            client-id: 980192371707-v46ls2th1r3j4o936r6qnfekh3etus1j.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:10000/login/oauth2/code/google
+            scope: email, profile
+
         provider:
 
           naver:
