@@ -4,6 +4,7 @@ import com.howthere.app.domain.diary.DiaryDTO;
 import com.howthere.app.domain.diary.DiaryLikeDTO;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.diary.DiaryLike;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.diary.DiaryRepository;
 import com.howthere.app.repository.diary.like.DiaryLikeRepository;
 import com.howthere.app.repository.member.MemberRepository;
@@ -21,7 +22,9 @@ public class DiaryLikeServiceImpl implements DiaryLikeService {
 
     @Override
     public void like(DiaryLikeDTO diaryLikeDTO) {
-        diaryLikeRepository.save(toEntity(diaryLikeDTO));
+        Member member = memberRepository.findById(diaryLikeDTO.getMemberId()).orElseThrow();
+        Diary diary = diaryRepository.findById(diaryLikeDTO.getDiaryId()).orElseThrow();
+        diaryLikeRepository.save(toEntity(diaryLikeDTO, member, diary));
     }
 
     @Override
@@ -39,11 +42,16 @@ public class DiaryLikeServiceImpl implements DiaryLikeService {
         return diaryLikeRepository.countLike(id);
     }
 
-    public DiaryLike toEntity(DiaryLikeDTO diaryLikeDTO){
-        return DiaryLike.builder()
-                .id(diaryLikeDTO.getId())
-                .member(memberRepository.findById(diaryLikeDTO.getMemberId()).get())
-                .diary(diaryRepository.findById(diaryLikeDTO.getDiaryId()).get())
-                .build();
+    @Override
+    public void removeByDiaryId(Long diaryId) {
+        diaryLikeRepository.deleteByDiaryId(diaryId);
     }
+
+//    public DiaryLike toEntity(DiaryLikeDTO diaryLikeDTO){
+//        return DiaryLike.builder()
+//                .id(diaryLikeDTO.getId())
+//                .member(memberRepository.findById(diaryLikeDTO.getMemberId()).get())
+//                .diary(diaryRepository.findById(diaryLikeDTO.getDiaryId()).get())
+//                .build();
+//    }
 }

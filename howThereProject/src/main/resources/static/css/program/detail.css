@@ -490,3 +490,30 @@ button:not(:disabled) {
 input:not([type="range"]):not([type="color"]) {
     writing-mode: horizontal-tb !important;
 }
+
+.carousel-control-prev-icon {
+    background-image: url("../../img/prev-arrow.png");
+}
+
+.carousel-control-next-icon {
+    background-image: url("../../img/next-arrow.png");
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: gray;
+}
+
+.program-price::before {
+    content: "₩";
+}
+
+.program-price::after {
+    content: " /박";
+}

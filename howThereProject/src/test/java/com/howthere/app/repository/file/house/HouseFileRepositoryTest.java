@@ -7,6 +7,8 @@ import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.type.LoginType;
 import com.howthere.app.type.MemberType;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +41,7 @@ class HouseFileRepositoryTest {
     void test() {
         final Member member = Member.builder()
                 .memberEmail("bcf@bcf.com")
-                //.memberBirthDate(LocalDateTime.of(1990, 11, 11, 11, 11))
+                .memberBirthDate(LocalDate.of(1990, 11, 11))
                 .memberLoginType(LoginType.KAKAO)
                 .memberName("LEE")
                 .memberProfile("PRO")

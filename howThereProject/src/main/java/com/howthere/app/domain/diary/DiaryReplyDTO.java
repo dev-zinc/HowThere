@@ -21,6 +21,7 @@ public class DiaryReplyDTO {
     private String replyContent;
     private Long memberId;
     private String memberName;
+    private String memberProfile;
     private Long diaryId;
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDateTime createdDate;
@@ -28,11 +29,12 @@ public class DiaryReplyDTO {
     private LocalDateTime updatedDate;
 
     @QueryProjection
-    public DiaryReplyDTO(Long id, String replyContent, Long memberId, String memberName, Long diaryId, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public DiaryReplyDTO(Long id, String replyContent, Long memberId, String memberName, String memberProfile, Long diaryId, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.replyContent = replyContent;
         this.memberId = memberId;
         this.memberName = memberName;
+        this.memberProfile = memberProfile;
         this.diaryId = diaryId;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;

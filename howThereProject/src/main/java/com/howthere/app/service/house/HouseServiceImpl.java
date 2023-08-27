@@ -1,22 +1,29 @@
 package com.howthere.app.service.house;
 
 import com.howthere.app.domain.house.HouseDTO;
+import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class HouseServiceImpl implements HouseService {
     private final HouseRepository houseRepository;
@@ -35,6 +42,7 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public House registerHouse(HttpServletRequest req) {
+        final String id = req.getParameter("houseId");
         final String houseTitle = req.getParameter("houseTitle");
         final String address = req.getParameter("address");
         final String addressDetail = req.getParameter("addressDetail");
@@ -57,22 +65,19 @@ public class HouseServiceImpl implements HouseService {
             .lat(lat)
             .lon(lon)
             .build();
-
+        if (!StringUtils.isEmpty(id)) {
+            houseDTO.setId(Long.parseLong(id));
+        }
         return houseRepository.save(toEntity(houseDTO, test));
     }
 
     @Override
     public HouseDTO getHouse(Long id) {
-//        houseRepository.findById(id).orElseThrow(() -> {
-//            return new RuntimeException("Not Found House By Id : " + id);
-//        });
-        // TODO: 2023/08/20 MapStruct or toDTO 구현
         final HouseDTO houseDTO = houseRepository.getHouse(id);
-        final List<String> filePathList = fileRepository.findByHouseIdAndThumb(houseDTO.getId(), false)
+        final List<String> filePathList = fileRepository.findByHouseIdAndThumb(houseDTO.getId(),
+                false)
             .stream()
-            .map(file -> {
-                return file.getFilePath() + "/" + file.getFileUuid();
-            })
+            .map(file -> file.getFilePath() + "/" + file.getFileUuid())
             .collect(Collectors.toList());
         houseDTO.setFileList(filePathList);
         return houseDTO;

@@ -14,6 +14,7 @@ $(document).ready(() =>{
     })
 });
 
+
 $('#diary-submit').on('click', () => {
     diaryContent = $("#summernote").summernote('code');
     $('#content-input').val(diaryContent);

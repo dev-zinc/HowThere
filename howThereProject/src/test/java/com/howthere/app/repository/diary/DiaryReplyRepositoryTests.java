@@ -67,6 +67,12 @@ public class DiaryReplyRepositoryTests {
         diaryReplyRepository.deleteById(258L);
     }
 
+
+    @Test
+    public void deleteByDiaryIdTest(){
+        diaryReplyRepository.deleteByDiaryId(44L);
+    }
+
     @Test
     public void countTest(){
         Long count = diaryReplyRepository.countReply(6L);

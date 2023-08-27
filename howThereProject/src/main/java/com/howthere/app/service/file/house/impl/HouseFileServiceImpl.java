@@ -1,21 +1,9 @@
 package com.howthere.app.service.file.house.impl;
 
-import com.howthere.app.config.ConstantPool;
-import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.service.file.house.HouseFileService;
-import java.awt.Image;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,15 +11,20 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 class HouseFileServiceImpl implements HouseFileService {
 
-//    private static final String BASE_PATH = ConstantPool.getFileRootPath();
+    //    private static final String BASE_PATH = ConstantPool.getFileRootPath();
     private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/HowThere";
     private final HouseFileRepository houseFileRepository;
 
@@ -82,9 +75,12 @@ class HouseFileServiceImpl implements HouseFileService {
                     .thumb(true)
                     .build();
                 houseFileList.add(thumbnailFile);
+                deleteAllFile(saved, true);
             }
+            boolean flag = false;
             for (MultipartFile v : images) {
-                if(!v.isEmpty()){
+                if (!v.isEmpty()) {
+                    flag = true;
                     final Image image = getImage(v, saved);
                     houseFileList.add(HouseFile.builder()
                         .filePath(image.path)
@@ -95,6 +91,9 @@ class HouseFileServiceImpl implements HouseFileService {
                         .build());
                 }
             }
+            if (flag) {
+                deleteAllFile(saved, false);
+            }
             if (!houseFileList.isEmpty()) {
                 return houseFileRepository.saveAll(houseFileList);
             } else {
@@ -104,6 +103,22 @@ class HouseFileServiceImpl implements HouseFileService {
             log.error("House File Save Error", e);
             throw e;
         }
+    }
+
+    private void deleteAllFile(House saved, boolean b) throws IOException {
+        final List<HouseFile> fileList = houseFileRepository.findByHouseIdAndThumb(
+            saved.getId(), b);
+        for (HouseFile file : fileList) {
+            String s = file.getFilePath() + "/" + file.getFileUuid();
+            Path path = Paths.get(s);
+            Files.deleteIfExists(path);
+        }
+        houseFileRepository.deleteAll(fileList);
+    }
+
+    @Override
+    public List<HouseFile> getHouseFile(Long id) {
+        return houseFileRepository.findByHouseId(id);
     }
 
     private static class Image {

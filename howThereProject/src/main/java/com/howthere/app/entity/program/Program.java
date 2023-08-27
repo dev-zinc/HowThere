@@ -3,13 +3,24 @@ package com.howthere.app.entity.program;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.type.Verified;
-import lombok.*;
+import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Table(name = "TBL_PROGRAM")
 @Entity
@@ -18,13 +29,15 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @NoArgsConstructor
 public class Program extends Period {
-    @Id @EqualsAndHashCode.Include
+
+    @Id
+    @EqualsAndHashCode.Include
     @GeneratedValue
     private Long id;
     @NotNull
-    private LocalDateTime programStartDate;
+    private LocalDate programStartDate;
     @NotNull
-    private LocalDateTime programEndDate;
+    private LocalDate programEndDate;
     @NotNull
     private String programName;
     @NotNull
@@ -40,13 +53,9 @@ public class Program extends Period {
     @JoinColumn(name = "HOUSE_ID")
     private House house;
 
-    public void setVerified(Verified verified) {
-        this.verified = verified;
-    }
-
     @Builder
-    public Program(LocalDateTime programStartDate, LocalDateTime programEndDate, String programName,
-                   String programContent, Integer programPrice, Verified verified, House house) {
+    public Program(LocalDate programStartDate, LocalDate programEndDate, String programName,
+        String programContent, Integer programPrice, Verified verified, House house) {
         this.programStartDate = programStartDate;
         this.programEndDate = programEndDate;
         this.programName = programName;
@@ -54,5 +63,9 @@ public class Program extends Period {
         this.programPrice = programPrice;
         this.verified = verified;
         this.house = house;
+    }
+
+    public void setVerified(Verified verified) {
+        this.verified = verified;
     }
 }
