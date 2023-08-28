@@ -1,8 +1,10 @@
 package com.howthere.app.controller.program;
 
+import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.service.program.ProgramService;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,10 +37,12 @@ public class ProgramController {
 
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
-    public ModelAndView detail(@RequestParam Long id,HttpServletRequest req, ModelAndView mv) {
+    public ModelAndView detail(@RequestParam Long id, HttpSession session, ModelAndView mv) {
         final ProgramDTO programDTO = programService.getProgram(id);
+        final MemberDTO member = (MemberDTO) session.getAttribute("member");
         mv.setViewName("program/detail");
         mv.addObject("program", programDTO);
+        mv.addObject("myInfo", member);
         return mv;
     }
 

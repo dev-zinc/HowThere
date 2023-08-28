@@ -37,46 +37,22 @@
                                                             <span style="font-size: 26px; line-height:30px;font-weight:  600;">
                                                                 <h1 style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;" th:text="${program.programName}">
                                                                     역사적인 토리노를 만날 수 있는 노블룸</h1>
-																<h4 class="program-price" th:text="${program.programPrice}">₩286,200 /박</h4>
+																<h4 class="program-price" th:text="${program.programPrice}"></h4>
                                                             </span>
                                                         </span>
                                                     </div>
                                                     <div class="title-under">
                                                         <div
                                                             style="-webkit-box-lines: multiple;display: flex;flex-wrap: wrap;margin-top: 8px;">
-                                                                <span class="review-under">
-                                                                    <span class="_12m9c11">
-                                                                        <svg aria-hidden="true" focusable="false"
-                                                                             role="presentation"
-                                                                             style="display: block; height: 14px; width: 14px; fill: currentcolor;"
-                                                                             viewBox="0 0 32 32"
-                                                                             xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"
-                                                                                fill-rule="evenodd"></path>
-                                                                        </svg>
-                                                                    </span>
-                                                                    <span aria-hidden="true"
-                                                                          class="_17p6nbba">4.87·</span>
-                                                                    <span class="review-count">
-                                                                        <button class="review-btn-count"
-                                                                                type="button">후기 158개</button>
-                                                                    </span>
-                                                                </span>
-                                                            <span aria-hidden="true" style="color: rgb(113, 113, 113); font-family: Circular, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-                                                                            font-weight: 400;
-                                                                            margin-top: 8px;
-                                                                            margin-right: 8px;
-                                                                            margin-bottom: 0px;
-                                                                            margin-left: 8px;">·</span>
                                                             <span class="review-under">
-                                                                    <button class="review-location" type="button">
-                                                                        <span aria-hidden="false"
-                                                                              style="overflow-x: clip; overflow-y: clip;">투린,
-                                                                            Piemonte,
-                                                                            이탈리아</span>
-                                                                    </button>
-                                                                </span>
+                                                                <button class="review-location" type="button">
+                                                                    <span aria-hidden="false"
+                                                                          style="overflow-x: clip; overflow-y: clip;" th:text="|${program.programAddress}, ${program.programAddressDetail}|">투린,
+                                                                        Piemonte,
+                                                                        이탈리아
+                                                                    </span>
+                                                                </button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -86,13 +62,13 @@
                                                                     <div th:each="image, i:${program.filePathList}">
                                                                         <button aria-current="true" class="active" data-bs-slide-to="0"
                                                                                 data-bs-target="#carouselIndicators" th:if="${i.index == 0}" type="button"></button>
-                                                                        <button th:attr="data-bs-slide-to=${i.index}, aria-current='true'" data-bs-target="#carouselIndicators" th:unless="${i.index == 0}"
+                                                                        <button data-bs-target="#carouselIndicators" th:attr="data-bs-slide-to=${i.index}, aria-current='true'" th:unless="${i.index == 0}"
                                                                                 type="button"></button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="carousel-inner">
                                                                     <div class="carousel-item" th:each="image:${program.filePathList}">
-                                                                        <img alt="숙소 사진" th:src="|/host/load-image?filePath=${image}|" style="width: 1120px; border-radius: 25px">
+                                                                        <img alt="숙소 사진" style="width: 1120px; border-radius: 25px" th:src="|/host/load-image?filePath=${image}|">
                                                                     </div>
                                                                 </div>
                                                                 <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselIndicators" type="button">
@@ -118,31 +94,16 @@
                                                                 <h2>조이 님이 호스팅하는 공동 주택&nbsp;전체</h2>
                                                             </div>
                                                             <ol class="room-info">
-                                                                <li class=""><span>최대 인원 2명</span>
+                                                                <li>
+                                                                    <span class="max-head-count" th:text="${program.houseMaxHeadCount}"></span>
                                                                     <span class="axjq0r dir dir-ltr"></span>
                                                                 </li>
-                                                                <li class="">
-                                                                        <span class="pen26si dir dir-ltr">
-                                                                            <span aria-hidden="true"
-                                                                                  class="s1b4clln dir dir-ltr"> · </span>
-                                                                        </span>
-                                                                    <span>침실 2개</span>
-                                                                </li>
-                                                                <li class="">
-                                                                        <span class="pen26si dir dir-ltr">
-                                                                            <span aria-hidden="true"
-                                                                                  class="s1b4clln dir dir-ltr">
-                                                                                · </span>
-                                                                        </span>
-                                                                    <span>침대 2개</span>
-                                                                </li>
-                                                                <li class="">
-                                                                        <span class="pen26si dir dir-ltr">
-                                                                            <span aria-hidden="true"
-                                                                                  class="s1b4clln dir dir-ltr">
-                                                                                · </span>
-                                                                        </span>
-                                                                    <span>욕실 1개</span>
+                                                                <li>
+                                                                    <span class="pen26si dir dir-ltr">
+                                                                        <span aria-hidden="true"
+                                                                              class="s1b4clln dir dir-ltr"> · </span>
+                                                                    </span>
+                                                                    <span class="max-pet-count" th:text="${program.houseMaxPetCount}"></span>
                                                                 </li>
                                                             </ol>
                                                         </div>
@@ -193,9 +154,9 @@
                                                                 </div>
                                                                 <div class="text-box">
                                                                     <div class="title">
-                                                                        <b>셀프 체크인</b>
+                                                                        <b>호스트 이름</b>
                                                                     </div>
-                                                                    <div class="text">스마트 도어록을 이용해 체크인하세요.</div>
+                                                                    <div class="text" th:text="${program.hostName}"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -214,11 +175,9 @@
                                                                 </div>
                                                                 <div class="text-box">
                                                                     <div class="title">
-                                                                        <b>조이님은 슈퍼호스트입니다
-                                                                        </b>
+                                                                        <b>호스트 이메일</b>
                                                                     </div>
-                                                                    <div class="text">슈퍼호스트는 풍부한 경험과 높은 평점을 자랑하며
-                                                                        게스트가 숙소에서 편안히 머무를 수 있도록 최선을 다하는 호스트입니다.
+                                                                    <div class="text" th:text="${program.hostEmail}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -634,7 +593,6 @@
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d" type="text/javascript"></script>
-<script src="/js/program/detail.js"></script>
 <script crossorigin="anonymous"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -645,4 +603,5 @@
   console.log([[${program}]])
   const program = [[${program}]]
 </script>
+<script src="/js/program/detail.js"></script>
 </html>

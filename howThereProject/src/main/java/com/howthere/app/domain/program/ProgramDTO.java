@@ -34,13 +34,18 @@ public class ProgramDTO {
     private List<String> filePathList;
     private Double lat;
     private Double lon;
+    private Integer houseMaxHeadCount;
+    private Integer houseMaxPetCount;
+    private String hostName;
+    private String hostEmail;
 
     @Builder
     public ProgramDTO(Long id, Long memberId, LocalDateTime createdDate, LocalDateTime endDate,
         String programAddress, String programAddressDetail, String programName,
         String programContent,
         Integer programPrice, LocalDate programStartDate, LocalDate programEndDate, Long houseId,
-        Verified verified, String thumbnail, List<String> filePathList, Double lat, Double lon) {
+        Verified verified, String thumbnail, List<String> filePathList, Double lat, Double lon,
+        Integer houseMaxHeadCount, Integer houseMaxPetCount, String hostName, String hostEmail) {
         this.id = id;
         this.memberId = memberId;
         this.createdDate = createdDate;
@@ -58,5 +63,9 @@ public class ProgramDTO {
         this.filePathList = filePathList;
         this.lat = lat;
         this.lon = lon;
+        this.houseMaxHeadCount = houseMaxHeadCount;
+        this.houseMaxPetCount = houseMaxPetCount;
+        this.hostName = hostName;
+        this.hostEmail = hostEmail;
     }
 }

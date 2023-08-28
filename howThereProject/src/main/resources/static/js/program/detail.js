@@ -76,4 +76,4 @@ pic.forEach(e => {
 })
 
 document.querySelectorAll('.carousel-item')[0].classList.add('active');
-
+document.querySelector('.program-price').innerHTML = Number.parseInt(program.programPrice).toLocaleString();

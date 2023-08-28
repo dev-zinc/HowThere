@@ -50,6 +50,9 @@ public class ProgramServiceImpl implements ProgramService {
                 + "/"
                 + file.getFileUuid()
         ).collect(Collectors.toList());
+        final String hostName = program.getHouse().getMember().getMemberName();
+        final String hostEmail = program.getHouse().getMember().getMemberEmail();
+        final String hostProfile = program.getHouse().getMember().getMemberProfile();
 
         return ProgramDTO.builder()
             .programAddress(program.getHouse().getHouseAddress().getAddress())
@@ -62,6 +65,10 @@ public class ProgramServiceImpl implements ProgramService {
             .filePathList(filePathList)
             .lat(program.getHouse().getHouseAddress().getLatitude())
             .lon(program.getHouse().getHouseAddress().getLongitude())
+            .houseMaxHeadCount(program.getHouse().getHouseMaxHeadCount())
+            .houseMaxPetCount(program.getHouse().getHouseMaxPetCount())
+            .hostName(hostName)
+            .hostEmail(hostEmail)
             .build();
     }
 
