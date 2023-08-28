@@ -38,7 +38,7 @@ function getList(){
                                 <div style="height: 40px; width: 40px; display: block; position: relative;">
                                     <a class="img-link" href="" target="_blank">
                                         <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">
+                                            <img class="member-img" src="${diaryReply.memberProfile}">
                                         </div>
                                     </a>
                                 </div>

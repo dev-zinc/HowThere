@@ -102,8 +102,10 @@
                                  role="img" aria-busy="false" aria-label="찬님의 사용자 프로필"
                                  style="--dls-liteimage-height: 104px; --dls-liteimage-width: 104px; --dls-liteimage-border-radius: 50%; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
                                 <picture>
-                                    <source srcset="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=240&amp;im_s=133.33&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff 1x" media="(min-width: 0px)">
-                                    <img aria-hidden="true" alt="찬님의 사용자 프로필" elementtiming="LCP-target" src="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=720&amp;im_s=400.00&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff"
+<!--                                    <source srcset="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=240&amp;im_s=133.33&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff 1x" media="(min-width: 0px)">-->
+<!--                                    <img aria-hidden="true" alt="찬님의 사용자 프로필" elementtiming="LCP-target" src="https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_policy=medq_w_text&amp;im_t=%EC%B0%AC&amp;im_w=720&amp;im_s=400.00&amp;im_f=apple-sd-gothic-medium.ttf&amp;im_c=ffffff"-->
+<!--                                         style="&#45;&#45;dls-liteimage-object-fit: cover; &#45;&#45;dls-liteimage-border-radius: 50%; border-radius: 50%">-->
+                                    <img aria-hidden="true" elementtiming="LCP-target" th:src="${diary.member.memberProfile}"
                                          style="--dls-liteimage-object-fit: cover; --dls-liteimage-border-radius: 50%; border-radius: 50%">
                                 </picture>
                             </div>
@@ -112,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <div th:if="${memberId == diary.member.id}" class="modify flex">
+                    <div th:if="${member.id == diary.member.id}" class="modify flex">
                         <div id="modify" class="modify-button">
                             <span>수정하기</span>
                         </div>
@@ -126,9 +128,9 @@
                     <div id="writeComment" class="flex">
                         <div class="member-profile flex">
                             <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">
-                                <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240" alt="w">
+                                <img class="member-img" th:src="${member.memberProfile}" alt="w">
                             </div>
-                            <span class="writer">찬</span>
+                            <span class="writer" th:text="${member.memberName}"></span>
                         </div>
                         <label>
                             <textarea class="comment-writer" placeholder="댓글을 입력하세요"></textarea>
@@ -139,46 +141,7 @@
                     </div>
                     <div class="heavy-divider" style="margin: 0 0 20px 20px;"></div>
                     <section id="comments">
-<!--                        <div class="comment">-->
-<!--                            <div class="comment-wrapper flex">-->
-<!--                                <div class="member-profile">-->
-<!--                                    <span style="font-weight: 700;">종혁</span>-->
-<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
-<!--                                        <span style="display: inline">2023년 7월</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
-<!--                                    <a class="img-link" href="" target="_blank">-->
-<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
-<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="line-height: 24px;">-->
-<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="comment">-->
-<!--                            <div class="comment-wrapper flex">-->
-<!--                                <div class="member-profile">-->
-<!--                                    <span style="font-weight: 700;">종혁</span>-->
-<!--                                    <div class="date-wrapper" style="display: flex; align-items: baseline;">-->
-<!--                                        <span style="display: inline">2023년 7월</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div style="height: 40px; width: 40px; display: block; position: relative;">-->
-<!--                                    <a class="img-link" href="" target="_blank">-->
-<!--                                        <div style="background-position: 50% 50%; background-repeat: no-repeat; width: 40px; height: 40px;">-->
-<!--                                            <img class="member-img" src="https://a0.muscache.com/im/pictures/user/3b0cf3fd-2bdf-4253-848d-e18f2729c1b5.jpg?im_w=240">-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="line-height: 24px;">-->
-<!--                                <span>장난감,수영장,탁구대 등 놀거리가 많아 아이가 있는 가족이 머물기 아주 좋은 숙소입니다!</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--댓글 들어갈 위치-->
                     </section>
                     <div class="modify-button more">
                         <span>후기 n개 더보기</span>
@@ -196,8 +159,13 @@
 <script src="/js/modal/modal.js"></script>
 <script th:inline="javascript">
     const diary = [[${diary}]];
-    console.log(diary.diaryContent);
-    const memberId = [[${memberId}]];
+    // const diaryMemberId = [[${diaryMemberId}]];
+    const member = [[${member}]];
+    const memberId = member.id;
+    const memberProfile = member.member_profile;
+    console.log(member);
+    // console.log(memberId);
+    // console.log(diaryMemberId);
     document.querySelector(".page-section").innerHTML = diary.diaryContent;
 </script>
 <script src="/js/diary/article.js"></script>
