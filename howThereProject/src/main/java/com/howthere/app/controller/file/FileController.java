@@ -35,16 +35,16 @@ public class FileController {
     @PostMapping("upload")
     @ResponseBody
     public List<String> upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
-        // TODO: 2023-08-04 파일 저장로직으로 옮기기
         String path = FILE_ROOT + fileService.getPath();
         List<String> saveFileNames = new ArrayList<>();
         File dir = new File(path);
-
         if(!dir.exists()){dir.mkdirs();}
 
         for (MultipartFile multipartFile : uploadFiles){
             String saveFileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
-            multipartFile.transferTo(new File(path, saveFileName));
+            saveFileNames.add(saveFileName);
+            File saveFile = new File(path, saveFileName);
+            multipartFile.transferTo(saveFile);
 
             if(multipartFile.getContentType().startsWith("image")){
                 try (FileOutputStream out = new FileOutputStream(new File(path, "t_" + saveFileName))){

@@ -7,26 +7,29 @@ const $img = $('.img-wrapper');
 $img.hide();
 $x.on('click', () => {
     $img.hide();
-    console.log($file.files);
-    $file.files = [];
+    $file.val("");
 });
 
 let service = new DetailService('notice', function (e) {
     let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
+    let file = e.target.files[0];
+    reader.readAsDataURL(file);
     reader.onload = function(e) {
         let url = e.target.result;
         if(!url.includes('image')) return;
-
+        console.log(e.target);
         let form = new FormData();
-        form.enctype = 'multipart/form-data';
-        form.append("uploadFile", e.target.files[0]);
+        form.enctype = 'multipart/form-data;charset=utf-8';
+        form.append("uploadFile", file);
         fetch('/files/upload', {
             method: 'POST',
             body: form
         })
-            .then(response => response.text())
-            .then(fileName => fetch(`/files/display?fileName=t_${fileName}`))
+            .then(response => response.json())
+            .then(fileNames => {
+                console.log(fileNames);
+                return fetch(`/files/display?fileName=t_${fileNames[0]}`)
+            })
             .then(response => response.text())
             .then(byteArray => {
                 $img.prop('src', byteArray);
