@@ -1,6 +1,7 @@
 package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDetailDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.member.MemberInfoDTO;

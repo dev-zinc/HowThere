@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Component
-@Getter @ToString
+@Getter @Setter @ToString
 @NoArgsConstructor
 public class AnnouncementDetailDTO {
     private String announcementTitle;

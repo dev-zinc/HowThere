@@ -115,6 +115,7 @@ class HowThereApplicationTests {
             Announcement announcement = Announcement.builder()
                     .announcementTitle("title" + i)
                     .announcementContent("content" + i)
+                    .admin(member)
                     .build();
             announcementRepository.save(announcement);
         });
