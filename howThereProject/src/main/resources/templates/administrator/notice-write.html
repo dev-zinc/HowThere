@@ -43,7 +43,7 @@
                                 </div>
                                 <input type="text" name="fileId" hidden="hidden">
                                 <div class="input-file">
-                                    <dl>
+                                    <dl style="display: flex; flex-direction: row">
                                         <dt>파일 첨부</dt>
                                         <dd class="file-img-wrapper" style="display: flex; flex-direction: row">
                                             <div class="img-wrapper">
@@ -64,6 +64,7 @@
     </section>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/js/administrator/detail.js"></script>
 <script th:inline="javascript">
     let notice = [[${notice}]];

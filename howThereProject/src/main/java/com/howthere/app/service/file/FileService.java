@@ -5,6 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public interface FileService {
     default String getPath(){
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy\\MM\\dd"));
     }
 }
