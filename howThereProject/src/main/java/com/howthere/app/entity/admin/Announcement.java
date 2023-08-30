@@ -29,6 +29,14 @@ public class Announcement extends Period {
         this.admin = admin;
     }
 
+    public void setAnnouncementTitle(String announcementTitle) {
+        this.announcementTitle = announcementTitle;
+    }
+
+    public void setAnnouncementContent(String announcementContent) {
+        this.announcementContent = announcementContent;
+    }
+
     @Builder
     public Announcement(Long id, Member admin, String announcementTitle, String announcementContent) {
         this.id = id;

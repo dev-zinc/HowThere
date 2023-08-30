@@ -19,9 +19,9 @@
         <div class="board-wrap">
             <div class="board-body">
                 <div class="board-list-wrap" style="overflow: auto">
-                    <div class="board-view">
+                    <div class="board-view" th:object="${announcementDetailDTO}">
                         <div class="name">
-                            <h2>새로운 프로그램이 오픈합니다~!!</h2>
+                            <h2 th:text="*{announcementTitle}"></h2>
                             <div>
                                 <input type="button" class="button-list" value="목록으로">
                                 <input type="button" class="button-update" value="공지사항 수정">
@@ -31,35 +31,23 @@
                         <div class="info">
                             <dl>
                                 <dt>공지사항 번호</dt>
-                                <dd>10</dd>
+                                <dd th:text="*{id}"></dd>
                             </dl>
                             <dl>
                                 <dt>관리자 번호</dt>
-                                <dd>1</dd>
+                                <dd th:text="*{adminId}"></dd>
                             </dl>
                             <dl>
                                 <dt>작성날짜</dt>
-                                <dd>2023.07.16</dd>
-                            </dl>
-                            <dl>
-                                <dt>공개여부</dt>
-                                <dd>공개</dd>
+                                <dd th:text="*{getFormattedCreatedDate()}"></dd>
                             </dl>
                         </div>
                         <div class="content">
-                            <img src="/img/img.png" style="height: 200px"><br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!새로운 프로그램이 오픈합니다~!!<br>
-                            새로운 프로그램이 오픈합니다~!!
+                            <th:block th:if="*{filePath != null}">
+                                <img th:src="|/files/display?fileName=*{filePath}t_*{fileUuid}_*{fileName}|" style="height: 200px">
+                            </th:block>
+                            <br>
+                            <th:block th:text="*{announcementContent}"></th:block>
                         </div>
                     </div>
                 </div>
@@ -69,4 +57,15 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="/js/administrator/detail.js"></script>
+<script th:inline="javascript">
+    let announcementDetailDTO = [[${announcementDetailDTO}]];
+</script>
+<script>
+    const $modify = $('.button-update');
+    const $delete = $('.button-delete');
+    let service = new DetailService('notice');
+    $modify.on('click', () => location.href = `/administrator/notice/modify?id=${announcementDetailDTO.id}`);
+    $delete.on('click', () => location.href = `/administrator/notice/delete?id=${announcementDetailDTO.id}`);
+</script>
 </html>

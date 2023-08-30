@@ -16,7 +16,7 @@ $x.on('click', () => {
     $file.val("");
 });
 
-if(announcementDetailDTO.adminId) {
+if(announcementDetailDTO.fileName) {
     setFileThumb({
         fileName: announcementDetailDTO.fileName,
         fileUuid: announcementDetailDTO.fileUuid,

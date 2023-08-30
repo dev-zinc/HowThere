@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.stream.IntStream;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(classes = {HowThereApplication.class})
@@ -33,12 +35,14 @@ public class QuestionRepositoryTests {
     @Test
     public void saveTest() {
         Member member = memberRepository.findAll().stream().findFirst().orElseThrow(RuntimeException::new);
-        Question question = Question.builder()
-                .oneToOneQuestionType(QuestionType.EVENT)
-                .oneToOneQuestionContent("content")
-                .member(member)
-                .build();
-        questionRepository.save(question);
+        IntStream.range(0, 50).forEach(i -> {
+            Question question = Question.builder()
+                    .oneToOneQuestionType(QuestionType.EVENT)
+                    .oneToOneQuestionContent("content" + i)
+                    .member(member)
+                    .build();
+            questionRepository.save(question);
+        });
     }
 
     @Test

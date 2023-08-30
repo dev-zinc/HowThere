@@ -42,6 +42,11 @@ public class AdministratorRestController {
         return questionService.getQuestions(pageable, keyword);
     }
 
+    @PostMapping("inquiry/delete")
+    public void deleteInquiries(@RequestBody List<Long> ids) {
+        questionService.deleteAllBy(ids);
+    }
+
     @GetMapping("program")
     public Page<ProgramDTO> getPrograms(@PageableDefault Pageable pageable, String keyword) {
         return programService.getPrograms(pageable, keyword);
@@ -55,6 +60,11 @@ public class AdministratorRestController {
     @GetMapping("notice")
     public Page<AnnouncementDTO> getNotices(@PageableDefault Pageable pageable, String keyword) {
         return announcementService.getAnnouncementList(pageable, keyword);
+    }
+
+    @PostMapping("notice/delete")
+    public void deleteNotices(@RequestBody List<Long> ids) {
+        announcementService.deleteAllBy(ids);
     }
 
     @GetMapping("member")

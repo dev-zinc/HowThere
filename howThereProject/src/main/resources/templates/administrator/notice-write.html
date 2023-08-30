@@ -43,10 +43,11 @@
                                         </label></dd>
                                     </dl>
                                 </div>
-                                <input type="text" name="fileName" th:field="*{fileName}" class="fileName" hidden="hidden">
-                                <input type="text" name="fileUuid" th:field="*{fileUuid}" class="fileUuid" hidden="hidden">
-                                <input type="text" name="filePath" th:field="*{filePath}" class="filePath" hidden="hidden">
-                                <input type="text" name="fileSize" th:field="*{fileSize}" class="fileSize" hidden="hidden">
+                                <input type="text" name="id" th:value="${announcementDetailDTO.id != null ? announcementDetailDTO.id : ''}" hidden="hidden">
+                                <input type="text" name="fileName" th:value="${announcementDetailDTO.fileName != null ? announcementDetailDTO.fileName : ''}" class="fileName" hidden="hidden">
+                                <input type="text" name="fileUuid" th:value="${announcementDetailDTO.fileUuid != null ? announcementDetailDTO.fileUuid : ''}" class="fileUuid" hidden="hidden">
+                                <input type="text" name="filePath" th:value="${announcementDetailDTO.filePath != null ? announcementDetailDTO.filePath : ''}" class="filePath" hidden="hidden">
+                                <input type="text" name="fileSize" th:value="${announcementDetailDTO.fileSize != null ? announcementDetailDTO.fileSize : ''}" class="fileSize" hidden="hidden">
                                 <div class="input-file">
                                     <dl style="display: flex; flex-direction: row">
                                         <dt>파일 첨부</dt>

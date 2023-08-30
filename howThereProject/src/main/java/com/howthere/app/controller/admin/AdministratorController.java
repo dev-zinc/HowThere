@@ -68,18 +68,19 @@ public class AdministratorController {
 
     //http://localhost:10000/administrator/notice/detail
     @GetMapping("notice/detail")
-    public String noticeDetail() {
+    public String noticeDetail(Long id, Model model) {
+        AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
+        model.addAttribute(announcementDetailDTO);
         return "/administrator/notice-detail";
     }
 
   // http://localhost:10000/administrator/notice/write
   @GetMapping({"notice/write", "notice/modify"})
-  public String noticeWrite(AnnouncementDetailDTO announcementDetailDTO, Model model, HttpSession session) {
-        MemberDTO admin = (MemberDTO) session.getAttribute("member");
-        if(announcementDetailDTO != null) {
+  public String writeNotice(Long id, Model model) {
+        if(id != null) {
+            AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
             model.addAttribute(announcementDetailDTO);
         }
-        model.addAttribute("adminId", admin.getId());
         return "/administrator/notice-write";
     }
 
@@ -89,6 +90,21 @@ public class AdministratorController {
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
         announcementDetailDTO.setAdminId(memberDTO.getId());
         announcementService.save(announcementDetailDTO);
+        return new RedirectView("");
+    }
+
+    @PostMapping("notice/modify")
+    public RedirectView modifyNotice(AnnouncementDetailDTO announcementDetailDTO, HttpSession session) {
+        log.info(announcementDetailDTO.toString());
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        announcementDetailDTO.setAdminId(memberDTO.getId());
+        announcementService.modify(announcementDetailDTO);
+        return new RedirectView("");
+    }
+
+    @GetMapping("notice/delete")
+    public RedirectView deleteNotice(Long id) {
+        announcementService.delete(id);
         return new RedirectView("");
     }
 
