@@ -35,6 +35,7 @@ li img {
 }
 
 .delete-img {
+    cursor: pointer;
     position: relative;
     background-color: #B0B0B0;
     color: #777777;

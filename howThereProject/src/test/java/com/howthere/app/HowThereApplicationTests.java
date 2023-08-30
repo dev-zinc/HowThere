@@ -96,8 +96,8 @@ class HowThereApplicationTests {
                     .programName("name" + i)
                     .programContent("content" + i)
                     .programPrice(100_000 * i)
-                    .programStartDate(LocalDateTime.now())
-                    .programEndDate(LocalDateTime.now())
+                    .programStartDate(LocalDate.from(LocalDateTime.now()))
+                    .programEndDate(LocalDate.from(LocalDateTime.now()))
                     .verified(Verified.Y)
                     .house(house)
                     .build();

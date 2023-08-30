@@ -7,8 +7,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_ANNOUNCE_FILE")
-@Getter @ToString(callSuper = true)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@ToString
+@NoArgsConstructor
 public class AnnounceFile extends FileEntity {
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "ANNOUNCEMENT_ID")
     private Announcement announcement;

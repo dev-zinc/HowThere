@@ -1,5 +1,7 @@
 package com.howthere.app.controller.file;
 
+import com.howthere.app.domain.file.FileDTO;
+import com.howthere.app.entity.file.FileEntity;
 import com.howthere.app.service.file.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +16,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,40 +29,38 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileController {
 
-    // TODO: 2023-08-04 파일 서비스 받기
     private final FileService fileService;
 
-    // TODO: 2023-08-04 파일 저장로직으로 옮기기
     @Value("${file-root}")
     private String FILE_ROOT;
 
 //    파일 업로드
     @PostMapping("upload")
     @ResponseBody
-    public List<String> upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
+    public List<FileDTO> upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
+        final List<FileDTO> saveFiles = new ArrayList<>();
         String path = FILE_ROOT + fileService.getPath();
-        List<String> saveFileNames = new ArrayList<>();
         File dir = new File(path);
-        if(!dir.exists()){dir.mkdirs();}
+
+        if(!dir.exists()) dir.mkdirs();
 
         for (MultipartFile multipartFile : uploadFiles){
-            String saveFileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
-            saveFileNames.add(saveFileName);
-            File saveFile = new File(path, saveFileName);
+            FileDTO fileDTO = fileService.toDTO(multipartFile);
+            File saveFile = new File(path, fileDTO.getFullName());
+            saveFiles.add(fileDTO);
             multipartFile.transferTo(saveFile);
 
             if(multipartFile.getContentType().startsWith("image")){
-                try (FileOutputStream out = new FileOutputStream(new File(path, "t_" + saveFileName))){
+                try (FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileDTO.getFullName()))){
                     Thumbnailator.createThumbnail(multipartFile.getInputStream(), out, 100, 100);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
             }
         }
-        return saveFileNames;
+        log.info(saveFiles.toString());
+        return saveFiles;
     }
-
-
 
 //    파일 불러오기
     @GetMapping("display")

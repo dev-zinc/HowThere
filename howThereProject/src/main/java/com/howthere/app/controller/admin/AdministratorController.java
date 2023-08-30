@@ -1,6 +1,7 @@
 package com.howthere.app.controller.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDetailDTO;
 import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.member.MemberDTO;
@@ -20,18 +21,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/administrator/*")
 public class AdministratorController {
-    private final ProgramService programService;
-    private final MemberService memberService;
     private final AnnouncementService announcementService;
     private final QuestionService questionService;
-    private final HouseService houseService;
-    private final ProgramReservationService programReservationService;
     private final AnswerService answerService;
 
     //http://localhost:10000/administrator/program
@@ -75,13 +74,22 @@ public class AdministratorController {
 
   // http://localhost:10000/administrator/notice/write
   @GetMapping({"notice/write", "notice/modify"})
-  public String noticeWrite(AnnouncementDTO announcementDTO, Model model, HttpSession session) {
+  public String noticeWrite(AnnouncementDetailDTO announcementDetailDTO, Model model, HttpSession session) {
         MemberDTO admin = (MemberDTO) session.getAttribute("member");
-        if(announcementDTO != null) {
-            model.addAttribute(announcementDTO);
+        if(announcementDetailDTO != null) {
+            model.addAttribute(announcementDetailDTO);
         }
         model.addAttribute("adminId", admin.getId());
         return "/administrator/notice-write";
+    }
+
+    @PostMapping("notice/write")
+    public RedirectView writeNotice(AnnouncementDetailDTO announcementDetailDTO, HttpSession session) {
+        log.info(announcementDetailDTO.toString());
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        announcementDetailDTO.setAdminId(memberDTO.getId());
+        announcementService.save(announcementDetailDTO);
+        return new RedirectView("");
     }
 
     //http://localhost:10000/administrator/inquiry

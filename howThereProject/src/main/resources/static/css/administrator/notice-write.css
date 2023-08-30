@@ -127,7 +127,7 @@ section.body{
 }
 
 .board-view{
-    height: 70%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -250,11 +250,14 @@ input::placeholder {font-family: Arial; color: #333;}
 }
 
 .input-file dd {
-    /*width: calc(100% - 100px);*/
-    width: 100px;
+    width: 100%;
 }
 
 .input-file-label{
+    text-align: center;
+    display: block;
+    width: 100px;
+    height: 30px;
     background-color: #333;
     border-radius: 10px;
     color: white;

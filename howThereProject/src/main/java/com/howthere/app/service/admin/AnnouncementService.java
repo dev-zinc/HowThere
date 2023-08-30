@@ -1,7 +1,9 @@
 package com.howthere.app.service.admin;
 
 import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDetailDTO;
 import com.howthere.app.entity.admin.Announcement;
+import com.howthere.app.repository.member.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,9 +12,9 @@ public interface AnnouncementService {
     AnnouncementDTO getAnnouncementById(Long id);
 
 //    저장, 수정
-    void save(AnnouncementDTO announcementDTO);
+    void save(AnnouncementDetailDTO announcementDetailDTO);
 
-//    삭제
+    //    삭제
     void remove(AnnouncementDTO announcementDTO);
 
 //    리스트 가져오기(페이징 처리)
@@ -35,6 +37,14 @@ public interface AnnouncementService {
                 .id(announcementDTO.getId())
                 .announcementTitle(announcementDTO.getAnnouncementTitle())
                 .announcementContent(announcementDTO.getAnnouncementContent())
+                .build();
+    }
+
+    default Announcement toEntity(AnnouncementDetailDTO announcementDetailDTO, MemberRepository memberRepository){
+        return Announcement.builder()
+                .announcementTitle(announcementDetailDTO.getAnnouncementTitle())
+                .announcementContent(announcementDetailDTO.getAnnouncementContent())
+                .admin(memberRepository.findById(announcementDetailDTO.getAdminId()).orElseThrow(RuntimeException::new))
                 .build();
     }
 

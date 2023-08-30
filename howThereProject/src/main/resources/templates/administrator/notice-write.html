@@ -20,9 +20,9 @@
             <div class="board-body">
                 <div class="board-list-wrap" style="overflow: auto">
                     <div class="board-view">
-                        <form th:action="${notice != null ? 'modify' : 'write'}" method="post">
+                        <form th:action="${announcementDetailDTO.adminId != null ? 'modify' : 'write'}" th:object="${announcementDetailDTO}" method="post">
                             <div class="name">
-                                <h2>공지사항 작성</h2>
+                                <h2 th:text="|공지사항 ${announcementDetailDTO.adminId != null ? '수정' : '작성'}|"></h2>
                                 <div>
                                     <input type="button" class="button-list" value="목록으로">
                                     <input type="submit" class="button-write" value="게시하기">
@@ -32,26 +32,31 @@
                                 <div class="input-title">
                                     <dl>
                                         <dt>제목</dt>
-                                        <dd><input type="text" name="announcementTitle" placeholder="제목을 입력하세요"/></dd>
+                                        <dd><input type="text" th:field="*{announcementTitle}" name="announcementTitle" placeholder="제목을 입력하세요"/></dd>
                                     </dl>
                                 </div>
                                 <div class="input-content">
                                     <dl>
                                         <dt>내용</dt>
-                                        <dd><textarea name="announcementContent" placeholder="내용을 입력하세요"></textarea></dd>
+                                        <dd><label>
+                                            <textarea class="announcementContent" th:field="*{announcementContent}" name="announcementContent" placeholder="내용을 입력하세요"></textarea>
+                                        </label></dd>
                                     </dl>
                                 </div>
-                                <input type="text" name="fileId" hidden="hidden">
+                                <input type="text" name="fileName" th:field="*{fileName}" class="fileName" hidden="hidden">
+                                <input type="text" name="fileUuid" th:field="*{fileUuid}" class="fileUuid" hidden="hidden">
+                                <input type="text" name="filePath" th:field="*{filePath}" class="filePath" hidden="hidden">
+                                <input type="text" name="fileSize" th:field="*{fileSize}" class="fileSize" hidden="hidden">
                                 <div class="input-file">
                                     <dl style="display: flex; flex-direction: row">
                                         <dt>파일 첨부</dt>
                                         <dd class="file-img-wrapper" style="display: flex; flex-direction: row">
+                                            <label class="input-file-label" for="input-file">업로드</label>
                                             <div class="img-wrapper">
-                                                <img src="" style="width: 150px; height: 150px; margin-left: 20px" alt="thumb"/>
+                                                <img src="" style="width: 100px; height: 100px; margin-left: 20px" alt="thumb"/>
                                                 <span class="delete-img">x</span>
                                             </div>
                                             <input style="display: none" type="file" id="input-file"/>
-                                            <label class="input-file-label" for="input-file">업로드</label>
                                         </dd>
                                     </dl>
                                 </div>
@@ -67,7 +72,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="/js/administrator/detail.js"></script>
 <script th:inline="javascript">
-    let notice = [[${notice}]];
+    let announcementDetailDTO = [[${announcementDetailDTO}]];
 </script>
 <script src="/js/administrator/write.js"></script>
 </html>
