@@ -20,6 +20,17 @@ import org.springframework.data.domain.Pageable;
 public class ProgramQueryDSLImpl implements ProgramQueryDSL {
 
     private final JPAQueryFactory queryDSL;
+
+    private final QBean<ProgramDTO> programListDTO = Projections.fields(ProgramDTO.class,
+            program.id,
+            ExpressionUtils.as(program.house.member.id, "memberId"),
+            program.createdDate,
+            ExpressionUtils.as(program.house.houseAddress.address, "programAddress"),
+            program.programName,
+            program.programContent,
+            program.verified
+    );
+
     private final QBean<ProgramDTO> programDTOQuery = Projections.fields(ProgramDTO.class,
         program.id,
         ExpressionUtils.as(program.house.member.id, "memberId"),
@@ -42,7 +53,7 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
             : null;
 
         final List<ProgramDTO> programDTOs = queryDSL
-            .select(programDTOQuery)
+            .select(programListDTO)
             .from(program)
             .offset(pageable.getOffset())
             .limit(pageable.getPageSize())

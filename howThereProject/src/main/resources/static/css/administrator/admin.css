@@ -33,3 +33,12 @@ li img {
 .number {
     cursor: pointer !important;
 }
+
+.delete-img {
+    cursor: pointer;
+    position: relative;
+    background-color: #B0B0B0;
+    color: #777777;
+    font-size: 20px;
+    font-weight: 400;
+}

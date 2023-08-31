@@ -29,4 +29,8 @@ public class AnnouncementRepositoryTests {
             announcementRepository.save(announcement);
         });
     }
+    @Test
+    public void findAllTest() {
+        announcementRepository.findAll().forEach(announcement -> log.info(announcement.toString()));
+    }
 }

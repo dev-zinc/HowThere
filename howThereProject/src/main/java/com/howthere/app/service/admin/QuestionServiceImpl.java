@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -65,5 +66,8 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
-
+    @Override
+    public void deleteAllBy(List<Long> ids) {
+        questionRepository.deleteAllById(ids);
+    }
 }

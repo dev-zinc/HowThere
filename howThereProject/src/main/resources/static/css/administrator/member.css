@@ -167,7 +167,7 @@ input.select:focus{
 .button-delete {
     border-radius: 10px;
     cursor: pointer;
-    width: 100px;
+    width: 150px;
     height: 30px;
     text-align: center;
     font-size: 12px;
