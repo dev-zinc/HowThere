@@ -26,7 +26,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     private static final String FAVICON_PATH = "/favicon.ico";
     private static final String MAIN_PATH = "/**";
-    private static final String ADMIN_PATH = "/admin/**";
+    private static final String ADMIN_PATH = "/administrator/**";
     private static final String QUESTION_PATH = "/one_to_one_question/**";
     private static final String ACCOUNT_PATH = "/account/**";
     private static final String DIARY_PATH = "/diary/**";

@@ -43,7 +43,7 @@ class PaginationService {
                 method: 'POST',
                 headers: { 'Content-type': "application/json;charset=utf-8" },
                 body: JSON.stringify(list)
-            }).then(_ => this.shiftPage(1), console.log);
+            }).then(_ => this.shiftPage(this.page.number + 1), console.log);
         });
 
         select(request);

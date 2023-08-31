@@ -64,7 +64,9 @@
                 <div class="notice-register-date">${notice.createdDate.substring(0, 10)}</div>
                 <div class="member-id">${notice.adminId}</div>
             </div>
-        `, true
+        `, true, "delete"
     );
+
+    $('.button-write').on('click', () => location.href = '/administrator/notice/write');
 </script>
 </html>

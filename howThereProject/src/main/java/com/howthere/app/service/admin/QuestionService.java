@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public interface QuestionService {
 
@@ -25,6 +26,8 @@ public interface QuestionService {
     QuestionDTO findQuestion(Long id);
 
     Page<QuestionDetailDTO> getQnAs(String searchText, Pageable pageable);
+
+    void deleteAllBy(List<Long> ids);
 
     default Question toEntity(QuestionDTO dto){
         return Question.builder()
