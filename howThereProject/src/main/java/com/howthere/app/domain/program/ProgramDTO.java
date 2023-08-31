@@ -38,6 +38,7 @@ public class ProgramDTO {
     private Integer houseMaxPetCount;
     private String hostName;
     private String hostEmail;
+    private String hostProfile;
 
     @Builder
     public ProgramDTO(Long id, Long memberId, LocalDateTime createdDate, LocalDateTime endDate,
@@ -45,7 +46,8 @@ public class ProgramDTO {
         String programContent,
         Integer programPrice, LocalDate programStartDate, LocalDate programEndDate, Long houseId,
         Verified verified, String thumbnail, List<String> filePathList, Double lat, Double lon,
-        Integer houseMaxHeadCount, Integer houseMaxPetCount, String hostName, String hostEmail) {
+        Integer houseMaxHeadCount, Integer houseMaxPetCount, String hostName, String hostEmail,
+        String hostProfile) {
         this.id = id;
         this.memberId = memberId;
         this.createdDate = createdDate;
@@ -67,5 +69,6 @@ public class ProgramDTO {
         this.houseMaxPetCount = houseMaxPetCount;
         this.hostName = hostName;
         this.hostEmail = hostEmail;
+        this.hostProfile = hostProfile;
     }
 }

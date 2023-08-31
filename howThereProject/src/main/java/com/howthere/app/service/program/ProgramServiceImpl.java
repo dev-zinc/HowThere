@@ -69,6 +69,7 @@ public class ProgramServiceImpl implements ProgramService {
             .houseMaxPetCount(program.getHouse().getHouseMaxPetCount())
             .hostName(hostName)
             .hostEmail(hostEmail)
+            .hostProfile(hostProfile)
             .build();
     }
 

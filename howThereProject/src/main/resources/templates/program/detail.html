@@ -91,7 +91,7 @@
                                                     <div>
                                                         <div style="flex-grow: 0;flex-shrink: 1;flex-basis: 100%;">
                                                             <div class="room-description">
-                                                                <h2>조이 님이 호스팅하는 공동 주택&nbsp;전체</h2>
+                                                                <h2 th:text="|${program.hostName} 님이 호스팅하는 숙소|"></h2>
                                                             </div>
                                                             <ol class="room-info">
                                                                 <li>
@@ -115,16 +115,10 @@
                                                             <div class="host-img-box"
                                                                  style="height: 56px; width: 56px; border-radius: 50%;">
                                                                 <div aria-busy="false"
-                                                                     aria-label="조이님은 슈퍼호스트입니다. 조이님에 대해 자세히 알아보세요."
-                                                                     class="dqra4ro bmwtyu7 dir dir-ltr" role="img"
+                                                                     role="img"
                                                                      style="--dls-liteimage-height: 100%; --dls-liteimage-width: 100%; --dls-liteimage-background-image: url(&quot;data:image/png;base64,null&quot;); --dls-liteimage-background-size: cover;">
-                                                                    <img alt="조이님은 슈퍼호스트입니다. 조이님에 대해 자세히 알아보세요."
-                                                                         aria-hidden="true"
-                                                                         class="i9if2t0 i1mla2as i1cqnm0r dir dir-ltr"
-                                                                         data-original-uri="https://a0.muscache.com/im/pictures/user/3de55613-4266-4ef4-869d-af9c61b00eb0.jpg?im_w=240"
-                                                                         decoding="async" elementtiming="LCP-target"
-                                                                         src="https://a0.muscache.com/im/pictures/user/3de55613-4266-4ef4-869d-af9c61b00eb0.jpg?im_w=240"
-                                                                         style="--dls-liteimage-object-fit: cover;">
+                                                                    <img aria-hidden="true"
+                                                                         th:src="${program.hostProfile}" style="width: 100%;">
                                                                     <div class="rsb5yse bmwtyu7 dqqltwe dir dir-ltr"
                                                                          style="--dls-liteimage-background-size: cover; --dls-liteimage-background-image: url(https\:\/\/a0\.muscache\.com\/im\/pictures\/user\/3de55613-4266-4ef4-869d-af9c61b00eb0\.jpg\?im_w\=240);">
                                                                     </div>
@@ -182,28 +176,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <div class="content info">
-                                                                <div class="icon">
-                                                                    <svg aria-hidden="true" focusable="false"
-                                                                         role="presentation"
-                                                                         style="display: block; height: 24px; width: 24px; fill: currentcolor;"
-                                                                         viewBox="0 0 32 32"
-                                                                         xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M24.33 1.67a2 2 0 0 1 2 1.85v24.81h3v2H2.67v-2h3V3.67a2 2 0 0 1 1.85-2h.15zm-4 2H7.67v24.66h12.66zm4 0h-2v24.66h2zm-7 11a1.33 1.33 0 1 1 0 2.66 1.33 1.33 0 0 1 0-2.66z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <div class="text-box">
-                                                                    <div class="title">
-                                                                        <b>10월 13일 전까지
-                                                                            무료로 취소하실 수 있습니다.</b>
-                                                                    </div>
-                                                                    <div class="text"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,12 +186,7 @@
                                                     <div>
                                                         <div
                                                             style="line-height: 24px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;">
-                                                            <div class="ll4r2nl dir dir-ltr">한국 최고의 아름다움을 자랑하는
-                                                                오션뷰!!! 일출과 일몰을 동시에 감상 할 수 있으며, 마음의 맑은 공기와 바위가 부딪히는
-                                                                파도소리, 달빛에 반짝이는 바다, 밤에는 떠 있는 배를 감상 할 수
-                                                                있습니다.<br><br>또한, 수영장 빌라를 연상시키는 욕조에서 스파를 즐길 수
-                                                                있으며, 호텔급 재료로 만들어진 내부 공간도 이용하실 수
-                                                                있습니다.<br><br>
+                                                            <div th:text="${program.programContent}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,143 +195,6 @@
 
                                             <div>
                                                 <div class="content-border"></div>
-                                                <div class="reply-container">
-                                                    <div style="margin-right: auto; max-width: 1120px;">
-                                                        <div style="padding-top: 48px; padding-bottom: 20px;">
-                                                            <section>
-                                                                <div class="grade-top">
-                                                                        <span class="star"><svg aria-hidden="true"
-                                                                                                focusable="false" role="presentation"
-                                                                                                style="display: block; height: 16px; width: 16px; fill: currentcolor;"
-                                                                                                viewBox="0 0 32 32"
-                                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <path
-                                                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"
-                                                                                    fill-rule="evenodd"></path>
-                                                                            </svg></span>
-                                                                    <span class="text">
-                                                                            <h2
-                                                                                style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;">
-                                                                                <div dir="ltr">
-                                                                                    <span aria-hidden="true">4.93 · 후기
-                                                                                        270개</span>
-                                                                                </div>
-                                                                            </h2>
-                                                                        </span>
-                                                                </div>
-                                                            </section>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div
-                                                        style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;">
-                                                        <div class="grade-container">
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="percent"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="percent"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="point"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="point"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="point"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grade">
-                                                                <div style="margin-bottom: 16px;">
-                                                                    <div class="grade-line">
-                                                                        <div class="text">
-                                                                            청결도
-                                                                        </div>
-                                                                        <div class="graph">
-                                                                            <div class="bar">
-                                                                                    <span class="point"
-                                                                                          style="width: 98%"></span>
-                                                                            </div>
-                                                                            <span aria-hidden="true"
-                                                                                  class="point">4.9</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div>
                                                     <div style="padding-top: 20px;">
                                                         <div class="grade-container">
