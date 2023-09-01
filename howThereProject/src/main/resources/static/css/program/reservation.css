@@ -27,3 +27,11 @@
     margin: 12px 24px 0 0;
     position: relative;
 }
+
+.reservation-price::before {
+    content: '₩';
+}
+
+.reservation-price::after {
+    content: ' 원';
+}
