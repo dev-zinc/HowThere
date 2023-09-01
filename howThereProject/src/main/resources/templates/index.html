@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>아웃 서울</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/layout/index.css">
+    <title>아웃 서울</title>
 </head>
 <body>
     <div th:replace="~{/layout/header :: header}"></div>
@@ -523,5 +525,11 @@
     </div>
    <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:inline="javascript">
+    let programs = [[${programs}]];
+    let diaries = [[${diaries}]];
+    console.log(programs, diaries)
+</script>
 <script src="/js/layout/index.js"></script>
 </html>

@@ -1,11 +1,12 @@
 package com.howthere.app.service.program;
 
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
+import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.program.Program;
 import com.howthere.app.repository.program.ProgramRepository;
 import com.howthere.app.service.file.house.HouseFileService;
-import com.howthere.app.service.house.HouseService;
 import com.howthere.app.type.Verified;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +22,15 @@ public class ProgramServiceImpl implements ProgramService {
 
     private final ProgramRepository programRepository;
     private final HouseFileService houseFileService;
-    private final HouseService houseService;
 
     @Override
-    public Page<ProgramDTO> getPrograms(Pageable pageable, String keyword) {
+    public Page<ProgramListDTO> getPrograms(Pageable pageable, String keyword) {
         return programRepository.findAllWithLimit(pageable, keyword);
+    }
+
+    @Override
+    public List<ProgramMainDTO> getPrograms() {
+        return programRepository.findAll10();
     }
 
     @Override

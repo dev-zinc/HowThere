@@ -26,3 +26,4 @@ function moveSlide(e){
     targetListWrap.dataset.transX = movePx;
     targetListWrap.style.transform = `translateX(${movePx}px)`;
 }
+

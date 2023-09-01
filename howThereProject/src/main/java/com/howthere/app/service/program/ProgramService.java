@@ -1,6 +1,8 @@
 package com.howthere.app.service.program;
 
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
+import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.program.Program;
 import org.springframework.data.domain.Page;
@@ -10,7 +12,9 @@ import java.util.List;
 
 public interface ProgramService {
 
-    Page<ProgramDTO> getPrograms(Pageable pageable, String keyword);
+    Page<ProgramListDTO> getPrograms(Pageable pageable, String keyword);
+
+    List<ProgramMainDTO> getPrograms();
 
     void registerProgram(ProgramDTO dto);
 

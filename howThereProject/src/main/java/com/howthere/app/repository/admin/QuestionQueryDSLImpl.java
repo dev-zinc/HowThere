@@ -70,6 +70,7 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                 .from(question)
                 .leftJoin(answer)
                 .on(answer.question.id.eq(question.id).and(hasKeyword))
+                .orderBy(question.id.desc())
                 .fetch();
 
         final Long count = query.select(question.count()).from(question).fetchOne();
@@ -82,7 +83,8 @@ public class QuestionQueryDSLImpl implements QuestionQueryDSL {
                 .select(questionDTO)
                 .from(question)
                 .leftJoin(answer)
-                .on(answer.question.id.eq(question.id).and(question.id.eq(id)))
+                .on(answer.question.id.eq(question.id))
+                .where(question.id.eq(id))
                 .fetchOne());
     }
 

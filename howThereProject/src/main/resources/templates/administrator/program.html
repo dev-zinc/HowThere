@@ -69,7 +69,7 @@
                 ${program.verified == 'Y' ? '승인' : '반려'}
             </div>
         </div>`,
-        true,
+        id => `/program/detail?id=${id}`,
         "modify"
     );
 </script>
