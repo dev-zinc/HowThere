@@ -1,21 +1,22 @@
 package com.howthere.app.controller.program;
 
-import com.howthere.app.domain.diary.DiaryDTO;
-import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.Search;
+import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
-import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.domain.program.ProgramReserveDTO;
-import com.howthere.app.domain.rent.RentCarDTO;
 import com.howthere.app.domain.rent.RentCarPaymentDTO;
+import com.howthere.app.domain.rent.RentCarDTO;
 import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.howthere.app.service.rent.payment.RentCarPaymentService;
 import com.howthere.app.service.rent.rentCar.RentCarService;
-import com.howthere.app.type.RentCarType;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -27,13 +28,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/program")
@@ -51,7 +45,7 @@ public class ProgramController {
     // http://localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv,
-        @PageableDefault(page = 0, size = 5) Pageable pageable) {
+        @PageableDefault(page = 0, size = 5) Pageable pageable, Search search) {
         // TODO: 2023/08/05 지도 지우고 무한 스크롤로 변경
         mv.setViewName("program/list");
         final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
