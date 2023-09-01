@@ -52,23 +52,16 @@ public class Member extends Period {
 
     private boolean deleted = Boolean.FALSE;
 
-//    @Builder
-//    public Member(String memberEmail, String memberName, LocalDate memberBirthDate,
-//        String memberProfile, LoginType memberLoginType, MemberType memberType) {
-//        this.memberEmail = memberEmail;
-//        this.memberName = memberName;
-//        this.memberBirthDate = memberBirthDate;
-//        this.memberProfile = memberProfile;
-//        this.memberLoginType = memberLoginType;
-//        this.memberType = memberType;
-//    }
-
     public void setMemberBirthDate(LocalDate memberBirthDate) {
         this.memberBirthDate = memberBirthDate;
     }
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
     }
 
     @Builder

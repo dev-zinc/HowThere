@@ -1,12 +1,10 @@
 package com.howthere.app.entity.admin;
 
 import com.howthere.app.auditing.Period;
+import com.howthere.app.entity.member.Member;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,12 +17,30 @@ public class Announcement extends Period {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "admin_id")
+    @ToString.Exclude
+    private Member admin;
+
     @NotNull private String announcementTitle;
     @NotNull private String announcementContent;
 
+    public void setAdmin(Member admin) {
+        this.admin = admin;
+    }
+
+    public void setAnnouncementTitle(String announcementTitle) {
+        this.announcementTitle = announcementTitle;
+    }
+
+    public void setAnnouncementContent(String announcementContent) {
+        this.announcementContent = announcementContent;
+    }
+
     @Builder
-    public Announcement(Long id, @NotNull String announcementTitle, @NotNull String announcementContent) {
+    public Announcement(Long id, Member admin, String announcementTitle, String announcementContent) {
         this.id = id;
+        this.admin = admin;
         this.announcementTitle = announcementTitle;
         this.announcementContent = announcementContent;
     }

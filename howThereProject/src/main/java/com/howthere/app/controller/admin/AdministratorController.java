@@ -1,7 +1,11 @@
 package com.howthere.app.controller.admin;
 
+import com.howthere.app.domain.admin.AnnouncementDTO;
+import com.howthere.app.domain.admin.AnnouncementDetailDTO;
 import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
+import com.howthere.app.domain.member.MemberDTO;
+import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
 import com.howthere.app.service.admin.AnswerService;
 import com.howthere.app.service.admin.QuestionService;
@@ -16,17 +20,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.Objects;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/administrator/*")
 public class AdministratorController {
-    private final ProgramService programService;
-    private final MemberService memberService;
     private final AnnouncementService announcementService;
     private final QuestionService questionService;
-    private final HouseService houseService;
-    private final ProgramReservationService programReservationService;
     private final AnswerService answerService;
 
     //http://localhost:10000/administrator/program
@@ -64,14 +68,44 @@ public class AdministratorController {
 
     //http://localhost:10000/administrator/notice/detail
     @GetMapping("notice/detail")
-    public String noticeDetail() {
+    public String noticeDetail(Long id, Model model) {
+        AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
+        model.addAttribute(announcementDetailDTO);
         return "/administrator/notice-detail";
     }
 
-    //http://localhost:10000/administrator/notice/write
-    @GetMapping("notice/write")
-    public String noticeWrite() {
+  // http://localhost:10000/administrator/notice/write
+  @GetMapping({"notice/write", "notice/modify"})
+  public String writeNotice(Long id, Model model) {
+        if(id != null) {
+            AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
+            model.addAttribute(announcementDetailDTO);
+        }
         return "/administrator/notice-write";
+    }
+
+    @PostMapping("notice/write")
+    public RedirectView writeNotice(AnnouncementDetailDTO announcementDetailDTO, HttpSession session) {
+        log.info(announcementDetailDTO.toString());
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        announcementDetailDTO.setAdminId(memberDTO.getId());
+        announcementService.save(announcementDetailDTO);
+        return new RedirectView("");
+    }
+
+    @PostMapping("notice/modify")
+    public RedirectView modifyNotice(AnnouncementDetailDTO announcementDetailDTO, HttpSession session) {
+        log.info(announcementDetailDTO.toString());
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        announcementDetailDTO.setAdminId(memberDTO.getId());
+        announcementService.modify(announcementDetailDTO);
+        return new RedirectView("");
+    }
+
+    @GetMapping("notice/delete")
+    public RedirectView deleteNotice(Long id) {
+        announcementService.delete(id);
+        return new RedirectView("");
     }
 
     //http://localhost:10000/administrator/inquiry

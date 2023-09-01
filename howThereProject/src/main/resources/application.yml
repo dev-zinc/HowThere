@@ -35,9 +35,12 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 10MB
-    
-#  # H2 Setting Info (H2 Console에 접속하기 위한 설정정보 입력)
+      enabled: true
+      max-request-size: 40MB
+      max-file-size: 40MB
+      file-size-threshold: 100MB
+
+  #  # H2 Setting Info (H2 Console에 접속하기 위한 설정정보 입력)
 #  h2:
 #    console:
 #      enabled: true  # H2 Console을 사용할지 여부 (H2 Console은 H2 Database를 UI로 제공해주는 기능)
@@ -74,6 +77,12 @@ spring:
             authorization-grant-type: authorization_code
             scope: account_email,profile_nickname, profile_image
 
+          google:
+            client-id: 980192371707-v46ls2th1r3j4o936r6qnfekh3etus1j.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:10000/login/oauth2/code/google
+            scope: email, profile
+
         provider:
 
           naver:
@@ -87,4 +96,5 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: kakao_account
-file-root: "C:/upload/"
+
+file-root: "C:\\upload\\"

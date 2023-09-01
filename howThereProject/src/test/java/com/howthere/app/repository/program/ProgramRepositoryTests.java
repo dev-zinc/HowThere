@@ -49,8 +49,8 @@ public class ProgramRepositoryTests {
                     .programName("name" + i)
                     .programContent("content" + i)
                     .programPrice(100_000 * i)
-                    .programStartDate(LocalDate.now())
-                    .programEndDate(LocalDate.now())
+                    .programStartDate(LocalDate.from(LocalDateTime.now()))
+                    .programEndDate(LocalDate.from(LocalDateTime.now()))
                     .verified(Verified.Y)
                     .house(house)
                     .build();

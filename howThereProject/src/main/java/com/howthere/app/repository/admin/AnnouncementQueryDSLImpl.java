@@ -14,7 +14,6 @@ import java.util.List;
 
 import static com.howthere.app.entity.admin.QAnnouncement.announcement;
 
-
 @RequiredArgsConstructor
 public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
     private final JPAQueryFactory query;
@@ -25,7 +24,8 @@ public class AnnouncementQueryDSLImpl implements AnnouncementQueryDSL {
                 announcement.announcementTitle,
                 announcement.announcementContent,
                 announcement.createdDate,
-                announcement.updatedDate
+                announcement.updatedDate,
+                announcement.admin.id.as("adminId")
             );
 
     @Override
