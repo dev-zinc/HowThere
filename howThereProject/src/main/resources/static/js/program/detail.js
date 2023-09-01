@@ -75,5 +75,5 @@ pic.forEach(e => {
   e.addEventListener("click", panTo);
 })
 
-document.querySelectorAll('.carousel-item')[0].classList.add('active');
+// document.querySelectorAll('.carousel-item')[0].classList.add('active');
 

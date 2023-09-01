@@ -85,7 +85,10 @@
 	<div th:replace="~{/layout/footer :: footer}"></div>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script>
+<script th:inline="javascript">
+	const reservation = [[${reservation}]];
+	console.log(reservation);
+
 	const rentBody = document.querySelector(".rent-body");
 	let html = "";
 

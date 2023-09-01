@@ -1,5 +1,6 @@
 package com.howthere.app.entity.program;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.type.Verified;
@@ -22,16 +23,19 @@ public class ProgramReservation extends Period {
     @ColumnDefault("'N'")
     private Verified verified;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     @ToString.Exclude
     private Member member;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "host_id")
     @ToString.Exclude
     private Member host;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "program_id")
     @ToString.Exclude

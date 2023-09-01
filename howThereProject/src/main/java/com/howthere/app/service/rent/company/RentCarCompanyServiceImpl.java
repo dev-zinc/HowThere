@@ -1,8 +1,8 @@
-package com.howthere.app.service.rent;
+package com.howthere.app.service.rent.company;
 
 import com.howthere.app.entity.rent.RentCarCompany;
 import com.howthere.app.repository.rent.company.RentCarCompanyRepository;
-import lombok.NoArgsConstructor;
+import com.howthere.app.service.rent.company.RentCarCompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
