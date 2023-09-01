@@ -16,13 +16,15 @@ $x.on('click', () => {
     $file.val("");
 });
 
-if(announcementDetailDTO.fileName) {
-    setFileThumb({
-        fileName: announcementDetailDTO.fileName,
-        fileUuid: announcementDetailDTO.fileUuid,
-        filePath: announcementDetailDTO.filePath,
-        fileSize: announcementDetailDTO.fileSize
-    });
+if(announcementDetailDTO) {
+    if(announcementDetailDTO.fileName) {
+        setFileThumb({
+            fileName: announcementDetailDTO.fileName ? announcementDetailDTO.fileName : '',
+            fileUuid: announcementDetailDTO.fileUuid ? announcementDetailDTO.fileUuid : '',
+            filePath: announcementDetailDTO.filePath ? announcementDetailDTO.filePath : '',
+            fileSize: announcementDetailDTO.fileSize ? announcementDetailDTO.fileSize : ''
+        });
+    }
 }
 
 let service = new DetailService('notice', function (e) {

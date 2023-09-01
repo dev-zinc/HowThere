@@ -1,5 +1,8 @@
 package com.howthere.app.repository.house;
 
+import static com.howthere.app.entity.file.QHouseFile.houseFile;
+import static com.howthere.app.entity.house.QHouse.house;
+
 import com.howthere.app.domain.house.HouseDTO;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
@@ -11,9 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
-import static com.howthere.app.entity.file.QHouseFile.houseFile;
-import static com.howthere.app.entity.house.QHouse.house;
 
 @RequiredArgsConstructor
 public class HouseQueryDSLImpl implements HouseQueryDSL {
@@ -69,8 +69,8 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
     public Page<HouseDTO> findAllByIdWithPaging(Pageable pageable, Long memberId) {
         final List<HouseDTO> houseDTOs =
             query.select(editHouseDTO)
-                .from(houseFile)
-                .join(house)
+                .from(house)
+                .leftJoin(houseFile)
                 .on(house.id.eq(houseFile.house.id)
                     .and(house.member.id.eq(memberId)))
                 .where(houseFile.thumb.isTrue())
@@ -91,7 +91,7 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
         return query.select(editHouseDTO)
             .from(house)
             .where(house.id.eq(id))
-            .join(houseFile)
+            .leftJoin(houseFile)
             .on(houseFile.house.id.eq(id).and(houseFile.thumb.isTrue()))
             .fetchOne();
     }

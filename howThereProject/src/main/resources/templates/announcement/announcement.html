@@ -36,7 +36,11 @@
 						<div class="mt-5 mb-5">
 							<h1 class="title"><strong th:text="${announcement.announcementTitle}">공지 사항 상세보기 제목 부분</strong></h1>
 							<hr>
-							<div class="ctt" th:utext="${announcement.announcementContent}"></div>
+							<th:block th:if="${announcement.fileName != null}">
+								<img th:src="|/files/display?fileName=${announcement.filePath}t_${announcement.fileUuid}_${announcement.fileName}|"
+										style="width: 300px; height: auto"/>
+							</th:block>
+							<div class="ctt" th:text="${announcement.announcementContent}"></div>
 						</div>
 
 						<div class="d-flex justify-content-end mt-3 mr-3">
