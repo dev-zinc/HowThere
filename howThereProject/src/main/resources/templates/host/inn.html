@@ -55,7 +55,7 @@
                         <div class="btn-box">
                             <button class="hosting-btn" th:onclick="|location.href='@{/host/hosting(id=${house.id})}'|">호스팅</button>
                             <button class="modify-btn" th:onclick="|location.href='@{/host/write(id=${house.id})}'|">수정</button>
-                            <button class="delete-btn">삭제</button>
+                            <button class="delete-btn" th:onclick="deleteHouse([[${house.id}]])">삭제</button>
                         </div>
                     </div>
                     <ul class="page-ul" th:with="
@@ -109,5 +109,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script th:inline="javascript">
   console.log([[${pagination}]])
+</script>
+<script>
+  function deleteHouse(houseId) {
+    fetch("/host/delete/" + houseId, {
+      method: 'POST'
+    }).then(res => {
+      location.href = '/host/inn';
+    })
+  }
 </script>
 </html>

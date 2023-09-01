@@ -1,10 +1,12 @@
 package com.howthere.app.controller.account;
 
 import com.howthere.app.domain.member.MemberDTO;
+import com.howthere.app.domain.program.ProgramPaymentDTO;
 import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.service.account.AccountService;
 import com.howthere.app.service.program.ProgramPaymentService;
 import com.howthere.app.service.program.ProgramReservationService;
+import com.howthere.app.type.RentCarType;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @Slf4j
@@ -46,14 +47,18 @@ public class AccountController {
 
     //http://localhost:10000/account/payment
     @GetMapping("payment")
-    public void payment(){
-
+    public void payment(HttpSession session,
+        @PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+        final MemberDTO member = (MemberDTO) session.getAttribute("member");
+        final Page<ProgramPaymentDTO> pagination = paymentService.getPaymentListByMemberId(
+            pageable, member.getId());
+        model.addAttribute("pagination", pagination);
     }
+
     @PostMapping("payment")
-    public RedirectView reservationProgram(@RequestBody ProgramReservationDTO reservationDTO) {
+    public void reservationProgram(@RequestBody ProgramReservationDTO reservationDTO) {
         paymentService.save(reservationDTO);
         reservationService.deleteReservation(reservationDTO);
-        return new RedirectView("/account/payment");
     }
 
     //http://localhost:10000/account/diary
@@ -64,7 +69,8 @@ public class AccountController {
 
     //http://localhost:10000/account/program
     @GetMapping("program")
-    public void program(@PageableDefault(page = 0, size = 10)Pageable pageable, HttpSession session, Model model) {
+    public void program(@PageableDefault(page = 0, size = 9) Pageable pageable,
+        HttpSession session, Model model) {
         final MemberDTO member = (MemberDTO) session.getAttribute("member");
         final Page<ProgramReservationDTO> pagination = reservationService.getReservationByMemberId(
             pageable, member.getId());

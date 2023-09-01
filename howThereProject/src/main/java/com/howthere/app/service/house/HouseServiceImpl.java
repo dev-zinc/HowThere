@@ -1,15 +1,11 @@
 package com.howthere.app.service.house;
 
 import com.howthere.app.domain.house.HouseDTO;
-import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.file.house.HouseFileRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +16,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.List;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class HouseServiceImpl implements HouseService {
+
     private final HouseRepository houseRepository;
     private final HouseFileRepository fileRepository;
     private final MemberRepository memberRepository;
@@ -41,6 +36,11 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    public void deleteHouse(Long id) {
+        houseRepository.findById(id).ifPresent(houseRepository::delete);
+    }
+
+    @Override
     public House registerHouse(HttpServletRequest req) {
         final String id = req.getParameter("houseId");
         final String houseTitle = req.getParameter("houseTitle");
@@ -52,9 +52,7 @@ public class HouseServiceImpl implements HouseService {
         final Double lat = Double.parseDouble(req.getParameter("latitude"));
         final Double lon = Double.parseDouble(req.getParameter("longitude"));
 
-        // TODO: 2023/08/19 로그인 작업 완료 시 주석 해제 후 Member test 제거
-//        final Member member = (Member) req.getSession().getAttribute("member");
-        final Member test = memberRepository.findById(1L).get(); // 추후 삭제 예정
+        final Member member = (Member) req.getSession().getAttribute("member");
         final HouseDTO houseDTO = HouseDTO.builder()
             .houseTitle(houseTitle)
             .houseContent(houseContent)
@@ -68,7 +66,7 @@ public class HouseServiceImpl implements HouseService {
         if (!StringUtils.isEmpty(id)) {
             houseDTO.setId(Long.parseLong(id));
         }
-        return houseRepository.save(toEntity(houseDTO, test));
+        return houseRepository.save(toEntity(houseDTO, member));
     }
 
     @Override

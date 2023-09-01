@@ -1,5 +1,6 @@
 package com.howthere.app.service.program;
 
+import com.howthere.app.domain.program.ProgramPaymentDTO;
 import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
@@ -9,6 +10,8 @@ import com.howthere.app.repository.program.ProgramPaymentRepository;
 import com.howthere.app.repository.program.ProgramRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,5 +36,10 @@ public class ProgramPaymentServiceImpl implements ProgramPaymentService {
             .build();
 
         return paymentRepository.save(payment);
+    }
+
+    @Override
+    public Page<ProgramPaymentDTO> getPaymentListByMemberId(Pageable pageable, Long id) {
+        return paymentRepository.getPaymentListByMemberId(pageable, id);
     }
 }
