@@ -18,7 +18,7 @@
                     <div>
                         <div class="local-nev-box">
                             <label>
-                                <div>
+                                <div data-region="강원">
                                     <span>
                                         <img src="/img/localLogo/gangwon.svg" alt="">
                                         <div>
@@ -28,7 +28,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="경기">
                                     <span>
                                         <img src="/img/localLogo/gyeonggi.svg" alt="">
                                         <div>
@@ -38,7 +38,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="경남">
                                     <span>
                                         <img src="/img/localLogo/gyeongsang_namdo.svg" alt="">
                                         <div>
@@ -48,7 +48,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="경북">
                                     <span>
                                         <img src="/img/localLogo/gyeongsang_bukdo.svg" alt="">
                                         <div>
@@ -58,7 +58,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="광주">
                                     <span>
                                         <img src="/img/localLogo/gwangju.svg" alt="">
                                         <div>
@@ -68,7 +68,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="대구">
                                     <span>
                                         <img src="/img/localLogo/daegu.svg" alt="">
                                         <div>
@@ -78,7 +78,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="대전">
                                     <span>
                                         <img src="/img/localLogo/daejeon.svg" alt="">
                                         <div>
@@ -88,7 +88,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="부산">
                                     <span>
                                         <img src="/img/localLogo/pusan.svg" alt="">
                                         <div>
@@ -98,7 +98,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="세종">
                                     <span>
                                         <img src="/img/localLogo/sejong.svg" alt="">
                                         <div>
@@ -108,7 +108,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="울산">
                                     <span>
                                         <img src="/img/localLogo/ulsan.svg" alt="">
                                         <div>
@@ -118,7 +118,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="인천">
                                     <span>
                                         <img src="/img/localLogo/incheon.svg" alt="">
                                         <div>
@@ -128,7 +128,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="전남">
                                     <span>
                                         <img src="/img/localLogo/jeolla_namdo.png" alt="">
                                         <div>
@@ -138,7 +138,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="전북">
                                     <span>
                                         <img src="/img/localLogo/jeolla_bukdo.svg" alt="">
                                         <div>
@@ -148,7 +148,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="제주">
                                     <span>
                                         <img src="/img/localLogo/jeju.svg" alt="">
                                         <div>
@@ -158,7 +158,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="충남">
                                     <span>
                                         <img src="/img/localLogo/chung-cheong_namdo.svg" alt="">
                                         <div>
@@ -168,7 +168,7 @@
                                 </div>
                             </label>
                             <label>
-                                <div>
+                                <div data-region="충북">
                                     <span>
                                         <img src="/img/localLogo/chung-cheong_bukdo.svg" alt="">
                                         <div>
@@ -194,7 +194,7 @@
                         <!-- -->
                         <!-- -->
                         <div th:each="program : ${programs}">
-                            <a>
+                            <a th:href="|/program/detail?id=${program.id}|">
                                 <div class="house-wrap">
                                     <div class="house-info">
                                         <div class="house-name" th:text="${program.programAddress}"></div>
@@ -232,21 +232,22 @@
                     <div id="diaryList" class="main-list-wrap" style="margin-top: 25px;">
                         <!-- -->
                         <!-- -->
-                        <div th:each="diary : ${diaries}">
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title" th:text="${diary.diaryTitle}"></div>
-                                        <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <th:block th:if="${diary.filePath != null}">
-                                            <img th:src="|/files/display?fileName=${diary.filePath}t_${diary.fileUuid}_${diary.fileName}|" alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+<!--                        <div th:each="diary : ${diaries}">-->
+<!--                            <a href="">-->
+<!--                                <div class="diary-wrap">-->
+<!--                                    <div class="diary-info">-->
+<!--                                        <div class="index-diary-title" th:text="${diary.diaryTitle}"></div>-->
+<!--                                        <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="diary-img-wrap">-->
+<!--&lt;!&ndash;                                        <th:block th:if="${diary.filePath != null}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div th:text="${diary.diaryContent}"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <img th:src="${diarySrc}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </th:block>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
                         <!-- -->
                         <!-- -->
                     </div>
@@ -263,7 +264,33 @@
 <script th:inline="javascript">
     let programs = [[${programs}]];
     let diaries = [[${diaries}]];
-    console.log(programs, diaries)
+    // let diarySrc = diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0];
+    // console.log(diarySrc);
+    // console.log(programs, diaries)
+
+
+    let text = "";
+    diaries.forEach((diary)=>{
+        let createdDate = new Date(diary.createdDate);
+        text += `
+            <div>
+                <a href="/diary/article/${diary.id}">
+                    <div class="diary-wrap">
+                        <div class="diary-info">
+                            <div class="index-diary-title">${diary.diaryTitle}</div>
+                            <div class="period">${createdDate.getFullYear() + '년 ' + (createdDate.getMonth() + 1) + '월 ' + createdDate.getDate() + '일'}</div>
+                        </div>
+                        <div class="diary-img-wrap">
+                                <img src="${diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0]}" alt="">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `
+        // console.log(diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0]);
+    })
+    document.getElementById('diaryList').innerHTML = text;
+
 </script>
 <script src="/js/layout/index.js"></script>
 </html>

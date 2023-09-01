@@ -95,6 +95,7 @@ $("#checkIn, #checkOut").datepicker({
 $(".count").click(function(e){
     const {for : id, oper} = e.currentTarget.dataset;
     const $target = $("#" + id);
+    const $targetInput = $("#" + id + "Input");
     const orgVal = $target.text();
 
     switch(oper){
@@ -103,8 +104,10 @@ $(".count").click(function(e){
                 return;
             }
             $target.text(Number(orgVal) - 1);
+            $targetInput.val(Number(orgVal) - 1)
             break;
         case 'plus': $target.text(Number(orgVal) + 1);
+            $targetInput.val(Number(orgVal) + 1)
             break;
     }
 

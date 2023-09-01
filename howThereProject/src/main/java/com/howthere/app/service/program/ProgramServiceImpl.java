@@ -9,6 +9,8 @@ import com.howthere.app.entity.program.Program;
 import com.howthere.app.repository.program.ProgramRepository;
 import com.howthere.app.service.file.house.HouseFileService;
 import com.howthere.app.type.Verified;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +32,8 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     @Override
-    public List<ProgramMainDTO> getPrograms() {
-        return programRepository.findAll10();
+    public List<ProgramMainDTO> getPrograms(String region) {
+        return programRepository.findAll10(region);
     }
 
     @Override
@@ -56,7 +58,14 @@ public class ProgramServiceImpl implements ProgramService {
                 + "/"
                 + file.getFileUuid()
         ).collect(Collectors.toList());
+        final String hostName = program.getHouse().getMember().getMemberName();
+        final String hostEmail = program.getHouse().getMember().getMemberEmail();
+        final String hostProfile = program.getHouse().getMember().getMemberProfile();
 
+        final LocalDate startDate = program.getProgramStartDate();
+        final LocalDate endDate = program.getProgramEndDate();
+
+        final long between = ChronoUnit.DAYS.between(startDate, endDate);
         return ProgramDTO.builder()
             .id(program.getId())
             .houseId(program.getHouse().getId())
@@ -65,11 +74,17 @@ public class ProgramServiceImpl implements ProgramService {
             .programName(program.getProgramName())
             .programContent(program.getProgramContent())
             .programPrice(program.getProgramPrice())
-            .programStartDate(program.getProgramStartDate())
-            .programEndDate(program.getProgramEndDate())
+            .programStartDate(startDate)
+            .programEndDate(endDate)
             .filePathList(filePathList)
             .lat(program.getHouse().getHouseAddress().getLatitude())
             .lon(program.getHouse().getHouseAddress().getLongitude())
+            .houseMaxHeadCount(program.getHouse().getHouseMaxHeadCount())
+            .houseMaxPetCount(program.getHouse().getHouseMaxPetCount())
+            .hostName(hostName)
+            .hostEmail(hostEmail)
+            .hostProfile(hostProfile)
+            .between(between)
             .build();
     }
 

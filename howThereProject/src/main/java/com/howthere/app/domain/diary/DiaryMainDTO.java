@@ -18,11 +18,13 @@ public class DiaryMainDTO {
 
     private Long id;
     private String diaryTitle;
+    private String diaryContent;
     private LocalDateTime createdDate;
-    private String fileName;
-    private String fileUuid;
-    private String filePath;
-    private long fileSize;
+
+//    private String fileName;
+//    private String fileUuid;
+//    private String filePath;
+//    private long fileSize;
 
     public DateTimeFormatter format() {
         return DATE_TIME_FORMATTER;

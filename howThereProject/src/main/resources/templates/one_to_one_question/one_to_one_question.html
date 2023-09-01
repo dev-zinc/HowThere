@@ -27,10 +27,10 @@
             <div id="root"> 
                 <a href="/">홈</a> > <a href="/account/menu">계정</a>  > <a href="/one_to_one_question/question_list">1:1문의하기 목록</a> > <span>1:1문의하기</span>
             </div>
-            <form action="/one_to_one_question/write" method="post">
+            <form action="/one_to_one_question/write" method="post" name="questionForm">
                 <div class="mt-3 mb-3"><strong> 카테고리 유형</strong></div>
                 <select name="oneToOneQuestionType" class="form-select" aria-label="Default select example">
-                    <option selected>문의 유형을 선택하세요</option>
+                    <option value="">문의 유형을 선택하세요</option>
                     <option value="EVENT">이벤트</option>
                     <option value="PAY">예약/결제</option>
                     <option value="CANCLE">취소/환불</option>
@@ -42,7 +42,7 @@
                 <textarea name="oneToOneQuestionContent" class="form-control" cols="30" rows="20" style="resize: none;"></textarea>
                 <div class="d-flex justify-content-end mt-3">
                     <div>
-                        <button href="#" class="btn btn-success">작성</button>
+                        <button type="button" href="#" class="btn btn-success">작성</button>
                     </div>
                 </div>
             </form>
@@ -50,5 +50,20 @@
     </div>
     <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
+<script>
+    document.querySelector(".btn-success").addEventListener("click", e => {
+        if(!questionForm.oneToOneQuestionType.value){
+            alert("문의 유형을 골라주세요.");
+            questionForm.oneToOneQuestionType.focus();
+            return false;
+        }
+        if(!questionForm.oneToOneQuestionContent.value){
+            alert("문의 내용을 입력해주세요.");
+            questionForm.oneToOneQuestionContent.focus();
+            return false;
+        }
+        questionForm.submit();
+    })
+</script>
 <script src="/js/layout/index.js"></script>
 </html>
