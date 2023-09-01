@@ -2,6 +2,7 @@ package com.howthere.app.entity.house;
 
 import com.howthere.app.auditing.Period;
 import com.howthere.app.embed.Address;
+import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
 import lombok.*;
@@ -40,6 +41,9 @@ public class House extends Period {
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Program> programs;
+
+    @OneToMany(mappedBy = "house", cascade = CascadeType.REMOVE)
+    private List<HouseFile> houseFiles;
 
     @Builder
     public House(Long id, @NotNull String houseTitle, @NotNull String houseContent, Address address,

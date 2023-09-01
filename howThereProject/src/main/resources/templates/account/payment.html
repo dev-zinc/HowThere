@@ -4,32 +4,32 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/account/account.css">
-    <link rel="stylesheet" href="/css/account/payment.css">
-    <link rel="stylesheet" href="/css/account/diary.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/account/account.css" rel="stylesheet">
+    <link href="/css/account/payment.css" rel="stylesheet">
+    <link href="/css/account/diary.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" rel="stylesheet">
     <title>결제 내역</title>
 </head>
 <body>
 <div th:replace="~{/layout/header :: header}"></div>
 <main>
     <div id="content-box">
-        <div id="content-box-main" class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" id="content-box-main">
             <div class="menu-title-container">
                 <nav aria-label="계정">
                     <ol style="padding: 0">
                         <li class="path">
-                            <a href="/account/menu" class="path-text" aria-busy="false">계정</a>
+                            <a aria-busy="false" class="path-text" href="/account/menu">계정</a>
                         </li>
                         <li class="path">
                             <div class="path">
-                                <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
-                                     style="height: 10px; width: 10px; fill: rgb(118, 118, 118);">
+                                <svg aria-hidden="true" focusable="false" role="presentation" style="height: 10px; width: 10px; fill: rgb(118, 118, 118);"
+                                     viewBox="0 0 18 18">
                                     <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path>
                                 </svg>
                             </div>
@@ -42,78 +42,60 @@
 
             <nav class="category-nav">
                 <div class="category-nav-wrapper flex">
-                    <div class="nav-tabs selected">카테고리1</div>
-                    <div class="nav-tabs">카테고리2</div>
-                    <div class="nav-tabs">카테고리3</div>
-                    <div class="nav-tabs">카테고리4</div>
+                    <div class="nav-tabs selected">숙소</div>
+                    <div class="nav-tabs">렌트카</div>
                 </div>
                 <div class="slight-divider" style="width: 60%"></div>
             </nav>
 
             <div class="payment-list flex">
-                <section class="account-content">
-                    <!-- -->
-                    <!-- -->
-                    <div class="payment-content flex">
+                <section class="account-content" th:if="${!pagination.content.isEmpty()}">
+                    <div class="payment-content flex" th:each="payment:${pagination.content}">
                         <div class="pay-title">
-                            <span>프로그램 신청</span>
+                            <span th:text="${payment.programName}"></span>
                         </div>
                         <div class="pay">
-                            <span>용인 한 달 살아보기</span>
-                            <span>|</span>
-                            <span>360,000원</span>
+                            <span id="price" th:text="${payment.paymentPrice}"></span>
                         </div>
                         <div class="payment-created-date">
-                            <span>2023년 3월 6일</span>
+                            <span th:text="${payment.programStartDate}"></span>
+                            <span> - </span>
+                            <span th:text="${payment.programEndDate}"></span>
                         </div>
                     </div>
-                    <div class="payment-content flex">
-                        <div class="pay-title">
-                            <span>프로그램 신청</span>
-                        </div>
-                        <div class="pay">
-                            <span>용인 한 달 살아보기</span>
-                            <span>|</span>
-                            <span>360,000원</span>
-                        </div>
-                        <div class="payment-created-date">
-                            <span>2023년 3월 6일</span>
-                        </div>
-                    </div>
-                    <div class="payment-content flex">
-                        <div class="pay-title">
-                            <span>프로그램 신청</span>
-                        </div>
-                        <div class="pay">
-                            <span>용인 한 달 살아보기</span>
-                            <span>|</span>
-                            <span>360,000원</span>
-                        </div>
-                        <div class="payment-created-date">
-                            <span>2023년 3월 6일</span>
-                        </div>
-                    </div>
-                    <div class="payment-content flex">
-                        <div class="pay-title">
-                            <span>프로그램 신청</span>
-                        </div>
-                        <div class="pay">
-                            <span>용인 한 달 살아보기</span>
-                            <span>|</span>
-                            <span>360,000원</span>
-                        </div>
-                        <div class="payment-created-date">
-                            <span>2023년 3월 6일</span>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <!-- -->
+
+                    <ul class="page-ul" th:with="
+                        nowPage = ${pagination.number + 1},
+                        pageSize = ${pagination.size},
+                        totalPages = ${pagination.totalPages},
+                        endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                        startPage = ${endPage - pageSize + 1},
+                        realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                        first = ${pagination.first}, last = ${pagination.last}
+                    ">
+                        <li class="prev" th:classappend="${startPage == 1} ? 'none'">
+                            <a th:href="@{/account/payment(page=${startPage-2})}" th:text="＜＜"></a>
+                        </li>
+                        <li class="prev" th:classappend="${first} ? 'none'">
+                            <a th:href="@{/account/payment(page=${nowPage-2})}" th:text="＜"></a>
+                        </li>
+                        <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
+                            <a th:href="@{/account/payment(page=${page-1})}" th:if="${nowPage != page}" th:text="${page}"></a>
+                            <span style="color: #BB84ff" th:text="${page}" th:unless="${nowPage != page}"></span>
+                        </li>
+                        <li class="next" th:classappend="${last} ? 'none'">
+                            <a th:href="@{/account/payment(page=${nowPage})}" th:text="＞"></a>
+                        </li>
+                        <li class="prev" th:classappend="${endPage >= totalPages} ? 'none'">
+                            <a th:href="@{/account/payment(page=${endPage})}" th:text="＞＞"></a>
+                        </li>
+                    </ul>
                 </section>
 
                 <section class="right-nav">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
-                         focusable="false"
-                         style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;">
+                    <svg aria-hidden="true" focusable="false" role="presentation" style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                         viewBox="0 0 48 48"
+                         xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <g stroke="none">
                                 <path d="m41.999 10v24h-4.287l1.01-.6546823c.242375-.158375.3706719-.3933125.3998895-.6646172l.0064994-.1183828c.004513-1.4230639-2.4648559-3.6737529-5.4115565-1.9238459l-.1928324.1198459-5.278 3.2416823-2.2539866.0005578c.1712874-1.0118843-.1666572-1.9090959-.8837185-1.9909612l-.1084949-.0060789-19.0018-.0005177.001-22.003z" fill-opacity=".2"></path>
@@ -142,5 +124,9 @@
 <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script th:inline="javascript">
+  const pagination = [[${pagination}]]
+  console.log(pagination)
+</script>
 <script src="/js/layout/nav-tabs.js"></script>
 </html>

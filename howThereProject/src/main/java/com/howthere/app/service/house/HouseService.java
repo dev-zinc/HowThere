@@ -38,4 +38,6 @@ public interface HouseService {
     Page<HouseDTO> getMyHouses(Pageable pageable, Long id);
 
     void deleteAllBy(List<Long> ids);
+
+    void deleteHouse(Long id);
 }

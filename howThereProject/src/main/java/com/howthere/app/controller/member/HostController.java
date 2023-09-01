@@ -29,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -116,5 +117,11 @@ public class HostController {
             log.error("load image error");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("delete/{id}")
+    public RedirectView delete(@PathVariable(value = "id") Long id) {
+        houseService.deleteHouse(id);
+        return new RedirectView("/host/inn");
     }
 }
