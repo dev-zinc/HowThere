@@ -4,8 +4,8 @@ import com.howthere.app.domain.Search;
 import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramReserveDTO;
-import com.howthere.app.domain.rent.RentCarPaymentDTO;
 import com.howthere.app.domain.rent.RentCarDTO;
+import com.howthere.app.domain.rent.RentCarPaymentDTO;
 import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import com.howthere.app.service.rent.payment.RentCarPaymentService;
@@ -51,10 +51,11 @@ public class ProgramController {
         final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
             pageable, search);
         log.info(programs.toString());
+        log.info(search.toString());
         mv.addObject("pagination", programs);
         return mv;
     }
-
+    
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam Long id,HttpServletRequest req, ModelAndView mv) {

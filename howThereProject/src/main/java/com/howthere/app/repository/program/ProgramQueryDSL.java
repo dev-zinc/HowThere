@@ -14,5 +14,5 @@ public interface ProgramQueryDSL {
 
     Page<ProgramDTO> findAllWithThumbnail(Pageable pageable, Search search);
 
-    List<ProgramMainDTO> findAll10();
+    List<ProgramMainDTO> findAll10(String region);
 }

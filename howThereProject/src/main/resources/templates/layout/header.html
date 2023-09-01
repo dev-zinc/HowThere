@@ -49,18 +49,18 @@
                     <div style="box-sizing: border-box">
                         <div class="search-detail-box-sub">
                             <div class="search-form-wrap">
-                                <form action="">
+                                <form action="/program/list">
                                     <div style="align-items: center;display: flex;height: 80px;justify-content: center;">
                                         <div style="box-sizing: border-box;">
                                             <div class="search-detail-btn-wrap">
-                                                <button>
-                                                    <div><span class="search-detail-btn-txt">숙소</span></div>
+                                                <button class="goProgram">
+                                                    <div><span class="search-detail-btn-txt">프로그램</span></div>
                                                 </button>
                                             </div>
                                             <div class="search-detail-btn-wrap">
-                                                <button>
-                                                    <div><span class="search-detail-btn-txt">다이어리</span></div>
-                                                </button>
+                                                <a href="/diary/list">
+                                                    <span class="search-detail-btn-txt">일기</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -205,6 +205,7 @@
                                                                             </button>
                                                                             <div>
                                                                                 <span id="guestCnt">0</span>
+                                                                                <input id="guestCntInput" name="guestCnt" hidden="hidden"/>
                                                                             </div>
                                                                             <button type="button" class="count" data-for="guestCnt" data-oper="plus">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>
@@ -225,6 +226,7 @@
                                                                             </button>
                                                                             <div>
                                                                                 <span id="petCnt">0</span>
+                                                                                <input id="petCntInput" name="petCnt" hidden="hidden"/>
                                                                             </div>
                                                                             <button type="button" class="count" data-for="petCnt" data-oper="plus">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="M2 16h28M16 2v28"></path></svg>

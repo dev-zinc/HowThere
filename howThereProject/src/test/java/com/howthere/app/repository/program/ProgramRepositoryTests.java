@@ -1,34 +1,27 @@
 package com.howthere.app.repository.program;
 
-import antlr.collections.impl.IntRange;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import com.howthere.app.HowThereApplication;
-import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
-import com.howthere.app.embed.Address;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
 import com.howthere.app.repository.file.FileRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
-import com.howthere.app.repository.program.ProgramRepository;
 import com.howthere.app.type.Verified;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.stream.IntStream;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -63,8 +56,20 @@ public class ProgramRepositoryTests {
     }
 
     @Test
-    public void saveWithFileTest() {
-
+    public void detailedSaveTest() {
+        House house = houseRepository.findAll().stream().findFirst().orElseThrow(RuntimeException::new);
+        
+        Program program = Program.builder()
+                .programName("테스트 프로그램")
+                .programContent("테스트 내용")
+                .programPrice(1_000_000)
+                .programStartDate(LocalDate.of(2023, 9, 3))
+                .programEndDate(LocalDate.of(2023, 9, 27))
+                .verified(Verified.Y)
+                .house(house)
+                .build();
+        
+        programRepository.save(program);
     }
 
     @Test

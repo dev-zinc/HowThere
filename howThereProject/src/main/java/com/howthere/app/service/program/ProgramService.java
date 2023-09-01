@@ -15,7 +15,7 @@ public interface ProgramService {
 
     Page<ProgramListDTO> getPrograms(Pageable pageable, String keyword);
 
-    List<ProgramMainDTO> getPrograms();
+    List<ProgramMainDTO> getPrograms(String region);
 
     void registerProgram(ProgramDTO dto);
 

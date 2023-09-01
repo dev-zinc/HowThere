@@ -5,28 +5,21 @@ import com.howthere.app.embed.Address;
 import com.howthere.app.entity.file.RentCarFile;
 import com.howthere.app.entity.rent.RentCar;
 import com.howthere.app.entity.rent.RentCarCompany;
-import com.howthere.app.entity.rent.RentCarPayment;
 import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.repository.rent.company.RentCarCompanyRepository;
 import com.howthere.app.repository.rent.file.RentCarFileRepository;
 import com.howthere.app.repository.rent.payment.RentCarPaymentRepository;
 import com.howthere.app.repository.rent.rentCar.RentCarRepository;
 import com.howthere.app.type.RentCarType;
+import java.util.UUID;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.test.annotation.Rollback;
-
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.UUID;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -86,9 +79,9 @@ public class RentCarRepositoryTests {
     // 렌트카 등록
     @Test
     public void rentCar_save_test() {
-        for (int i=6; i<6; i++){
+        for (int i=0; i<6; i++){
             RentCar rentCar1 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("정도인터내셔널㈜"))
                     .rentCarName("아반떼")
                     .rentCarPrice(100000)
                     .rentCarType(RentCarType.CompactCar)
@@ -103,7 +96,7 @@ public class RentCarRepositoryTests {
                     .build();
             rentCarFileRepository.save(rentCarFile1);
             RentCar rentCar2 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("현대디씨렌트카㈜"))
                     .rentCarName("소나타")
                     .rentCarPrice(150000)
                     .rentCarType(RentCarType.mediumSizedCar)
@@ -119,7 +112,7 @@ public class RentCarRepositoryTests {
             rentCarFileRepository.save(rentCarFile2);
 
             RentCar rentCar3 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("로또렌트카㈜"))
                     .rentCarName("산타페")
                     .rentCarPrice(200000)
                     .rentCarType(RentCarType.SUV)
@@ -137,7 +130,7 @@ public class RentCarRepositoryTests {
 
         for (int i=0; i<6; i++){
             RentCar rentCar1 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("현대디씨렌트카㈜"))
                     .rentCarName("아반떼")
                     .rentCarPrice(100000)
                     .rentCarType(RentCarType.CompactCar)
@@ -153,7 +146,7 @@ public class RentCarRepositoryTests {
             rentCarFileRepository.save(rentCarFile1);
 
             RentCar rentCar2 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("로또렌트카㈜"))
                     .rentCarName("소나타")
                     .rentCarPrice(150000)
                     .rentCarType(RentCarType.mediumSizedCar)
@@ -169,7 +162,7 @@ public class RentCarRepositoryTests {
             rentCarFileRepository.save(rentCarFile2);
 
             RentCar rentCar3 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("정도인터내셔널㈜"))
                     .rentCarName("산타페")
                     .rentCarPrice(200000)
                     .rentCarType(RentCarType.SUV)
@@ -187,7 +180,7 @@ public class RentCarRepositoryTests {
 
         for (int i=6; i<6; i++){
             RentCar rentCar1 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("로또렌트카㈜"))
                     .rentCarName("아반떼")
                     .rentCarPrice(100000)
                     .rentCarType(RentCarType.CompactCar)
@@ -203,7 +196,7 @@ public class RentCarRepositoryTests {
             rentCarFileRepository.save(rentCarFile1);
 
             RentCar rentCar2 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("정도인터내셔널㈜"))
                     .rentCarName("소나타")
                     .rentCarPrice(150000)
                     .rentCarType(RentCarType.mediumSizedCar)
@@ -219,7 +212,7 @@ public class RentCarRepositoryTests {
             rentCarFileRepository.save(rentCarFile2);
 
             RentCar rentCar3 = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findByRentCarCompanyName("현대디씨렌트카㈜"))
                     .rentCarName("산타페")
                     .rentCarPrice(200000)
                     .rentCarType(RentCarType.SUV)
@@ -252,20 +245,20 @@ public class RentCarRepositoryTests {
     // 렌트카 조회
     @Test
     public void findRentCarPaymentById_test() {
-        log.info(rentCarPaymentRepository.findById(4L).get().toString());
+        //log.info(rentCarPaymentRepository.findByRentCarCompanyName("로또렌트카㈜").toString());
     }
 
     // 렌트카 취소
     @Test
     public void deleted_rentCarPayment_remove_test() {
-        rentCarPaymentRepository.findById(4L).ifPresent(rentCarPaymentRepository::delete);
+        rentCarPaymentRepository.findById(478L).ifPresent(rentCarPaymentRepository::delete);
     }
 
     // 렌트카 예약 확인 리스트
     @Test
     public void findAllByMemberIdTest(){
         log.info("---------------------------=====================---------------------========================----------");
-        rentCarPaymentRepository.findAllByMemberId_queryDSL(2L).forEach(rentCarPayment -> log.info(rentCarPayment.toString()));
+        rentCarPaymentRepository.findAllByMemberId_queryDSL(476L).forEach(rentCarPayment -> log.info(rentCarPayment.toString()));
     }
     // 렌트카 예약 확인
     @Test

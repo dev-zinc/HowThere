@@ -4,6 +4,42 @@ localNev.click(function(e){
         tag.dataset.select = false;
     })
     e.currentTarget.dataset.select = true;
+    let region = e.currentTarget.dataset.region;
+    console.log(region);
+    fetch(`api/list?region=${region}`)
+        .then(response => {
+            console.log(response);
+            return response.json()
+        })
+        .then(programs => {
+            console.log(programs);
+            let html = '';
+            programs.forEach(program => {
+                let img = `<img src="/files/display?fileName=${program.filePath}t_${program.fileUuid}_${program.fileName}" alt="">`
+                html += `
+                <div>
+                    <a href="/program/detail?id=${program.id}">
+                        <div class="house-wrap">
+                            <div class="house-info">
+                                <div class="house-name">${program.programAddress}</div>
+                                <div class="period">${program.programStartDate.substring(0, 10)} - ${program.programEndDate.substring(0, 10)}</div>
+                                <div class="price">
+                                    <span>₩</span>
+                                    <span>${program.programPrice}</span>
+                                    <span> /박</span>
+                                </div>
+                            </div>
+                            <div class="house-img-wrap">
+                                ${program.filePath != null ? img : ''}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                `;
+            });
+
+            $('#hostingList').html(html);
+        });
 })
 
 function moveSlide(e){
