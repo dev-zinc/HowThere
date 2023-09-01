@@ -8,6 +8,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,8 +21,8 @@ public class RentCarPayment extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    @NotNull private LocalDateTime startDay;
-    @NotNull private LocalDateTime endDay;
+    @NotNull private LocalDate startDay;
+    @NotNull private LocalDate endDay;
     @NotNull private Integer carRentTotalPrice;
     @NotNull private boolean deleted = Boolean.FALSE;
 
@@ -32,7 +33,7 @@ public class RentCarPayment extends Period {
     private Member member;
 
     @Builder
-    public RentCarPayment(Long id, LocalDateTime startDay, LocalDateTime endDay, Integer carRentTotalPrice, boolean deleted, RentCar rentCar, Member member) {
+    public RentCarPayment(Long id, LocalDate startDay, LocalDate endDay, Integer carRentTotalPrice, boolean deleted, RentCar rentCar, Member member) {
         this.id = id;
         this.startDay = startDay;
         this.endDay = endDay;

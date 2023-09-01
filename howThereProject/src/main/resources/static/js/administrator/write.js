@@ -38,8 +38,7 @@ let service = new DetailService('notice', function (e) {
         fetch('/files/upload', {
             method: 'POST',
             body: form
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(files => setFileThumb(files[0]));
     };
 });

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>rent_test_list</title>
+</head>
+<body>
+<h1>안녕하세요</h1>
+<div th:each="rentCar : ${rentCars}">
+    <a href="#" class="rent-car-link" th:data-id="${rentCar.id}">
+        <div th:text="${rentCar.id}" class="rent-car-id"></div>
+    </a>
+    <div th:text="${rentCar.rentCarType}"></div>
+    <div th:text="${rentCar.rentCarName}"></div>
+    <div th:text="${rentCar.rentCarPrice}"></div>
+
+    <div th:text="${rentCar.rentCarCompanyDTO}"></div>
+    <div th:text="${rentCar.rentCarFileDTOS}"></div>
+    <br>
+</div>
+<a href="http://localhost:10000/program/rent_payment_list_test">영수증 확인하기</a>
+
+
+<div id="map" style="width:100%;height:350px;"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+
+<script th:inline="javascript">
+    var rentCars  = [[${rentCars}]];
+    console.log(rentCars);
+</script>
+<script>
+    $(document).ready(function() {
+        $(".rent-car-link").click(function(event) {
+            event.preventDefault(); // 기본 링크 동작을 막음
+            var rentCarId = $(this).data("id");
+
+            $.ajax({
+                url: "/program/rent_detail_test",     // 요청할 URL
+                method: "GET",        // HTTP 메소드
+                data: {  "rentCarId": rentCarId},  // 요청 데이터 (선택적)
+                success: function(response) {
+                    // 요청 성공 시 실행되는 함수
+                    console.log(response);  // 서버 응답 데이터
+                    location.href = "http://localhost:10000/program/rent/reservation="+rentCarId;
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+        });
+    });
+</script>
+</html>

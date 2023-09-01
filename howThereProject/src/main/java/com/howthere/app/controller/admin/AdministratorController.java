@@ -37,12 +37,6 @@ public class AdministratorController {
     @GetMapping("program")
     public void program() {;}
 
-    //http://localhost:10000/administrator/notice/detail
-    @GetMapping("program/detail")
-    public String programDetail() {
-        return "/program/detail";
-    }
-
     //http://localhost:10000/administrator/stay
     @GetMapping("house")
     public void house() {;}
@@ -51,7 +45,7 @@ public class AdministratorController {
     @GetMapping("house/detail")
     public String houseDetail(Long id, Model model) {
         model.addAttribute("id", id);
-        return "/host/write";
+        return "host/write";
     }
 
     //http://localhost:10000/administrator/reservation
@@ -71,7 +65,7 @@ public class AdministratorController {
     public String noticeDetail(Long id, Model model) {
         AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
         model.addAttribute(announcementDetailDTO);
-        return "/administrator/notice-detail";
+        return "administrator/notice-detail";
     }
 
   // http://localhost:10000/administrator/notice/write
@@ -81,7 +75,7 @@ public class AdministratorController {
             AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
             model.addAttribute(announcementDetailDTO);
         }
-        return "/administrator/notice-write";
+        return "administrator/notice-write";
     }
 
     @PostMapping("notice/write")
@@ -118,7 +112,7 @@ public class AdministratorController {
         QuestionDTO questionDTO = questionService.findQuestion(id);
         model.addAttribute("inquiry", questionDTO);
         model.addAttribute("answer", new AnswerDTO());
-        return "/administrator/inquiry-detail";
+        return "administrator/inquiry-detail";
     }
 
     @PostMapping("inquiry/write")

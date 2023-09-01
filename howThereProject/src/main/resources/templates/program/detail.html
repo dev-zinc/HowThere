@@ -412,7 +412,12 @@
                     </div>
                 </div>
                 <div class="btn-box flex">
-                    <button class="reservation-btn"><span>예약하기</span></button>
+                    <form id="reserve-form" th:action="@{/program/reservation}" method="post">
+                        <input type="hidden" name="programId" th:value="${program.id}">
+                        <input type="hidden" name="houseId" th:value="${program.houseId}">
+                        <input type="hidden" name="memberId" th:value="${member.id}">
+                    </form>
+                    <button type="button" class="reservation-btn"><span>예약하기</span></button>
                     <button class="cancle-btn"><span>취소</span></button>
                 </div>
             </section>
@@ -432,6 +437,10 @@
 <script th:inline="javascript">
   console.log([[${program}]])
   const program = [[${program}]]
+  const member = [[${member}]]
+  $('.reservation-btn').on('click', ()=>{
+      $('#reserve-form').submit();
+  });
 </script>
 <script src="/js/program/detail.js"></script>
 </html>

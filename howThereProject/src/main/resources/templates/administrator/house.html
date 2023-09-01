@@ -65,7 +65,9 @@
                 <div class="stay-register-date">${house.createdDate.substring(0, 10)}</div>
                 <div class="member-id">${house.memberId}</div>
             </div>
-        `, true, "delete"
+        `,
+        id => `/host/write?id=${id}`,
+        "delete"
     );
 </script>
 </html>

@@ -3,10 +3,12 @@ package com.howthere.app.repository.program;
 import antlr.collections.impl.IntRange;
 import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.embed.Address;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
+import com.howthere.app.repository.file.FileRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.repository.program.ProgramRepository;
@@ -38,6 +40,8 @@ public class ProgramRepositoryTests {
     private MemberRepository memberRepository;
     @Autowired
     private ProgramRepository programRepository;
+    @Autowired
+    private FileRepository fileRepository;
 
     @Test
     public void saveTest() {
@@ -59,8 +63,13 @@ public class ProgramRepositoryTests {
     }
 
     @Test
+    public void saveWithFileTest() {
+
+    }
+
+    @Test
     public void findAllWithLimitTest() {
-        Page<ProgramDTO> page = programRepository.findAllWithLimit(PageRequest.ofSize(10), null);
+        Page<ProgramListDTO> page = programRepository.findAllWithLimit(PageRequest.ofSize(10), null);
 
         assertThat(page.stream().count()).isEqualTo(10L);
     }

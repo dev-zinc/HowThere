@@ -6,6 +6,7 @@ import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.house.HouseDTO;
 import com.howthere.app.domain.member.MemberInfoDTO;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
@@ -35,7 +36,6 @@ public class AdministratorRestController {
     private final QuestionService questionService;
     private final HouseService houseService;
     private final ProgramReservationService programReservationService;
-    private final AnswerService answerService;
 
     @GetMapping("inquiry")
     public Page<QuestionDTO> getInquiries(@PageableDefault Pageable pageable, String keyword) {
@@ -48,7 +48,7 @@ public class AdministratorRestController {
     }
 
     @GetMapping("program")
-    public Page<ProgramDTO> getPrograms(@PageableDefault Pageable pageable, String keyword) {
+    public Page<ProgramListDTO> getPrograms(@PageableDefault Pageable pageable, String keyword) {
         return programService.getPrograms(pageable, keyword);
     }
 

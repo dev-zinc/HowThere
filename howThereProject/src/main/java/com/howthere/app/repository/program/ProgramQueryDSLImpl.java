@@ -1,9 +1,13 @@
 package com.howthere.app.repository.program;
 
 import static com.howthere.app.entity.file.QHouseFile.houseFile;
+import static com.howthere.app.entity.house.QHouse.house;
 import static com.howthere.app.entity.program.QProgram.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
+import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.type.Verified;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
@@ -12,16 +16,26 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 @RequiredArgsConstructor
 public class ProgramQueryDSLImpl implements ProgramQueryDSL {
 
     private final JPAQueryFactory queryDSL;
 
-    private final QBean<ProgramDTO> programListDTO = Projections.fields(ProgramDTO.class,
+    private final QBean<ProgramMainDTO> programMainDTO = Projections.fields(ProgramMainDTO.class,
+            program.id,
+            program.house.houseAddress.address.as("programAddress"),
+            program.programStartDate,
+            program.programEndDate,
+            program.programPrice,
+            houseFile.fileName,
+            houseFile.fileUuid,
+            houseFile.filePath,
+            houseFile.fileSize
+    );
+
+    private final QBean<ProgramListDTO> programListDTO = Projections.fields(ProgramListDTO.class,
             program.id,
             ExpressionUtils.as(program.house.member.id, "memberId"),
             program.createdDate,
@@ -47,12 +61,12 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
     );
 
     @Override
-    public Page<ProgramDTO> findAllWithLimit(Pageable pageable, String keyword) {
+    public Page<ProgramListDTO> findAllWithLimit(Pageable pageable, String keyword) {
         BooleanExpression hasKeyword = keyword != null
             ? program.programName.contains(keyword).or(program.programContent.contains(keyword))
             : null;
 
-        final List<ProgramDTO> programDTOs = queryDSL
+        final List<ProgramListDTO> programDTOs = queryDSL
             .select(programListDTO)
             .from(program)
             .offset(pageable.getOffset())
@@ -65,11 +79,11 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
     }
 
     @Override
-    public Page<ProgramDTO> findAllWithThumbnail(Pageable pageable) {
+    public Page<ProgramDTO> findAllWithThumbnail(Pageable pageable, Search search) {
         final List<ProgramDTO> programDTOs = queryDSL
             .select(programDTOQuery)
             .from(program)
-            .innerJoin(houseFile)
+            .leftJoin(houseFile)
             .on(houseFile.thumb.isTrue().and(houseFile.house.id.eq(program.house.id)))
             .where(program.verified.eq(Verified.Y))
             .offset(pageable.getOffset())
@@ -78,5 +92,17 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
             .fetch();
         Long count = queryDSL.select(program.count()).from(program).fetchOne();
         return new PageImpl<>(programDTOs, pageable, count == null ? 0 : count);
+    }
+
+    @Override
+    public List<ProgramMainDTO> findAll10() {
+        return queryDSL
+                .select(programMainDTO)
+                .from(program)
+                .join(house).on(program.house.id.eq(house.id))
+                .leftJoin(houseFile).on(program.house.id.eq(houseFile.house.id))
+                .where(program.verified.eq(Verified.Y))
+                .limit(10)
+                .fetch();
     }
 }

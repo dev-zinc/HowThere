@@ -1,6 +1,7 @@
 package com.howthere.app.service.diary;
 
 import com.howthere.app.domain.diary.DiaryDTO;
+import com.howthere.app.domain.diary.DiaryMainDTO;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +35,11 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword, String order) {
         return diaryRepository.findAllWithSlice(pageable, keyword, order);
+    }
+
+    @Override
+    public List<DiaryMainDTO> getList() {
+        return diaryRepository.findAll10();
     }
 
 //    @Override

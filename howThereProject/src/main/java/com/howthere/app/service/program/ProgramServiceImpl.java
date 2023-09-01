@@ -1,11 +1,13 @@
 package com.howthere.app.service.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramListDTO;
+import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.program.Program;
 import com.howthere.app.repository.program.ProgramRepository;
 import com.howthere.app.service.file.house.HouseFileService;
-import com.howthere.app.service.house.HouseService;
 import com.howthere.app.type.Verified;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +23,15 @@ public class ProgramServiceImpl implements ProgramService {
 
     private final ProgramRepository programRepository;
     private final HouseFileService houseFileService;
-    private final HouseService houseService;
 
     @Override
-    public Page<ProgramDTO> getPrograms(Pageable pageable, String keyword) {
+    public Page<ProgramListDTO> getPrograms(Pageable pageable, String keyword) {
         return programRepository.findAllWithLimit(pageable, keyword);
+    }
+
+    @Override
+    public List<ProgramMainDTO> getPrograms() {
+        return programRepository.findAll10();
     }
 
     @Override
@@ -34,8 +40,8 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     @Override
-    public Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable) {
-        return programRepository.findAllWithThumbnail(pageable);
+    public Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable, Search search) {
+        return programRepository.findAllWithThumbnail(pageable, search);
     }
 
     @Override
@@ -55,6 +61,8 @@ public class ProgramServiceImpl implements ProgramService {
         final String hostProfile = program.getHouse().getMember().getMemberProfile();
 
         return ProgramDTO.builder()
+            .id(program.getId())
+            .houseId(program.getHouse().getId())
             .programAddress(program.getHouse().getHouseAddress().getAddress())
             .programAddressDetail(program.getHouse().getHouseAddress().getAddressDetail())
             .programName(program.getProgramName())
