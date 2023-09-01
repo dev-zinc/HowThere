@@ -25,8 +25,15 @@ public class RentCarServiceImpl implements RentCarService {
 
     // 렌트카 리스트 갖고오기
     @Override
-    public Slice<RentCarDTO> getRentCarList(Pageable pageable) {
-        Slice<RentCar> rentCars = rentCarRepository.findAllWithSlice(pageable);
+    public Slice<RentCarDTO> getRentCarList(Pageable pageable,String selectedLocal, String selectedCar){
+
+        RentCarType selectedRentCar = null;
+
+        if(selectedCar != null){
+            selectedRentCar = RentCarType.valueOf(selectedCar);
+        }
+        log.info("Service SelectedCar: {}", selectedCar);
+        Slice<RentCar> rentCars = rentCarRepository.findAllWithSlice(pageable, selectedLocal, selectedRentCar);
 
         List<RentCarDTO> rentCarDTOs = rentCars.stream()
                 .map(this::RentCarToDTO)
