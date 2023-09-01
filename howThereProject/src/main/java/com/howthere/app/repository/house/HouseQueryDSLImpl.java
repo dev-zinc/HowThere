@@ -69,8 +69,8 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
     public Page<HouseDTO> findAllByIdWithPaging(Pageable pageable, Long memberId) {
         final List<HouseDTO> houseDTOs =
             query.select(editHouseDTO)
-                .from(houseFile)
-                .join(house)
+                .from(house)
+                .leftJoin(houseFile)
                 .on(house.id.eq(houseFile.house.id)
                     .and(house.member.id.eq(memberId)))
                 .where(houseFile.thumb.isTrue())
