@@ -57,8 +57,9 @@ public class ProgramController {
 
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
-    public ModelAndView detail(@RequestParam Long id,HttpServletRequest req, ModelAndView mv) {
+    public ModelAndView detail(@RequestParam Long id, HttpSession session, ModelAndView mv) {
         final ProgramDTO programDTO = programService.getProgram(id);
+        final MemberDTO member = (MemberDTO) session.getAttribute("member");
         mv.setViewName("program/detail");
         mv.addObject("program", programDTO);
         mv.addObject("member", session.getAttribute("member"));
@@ -67,10 +68,11 @@ public class ProgramController {
 
     // http://localhost:10000/program/reservation
     @GetMapping("/reservation/{id}")
-    public String reservation(@PathVariable Long id, Model model) {
+    public String reservation(@PathVariable Long id, Model model, HttpServletRequest req) {
         programReservationService.getReservation(id).ifPresent((reservation) -> {
             model.addAttribute("reservation", reservation);
         });
+        req.getParameter("verified");
         return "/program/reservation";
     }
 

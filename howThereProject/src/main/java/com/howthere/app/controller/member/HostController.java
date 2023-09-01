@@ -1,6 +1,7 @@
 package com.howthere.app.controller.member;
 
 import com.howthere.app.domain.house.HouseDTO;
+import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.service.file.house.HouseFileService;
@@ -65,9 +66,10 @@ public class HostController {
         @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
         ModelAndView mv) {
 
-        // TODO: 2023/08/20 로그인 작업 완료 시 수정 예정
-        final Page<HouseDTO> pagination = houseService.getMyHouses(pageable, 1L);
+        final MemberDTO member = (MemberDTO) session.getAttribute("member");
+        final Page<HouseDTO> pagination = houseService.getMyHouses(pageable, member.getId());
         mv.addObject("pagination", pagination);
+        mv.addObject("member", member);
         mv.setViewName("/host/inn");
         return mv;
     }
