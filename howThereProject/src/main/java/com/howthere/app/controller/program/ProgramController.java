@@ -4,6 +4,7 @@ import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.service.program.ProgramService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @Controller
 @RequestMapping("/program")
 @RequiredArgsConstructor
@@ -29,6 +31,7 @@ public class ProgramController {
         mv.setViewName("program/list");
         final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
             pageable);
+        log.info(programs.toString());
         mv.addObject("pagination", programs);
         return mv;
     }
