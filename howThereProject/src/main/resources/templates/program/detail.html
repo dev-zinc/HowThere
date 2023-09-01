@@ -68,7 +68,7 @@
                                                                 </div>
                                                                 <div class="carousel-inner">
                                                                     <div class="carousel-item" th:each="image:${program.filePathList}">
-                                                                        <img alt="숙소 사진" style="width: 1120px; border-radius: 25px" th:src="|/host/load-image?filePath=${image}|">
+                                                                        <img alt="숙소 사진" style="width: 1120px; height: 630px; border-radius: 25px" th:src="|/host/load-image?filePath=${image}|">
                                                                     </div>
                                                                 </div>
                                                                 <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselIndicators" type="button">
@@ -186,7 +186,7 @@
                                                     <div>
                                                         <div
                                                             style="line-height: 24px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;">
-                                                            <div th:text="${program.programContent}">
+                                                            <div th:utext="${program.programContent}">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -4,6 +4,8 @@ import com.howthere.app.auditing.Period;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.type.Verified;
 import java.time.LocalDate;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Builder;
@@ -52,6 +55,9 @@ public class Program extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HOUSE_ID")
     private House house;
+
+    @OneToMany(mappedBy = "program", cascade = CascadeType.REMOVE)
+    private List<ProgramReservation> reservations;
 
     @Builder
     public Program(LocalDate programStartDate, LocalDate programEndDate, String programName,
