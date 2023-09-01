@@ -33,11 +33,12 @@ public class DiaryQueryDSLImpl implements DiaryQueryDSL {
     private final QBean<DiaryMainDTO> diaryMainDTO = Projections.fields(DiaryMainDTO.class,
             diary.id,
             diary.diaryTitle,
-            diary.createdDate,
-            diaryFile.fileName,
-            diaryFile.fileUuid,
-            diaryFile.filePath,
-            diaryFile.fileSize);
+            diary.diaryContent,
+            diary.createdDate);
+//            diaryFile.fileName,
+//            diaryFile.fileUuid,
+//            diaryFile.filePath,
+//            diaryFile.fileSize);
 
 //    @Override
 //    public List<Diary> findAll() {
@@ -128,7 +129,7 @@ public class DiaryQueryDSLImpl implements DiaryQueryDSL {
         return query
                 .select(diaryMainDTO)
                 .from(diary)
-                .leftJoin(diaryFile).on(diary.id.eq(diaryFile.id))
+//                .leftJoin(diaryFile).on(diary.id.eq(diaryFile.id))
                 .limit(10)
                 .fetch();
     }

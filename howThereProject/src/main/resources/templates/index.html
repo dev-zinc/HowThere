@@ -232,21 +232,22 @@
                     <div id="diaryList" class="main-list-wrap" style="margin-top: 25px;">
                         <!-- -->
                         <!-- -->
-                        <div th:each="diary : ${diaries}">
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title" th:text="${diary.diaryTitle}"></div>
-                                        <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <th:block th:if="${diary.filePath != null}">
-                                            <img th:src="|/files/display?fileName=${diary.filePath}t_${diary.fileUuid}_${diary.fileName}|" alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+<!--                        <div th:each="diary : ${diaries}">-->
+<!--                            <a href="">-->
+<!--                                <div class="diary-wrap">-->
+<!--                                    <div class="diary-info">-->
+<!--                                        <div class="index-diary-title" th:text="${diary.diaryTitle}"></div>-->
+<!--                                        <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="diary-img-wrap">-->
+<!--&lt;!&ndash;                                        <th:block th:if="${diary.filePath != null}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div th:text="${diary.diaryContent}"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <img th:src="${diarySrc}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </th:block>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
                         <!-- -->
                         <!-- -->
                     </div>
@@ -263,7 +264,33 @@
 <script th:inline="javascript">
     let programs = [[${programs}]];
     let diaries = [[${diaries}]];
-    console.log(programs, diaries)
+    // let diarySrc = diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0];
+    // console.log(diarySrc);
+    // console.log(programs, diaries)
+
+
+    let text = "";
+    diaries.forEach((diary)=>{
+        let createdDate = new Date(diary.createdDate);
+        text += `
+            <div>
+                <a href="/diary/article/${diary.id}">
+                    <div class="diary-wrap">
+                        <div class="diary-info">
+                            <div class="index-diary-title">${diary.diaryTitle}</div>
+                            <div class="period">${createdDate.getFullYear() + '년 ' + (createdDate.getMonth() + 1) + '월 ' + createdDate.getDate() + '일'}</div>
+                        </div>
+                        <div class="diary-img-wrap">
+                                <img src="${diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0]}" alt="">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `
+        // console.log(diary.diaryContent.split("\"").filter(i=>i.includes("data:image"))[0]);
+    })
+    document.getElementById('diaryList').innerHTML = text;
+
 </script>
 <script src="/js/layout/index.js"></script>
 </html>
