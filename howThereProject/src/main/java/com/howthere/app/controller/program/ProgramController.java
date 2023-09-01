@@ -1,9 +1,13 @@
 package com.howthere.app.controller.program;
 
+import com.howthere.app.domain.diary.DiaryDTO;
 import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
+import com.howthere.app.domain.program.ProgramReservationDTO;
+import com.howthere.app.domain.program.ProgramReserveDTO;
 import com.howthere.app.domain.rent.RentCarDTO;
 import com.howthere.app.domain.rent.RentCarPaymentDTO;
+import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,6 +41,8 @@ import java.util.Map;
 public class ProgramController {
 
     private final ProgramService programService;
+    private final ProgramReservationService programReservationService;
+    private final HttpSession session;
 
     private final RentCarService rentCarService;
 
@@ -59,14 +66,24 @@ public class ProgramController {
         final ProgramDTO programDTO = programService.getProgram(id);
         mv.setViewName("program/detail");
         mv.addObject("program", programDTO);
+        mv.addObject("member", session.getAttribute("member"));
         return mv;
     }
 
     // http://localhost:10000/program/reservation
-    @GetMapping("/reservation")
-    public ModelAndView reservation(HttpServletRequest req, ModelAndView mv) {
-        mv.setViewName("program/reservation");
-        return mv;
+    @GetMapping("/reservation/{id}")
+    public String reservation(@PathVariable Long id, Model model) {
+        programReservationService.getReservation(id).ifPresent((reservation) -> {
+            model.addAttribute("reservation", reservation);
+        });
+        return "/program/reservation";
+    }
+
+    @PostMapping("/reservation")
+    public RedirectView reservation(ProgramReserveDTO programReserveDTO) {
+        Long id = programReservationService.reserve(programReserveDTO);
+        log.info(id.toString());
+        return new RedirectView("/program/reservation/" + id);
     }
 
     // http://localhost:10000/program/rent
