@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>rent_test_payment_list</title>
+</head>
+<body>
+    <h1>렌트카 영수증 리스트</h1>
+
+    <div th:each="rentCarPayment : ${rentCarPayments}">
+        <a href="#" class="rent-car-link" th:data-id="${rentCarPayment.id}">
+            상세보기
+            <div th:text="${rentCarPayment.id}" class="rent-car-id"></div>
+        </a>
+        <div th:utext="${rentCarPayment.startDay}"></div>
+        <div th:utext="${rentCarPayment.endDay}"></div>
+        <div th:text="${rentCarPayment.carRentTotalPrice}"></div>
+        <div th:each="rentCarFile : ${rentCarPayment.rentCar.rentCarFiles}">
+            <div th:text="${rentCarFile.filePath}"></div>
+        </div>
+        <div th:text="${rentCarPayment.member.id}"></div>
+        <br>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $(".rent-car-link").click(function(event) {
+            event.preventDefault(); // 기본 링크 동작을 막음
+            var rentCarPaymentId = $(this).data("id");
+
+            $.ajax({
+                url: "/program/rent_payment_detail_test",     // 요청할 URL
+                method: "GET",        // HTTP 메소드
+                data: {  "rentCarPaymentId": rentCarPaymentId},  // 요청 데이터 (선택적)
+                success: function(response) {
+                    // 요청 성공 시 실행되는 함수
+                    console.log(response);  // 서버 응답 데이터
+                    location.href = "http://localhost:10000/program/rent_payment_detail_test?rentCarPaymentId="+rentCarPaymentId;
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+        });
+    });
+
+</script>
+</html>
