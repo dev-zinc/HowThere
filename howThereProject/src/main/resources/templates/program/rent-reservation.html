@@ -33,7 +33,7 @@
                                                     <section>
                                                         <div style="margin-bottom: 4px;">
                                                             <span style="font-size: 26px; line-height:30px;font-weight:  600;">
-                                                                <h1 style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;">
+                                                                <h1 style="color: inherit;font-size: 1em;font-weight: inherit;line-height: inherit;"th:text="${rentCar.rentCarName}">
                                                                     미니 (차이름 넣으면 될 것 같아여)</h1>
 																<b id="drivingCharge">주행요금 220 ~ 250원/km</b>
                                                             </span>
@@ -157,19 +157,24 @@
                             </div>
                             <div class="grid between">
                                 <div>일일가격</div>
-                                <div><input class="date" id="price" min="0" step="10" type="number"></div>
+                                <div><h4 th:text="${rentCar.rentCarPrice}"></h4></div>
                             </div>
                         </div>
                         <div class="btn-box flex">
-                            <button class="reservation-btn"><span>예약하기</span></button>
-                            <button class="cancle-btn"><span>취소</span></button>
+                            <button th:block th:if="!${paymentId}" class="reservation-btn" id="reservation_btn_click"><span>예약하기</span></button>
+                            <button th:block th:if="${paymentId}" class="reservation-btn" id="rent_car_payment_id"><span>수정하기</span></button>
                         </div>
 				</section>
             </div>
         </div>
+        <div style="display: none" id="rent_car_id" th:text="${rentCar.id}"></div>
     </main>
     <div th:replace="~{/layout/footer :: footer}"></div>
 </body>
+<script th:inline="javascript">
+    var rentCars  = [[${rentCar}]];
+    console.log(rentCars);
+</script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d" type="text/javascript"></script>
 <script crossorigin="anonymous"
@@ -201,5 +206,95 @@
 			if (startDate > endDate)
 				dateDepart.val(endDate);
 		});
+</script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+
+        $("#reservation_btn_click").on('click', function() {
+            let rentCarId = $("#rent_car_id").text();
+            let startDate = $("#startDate").val();
+            let endDate = $("#endDate").val();
+
+            if(startDate === ""){
+                alert("날짜를 선택해주세요");
+                return;
+            }
+            if(endDate === ""){
+                alert("날짜를 선택해주세요")
+                return;
+            }
+
+            console.log("Rent Car Id:", rentCarId);
+            console.log("Start Day:", startDate);
+            console.log("End Day:", endDate);
+
+
+            $.ajax({
+                url: "/program/rent_reservation",     // 요청할 URL
+                method: "POST",        // HTTP 메소드
+                data: {
+                    "rentCarId": rentCarId,
+                    "startDay": startDate,
+                    "endDay": endDate
+                },  // 요청 데이터 (선택적)
+                success: function(response) {
+                    console.log(response);  // 서버 응답 데이터
+                    // 요청 성공 시 실행되는 함수
+                    if(response.response == "success"){
+                        alert("예약 되었습니다");
+                        location.href = "http://localhost:10000/program/rent_test";
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+
+
+        });
+
+        $("#btn_click_update").on('click', function() {
+            let paymentId =[[${paymentId}]];
+
+            let price = $("#price").text();
+            let startDay = $("#startDay").val();
+            let endDay = $("#endDay").val();
+
+            console.log(paymentId);
+            console.log(price);
+            console.log(startDay);
+            console.log(endDay);
+
+            $.ajax({
+                url: "/program/rent_update",     // 요청할 URL
+                method: "POST",        // HTTP 메소드
+                data: {
+                    "paymentId": paymentId,
+                    "price": price,
+                    "startDay": startDay,
+                    "endDay": endDay
+                },  // 요청 데이터 (선택적)
+                success: function(response) {
+                    console.log(response);  // 서버 응답 데이터
+                    // 요청 성공 시 실행되는 함수
+                    if(response.response == "success"){
+                        alert("예약이 수정 되었습니다.");
+                        location.href = "http://localhost:10000/program/rent_payment_detail_test?rentCarPaymentId="+paymentId;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+
+
+        });
+
+
+
+    });
 </script>
 </html>

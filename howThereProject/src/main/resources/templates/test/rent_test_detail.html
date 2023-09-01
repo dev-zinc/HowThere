@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>rent_test_detail</title>
+</head>
+<body>
+    <h1>렌트카 상세정보</h1>
+    <a href="#" id="btn_click">
+        <div th:block th:if="!${paymentId}"> 예약하기</div>
+    </a>
+    <a href="#" id="btn_click_update">
+        <div th:block th:if="${paymentId}" id="rent_car_payment_id"> 수정하기</div>
+    </a>
+    <div th:text="${rentCar.rentCarType}"></div>
+    <div th:text="${rentCar.rentCarName}"></div>
+    <div th:text="${rentCar.rentCarPrice}" id="price"></div>
+    <div th:text="${rentCar.rentCarCompanyDTO}"></div>
+    <div th:each="rentCarFile : ${rentCar.rentCarFileDTOS}">
+        <img th:src="${rentCarFile.filePath}" alt="Dynamic Image">
+    </div>
+    <input type="datetime-local" id="startDay">
+    <input type="datetime-local" id="endDay">
+    <a href="http://localhost:10000/program/rent_test" id="update">리스트로 이동</a>
+</body>
+
+<script>
+    $(document).ready(function() {
+
+        $("#btn_click").on('click', function() {
+            let rentCarId = $("#rent_car_id").text();
+            let startDay = $("#startDay").val();
+            let endDay = $("#endDay").val();
+
+            console.log("Start Day:", startDay);
+            console.log("End Day:", endDay);
+
+
+            $.ajax({
+                url: "/program/rent_reservation",     // 요청할 URL
+                method: "POST",        // HTTP 메소드
+                data: {
+                    "rentCarId": rentCarId,
+                    "startDay": startDay,
+                    "endDay": endDay
+                },  // 요청 데이터 (선택적)
+                success: function(response) {
+                    console.log(response);  // 서버 응답 데이터
+                    // 요청 성공 시 실행되는 함수
+                    if(response.response == "success"){
+                        alert("예약 되었습니다");
+                        location.href = "http://localhost:10000/program/rent_test";
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+
+
+        });
+
+        $("#btn_click_update").on('click', function() {
+            let paymentId =[[${paymentId}]];
+
+            let price = $("#price").text();
+            let startDay = $("#startDay").val();
+            let endDay = $("#endDay").val();
+
+            console.log(paymentId);
+            console.log(price);
+            console.log(startDay);
+            console.log(endDay);
+
+            $.ajax({
+                url: "/program/rent_update",     // 요청할 URL
+                method: "POST",        // HTTP 메소드
+                data: {
+                    "paymentId": paymentId,
+                    "price": price,
+                    "startDay": startDay,
+                    "endDay": endDay
+                },  // 요청 데이터 (선택적)
+                success: function(response) {
+                    console.log(response);  // 서버 응답 데이터
+                    // 요청 성공 시 실행되는 함수
+                    if(response.response == "success"){
+                        alert("예약이 수정 되었습니다.");
+                        location.href = "http://localhost:10000/program/rent_payment_detail_test?rentCarPaymentId="+paymentId;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+
+
+        });
+    });
+</script>
+</html>
