@@ -1,5 +1,6 @@
 package com.howthere.app.service.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramMainDTO;
@@ -30,7 +31,7 @@ public interface ProgramService {
             .build();
     }
 
-    Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable);
+    Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable, Search search);
 
     ProgramDTO getProgram(Long id);
     void modifyAllBy(List<Long> ids);

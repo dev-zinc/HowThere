@@ -4,6 +4,7 @@ import static com.howthere.app.entity.file.QHouseFile.houseFile;
 import static com.howthere.app.entity.house.QHouse.house;
 import static com.howthere.app.entity.program.QProgram.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramMainDTO;
@@ -78,11 +79,11 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
     }
 
     @Override
-    public Page<ProgramDTO> findAllWithThumbnail(Pageable pageable) {
+    public Page<ProgramDTO> findAllWithThumbnail(Pageable pageable, Search search) {
         final List<ProgramDTO> programDTOs = queryDSL
             .select(programDTOQuery)
             .from(program)
-            .innerJoin(houseFile)
+            .leftJoin(houseFile)
             .on(houseFile.thumb.isTrue().and(houseFile.house.id.eq(program.house.id)))
             .where(program.verified.eq(Verified.Y))
             .offset(pageable.getOffset())
@@ -100,6 +101,7 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
                 .from(program)
                 .join(house).on(program.house.id.eq(house.id))
                 .leftJoin(houseFile).on(program.house.id.eq(houseFile.house.id))
+                .where(program.verified.eq(Verified.Y))
                 .limit(10)
                 .fetch();
     }

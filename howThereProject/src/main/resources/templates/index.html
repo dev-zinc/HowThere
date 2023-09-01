@@ -206,7 +206,9 @@
                                         </div>
                                     </div>
                                     <div class="house-img-wrap">
-                                        <img th:src="|/files/display?fileName=${program.filePath}t_${program.fileUuid}_${program.fileName}|" alt="">
+                                        <th:block th:if="${program.filePath != null}">
+                                            <img th:src="|/files/display?fileName=${program.filePath}t_${program.fileUuid}_${program.fileName}|" alt="">
+                                        </th:block>
                                     </div>
                                 </div>
                             </a>
@@ -238,7 +240,9 @@
                                         <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>
                                     </div>
                                     <div class="diary-img-wrap">
-                                        <img th:src="|/files/display?fileName=${diary.filePath}t_${diary.fileUuid}_${diary.fileName}|" alt="">
+                                        <th:block th:if="${diary.filePath != null}">
+                                            <img th:src="|/files/display?fileName=${diary.filePath}t_${diary.fileUuid}_${diary.fileName}|" alt="">
+                                        </th:block>
                                     </div>
                                 </div>
                             </a>

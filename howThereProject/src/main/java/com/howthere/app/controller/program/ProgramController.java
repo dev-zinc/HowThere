@@ -1,9 +1,11 @@
 package com.howthere.app.controller.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.service.program.ProgramService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Slf4j
 @RequestMapping("/program")
 @RequiredArgsConstructor
 public class ProgramController {
@@ -24,11 +27,12 @@ public class ProgramController {
     // http://localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv,
-        @PageableDefault(page = 0, size = 5) Pageable pageable) {
+        @PageableDefault(page = 0, size = 5) Pageable pageable, Search search) {
         // TODO: 2023/08/05 지도 지우고 무한 스크롤로 변경
+        log.info(search.toString());
         mv.setViewName("program/list");
         final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
-            pageable);
+            pageable, search);
         mv.addObject("pagination", programs);
         return mv;
     }

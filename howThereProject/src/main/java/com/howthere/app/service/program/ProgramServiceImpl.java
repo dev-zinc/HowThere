@@ -1,5 +1,6 @@
 package com.howthere.app.service.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramMainDTO;
@@ -39,8 +40,8 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     @Override
-    public Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable) {
-        return programRepository.findAllWithThumbnail(pageable);
+    public Page<ProgramDTO> getProgramsWithThumbnail(Pageable pageable, Search search) {
+        return programRepository.findAllWithThumbnail(pageable, search);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.howthere.app.repository.program;
 
+import com.howthere.app.domain.Search;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramMainDTO;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface ProgramQueryDSL {
     Page<ProgramListDTO> findAllWithLimit(Pageable pageable, String keyword);
 
-    Page<ProgramDTO> findAllWithThumbnail(Pageable pageable);
+    Page<ProgramDTO> findAllWithThumbnail(Pageable pageable, Search search);
 
     List<ProgramMainDTO> findAll10();
 }
