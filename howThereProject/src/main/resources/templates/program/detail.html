@@ -397,18 +397,18 @@
                     <div class="grid between">
                         <div>체크인</div>
                         <div>
-                            <input class="search-input " id="startDate" name="startDate" placeholder="날짜 추가" type="text">
+                            <input class="search-input " id="startDate" name="startDate"  type="text" th:value="${program.programStartDate}" readonly>
                         </div>
                     </div>
                     <div class="grid between">
                         <div>체크아웃</div>
                         <div>
-                            <input class="search-input " id="endDate" name="endDate" placeholder="날짜 추가" type="text">
+                            <input class="search-input " id="endDate" name="endDate" type="text" th:value="${program.programEndDate}" readonly>
                         </div>
                     </div>
                     <div class="grid between">
                         <div>가격/박</div>
-                        <div><input class="date" id="price" min="0" step="10" type="number"></div>
+                        <div><input class="date" id="price" type="text" th:value="${program.programPrice} * ${program.between}" style="font-size: 14px;" readonly></div>
                     </div>
                 </div>
                 <div class="btn-box flex">

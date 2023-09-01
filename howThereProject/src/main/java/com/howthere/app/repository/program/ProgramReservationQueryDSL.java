@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProgramReservationQueryDSL {
     Page<ProgramReservationDTO> findAllWithKeyword(Pageable pageable, String keyword);
+
+    Page<ProgramReservationDTO> getReservationByMemberId(Pageable pageable, Long id);
 }

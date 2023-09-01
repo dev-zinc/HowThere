@@ -68,10 +68,11 @@ public class ProgramController {
 
     // http://localhost:10000/program/reservation
     @GetMapping("/reservation/{id}")
-    public String reservation(@PathVariable Long id, Model model) {
+    public String reservation(@PathVariable Long id, Model model, HttpServletRequest req) {
         programReservationService.getReservation(id).ifPresent((reservation) -> {
             model.addAttribute("reservation", reservation);
         });
+        req.getParameter("verified");
         return "/program/reservation";
     }
 

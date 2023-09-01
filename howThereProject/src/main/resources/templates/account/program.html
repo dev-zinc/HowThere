@@ -42,111 +42,43 @@
             <nav class="category-nav">
                 <div class="category-nav-wrapper flex">
                     <div class="nav-tabs selected">카테고리1</div>
-                    <div class="nav-tabs">카테고리2</div>
-                    <div class="nav-tabs">카테고리3</div>
-                    <div class="nav-tabs">카테고리4</div>
                 </div>
                 <div class="slight-divider"></div>
             </nav>
 
-            <div class="account-content">
-                <!-- -->
-                <!-- -->
-                <div class="program-wrap">
-                    <div class="program-image-wrap">
+            <div class="account-content" th:if="${!pagination.content.isEmpty()}">
+
+                <div class="program-wrap" th:each="reserve:${pagination.content}">
+                    <div class="program-image-wrap" onclick="">
                         <img aria-hidden="true"
-                             alt="한 남자가 무릎에 개를 앉힌 채 파란색 의자에 앉아 있습니다." decoding="async" elementtiming="LCP-target"
-                             src="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt3cf3e52f60685424/5dc1e0a1ec43cb0d4398ae22/2UV40881MHQ96.jpg?crop=94.21p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             data-original-uri="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt3cf3e52f60685424/5dc1e0a1ec43cb0d4398ae22/2UV40881MHQ96.jpg?crop=94.21p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             style="--dls-liteimage-object-fit: cover;">
+                             th:src="|/host/load-image?filePath=${reserve.filePath}|"
+                             style="width: 355px; height: 235px;">
                     </div>
                     <div class="program-text">
-                        <div class="program-title">프로그램 1</div>
-                        <div class="program-brief">
-                            프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 프로그램 1은 한 달 동안
-                            프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 프로그램 1은 한 달 동안 </div>
+                        <div class="program-title" th:text="${reserve.programName}"></div>
+                        <div class="program-brief" th:text="${reserve.programPrice}"></div>
                         <div class="period">
-                            2023년 6월 4일 - 2023년 7월 2일
+                            <span th:text="${reserve.programStartDate}"></span>
+                            <span> - </span>
+                            <span th:text="${reserve.programEndDate}"></span>
+                        </div>
+                        <div class="program-verified" th:if="${reserve.verified.name()} == 'N'" style="color: #868e96;">
+                            <button disabled>접수 대기중</button>
+                        </div>
+                        <div class="program-verified" th:unless="${reserve.verified.name()} == 'N'" style="color: #BB84E8">
+                            <button id="payBtn" th:onclick="pay([[${reserve}]])">결제하기</button>
+<!--                            <input type="hidden" name="reserve-id" th:value="${reserve.id}">-->
+<!--                            <input type="hidden" name="reserve-price" th:value="${reserve.programPrice}">-->
                         </div>
                     </div>
                 </div>
 
-                <div class="program-wrap">
-                    <div class="program-image-wrap">
-                        <img aria-hidden="true" alt="한 여성이 침실에서 미소 짓고 있습니다." decoding="async"
-                             elementtiming="LCP-target" src="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blta7f3c725e07e1ce7/5dc23d3fecfa320d08af4bd4/2UV40881MH9Q6.jpg?crop=95.08p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             data-original-uri="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blta7f3c725e07e1ce7/5dc23d3fecfa320d08af4bd4/2UV40881MH9Q6.jpg?crop=95.08p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             style="--dls-liteimage-object-fit: cover;">
-                    </div>
-                    <div class="program-text">
-                        <div class="program-title">프로그램 2</div>
-                        <div class="program-brief">
-                            프로그램 2는 두 달 동안 2에서 살아보는 프로그램 2는 두 달 동안 2에서 살아보는 프로그램 2는 두 달 동안 2에서 살아보는 프로그램 2는 두 달 동안 2에서 살아보는
-                        </div>
-                        <div class="period">
-                            2023년 6월 4일 - 2023년 7월 2일
-                        </div>
-                    </div>
+            </div>
+            <div class="account-content" th:unless="${!pagination.content.isEmpty()}">
+                <h2>신청한 프로그램이 없습니다</h2>
+                <div>
+                    <button>프로그램 신청</button>
                 </div>
-
-                <div class="program-wrap">
-                    <div class="program-image-wrap">
-                        <img aria-hidden="true" alt="에어비앤비 호스트 6명이 미소를 짓고 있는 사진의 콜라주입니다." decoding="async"
-                             elementtiming="LCP-target" src="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt7f47becb52fc0ddb/61b10ec856fefe61578d05ef/RC_Thumbnail.png?crop=100p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             data-original-uri="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt7f47becb52fc0ddb/61b10ec856fefe61578d05ef/RC_Thumbnail.png?crop=100p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             style="--dls-liteimage-object-fit: cover;">
-                    </div>
-                    <div class="program-text">
-                        <div class="program-title">프로그램 3</div>
-                        <div class="program-brief">
-                            세 달 동안 프로그램 3에서 거주하여 3가지 혜택을 누려보세요 세 달 동안 프로그램 3에서 거주하여 3가지 혜택을 누려보세요 세 달 동안 프로그램 3에서 거주하여 3가지 혜택을 누려보세요 세 달 동안 프로그램 3에서 거주하여 3가지 혜택을 누려보세요
-                        </div>
-                        <div class="period">
-                            2023년 6월 4일 - 2023년 7월 2일
-                        </div>
-                    </div>
-                </div>
-
-                <div class="program-wrap">
-                    <div class="program-image-wrap">
-                        <img aria-hidden="true" alt="천연 목제 지붕과 프렌치 도어가 있는 A자형 주택 앞에서 호스트 두 명이 서로 팔짱을 끼고 미소 지으며 서 있습니다."
-                             decoding="async" elementtiming="LCP-target"
-                             src="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt7c354b12c14ba751/636d6725a160f90b25892e51/PJMPHOTO19Q210_TaraRice_0573_(1).jpg?crop=100p,84.47p,x0,y1.31p&amp;width=720&amp;height=405&amp;auto=webp"
-                             data-original-uri="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt7c354b12c14ba751/636d6725a160f90b25892e51/PJMPHOTO19Q210_TaraRice_0573_(1).jpg?crop=100p,84.47p,x0,y1.31p&amp;width=720&amp;height=405&amp;auto=webp"
-                             style="--dls-liteimage-object-fit: cover;">
-                    </div>
-                    <div class="program-text">
-                        <div class="program-title">프로그램 4</div>
-                        <div class="program-brief">
-                            4가지 풍경이 있는 프로그램 4와 4개월 보내기 4가지 풍경이 있는 프로그램 4와 4개월 보내기 4가지 풍경이 있는 프로그램 4와 4개월 보내기 4가지 풍경이 있는 프로그램 4와 4개월 보내기 4가지 풍경이 있는 프로그램 4와 4개월 보내기
-                        </div>
-                        <div class="period">
-                            2023년 6월 4일 - 2023년 7월 2일
-                        </div>
-                    </div>
-                </div>
-
-                <div class="program-wrap">
-                    <div class="program-image-wrap">
-                        <img aria-hidden="true" alt="한 여성이 전자 기타를 들고 서 있습니다." decoding="async"
-                             elementtiming="LCP-target" src="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt9e4abb0016027253/5dc20952b1f6d20df3919bad/2UV40881MHWDT.jpg?crop=94.21p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             data-original-uri="https://images.contentstack.io/v3/assets/bltb428ce5d46f8efd8/blt9e4abb0016027253/5dc20952b1f6d20df3919bad/2UV40881MHWDT.jpg?crop=94.21p,100p,x0,y0&amp;width=720&amp;height=405&amp;auto=webp"
-                             style="--dls-liteimage-object-fit: cover;">
-                    </div>
-                    <div class="program-text">
-                        <div class="program-title">프로그램 5</div>
-                        <div class="program-brief">
-                            555555555555555555555555555555555555555555555555555555555555555555555555555555
-                            555555555555555555555555555555555555555555555555555555555555555555555555555555555
-                        </div>
-                        <div class="period">
-                            2023년 6월 4일 - 2023년 7월 2일
-                        </div>
-                    </div>
-                </div>
-
-                <!-- -->
-                <!-- -->
             </div>
 
             <div class="slight-divider last-line"></div>
@@ -156,6 +88,11 @@
 <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
+<script th:inline="javascript">
+    const reservation = [[${pagination}]];
+    console.log(reservation);
+</script>
 <script src="/js/layout/nav-tabs.js"></script>
 <script src="/js/account/program.js"></script>
 </html>
