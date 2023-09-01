@@ -1,5 +1,6 @@
 package com.howthere.app.service.file.house.impl;
 
+import com.howthere.app.config.ConstantPool;
 import com.howthere.app.entity.file.HouseFile;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.repository.file.house.HouseFileRepository;
@@ -24,8 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 class HouseFileServiceImpl implements HouseFileService {
 
-    //    private static final String BASE_PATH = ConstantPool.getFileRootPath();
-    private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/HowThere";
+        private static final String BASE_PATH = ConstantPool.getFileRootPath();
+//    private static final String BASE_PATH = "/Users/kidoji/dev/Workspace/JPA/HowThere";
     private final HouseFileRepository houseFileRepository;
 
     private static Image getImage(MultipartFile multipartFile, House house) throws IOException {

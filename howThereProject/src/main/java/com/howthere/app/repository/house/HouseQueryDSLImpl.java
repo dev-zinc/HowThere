@@ -10,6 +10,7 @@ import com.querydsl.core.types.QBean;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -77,7 +78,9 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(house.id.desc())
-                .fetch();
+                .fetch().stream()
+                    .peek(dto -> dto.setThumbnail(dto.getThumbnail().replaceAll("\\\\", "/")))
+                    .collect(Collectors.toList());
         Long count = query.select(house.count())
             .from(house)
             .where(house.member.id.eq(memberId))

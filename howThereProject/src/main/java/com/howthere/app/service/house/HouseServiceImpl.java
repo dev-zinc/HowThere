@@ -1,6 +1,7 @@
 package com.howthere.app.service.house;
 
 import com.howthere.app.domain.house.HouseDTO;
+import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.repository.file.house.HouseFileRepository;
@@ -52,7 +53,8 @@ public class HouseServiceImpl implements HouseService {
         final Double lat = Double.parseDouble(req.getParameter("latitude"));
         final Double lon = Double.parseDouble(req.getParameter("longitude"));
 
-        final Member member = (Member) req.getSession().getAttribute("member");
+        final MemberDTO memberDTO = (MemberDTO) req.getSession().getAttribute("member");
+        Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(RuntimeException::new);
         final HouseDTO houseDTO = HouseDTO.builder()
             .houseTitle(houseTitle)
             .houseContent(houseContent)
