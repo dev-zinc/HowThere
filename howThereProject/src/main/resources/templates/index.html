@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns="" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -190,186 +191,28 @@
             <div class="sample-wrap">
                 <div style="overflow: hidden">
                     <div class="main-list-wrap" id="hostingList">
-                        <div>
+                        <!-- -->
+                        <!-- -->
+                        <div th:each="program : ${programs}">
                             <a>
                                 <div class="house-wrap">
                                     <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
+                                        <div class="house-name" th:text="${program.programAddress}"></div>
+                                        <div class="period" th:text="|${program.programStartDate.format(program.format())} - ${program.programEndDate.format(program.format())}|"></div>
                                         <div class="price">
                                             <span>₩</span>
-                                            <span>207,000</span>
+                                            <span th:text="${program.getDottedPrice()}"></span>
                                             <span> /박</span>
                                         </div>
                                     </div>
                                     <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
+                                        <img th:src="|/files/display?fileName=${program.filePath}t_${program.fileUuid}_${program.fileName}|" alt="">
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <div class="house-wrap">
-                                    <div class="house-info">
-                                        <div class="house-name">구좌읍, 제주시</div>
-                                        <div class="period">8월 15일~20일</div>
-                                        <div class="price">
-                                            <span>₩</span>
-                                            <span>207,000</span>
-                                            <span> /박</span>
-                                        </div>
-                                    </div>
-                                    <div class="house-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/5874cae5-198f-4301-91af-d3eb137dd6c4.jpg?im_w=720" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        <!-- -->
+                        <!-- -->
                     </div>
                 </div>
             </div>
@@ -385,136 +228,23 @@
             <div class="sample-wrap">
                 <div style="overflow: hidden">
                     <div id="diaryList" class="main-list-wrap" style="margin-top: 25px;">
-                        <div>
+                        <!-- -->
+                        <!-- -->
+                        <div th:each="diary : ${diaries}">
                             <a href="">
                                 <div class="diary-wrap">
                                     <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
+                                        <div class="index-diary-title" th:text="${diary.diaryTitle}"></div>
+                                        <div class="period" th:text="${diary.createdDate.format(diary.format())}"></div>
                                     </div>
                                     <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
+                                        <img th:src="|/files/display?fileName=${diary.filePath}t_${diary.fileUuid}_${diary.fileName}|" alt="">
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="diary-wrap">
-                                    <div class="diary-info">
-                                        <div class="index-diary-title">오늘은 부산에서 요트타기</div>
-                                        <div class="period">2023년 6월 15일</div>
-                                    </div>
-                                    <div class="diary-img-wrap">
-                                        <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-3822483-media_library/original/a5cbec7f-da23-44c5-835c-6230ce4a1d19.jpg?aki_policy=poster" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        <!-- -->
+                        <!-- -->
                     </div>
                 </div>
             </div>
