@@ -1,29 +1,21 @@
 package com.howthere.app.repository.rent.rentCar;
 
-import com.howthere.app.entity.file.QRentCarFile;
-import com.howthere.app.entity.rent.QRentCar;
-import com.howthere.app.entity.rent.QRentCarCompany;
-import com.howthere.app.entity.rent.QRentCarPayment;
+import static com.howthere.app.entity.file.QRentCarFile.*;
+import static com.howthere.app.entity.rent.QRentCar.*;
+import static com.howthere.app.entity.rent.QRentCarCompany.*;
+
 import com.howthere.app.entity.rent.RentCar;
 import com.howthere.app.type.RentCarType;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import io.netty.util.internal.StringUtil;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
-
-
-import java.util.List;
-import java.util.Optional;
-
-import static com.howthere.app.entity.file.QRentCarFile.*;
-import static com.howthere.app.entity.rent.QRentCar.*;
-import static com.howthere.app.entity.rent.QRentCarCompany.*;
-import static com.howthere.app.entity.rent.QRentCarPayment.*;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -37,7 +29,7 @@ public class RentCarQueryDSLImpl implements RentCarQueryDSL {
 
         BooleanBuilder builder = new BooleanBuilder();
         if(!StringUtil.isNullOrEmpty(selectedLocal)){
-            builder.or(rentCar.rentCarCompany.RentCarCompanyAddress.address.contains(selectedLocal));
+            builder.or(rentCar.rentCarCompany.rentCarCompanyAddress.address.contains(selectedLocal));
         }
         if(selectedCar != null){
             builder.or(rentCar.rentCarType.eq(selectedCar));
