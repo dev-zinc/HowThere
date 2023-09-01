@@ -1,9 +1,12 @@
 package com.howthere.app.repository.diary;
 
 import com.howthere.app.domain.diary.DiaryDTO;
+import com.howthere.app.domain.diary.DiaryMainDTO;
 import com.howthere.app.entity.diary.Diary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+
+import java.util.List;
 
 public interface DiaryQueryDSL {
 //    일기 목록
@@ -23,4 +26,6 @@ public interface DiaryQueryDSL {
 
 //    일기 조회수 증가
     public void updateViewCount(Diary diary);
+
+    List<DiaryMainDTO> findAll10();
 }

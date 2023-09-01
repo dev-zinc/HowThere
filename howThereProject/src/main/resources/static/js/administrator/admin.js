@@ -87,7 +87,7 @@ class PaginationService {
                 $('.element').each((i, element) => $(element).on('click', (e) => {
                     if($(e.target).is('input')) return;
                     if($(e.target).hasClass('checkbox')) return;
-                    location.href = `/administrator/${this.request}/detail?id=${this.page.content[i].id}`;
+                    location.href = this.isDetailed(this.page.content[i].id);
                 }));
             }
 

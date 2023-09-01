@@ -1,16 +1,14 @@
 package com.howthere.app.service.diary;
 
 import com.howthere.app.domain.diary.DiaryDTO;
+import com.howthere.app.domain.diary.DiaryMainDTO;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
-import com.howthere.app.repository.member.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DiaryService {
@@ -20,6 +18,8 @@ public interface DiaryService {
 
 //    일기 목록 더보기, 무한 스크롤 처리
     public Slice<DiaryDTO> getListBySlice(Pageable pageable, String keyword, String order);
+
+    List<DiaryMainDTO> getList();
 
 //    일기 작성
     public Long write(DiaryDTO diaryDTO);

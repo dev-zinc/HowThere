@@ -67,7 +67,7 @@
                     ${inquiry.answerContent ? '답변 완료' : '미답변'}
                 </div>
             </div>
-        `, true, "delete"
+        `, id => `/administrator/inquiry/detail?id=${id}`, "delete"
     );
 </script>
 </html>
