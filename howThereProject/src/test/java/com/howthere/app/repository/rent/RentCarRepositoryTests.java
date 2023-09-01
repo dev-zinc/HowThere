@@ -5,17 +5,29 @@ import com.howthere.app.embed.Address;
 import com.howthere.app.entity.file.RentCarFile;
 import com.howthere.app.entity.rent.RentCar;
 import com.howthere.app.entity.rent.RentCarCompany;
+import com.howthere.app.entity.rent.RentCarPayment;
+import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.repository.rent.company.RentCarCompanyRepository;
 import com.howthere.app.repository.rent.file.RentCarFileRepository;
+import com.howthere.app.repository.rent.payment.RentCarPaymentRepository;
 import com.howthere.app.repository.rent.rentCar.RentCarRepository;
 import com.howthere.app.type.RentCarType;
-import java.util.UUID;
-import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.test.annotation.Rollback;
+
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -26,6 +38,10 @@ public class RentCarRepositoryTests {
     private RentCarCompanyRepository rentCarCompanyRepository;
     @Autowired
     private RentCarRepository rentCarRepository;
+    @Autowired
+    private RentCarPaymentRepository rentCarPaymentRepository;
+    @Autowired
+    private MemberRepository memberRepository;
     @Autowired
     private RentCarFileRepository rentCarFileRepository;
 
@@ -634,4 +650,54 @@ public class RentCarRepositoryTests {
             }
         }
     }
+
+//    // 렌트카 예약
+//    @Test
+//    public void rentCarPayment_save_test() {
+//    }
+//
+//    // 렌트카 조회
+//    @Test
+//    public void findRentCarPaymentById_test() {
+//        log.info(rentCarPaymentRepository.findById(4L).get().toString());
+//    }
+//
+//    // 렌트카 취소
+//    @Test
+//    public void deleted_rentCarPayment_remove_test() {
+//        rentCarPaymentRepository.findById(4L).ifPresent(rentCarPaymentRepository::delete);
+//    }
+//
+//    // 렌트카 예약 확인 리스트
+//    @Test
+//    public void findAllByMemberIdTest() {
+//        log.info("---------------------------=====================---------------------========================----------");
+//        rentCarPaymentRepository.findAllByMemberId_queryDSL(2L).forEach(rentCarPayment -> log.info(rentCarPayment.toString()));
+//    }
+//
+//    // 렌트카 예약 확인
+//    @Test
+//    public void findOneByIdTest() {
+//        log.info("---------------------------=====================---------------------========================----------");
+//        log.info(rentCarPaymentRepository.findOneById_queryDSL(21L).get().toString());
+//    }
+//
+//    // 렌트카 예약 수정
+//    @Test
+//    public void updateRentCarPaymentByRentCar() {
+//    }
+//
+//    // 렌트카 클릭시 렌트카와 렌트카 지도 정보
+//    @Test
+//    public void findOneByRentCarIdTest() {
+//        log.info(rentCarCompanyRepository.findOneByRentCarId(34L).toString());
+//    }
+//
+//    //========================================================================================================================================
+//
+//    // 렌트카 상세정보
+//    @Test
+//    public void findOneById() {
+//        log.info(rentCarRepository.findOneById_dsl(41L).get().toString());
+//    }
 }
