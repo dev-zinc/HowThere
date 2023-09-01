@@ -6,12 +6,14 @@ import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramReserveDTO;
 import com.howthere.app.domain.rent.RentCarDTO;
 import com.howthere.app.domain.rent.RentCarPaymentDTO;
+import com.howthere.app.entity.program.ProgramReservation;
 import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import com.howthere.app.service.rent.payment.RentCarPaymentService;
 import com.howthere.app.service.rent.rentCar.RentCarService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,13 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -42,6 +50,7 @@ public class ProgramController {
     private final RentCarService rentCarService;
 
     private final RentCarPaymentService rentCarPaymentService;
+
     // http://localhost:10000/program/list
     @GetMapping("/list")
     public ModelAndView list(HttpServletRequest req, ModelAndView mv,
@@ -55,7 +64,7 @@ public class ProgramController {
         mv.addObject("pagination", programs);
         return mv;
     }
-    
+
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam Long id, HttpSession session, ModelAndView mv) {
@@ -70,10 +79,15 @@ public class ProgramController {
     // http://localhost:10000/program/reservation
     @GetMapping("/reservation/{id}")
     public String reservation(@PathVariable Long id, Model model, HttpServletRequest req) {
-        programReservationService.getReservation(id).ifPresent((reservation) -> {
-            model.addAttribute("reservation", reservation);
-        });
-        req.getParameter("verified");
+        final ProgramReservation programReservation = programReservationService.getReservation(id)
+            .orElseThrow(RuntimeException::new);
+        final ProgramDTO program = programService.getProgram(
+            programReservation.getProgram().getId());
+        final long between = ChronoUnit.DAYS.between(program.getProgramStartDate(),
+            program.getProgramEndDate());
+        program.setProgramPrice((int) (program.getProgramPrice() * between));
+        model.addAttribute("reservation", program);
+        model.addAttribute("between", between);
         return "/program/reservation";
     }
 
@@ -86,19 +100,25 @@ public class ProgramController {
 
     // http://localhost:10000/program/rent
     @GetMapping("/rent")
-    public ModelAndView rent(HttpServletRequest req, ModelAndView mv, @PageableDefault(page = 0,size = 6) Pageable pageable, @RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar) {
-
+    public ModelAndView rent(HttpServletRequest req, ModelAndView mv,
+        @PageableDefault(page = 0, size = 6) Pageable pageable,
+        @RequestParam(value = "selectedLocal", required = false) String selectedLocal,
+        @RequestParam(value = "selectedCar", required = false) String selectedCar) {
 
         mv.setViewName("program/rent");
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
+        Slice<RentCarDTO> rentCarDTOS = rentCarService.getRentCarList(pageable, selectedLocal,
+            selectedCar);
         mv.addObject("rentCars", rentCarDTOS);
         return mv;
     }
 
     @GetMapping("api/rent")
     @ResponseBody
-    public Slice<RentCarDTO> getList(@PageableDefault(page = 0, size = 6) Pageable pageable,@RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar){
-        final Slice<RentCarDTO> rentCarDTOS = rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
+    public Slice<RentCarDTO> getList(@PageableDefault(page = 0, size = 6) Pageable pageable,
+        @RequestParam(value = "selectedLocal", required = false) String selectedLocal,
+        @RequestParam(value = "selectedCar", required = false) String selectedCar) {
+        final Slice<RentCarDTO> rentCarDTOS = rentCarService.getRentCarList(pageable, selectedLocal,
+            selectedCar);
         log.info("===========================================================");
         log.info("hasNext(): {}", rentCarDTOS.hasNext());
         log.info("SelectedLocal: {}", selectedLocal);
@@ -111,8 +131,10 @@ public class ProgramController {
     // TODO: 2023/08/05  렌트카 예약 페이지 구현
     // http://localhost:10000/program/rent/reservation
     @GetMapping("/rent/reservation")
-    public ModelAndView rentReservation(HttpServletRequest req, ModelAndView mv, @RequestParam(value = "paymentId",required = false) Long paymentId,@RequestParam(value = "rentCarId",required = false) Long id, Model model) {
-        log.info("rentCarId  : {}",id);
+    public ModelAndView rentReservation(HttpServletRequest req, ModelAndView mv,
+        @RequestParam(value = "paymentId", required = false) Long paymentId,
+        @RequestParam(value = "rentCarId", required = false) Long id, Model model) {
+        log.info("rentCarId  : {}", id);
         RentCarDTO rentCarDTO = rentCarService.getRentCarById(id);
         model.addAttribute("rentCar", rentCarDTO);
         model.addAttribute("paymentId", paymentId);
@@ -121,14 +143,15 @@ public class ProgramController {
     }
 
 
-
-
-//    =========================================================================================================
+    //    =========================================================================================================
     // 테스트 페이지 렌트카 리스트
     // http://localhost:10000/program/rent_test
     @GetMapping("/rent_test")
-    public String rentCarListTest(@PageableDefault(page = 0,size = 6) Pageable pageable, Model model,@RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar){
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
+    public String rentCarListTest(@PageableDefault(page = 0, size = 6) Pageable pageable,
+        Model model, @RequestParam(value = "selectedLocal", required = false) String selectedLocal,
+        @RequestParam(value = "selectedCar", required = false) String selectedCar) {
+        Slice<RentCarDTO> rentCarDTOS = rentCarService.getRentCarList(pageable, selectedLocal,
+            selectedCar);
         model.addAttribute("rentCars", rentCarDTOS);
         rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
         return "/test/rent_test_list.html";
@@ -137,8 +160,10 @@ public class ProgramController {
     // 테스트 페이지 렌트카 상세보기
     // http://localhost:10000/program/rent_detail_test
     @GetMapping("/rent_detail_test")
-    public String rentCarDetailTest(@RequestParam(value = "paymentId",required = false) Long paymentId,@RequestParam(value = "rentCarId",required = false) Long id, Model model) {
-        log.info("rentCarId  : {}",id);
+    public String rentCarDetailTest(
+        @RequestParam(value = "paymentId", required = false) Long paymentId,
+        @RequestParam(value = "rentCarId", required = false) Long id, Model model) {
+        log.info("rentCarId  : {}", id);
         RentCarDTO rentCarDTO = rentCarService.getRentCarById(id);
         model.addAttribute("rentCar", rentCarDTO);
         model.addAttribute("paymentId", paymentId);
@@ -149,11 +174,12 @@ public class ProgramController {
     // http://localhost:10000/program/rent_payment_list_test
     @GetMapping("/rent_payment_list_test")
     public String rentCarPaymentListTest(HttpSession session, Model model) {
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        List<RentCarPaymentDTO> rentCarPaymentDTOS = rentCarPaymentService.getRentCarPaymentListByMemberId(memberId);
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
+        List<RentCarPaymentDTO> rentCarPaymentDTOS = rentCarPaymentService.getRentCarPaymentListByMemberId(
+            memberId);
         model.addAttribute("rentCarPayments", rentCarPaymentDTOS);
 
-        log.info("memberId  : {}",memberId);
+        log.info("memberId  : {}", memberId);
 
         return "/test/rent_test_payment_list.html";
     }
@@ -161,7 +187,7 @@ public class ProgramController {
     // 테스트 페이지 영수증 상세보기
     // http://localhost:10000/program/rent_payment_detail_test
     @GetMapping("/rent_payment_detail_test")
-    public String rentCarPaymentDetailTest(@RequestParam("rentCarPaymentId") Long id,Model model) {
+    public String rentCarPaymentDetailTest(@RequestParam("rentCarPaymentId") Long id, Model model) {
         RentCarPaymentDTO rentCarPaymentDTO = rentCarPaymentService.getRentCarPaymentById(id).get();
         model.addAttribute("rentCarPayment", rentCarPaymentDTO);
 
@@ -171,9 +197,11 @@ public class ProgramController {
 
     @PostMapping("/rent_reservation")
     @ResponseBody
-    public Map<String, Object> reserveRentCarTest(@RequestParam(value = "rentCarId",required = false) Long rentCarId, HttpSession session, @RequestParam("startDay") String  startDay,@RequestParam("endDay")  String  endDay) {
-        Map<String,Object> result = new HashMap<>();
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+    public Map<String, Object> reserveRentCarTest(
+        @RequestParam(value = "rentCarId", required = false) Long rentCarId, HttpSession session,
+        @RequestParam("startDay") String startDay, @RequestParam("endDay") String endDay) {
+        Map<String, Object> result = new HashMap<>();
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate parsedStartDay = LocalDate.parse(startDay, formatter);
         LocalDate parsedEndDay = LocalDate.parse(endDay, formatter);
@@ -189,11 +217,13 @@ public class ProgramController {
         result.put("response", "success");
         return result;
     }
+
     // 렌트카 예약 취소 테스트
     @DeleteMapping("/rent_cancel")
     @ResponseBody
-    public Map<String, Object> cancelRentCarTest(@RequestParam(value = "paymentId",required = false) Long paymentId) {
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> cancelRentCarTest(
+        @RequestParam(value = "paymentId", required = false) Long paymentId) {
+        Map<String, Object> result = new HashMap<>();
 
         rentCarPaymentService.cancelRentCar(paymentId);
         result.put("response", "success");
@@ -203,8 +233,11 @@ public class ProgramController {
     // 렌트카 예약 수정 테스트
     @PostMapping("/rent_update")
     @ResponseBody
-    public Map<String, Object> updateRentCarTest(@RequestParam(value = "paymentId",required = false) Long paymentId,@RequestParam("price") int price, @RequestParam("startDay") String  startDay,@RequestParam("endDay")  String  endDay) {
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> updateRentCarTest(
+        @RequestParam(value = "paymentId", required = false) Long paymentId,
+        @RequestParam("price") int price, @RequestParam("startDay") String startDay,
+        @RequestParam("endDay") String endDay) {
+        Map<String, Object> result = new HashMap<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate parsedStartDay = LocalDate.parse(startDay, formatter);
         LocalDate parsedEndDay = LocalDate.parse(endDay, formatter);
@@ -222,7 +255,8 @@ public class ProgramController {
     // 지도 api 테스트
     // http://localhost:10000/program/test_map
     @GetMapping("/test_map")
-    public String testMap(@RequestParam(value = "rentCarId",required = false) Long rentCarId, Model model) {
+    public String testMap(@RequestParam(value = "rentCarId", required = false) Long rentCarId,
+        Model model) {
         RentCarDTO rentCarDTO = rentCarService.getRentCarById(rentCarId);
         model.addAttribute("rentCar", rentCarDTO);
         return "/test/test_map.html";

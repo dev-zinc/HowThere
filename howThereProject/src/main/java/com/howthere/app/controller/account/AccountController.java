@@ -58,7 +58,8 @@ public class AccountController {
     @PostMapping("payment")
     public void reservationProgram(@RequestBody ProgramReservationDTO reservationDTO) {
         paymentService.save(reservationDTO);
-        reservationService.deleteReservation(reservationDTO);
+
+        reservationService.updateReservation(reservationDTO);
     }
 
     //http://localhost:10000/account/diary
