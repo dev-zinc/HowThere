@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface RentCarService {
     // 렌트카 리스트 갖고오기
-    public Slice<RentCarDTO> getRentCarList(Pageable pageable);
+    public Slice<RentCarDTO> getRentCarList(Pageable pageable,String selectedLocal, String selectedCar);
 
     // 렌트카 상세 정보 갖고오기
     public RentCarDTO getRentCarById(Long id);
