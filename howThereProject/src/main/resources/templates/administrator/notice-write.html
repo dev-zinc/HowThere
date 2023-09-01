@@ -54,13 +54,13 @@
                                     <input type="text" name="fileName" th:value="${announcementDetailDTO.fileName != null ? announcementDetailDTO.fileName : ''}" class="fileName" hidden="hidden">
                                     <input type="text" name="fileUuid" th:value="${announcementDetailDTO.fileUuid != null ? announcementDetailDTO.fileUuid : ''}" class="fileUuid" hidden="hidden">
                                     <input type="text" name="filePath" th:value="${announcementDetailDTO.filePath != null ? announcementDetailDTO.filePath : ''}" class="filePath" hidden="hidden">
-                                    <input type="text" name="fileSize" th:value="${announcementDetailDTO.fileSize != null ? announcementDetailDTO.fileSize : ''}" class="fileSize" hidden="hidden">
+                                    <input type="text" name="fileSize" th:value="${announcementDetailDTO.fileSize != null ? announcementDetailDTO.fileSize : '0'}" class="fileSize" hidden="hidden">
                                 </th:block>
                                 <th:block th:unless="${announcementDetailDTO != null}">
-                                    <input type="text" name="fileName" class="fileName" hidden="hidden">
-                                    <input type="text" name="fileUuid" class="fileUuid" hidden="hidden">
-                                    <input type="text" name="filePath" class="filePath" hidden="hidden">
-                                    <input type="text" name="fileSize" class="fileSize" hidden="hidden">
+                                    <input type="text" name="fileName" value="" class="fileName" hidden="hidden">
+                                    <input type="text" name="fileUuid" value="" class="fileUuid" hidden="hidden">
+                                    <input type="text" name="filePath" value="" class="filePath" hidden="hidden">
+                                    <input type="text" name="fileSize" value="0" class="fileSize" hidden="hidden">
                                 </th:block>
 
                                 <div class="input-file">

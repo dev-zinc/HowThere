@@ -43,8 +43,10 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     public void save(AnnouncementDetailDTO announcementDetailDTO) {
         Announcement announcement = toEntity(announcementDetailDTO, memberRepository);
         announcementRepository.save(announcement);
-        AnnounceFile announceFile = announceFileRepository.toEntity(announcement, announcementDetailDTO);
-        announceFileRepository.save(announceFile);
+        if(announcementDetailDTO.getFileName() != null && !announcementDetailDTO.getFileName().isBlank()) {
+            AnnounceFile announceFile = announceFileRepository.toEntity(announcement, announcementDetailDTO);
+            announceFileRepository.save(announceFile);
+        }
     }
 
     @Override
@@ -61,10 +63,11 @@ public class AnnouncementServiceImpl implements AnnouncementService {
             announcement.setAnnouncementTitle(announcementDetailDTO.getAnnouncementTitle());
             announcement.setAnnouncementContent(announcementDetailDTO.getAnnouncementContent());
 
-            announceFileRepository.deleteAllByAnnouncement_Id(announcementDetailDTO.getId());
-            announceFileRepository.save(announceFileRepository.toEntity(announcement, announcementDetailDTO));
+            if(announcementDetailDTO.getFileName() != null && !announcementDetailDTO.getFileName().isBlank()) {
+                announceFileRepository.deleteAllByAnnouncement_Id(announcementDetailDTO.getId());
+                announceFileRepository.save(announceFileRepository.toEntity(announcement, announcementDetailDTO));
+            }
         });
-
     }
 
     @Override

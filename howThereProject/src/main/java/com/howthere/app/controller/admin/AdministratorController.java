@@ -55,6 +55,7 @@ public class AdministratorController {
     @GetMapping("notice/detail")
     public String noticeDetail(Long id, Model model) {
         AnnouncementDetailDTO announcementDetailDTO = announcementService.getDetailById(id);
+        log.info(announcementDetailDTO.toString());
         model.addAttribute(announcementDetailDTO);
         return "administrator/notice-detail";
     }
