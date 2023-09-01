@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>렌트카 영수증 상세보기</h1>
+
+    <div th:text="${rentCarPayment.id}" id="paymentId"></div>
+    <div th:text="${rentCarPayment.startDay}"></div>
+    <div th:text="${rentCarPayment.endDay}" ></div>
+    <div th:text="${rentCarPayment.carRentTotalPrice}" ></div>
+    <div th:text="${rentCarPayment.rentCar.id}" id="rentCarId"></div>
+    <div th:text="${rentCarPayment.member}"></div>
+
+    <a href="#" id="del">예약 취소하기</a>
+    <a href="#" id="update">예약 수정하기</a>
+
+</body>
+<script>
+    $(document).ready(function() {
+        $("#del").click(function(event) {
+            let paymentId = $("#paymentId").text();
+            alert("예약 취소 하기"+paymentId);
+
+            $.ajax({
+                url: "/program/rent_cancel",     // 요청할 URL
+                method: "DELETE",        // HTTP 메소드
+                data: {
+                    "paymentId": paymentId,
+                },  // 요청 데이터 (선택적)
+                success: function(response) {
+                    console.log(response);  // 서버 응답 데이터
+                    // 요청 성공 시 실행되는 함수
+                    if(response.response == "success"){
+                        alert("예약이 취소 되었습니다");
+                        location.href = "http://localhost:10000/program/rent_payment_list_test";
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행되는 함수
+                    console.error(error);   // 오류 메시지 출력
+                }
+            });
+        });
+
+        $("#update").click(function(event) {
+            let paymentId = $("#paymentId").text();
+            let rentCarId = $("#rentCarId").text();
+            alert("예약 수정 하기"+rentCarId);
+            // location.href="http://localhost:10000/program/rent_detail_test?paymentId="+paymentId+"&rentCarId="+rentCarId;
+            location.href="http://localhost:10000/program/rent/reservation?paymentId="+paymentId+"&rentCarId="+rentCarId;
+        });
+    });
+</script>
+</html>

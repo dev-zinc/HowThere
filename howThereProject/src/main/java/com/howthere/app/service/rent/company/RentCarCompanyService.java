@@ -1,4 +1,4 @@
-package com.howthere.app.service.rent;
+package com.howthere.app.service.rent.company;
 
 import com.howthere.app.entity.rent.RentCarCompany;
 

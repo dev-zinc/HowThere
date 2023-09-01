@@ -1,6 +1,8 @@
 package com.howthere.app.repository.rent.rentCar;
 
+import com.howthere.app.entity.file.QRentCarFile;
 import com.howthere.app.entity.rent.QRentCar;
+import com.howthere.app.entity.rent.QRentCarCompany;
 import com.howthere.app.entity.rent.QRentCarPayment;
 import com.howthere.app.entity.rent.RentCar;
 import com.howthere.app.type.RentCarType;
@@ -13,8 +15,11 @@ import org.springframework.data.domain.SliceImpl;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import static com.howthere.app.entity.file.QRentCarFile.*;
 import static com.howthere.app.entity.rent.QRentCar.*;
+import static com.howthere.app.entity.rent.QRentCarCompany.*;
 import static com.howthere.app.entity.rent.QRentCarPayment.*;
 
 @RequiredArgsConstructor
@@ -28,7 +33,9 @@ public class RentCarQueryDSLImpl implements RentCarQueryDSL {
                 }
 
                 final List<RentCar> rentCarList =
-                        query.select(rentCar).from(rentCar)
+                query.selectFrom(rentCar)
+                        .join(rentCar.rentCarCompany,rentCarCompany).fetchJoin()
+                        .leftJoin(rentCar.rentCarFiles,rentCarFile).fetchJoin()
                 .orderBy(rentCar.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize() +1)
@@ -43,5 +50,14 @@ public class RentCarQueryDSLImpl implements RentCarQueryDSL {
             }
 
         return new SliceImpl<>(rentCarList, pageable, hasNext);
+    }
+
+    @Override
+    public Optional<RentCar> findOneById_dsl(Long id) {
+        return Optional.ofNullable(query.selectFrom(rentCar)
+                .join(rentCar.rentCarCompany,rentCarCompany).fetchJoin()
+                .leftJoin(rentCar.rentCarFiles,rentCarFile).fetchJoin()
+                .where(rentCar.id.eq(id))
+                .fetchOne());
     }
 }

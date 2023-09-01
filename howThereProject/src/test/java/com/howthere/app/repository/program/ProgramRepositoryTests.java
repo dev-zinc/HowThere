@@ -22,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
@@ -48,8 +49,8 @@ public class ProgramRepositoryTests {
                     .programName("name" + i)
                     .programContent("content" + i)
                     .programPrice(100_000 * i)
-                    .programStartDate(LocalDateTime.now())
-                    .programEndDate(LocalDateTime.now())
+                    .programStartDate(LocalDate.now())
+                    .programEndDate(LocalDate.now())
                     .verified(Verified.Y)
                     .house(house)
                     .build();

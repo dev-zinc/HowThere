@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_RENT_CAR_FILE")
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = {"rentCar"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RentCarFile extends FileEntity {
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "RENT_CAR_ID")

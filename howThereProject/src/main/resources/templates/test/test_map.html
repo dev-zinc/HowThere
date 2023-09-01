@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>키워드로 장소검색하기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="staticMap" style="width:600px;height:350px;"></div>
+<div th:text="${rentCar.id}"></div>
+<div th:text="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.latitude}" id ="latitude"></div>
+<div th:text="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.longitude}" id ="longitude"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d&libraries=services"></script>
+
+<script>
+    // 이미지 지도에서 마커가 표시될 위치입니다
+    var latitude = document.getElementById('latitude').innerText
+    var longitude = document.getElementById('longitude').innerText
+
+    console.log(latitude);
+    console.log(longitude);
+
+    var markerPosition  = new kakao.maps.LatLng(latitude, longitude);
+
+    // 이미지 지도에 표시할 마커입니다
+    // 이미지 지도에 표시할 마커는 Object 형태입니다
+    var marker = {
+        position: markerPosition
+    };
+
+    var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div
+        staticMapOption = {
+            center: new kakao.maps.LatLng(latitude, longitude), // 이미지 지도의 중심좌표
+            level: 3, // 이미지 지도의 확대 레벨
+            marker: marker // 이미지 지도에 표시할 마커
+        };
+    console.log(staticMapOption)
+
+    // 이미지 지도를 생성합니다
+    var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+</script>
+</body>
+</html>

@@ -12,7 +12,11 @@
 	<link href="/css/program/rent.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-</head>
+
+
+<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></head>-->
 
 <body>
 	<div th:replace="~{/layout/header :: header}"></div>
@@ -54,17 +58,68 @@
 								<option value="">F</option>
 							</select>
 						</div>
-						<div class="deals-list">
 
+
+
+
+
+
+						<div th:each="rentCar : ${rentCars}">
+							<div class="deals-list">
+
+								<div class="panel">
+									<div class="deal-card">
+										<div class="card-item rent-car-link" th:data-id="${rentCar.id}">
+											<div class="left-section">
+												<h3 class="car-model" th:text="${rentCar.rentCarName}"></h3>
+												<div class="capacity-main">
+													<div class="capacity-item">
+														<div class="capacity-icon">
+															<svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+																<path d="M10 1.98a.697.697 0 01.382-.667A4.083 4.083 0 0112 1a3.974 3.974 0 011.595.31A.73.73 0 0114 2v2.514C14 5.5 13 6 12 6s-2-.5-2-1.486zm6 12.244V8.302a.84.84 0 00-.548-.823A12.589 12.589 0 0012.035 7a12.671 12.671 0 00-3.488.55.854.854 0 00-.547.83v5.92c0 .402.62.749 1.191.964a1.195 1.195 0 01.805.989l.45 5.823a1 1 0 00.997.923h1.184a1 1 0 00.997-.923l.45-5.823a1.267 1.267 0 01.797-1.014C15.418 15 16 14.624 16 14.224z"></path>
+															</svg>
+														</div>
+														<span class="text" th:text="${rentCar.rentCarCompanyDTO.RentCarCompanyName}">4인승</span>
+													</div>
+												</div>
+											</div>
+											<div th:data-latitude="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.latitude}" style="display: none"></div>
+											<div th:data-longitude="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.longitude}" style="display: none"></div>
+											<div style="display: none"></div>
+											<div class="right-section">
+												<div class="price-text">
+													<span th:text="${rentCar.rentCarPrice}">₩77,764</span>부터
+												</div>
+												<p class="price-text">일일 가격</p>
+												<div class="panel-img">
+													<div>
+														<div>
+															<div style="height:0;padding-bottom:66.66666666666667%; background-color: transparent">
+																<img class="car-img" alt="미니" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div th:text="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.latitude}" id="latitude"></div>
+							<div th:text="${rentCar.RentCarCompanyDTO.RentCarCompanyAddress.longitude}" id="longitude"></div>
 						</div>
 					</div>
+
+
+
+
 
 					<div class="content-border"></div>
 					<div class="car-location">
 						<h2>서울에서 최적의 렌터카 지점 찾기</h2>
 					</div>
 					<div class="map-container" style="margin: 0; padding-bottom: 28px;">
-						<div id="map" style="width:1120px;height:400px; margin: auto"></div>
+						<div id="staticMap" style="width:1120px;height:400px; margin: auto"></div>
 					</div>
 					<div class="content-border"></div>
 					<div class="route-statistics">
@@ -136,136 +191,213 @@
 	<div th:replace="~{/layout/footer :: footer}"></div>
 </body>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0206a2d2eb084b7e9e5e14b2d869093d" type="text/javascript"></script>
+<!--<script>-->
+<!--	const dealsList = document.querySelector(".deals-list");-->
+<!--	let html = "";-->
+<!--	for (let i = 0; i < 3; i++) {-->
+<!--		html += `-->
+<!--		<div class="panel">-->
+<!--			<div class="deal-card">-->
+<!--				<div class="card-item">-->
+<!--					<div class="left-section">-->
+<!--						<h3 class="car-model">미니</h3>-->
+<!--						<p class="seater">4-5 도어</p>-->
+<!--						<div class="capacity-main">-->
+<!--							<div class="capacity-item">-->
+<!--								<div class="capacity-icon">-->
+<!--									<svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">-->
+<!--										<path d="M10 1.98a.697.697 0 01.382-.667A4.083 4.083 0 0112 1a3.974 3.974 0 011.595.31A.73.73 0 0114 2v2.514C14 5.5 13 6 12 6s-2-.5-2-1.486zm6 12.244V8.302a.84.84 0 00-.548-.823A12.589 12.589 0 0012.035 7a12.671 12.671 0 00-3.488.55.854.854 0 00-.547.83v5.92c0 .402.62.749 1.191.964a1.195 1.195 0 01.805.989l.45 5.823a1 1 0 00.997.923h1.184a1 1 0 00.997-.923l.45-5.823a1.267 1.267 0 01.797-1.014C15.418 15 16 14.624 16 14.224z"></path>-->
+<!--									</svg>-->
+<!--								</div>-->
+<!--								<span class="text">4인승</span>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="right-section">-->
+<!--						<div class="price-text">-->
+<!--							<span class="price">₩77,764</span>부터-->
+<!--						</div>-->
+<!--						<p class="price-text">일일 가격</p>-->
+<!--						<div class="panel-img">-->
+<!--							<div>-->
+<!--								<div>-->
+<!--									<div style="height:0;padding-bottom:66.66666666666667%; background-color: transparent">-->
+<!--										<img class="car-img" alt="미니" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<div class="panel">-->
+<!--			<div class="deal-card">-->
+<!--				<div class="card-item">-->
+<!--					<div class="left-section">-->
+<!--						<h3 class="car-model">경차</h3>-->
+<!--						<p class="seater">4-5 도어</p>-->
+<!--						<div class="capacity-main">-->
+<!--							<div class="capacity-item">-->
+<!--								<div class="capacity-icon">-->
+<!--									<svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">-->
+<!--										<path d="M10 1.98a.697.697 0 01.382-.667A4.083 4.083 0 0112 1a3.974 3.974 0 011.595.31A.73.73 0 0114 2v2.514C14 5.5 13 6 12 6s-2-.5-2-1.486zm6 12.244V8.302a.84.84 0 00-.548-.823A12.589 12.589 0 0012.035 7a12.671 12.671 0 00-3.488.55.854.854 0 00-.547.83v5.92c0 .402.62.749 1.191.964a1.195 1.195 0 01.805.989l.45 5.823a1 1 0 00.997.923h1.184a1 1 0 00.997-.923l.45-5.823a1.267 1.267 0 01.797-1.014C15.418 15 16 14.624 16 14.224z"></path>-->
+<!--									</svg>-->
+<!--								</div>-->
+<!--								<span class="text">4인승</span>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="right-section">-->
+<!--						<div class="price-text">-->
+<!--							<span class="price">₩100,764</span>부터-->
+<!--						</div>-->
+<!--						<p class="price-text">일일 가격</p>-->
+<!--						<div class="panel-img">-->
+<!--							<div>-->
+<!--								<div>-->
+<!--									<div style="height:0;padding-bottom:66.66666666666667%; background-color: transparent">-->
+<!--										<img class="car-img" alt="경차" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		`;-->
+<!--	}-->
+<!--	dealsList.innerHTML = html;-->
+<!--</script>-->
+
+<!--<script>-->
+<!--	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스-->
+<!--	const options = { //지도를 생성할 때 필요한 기본 옵션-->
+<!--		center: new kakao.maps.LatLng(33.450580, 126.574942), //지도의 중심좌표.-->
+<!--		level: 3, //지도의 레벨(확대, 축소 정도)-->
+<!--	};-->
+
+<!--	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴-->
+
+<!--	// 마커가 표시될 위치입니다-->
+<!--	const markerPosition = new kakao.maps.LatLng(34.70174173174594, 127.75758201900709);-->
+
+<!--	// 마커를 생성합니다-->
+<!--	const marker = new kakao.maps.Marker({-->
+<!--		position: markerPosition-->
+<!--	});-->
+
+<!--	// 마커가 지도 위에 표시되도록 설정합니다-->
+<!--	marker.setMap(map);-->
+
+<!--	// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다-->
+<!--	kakao.maps.event.addListener(map, 'dragend', function () {-->
+
+<!--		// 지도 중심좌표를 얻어옵니다-->
+<!--		var latlng = map.getCenter();-->
+
+<!--		var message = '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';-->
+<!--		message += '경도는 ' + latlng.getLng() + ' 입니다';-->
+
+<!--		// var resultDiv = document.getElementById('result');-->
+<!--		// resultDiv.innerHTML = message;-->
+
+<!--		console.log(message);-->
+<!--	});-->
+<!--	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다-->
+<!--	// marker.setMap(null);-->
+
+<!--	function panTo() {-->
+<!--		// 이동할 위도 경도 위치를 생성합니다-->
+<!--		var moveLatLon = new kakao.maps.LatLng(34.70174173174594, 127.75758201900709);-->
+
+<!--		// 지도 중심을 부드럽게 이동시킵니다-->
+<!--		// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다-->
+<!--		map.panTo(moveLatLon);-->
+<!--	}-->
+
+<!--	const pic = document.querySelectorAll(".program-img");-->
+<!--	pic.forEach(e => {-->
+<!--		e.addEventListener("click", panTo);-->
+<!--	})-->
+
+
+
+
+<!--</script>-->
 <script>
-	const dealsList = document.querySelector(".deals-list");
-	let html = "";
-	for (let i = 0; i < 3; i++) {
-		html += `
-		<div class="panel">
-			<div class="deal-card">
-				<div class="card-item">
-					<div class="left-section">
-						<h3 class="car-model">미니</h3>
-						<p class="seater">4-5 도어</p>
-						<div class="capacity-main">
-							<div class="capacity-item">
-								<div class="capacity-icon">
-									<svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-										<path d="M10 1.98a.697.697 0 01.382-.667A4.083 4.083 0 0112 1a3.974 3.974 0 011.595.31A.73.73 0 0114 2v2.514C14 5.5 13 6 12 6s-2-.5-2-1.486zm6 12.244V8.302a.84.84 0 00-.548-.823A12.589 12.589 0 0012.035 7a12.671 12.671 0 00-3.488.55.854.854 0 00-.547.83v5.92c0 .402.62.749 1.191.964a1.195 1.195 0 01.805.989l.45 5.823a1 1 0 00.997.923h1.184a1 1 0 00.997-.923l.45-5.823a1.267 1.267 0 01.797-1.014C15.418 15 16 14.624 16 14.224z"></path>
-									</svg>
-								</div>
-								<span class="text">4인승</span>
-							</div>
-						</div>
-					</div>
-					<div class="right-section">
-						<div class="price-text">
-							<span class="price">₩77,764</span>부터
-						</div>
-						<p class="price-text">일일 가격</p>
-						<div class="panel-img">
-							<div>
-								<div>
-									<div style="height:0;padding-bottom:66.66666666666667%; background-color: transparent">
-										<img class="car-img" alt="미니" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel">
-			<div class="deal-card">
-				<div class="card-item">
-					<div class="left-section">
-						<h3 class="car-model">경차</h3>
-						<p class="seater">4-5 도어</p>
-						<div class="capacity-main">
-							<div class="capacity-item">
-								<div class="capacity-icon">
-									<svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-										<path d="M10 1.98a.697.697 0 01.382-.667A4.083 4.083 0 0112 1a3.974 3.974 0 011.595.31A.73.73 0 0114 2v2.514C14 5.5 13 6 12 6s-2-.5-2-1.486zm6 12.244V8.302a.84.84 0 00-.548-.823A12.589 12.589 0 0012.035 7a12.671 12.671 0 00-3.488.55.854.854 0 00-.547.83v5.92c0 .402.62.749 1.191.964a1.195 1.195 0 01.805.989l.45 5.823a1 1 0 00.997.923h1.184a1 1 0 00.997-.923l.45-5.823a1.267 1.267 0 01.797-1.014C15.418 15 16 14.624 16 14.224z"></path>
-									</svg>
-								</div>
-								<span class="text">4인승</span>
-							</div>
-						</div>
-					</div>
-					<div class="right-section">
-						<div class="price-text">
-							<span class="price">₩100,764</span>부터
-						</div>
-						<p class="price-text">일일 가격</p>
-						<div class="panel-img">
-							<div>
-								<div>
-									<div style="height:0;padding-bottom:66.66666666666667%; background-color: transparent">
-										<img class="car-img" alt="경차" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		`;
-	}
-	dealsList.innerHTML = html;
+	$(document).ready(function() {
+		$(".rent-car-link").click(function(event) {
+			event.preventDefault(); // 기본 링크 동작을 막음
+			var rentCarId = $(this).data("id");
+
+			// $.ajax({
+			// 	url: "/program/rent/reservation",     // 요청할 URL
+			// 	method: "GET",        // HTTP 메소드
+			// 	data: {  "rentCarId": rentCarId},  // 요청 데이터 (선택적)
+			// 	success: function(response) {
+			// 		// 요청 성공 시 실행되는 함수
+			// 		console.log(response);  // 서버 응답 데이터
+			// 		location.href = "http://localhost:10000/program/rent/reservation?rentCarId="+rentCarId;
+			// 	},
+			// 	error: function(xhr, status, error) {
+			// 		// 요청 실패 시 실행되는 함수
+			// 		console.error(error);   // 오류 메시지 출력
+			// 	}
+			// });
+
+
+		});
+	});
 </script>
+<script th:inline="javascript">
 
-<script>
-	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	const options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(33.450580, 126.574942), //지도의 중심좌표.
-		level: 3, //지도의 레벨(확대, 축소 정도)
-	};
+	document.addEventListener("DOMContentLoaded", function() {
+		var rentCarLinks = document.querySelectorAll(".rent-car-link");
+		rentCarLinks.forEach(function(element) {
+			element.addEventListener("click", function(event) {
+				event.preventDefault(); // 기본 링크 동작을 막음
 
-	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+				var rentCarId = element.getAttribute("data-id");
+				// 이미지 지도에서 마커가 표시될 위치입니다
 
-	// 마커가 표시될 위치입니다
-	const markerPosition = new kakao.maps.LatLng(34.70174173174594, 127.75758201900709);
+				var latitude = document.getElementById('latitude').innerText
+				var longitude = document.getElementById('longitude').innerText
+				
+				// var latitude = element.getAttribute("data-latitude");
+				// var	longitude = element.getAttribute("data-longitude");
 
-	// 마커를 생성합니다
-	const marker = new kakao.maps.Marker({
-		position: markerPosition
+
+				console.log(rentCarId);
+				console.log(latitude);
+				console.log(longitude);
+
+				var markerPosition  = new kakao.maps.LatLng(latitude, longitude);
+
+				// 이미지 지도에 표시할 마커입니다
+				// 이미지 지도에 표시할 마커는 Object 형태입니다
+				var marker = {
+					position: markerPosition
+				};
+
+				var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div
+						staticMapOption = {
+							center: new kakao.maps.LatLng(latitude, longitude), // 이미지 지도의 중심좌표
+							level: 3, // 이미지 지도의 확대 레벨
+							marker: marker // 이미지 지도에 표시할 마커
+						};
+				console.log(staticMapOption)
+
+				// 이미지 지도를 생성합니다
+				var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+
+
+
+
+			});
+		});
 	});
 
-	// 마커가 지도 위에 표시되도록 설정합니다
-	marker.setMap(map);
-
-	// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-	kakao.maps.event.addListener(map, 'dragend', function () {
-
-		// 지도 중심좌표를 얻어옵니다
-		var latlng = map.getCenter();
-
-		var message = '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
-		message += '경도는 ' + latlng.getLng() + ' 입니다';
-
-		// var resultDiv = document.getElementById('result');
-		// resultDiv.innerHTML = message;
-
-		console.log(message);
-	});
-	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-	// marker.setMap(null);
-
-	function panTo() {
-		// 이동할 위도 경도 위치를 생성합니다
-		var moveLatLon = new kakao.maps.LatLng(34.70174173174594, 127.75758201900709);
-
-		// 지도 중심을 부드럽게 이동시킵니다
-		// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-		map.panTo(moveLatLon);
-	}
-
-	const pic = document.querySelectorAll(".program-img");
-	pic.forEach(e => {
-		e.addEventListener("click", panTo);
-	})
 </script>
-
 </html>

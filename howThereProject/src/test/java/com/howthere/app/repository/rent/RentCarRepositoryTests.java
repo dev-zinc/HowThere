@@ -42,18 +42,49 @@ public class RentCarRepositoryTests {
     // 렌트카 회사 등록
     @Test
     public void rentCarCompany_save_test(){
-        RentCarCompany rentCarCompany = RentCarCompany.builder().rentCarCompanyName("A회사").rentCarCompanyAddress(
-                Address.builder().address("서울").addressDetail("강동구").latitude(33.2).longitude(22.1).build()).build();
+        RentCarCompany rentCarCompany1 = RentCarCompany.builder()
+                .rentCarCompanyName("정도인터내셔널㈜")
+                .rentCarCompanyAddress(
+                Address.builder()
+                        .address("강원도 원주시")
+                        .addressDetail("소초면 장양리 54")
+                        .latitude(37.42104097).longitude(127.97533700)
+                        .build())
+                .build();
 
-        rentCarCompanyRepository.save(rentCarCompany);
+        rentCarCompanyRepository.save(rentCarCompany1);
+
+        RentCarCompany rentCarCompany2 = RentCarCompany.builder()
+                .rentCarCompanyName("현대디씨렌트카㈜")
+                .rentCarCompanyAddress(
+                Address.builder()
+                        .address("강원도 철원군")
+                        .addressDetail("동송읍 이평리 840-88")
+                        .latitude(38.20662719).longitude(127.2173654)
+                        .build())
+                .build();
+
+        rentCarCompanyRepository.save(rentCarCompany2);
+
+        RentCarCompany rentCarCompany3 = RentCarCompany.builder()
+                .rentCarCompanyName("로또렌트카㈜")
+                .rentCarCompanyAddress(
+                Address.builder()
+                        .address("강원도 철원군 ")
+                        .addressDetail("갈말읍 군탄리 961-3")
+                        .latitude(38.14821979).longitude(127.3042103)
+                        .build())
+                .build();
+
+        rentCarCompanyRepository.save(rentCarCompany3);
     }
 
     // 렌트카 등록
     @Test
     public void rentCar_save_test() {
-        for (int i=0; i<5; i++){
+        for (int i=6; i<15; i++){
             RentCar rentCar = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findById(1L).get())
                     .rentCarName("아반떼")
                     .rentCarPrice(100000)
                     .rentCarType(RentCarType.CompactCar)
@@ -61,11 +92,21 @@ public class RentCarRepositoryTests {
             rentCarRepository.save(rentCar);
         }
 
+        for (int i=0; i<6; i++){
+            RentCar rentCar = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
+                    .rentCarName("소나타")
+                    .rentCarPrice(150000)
+                    .rentCarType(RentCarType.mediumSizedCar)
+                    .build();
+            rentCarRepository.save(rentCar);
+        }
+
         for (int i=6; i<15; i++){
             RentCar rentCar = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(5L).get())
+                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
                     .rentCarName("산타페")
-                    .rentCarPrice(100000)
+                    .rentCarPrice(200000)
                     .rentCarType(RentCarType.SUV)
                     .build();
             rentCarRepository.save(rentCar);
@@ -76,14 +117,6 @@ public class RentCarRepositoryTests {
     // 렌트카 예약
     @Test
     public void rentCarPayment_save_test() {
-        RentCarPayment rentCarPayment = RentCarPayment.builder()
-                .member(memberRepository.findById(3L).get())
-                .rentCar(rentCarRepository.findById(42L).get())
-                .startDay(LocalDateTime.now())
-                .endDay(LocalDateTime.of(LocalDate.of(2023,9,4) , LocalTime.now()))
-                .carRentTotalPrice(3000000)
-                .build();
-        rentCarPaymentRepository.save(rentCarPayment);
     }
 
     // 렌트카 조회
@@ -104,6 +137,17 @@ public class RentCarRepositoryTests {
         log.info("---------------------------=====================---------------------========================----------");
         rentCarPaymentRepository.findAllByMemberId_queryDSL(2L).forEach(rentCarPayment -> log.info(rentCarPayment.toString()));
     }
+    // 렌트카 예약 확인
+    @Test
+    public void findOneByIdTest(){
+        log.info("---------------------------=====================---------------------========================----------");
+        log.info(rentCarPaymentRepository.findOneById_queryDSL(21L).get().toString());
+    }
+
+    // 렌트카 예약 수정
+    @Test
+    public void updateRentCarPaymentByRentCar(){
+    }
 
     // 렌트카 클릭시 렌트카와 렌트카 지도 정보
     @Test
@@ -111,10 +155,17 @@ public class RentCarRepositoryTests {
         log.info(rentCarCompanyRepository.findOneByRentCarId(34L).toString());
     }
 
+//========================================================================================================================================
     // 렌트카 리스트
     @Test
     public void findAllRentCarTest() {
         final Slice<RentCar> rentCarPage = rentCarRepository.findAllWithSlice(PageRequest.of(0, 6),RentCarType.SUV);
-        log.info(rentCarPage.getContent().toString());
+        rentCarPage.forEach(rentCar -> log.info(rentCar.getRentCarCompany().toString()));
+    }
+
+    // 렌트카 상세정보
+    @Test
+    public void findOneById() {
+        log.info(rentCarRepository.findOneById_dsl(41L).get().toString());
     }
 }
