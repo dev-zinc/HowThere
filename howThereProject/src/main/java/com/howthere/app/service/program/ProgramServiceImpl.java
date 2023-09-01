@@ -32,8 +32,8 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     @Override
-    public List<ProgramMainDTO> getPrograms() {
-        return programRepository.findAll10();
+    public List<ProgramMainDTO> getPrograms(String region) {
+        return programRepository.findAll10(region);
     }
 
     @Override

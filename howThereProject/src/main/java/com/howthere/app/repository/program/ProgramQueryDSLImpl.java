@@ -9,6 +9,7 @@ import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramListDTO;
 import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.type.Verified;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
@@ -80,12 +81,35 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
 
     @Override
     public Page<ProgramDTO> findAllWithThumbnail(Pageable pageable, Search search) {
+        BooleanBuilder builder = new BooleanBuilder();
+        
+        if(search != null) {
+            if(search.getPlace() != null) {
+                builder.and(program.house.houseAddress.address.contains(search.getPlace()));
+            }
+            if(search.getCheckIn() != null) {
+                builder.and(program.programStartDate.gt(search.getCheckIn()));
+            }
+            if(search.getCheckOut() != null) {
+                builder.and(program.programEndDate.lt(search.getCheckOut()));
+            }
+            if(search.getGuestCnt() != null) {
+                builder.and(program.house.houseMaxHeadCount.loe(search.getGuestCnt()));
+            }
+            if(search.getPetCnt() != null) {
+                builder.and(program.house.houseMaxPetCount.loe(search.getPetCnt()));
+            }
+            builder.and(program.verified.eq(Verified.Y));
+        }
+        
         final List<ProgramDTO> programDTOs = queryDSL
             .select(programDTOQuery)
             .from(program)
+            .innerJoin(house)
+            .on(program.house.id.eq(house.id))
             .leftJoin(houseFile)
             .on(houseFile.thumb.isTrue().and(houseFile.house.id.eq(program.house.id)))
-            .where(program.verified.eq(Verified.Y))
+            .where(builder)
             .offset(pageable.getOffset())
             .limit(pageable.getPageSize())
             .orderBy(program.id.asc())
@@ -95,13 +119,17 @@ public class ProgramQueryDSLImpl implements ProgramQueryDSL {
     }
 
     @Override
-    public List<ProgramMainDTO> findAll10() {
+    public List<ProgramMainDTO> findAll10(String region) {
+        BooleanExpression hasRegion = region != null 
+                ? program.house.houseAddress.address.contains(region).and(program.verified.eq(Verified.Y)) 
+                : null;
+        
         return queryDSL
                 .select(programMainDTO)
                 .from(program)
                 .join(house).on(program.house.id.eq(house.id))
                 .leftJoin(houseFile).on(program.house.id.eq(houseFile.house.id))
-                .where(program.verified.eq(Verified.Y))
+                .where(hasRegion)
                 .limit(10)
                 .fetch();
     }

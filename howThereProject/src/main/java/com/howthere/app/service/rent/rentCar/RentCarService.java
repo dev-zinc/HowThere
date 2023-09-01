@@ -5,17 +5,15 @@ import com.howthere.app.domain.rent.*;
 import com.howthere.app.domain.rent.RentCarFileDTO;
 import com.howthere.app.entity.file.RentCarFile;
 import com.howthere.app.entity.rent.RentCar;
-import com.howthere.app.type.RentCarType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public interface RentCarService {
     // 렌트카 리스트 갖고오기
-    public Slice<RentCarDTO> getRentCarList(Pageable pageable);
+    public Slice<RentCarDTO> getRentCarList(Pageable pageable,String selectedLocal, String selectedCar);
 
     // 렌트카 상세 정보 갖고오기
     public RentCarDTO getRentCarById(Long id);

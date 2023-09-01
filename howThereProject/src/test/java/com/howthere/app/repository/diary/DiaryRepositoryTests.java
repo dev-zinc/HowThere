@@ -5,20 +5,15 @@ import com.howthere.app.embed.Address;
 import com.howthere.app.entity.diary.Diary;
 import com.howthere.app.entity.house.House;
 import com.howthere.app.entity.member.Member;
-import com.howthere.app.repository.diary.DiaryRepository;
 import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
-import com.howthere.app.service.diary.DiaryService;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -27,8 +22,6 @@ import java.util.Optional;
 public class DiaryRepositoryTests {
     @Autowired
     private DiaryRepository diaryRepository;
-    @Autowired
-    private DiaryService diaryService;
     @Autowired
     private MemberRepository memberRepository;
     @Autowired
@@ -58,16 +51,16 @@ public class DiaryRepositoryTests {
 
 //        final Member member = memberRepository.findById(2L).orElseThrow(RuntimeException::new);
 //        final House house = houseRepository.findById(3L).orElseThrow(RuntimeException::new);
-//
-//        for (int i=0; i<150; i++) {
-//            Diary diary = Diary.builder()
-//                    .diaryTitle("title" + (i + 1))
-//                    .diaryContent("content" + (i + 1))
-//                    .member(member)
-//                    .house(house)
-//                    .build();
-//            diaryRepository.save(diary);
-//        }
+
+        for (int i=0; i<150; i++) {
+            Diary diary = Diary.builder()
+                    .diaryTitle("title" + (i + 1))
+                    .diaryContent("content" + (i + 1))
+                    .member(member)
+                    .house(house)
+                    .build();
+            diaryRepository.save(diary);
+        }
     }
 
     @Test
@@ -87,9 +80,7 @@ public class DiaryRepositoryTests {
     @Test
     public void updateByIdTest(){
         Optional<Diary> foundDiary = diaryRepository.findById(104L);
-        foundDiary.ifPresent(diary -> {
-            diaryRepository.update(diary);
-        });
+        foundDiary.ifPresent(diary -> diaryRepository.update(diary));
 
     }
 
@@ -97,8 +88,6 @@ public class DiaryRepositoryTests {
     @Test
     public  void updateViewCountTest(){
         Optional<Diary> foundDiary = diaryRepository.findById(154L);
-        foundDiary.ifPresent(diary -> {
-            diaryRepository.updateViewCount(diary);
-        });
+        foundDiary.ifPresent(diary -> diaryRepository.updateViewCount(diary));
     }
 }

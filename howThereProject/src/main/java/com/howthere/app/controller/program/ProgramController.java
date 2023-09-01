@@ -4,8 +4,8 @@ import com.howthere.app.domain.Search;
 import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.domain.program.ProgramDTO;
 import com.howthere.app.domain.program.ProgramReserveDTO;
-import com.howthere.app.domain.rent.RentCarPaymentDTO;
 import com.howthere.app.domain.rent.RentCarDTO;
+import com.howthere.app.domain.rent.RentCarPaymentDTO;
 import com.howthere.app.service.program.ProgramReservationService;
 import com.howthere.app.service.program.ProgramService;
 import com.howthere.app.service.rent.payment.RentCarPaymentService;
@@ -51,10 +51,11 @@ public class ProgramController {
         final Page<ProgramDTO> programs = programService.getProgramsWithThumbnail(
             pageable, search);
         log.info(programs.toString());
+        log.info(search.toString());
         mv.addObject("pagination", programs);
         return mv;
     }
-
+    
     // http://localhost:10000/program/detail
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam Long id, HttpSession session, ModelAndView mv) {
@@ -85,12 +86,25 @@ public class ProgramController {
 
     // http://localhost:10000/program/rent
     @GetMapping("/rent")
-    public ModelAndView rent(HttpServletRequest req, ModelAndView mv, @PageableDefault(page = 0,size = 6) Pageable pageable, Model model) {
+    public ModelAndView rent(HttpServletRequest req, ModelAndView mv, @PageableDefault(page = 0,size = 6) Pageable pageable, @RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar) {
+
+
         mv.setViewName("program/rent");
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable);
-        model.addAttribute("rentCars", rentCarDTOS);
-        rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
+        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
+        mv.addObject("rentCars", rentCarDTOS);
         return mv;
+    }
+
+    @GetMapping("api/rent")
+    @ResponseBody
+    public Slice<RentCarDTO> getList(@PageableDefault(page = 0, size = 6) Pageable pageable,@RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar){
+        final Slice<RentCarDTO> rentCarDTOS = rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
+        log.info("===========================================================");
+        log.info("hasNext(): {}", rentCarDTOS.hasNext());
+        log.info("SelectedLocal: {}", selectedLocal);
+        log.info("SelectedCar: {}", selectedCar);
+        rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
+        return rentCarDTOS;
     }
 
 
@@ -113,8 +127,8 @@ public class ProgramController {
     // 테스트 페이지 렌트카 리스트
     // http://localhost:10000/program/rent_test
     @GetMapping("/rent_test")
-    public String rentCarListTest(@PageableDefault(page = 0,size = 6) Pageable pageable, Model model){
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable);
+    public String rentCarListTest(@PageableDefault(page = 0,size = 6) Pageable pageable, Model model,@RequestParam(value = "selectedLocal",required = false) String selectedLocal,  @RequestParam(value = "selectedCar",required = false) String selectedCar){
+        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable,selectedLocal,selectedCar);
         model.addAttribute("rentCars", rentCarDTOS);
         rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
         return "/test/rent_test_list.html";

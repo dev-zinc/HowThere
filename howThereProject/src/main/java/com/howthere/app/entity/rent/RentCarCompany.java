@@ -14,13 +14,13 @@ public class RentCarCompany extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    private String RentCarCompanyName;
+    private String rentCarCompanyName;
     @Embedded
-    private Address RentCarCompanyAddress;
+    private Address rentCarCompanyAddress;
 
     @Builder
     public RentCarCompany(String rentCarCompanyName, Address rentCarCompanyAddress) {
-        RentCarCompanyName = rentCarCompanyName;
-        RentCarCompanyAddress = rentCarCompanyAddress;
+        this.rentCarCompanyName = rentCarCompanyName;
+        this.rentCarCompanyAddress = rentCarCompanyAddress;
     }
 }

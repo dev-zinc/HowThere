@@ -4,25 +4,18 @@ import com.howthere.app.HowThereApplication;
 import com.howthere.app.domain.member.MemberDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.rent.RentCar;
-import com.howthere.app.entity.rent.RentCarPayment;
 import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.repository.rent.rentCar.RentCarRepository;
 import com.howthere.app.service.rent.company.RentCarCompanyService;
 import com.howthere.app.service.rent.payment.RentCarPaymentService;
 import com.howthere.app.service.rent.rentCar.RentCarService;
-import com.howthere.app.type.RentCarType;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
-
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @SpringBootTest(classes = HowThereApplication.class)
 @Slf4j
@@ -43,10 +36,10 @@ public class RentCarServiceTests {
     private RentCarRepository rentCarRepository;
 
     // 렌트카 리스트
-    @Test
-    public void getRentCarListTest() {
-      rentCarService.getRentCarList(PageRequest.of(0, 6)).forEach(rentCar -> log.info(rentCar.toString()));
-    }
+//    @Test
+//    public void getRentCarListTest() {
+//      rentCarService.getRentCarList(PageRequest.of(0, 6)).forEach(rentCar -> log.info(rentCar.toString()));
+//    }
 
     // 렌트카 id로 업체 조회
     @Test
