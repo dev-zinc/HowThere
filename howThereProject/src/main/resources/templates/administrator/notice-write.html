@@ -20,9 +20,9 @@
             <div class="board-body">
                 <div class="board-list-wrap" style="overflow: auto">
                     <div class="board-view">
-                        <form th:action="${announcementDetailDTO.adminId != null ? 'modify' : 'write'}" th:object="${announcementDetailDTO}" method="post">
+                        <form th:action="${announcementDetailDTO != null ? 'modify' : 'write'}" method="post">
                             <div class="name">
-                                <h2 th:text="|공지사항 ${announcementDetailDTO.adminId != null ? '수정' : '작성'}|"></h2>
+                                <h2 th:text="|공지사항 ${announcementDetailDTO != null ? '수정' : '작성'}|"></h2>
                                 <div>
                                     <input type="button" class="button-list" value="목록으로">
                                     <input type="submit" class="button-write" value="게시하기">
@@ -32,22 +32,37 @@
                                 <div class="input-title">
                                     <dl>
                                         <dt>제목</dt>
-                                        <dd><input type="text" th:field="*{announcementTitle}" name="announcementTitle" placeholder="제목을 입력하세요"/></dd>
+                                        <dd>
+                                            <input type="text"
+                                                   th:value="${announcementDetailDTO != null ? announcementDetailDTO.announcementTitle : ''}"
+                                                   name="announcementTitle" placeholder="제목을 입력하세요"/>
+                                        </dd>
                                     </dl>
                                 </div>
                                 <div class="input-content">
                                     <dl>
                                         <dt>내용</dt>
                                         <dd><label>
-                                            <textarea class="announcementContent" th:field="*{announcementContent}" name="announcementContent" placeholder="내용을 입력하세요"></textarea>
+                                            <textarea class="announcementContent"
+                                                      th:text="${announcementDetailDTO != null ? announcementDetailDTO.announcementContent : ''}"
+                                                      name="announcementContent" placeholder="내용을 입력하세요"></textarea>
                                         </label></dd>
                                     </dl>
                                 </div>
-                                <input type="text" name="id" th:value="${announcementDetailDTO.id != null ? announcementDetailDTO.id : ''}" hidden="hidden">
-                                <input type="text" name="fileName" th:value="${announcementDetailDTO.fileName != null ? announcementDetailDTO.fileName : ''}" class="fileName" hidden="hidden">
-                                <input type="text" name="fileUuid" th:value="${announcementDetailDTO.fileUuid != null ? announcementDetailDTO.fileUuid : ''}" class="fileUuid" hidden="hidden">
-                                <input type="text" name="filePath" th:value="${announcementDetailDTO.filePath != null ? announcementDetailDTO.filePath : ''}" class="filePath" hidden="hidden">
-                                <input type="text" name="fileSize" th:value="${announcementDetailDTO.fileSize != null ? announcementDetailDTO.fileSize : ''}" class="fileSize" hidden="hidden">
+                                <input type="text" name="id" th:value="${announcementDetailDTO != null ? announcementDetailDTO.id : ''}" hidden="hidden">
+                                <th:block th:if="${announcementDetailDTO != null}">
+                                    <input type="text" name="fileName" th:value="${announcementDetailDTO.fileName != null ? announcementDetailDTO.fileName : ''}" class="fileName" hidden="hidden">
+                                    <input type="text" name="fileUuid" th:value="${announcementDetailDTO.fileUuid != null ? announcementDetailDTO.fileUuid : ''}" class="fileUuid" hidden="hidden">
+                                    <input type="text" name="filePath" th:value="${announcementDetailDTO.filePath != null ? announcementDetailDTO.filePath : ''}" class="filePath" hidden="hidden">
+                                    <input type="text" name="fileSize" th:value="${announcementDetailDTO.fileSize != null ? announcementDetailDTO.fileSize : ''}" class="fileSize" hidden="hidden">
+                                </th:block>
+                                <th:block th:unless="${announcementDetailDTO != null}">
+                                    <input type="text" name="fileName" class="fileName" hidden="hidden">
+                                    <input type="text" name="fileUuid" class="fileUuid" hidden="hidden">
+                                    <input type="text" name="filePath" class="filePath" hidden="hidden">
+                                    <input type="text" name="fileSize" class="fileSize" hidden="hidden">
+                                </th:block>
+
                                 <div class="input-file">
                                     <dl style="display: flex; flex-direction: row">
                                         <dt>파일 첨부</dt>

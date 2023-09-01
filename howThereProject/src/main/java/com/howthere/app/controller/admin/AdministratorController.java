@@ -1,28 +1,19 @@
 package com.howthere.app.controller.admin;
 
-import com.howthere.app.domain.admin.AnnouncementDTO;
 import com.howthere.app.domain.admin.AnnouncementDetailDTO;
 import com.howthere.app.domain.admin.AnswerDTO;
 import com.howthere.app.domain.admin.QuestionDTO;
 import com.howthere.app.domain.member.MemberDTO;
-import com.howthere.app.entity.member.Member;
 import com.howthere.app.service.admin.AnnouncementService;
 import com.howthere.app.service.admin.AnswerService;
 import com.howthere.app.service.admin.QuestionService;
-import com.howthere.app.service.house.HouseService;
-import com.howthere.app.service.member.MemberService;
-import com.howthere.app.service.program.ProgramReservationService;
-import com.howthere.app.service.program.ProgramService;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpSession;
-import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @Slf4j
