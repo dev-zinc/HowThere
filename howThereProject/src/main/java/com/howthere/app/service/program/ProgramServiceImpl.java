@@ -52,6 +52,8 @@ public class ProgramServiceImpl implements ProgramService {
         ).collect(Collectors.toList());
 
         return ProgramDTO.builder()
+            .id(program.getId())
+            .houseId(program.getHouse().getId())
             .programAddress(program.getHouse().getHouseAddress().getAddress())
             .programAddressDetail(program.getHouse().getHouseAddress().getAddressDetail())
             .programName(program.getProgramName())
