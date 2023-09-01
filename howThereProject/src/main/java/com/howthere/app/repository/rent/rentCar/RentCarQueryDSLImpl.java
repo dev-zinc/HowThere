@@ -27,10 +27,7 @@ public class RentCarQueryDSLImpl implements RentCarQueryDSL {
     private final JPAQueryFactory query;
 
     @Override
-    public Slice<RentCar> findAllWithSlice(Pageable pageable, RentCarType rentCarType) {
-                if (rentCarType == null){
-                    rentCarType = RentCarType.CompactCar;
-                }
+    public Slice<RentCar> findAllWithSlice(Pageable pageable) {
 
                 final List<RentCar> rentCarList =
                 query.selectFrom(rentCar)
@@ -39,7 +36,6 @@ public class RentCarQueryDSLImpl implements RentCarQueryDSL {
                 .orderBy(rentCar.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize() +1)
-                .where(rentCar.rentCarType.eq(rentCarType))
                 .fetch();
 
                 boolean hasNext = false;

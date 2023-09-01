@@ -82,34 +82,82 @@ public class RentCarRepositoryTests {
     // 렌트카 등록
     @Test
     public void rentCar_save_test() {
-        for (int i=6; i<15; i++){
-            RentCar rentCar = RentCar.builder()
-                    .rentCarCompany(rentCarCompanyRepository.findById(1L).get())
+        for (int i=6; i<6; i++){
+            RentCar rentCar1 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
                     .rentCarName("아반떼")
                     .rentCarPrice(100000)
                     .rentCarType(RentCarType.CompactCar)
                     .build();
-            rentCarRepository.save(rentCar);
+            rentCarRepository.save(rentCar1);
+
+            RentCar rentCar2 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
+                    .rentCarName("소나타")
+                    .rentCarPrice(150000)
+                    .rentCarType(RentCarType.mediumSizedCar)
+                    .build();
+            rentCarRepository.save(rentCar2);
+
+            RentCar rentCar3 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarName("산타페")
+                    .rentCarPrice(200000)
+                    .rentCarType(RentCarType.SUV)
+                    .build();
+            rentCarRepository.save(rentCar3);
         }
 
         for (int i=0; i<6; i++){
-            RentCar rentCar = RentCar.builder()
+            RentCar rentCar1 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
+                    .rentCarName("아반떼")
+                    .rentCarPrice(100000)
+                    .rentCarType(RentCarType.CompactCar)
+                    .build();
+            rentCarRepository.save(rentCar1);
+
+            RentCar rentCar2 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarName("소나타")
+                    .rentCarPrice(150000)
+                    .rentCarType(RentCarType.mediumSizedCar)
+                    .build();
+            rentCarRepository.save(rentCar2);
+
+            RentCar rentCar3 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
+                    .rentCarName("산타페")
+                    .rentCarPrice(200000)
+                    .rentCarType(RentCarType.SUV)
+                    .build();
+            rentCarRepository.save(rentCar3);
+        }
+
+        for (int i=6; i<6; i++){
+            RentCar rentCar1 = RentCar.builder()
+                    .rentCarCompany(rentCarCompanyRepository.findById(4L).get())
+                    .rentCarName("아반떼")
+                    .rentCarPrice(100000)
+                    .rentCarType(RentCarType.CompactCar)
+                    .build();
+            rentCarRepository.save(rentCar1);
+
+            RentCar rentCar2 = RentCar.builder()
                     .rentCarCompany(rentCarCompanyRepository.findById(2L).get())
                     .rentCarName("소나타")
                     .rentCarPrice(150000)
                     .rentCarType(RentCarType.mediumSizedCar)
                     .build();
-            rentCarRepository.save(rentCar);
-        }
+            rentCarRepository.save(rentCar2);
 
-        for (int i=6; i<15; i++){
-            RentCar rentCar = RentCar.builder()
+            RentCar rentCar3 = RentCar.builder()
                     .rentCarCompany(rentCarCompanyRepository.findById(3L).get())
                     .rentCarName("산타페")
                     .rentCarPrice(200000)
                     .rentCarType(RentCarType.SUV)
                     .build();
-            rentCarRepository.save(rentCar);
+            rentCarRepository.save(rentCar3);
         }
 
     }
@@ -159,7 +207,7 @@ public class RentCarRepositoryTests {
     // 렌트카 리스트
     @Test
     public void findAllRentCarTest() {
-        final Slice<RentCar> rentCarPage = rentCarRepository.findAllWithSlice(PageRequest.of(0, 6),RentCarType.SUV);
+        final Slice<RentCar> rentCarPage = rentCarRepository.findAllWithSlice(PageRequest.of(0, 6));
         rentCarPage.forEach(rentCar -> log.info(rentCar.getRentCarCompany().toString()));
     }
 

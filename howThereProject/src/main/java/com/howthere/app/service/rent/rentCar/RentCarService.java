@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public interface RentCarService {
     // 렌트카 리스트 갖고오기
-    public Slice<RentCarDTO> getRentCarList(Pageable pageable, RentCarType rentCarType);
+    public Slice<RentCarDTO> getRentCarList(Pageable pageable);
 
     // 렌트카 상세 정보 갖고오기
     public RentCarDTO getRentCarById(Long id);

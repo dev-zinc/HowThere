@@ -72,7 +72,7 @@ public class ProgramController {
     @GetMapping("/rent")
     public ModelAndView rent(HttpServletRequest req, ModelAndView mv, @PageableDefault(page = 0,size = 6) Pageable pageable, Model model) {
         mv.setViewName("program/rent");
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable, RentCarType.SUV);
+        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable);
         model.addAttribute("rentCars", rentCarDTOS);
         rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
         return mv;
@@ -99,7 +99,7 @@ public class ProgramController {
     // http://localhost:10000/program/rent_test
     @GetMapping("/rent_test")
     public String rentCarListTest(@PageableDefault(page = 0,size = 6) Pageable pageable, Model model){
-        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable, RentCarType.SUV);
+        Slice<RentCarDTO> rentCarDTOS =  rentCarService.getRentCarList(pageable);
         model.addAttribute("rentCars", rentCarDTOS);
         rentCarDTOS.forEach(rentCarDTO -> log.info(rentCarDTO.toString()));
         return "/test/rent_test_list.html";

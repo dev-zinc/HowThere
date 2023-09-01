@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface RentCarQueryDSL {
     // 렌트카 리스트
-    public Slice<RentCar> findAllWithSlice(Pageable pageable, RentCarType rentCarType);
+    public Slice<RentCar> findAllWithSlice(Pageable pageable);
 
     // 렌트카 상세정보
     public Optional<RentCar> findOneById_dsl(Long id);

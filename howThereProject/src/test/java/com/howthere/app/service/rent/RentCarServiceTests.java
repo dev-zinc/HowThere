@@ -45,7 +45,7 @@ public class RentCarServiceTests {
     // 렌트카 리스트
     @Test
     public void getRentCarListTest() {
-      rentCarService.getRentCarList(PageRequest.of(0, 6), RentCarType.SUV).forEach(rentCar -> log.info(rentCar.toString()));
+      rentCarService.getRentCarList(PageRequest.of(0, 6)).forEach(rentCar -> log.info(rentCar.toString()));
     }
 
     // 렌트카 id로 업체 조회
