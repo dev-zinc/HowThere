@@ -71,7 +71,7 @@
                         </th:block>
                         <th:block th:unless="${reserve.confirm.name()} == 'N'">
                             <div class="program-verified" style="color: slateblue">
-                                <button disabled>결제 완료!</button>
+                                <button th:onclick="|location.href='/diary/write/${reserve.houseId}'|">일기 작성</button>
                             </div>
                         </th:block>
                     </div>
