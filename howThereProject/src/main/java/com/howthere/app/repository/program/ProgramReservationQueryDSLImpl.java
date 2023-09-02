@@ -32,7 +32,8 @@ public class ProgramReservationQueryDSLImpl implements ProgramReservationQueryDS
         ExpressionUtils.as(programReservation.program.programEndDate, "programEndDate"),
         ExpressionUtils.as(programReservation.program.programPrice, "programPrice"),
         ExpressionUtils.as(programReservation.program.id, "programId"),
-        programReservation.verified
+        programReservation.verified,
+        programReservation.confirm
     );
 
     @Override

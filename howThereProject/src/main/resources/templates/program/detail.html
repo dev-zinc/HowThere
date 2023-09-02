@@ -417,8 +417,14 @@
                         <input type="hidden" name="houseId" th:value="${program.houseId}">
                         <input type="hidden" name="memberId" th:value="${member.id}">
                     </form>
-                    <button type="button" class="reservation-btn"><span>예약하기</span></button>
-                    <button class="cancle-btn"><span>취소</span></button>
+                    <th:block th:if="${program.verified.name()} == 'Y'">
+                        <button type="button" class="reservation-btn"><span>예약하기</span></button>
+                        <button class="cancle-btn" onclick="location.href='/program/list'"><span>취소</span></button>
+                    </th:block>
+                    <th:block th:unless="${program.verified.name()} == 'Y'">
+                        <button type="button" class="reservation-btn" disabled><span>예약완료</span></button>
+                        <button class="cancle-btn" onclick="location.href='/account/program'"><span>목록으로</span></button>
+                    </th:block>
                 </div>
             </section>
         </div>

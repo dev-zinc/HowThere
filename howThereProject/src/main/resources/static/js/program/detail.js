@@ -36,6 +36,3 @@ document.querySelectorAll('.carousel-item')[0].classList.add('active');
 document.querySelector('.program-price').innerHTML = Number.parseInt(
     program.programPrice).toLocaleString();
 document.querySelector("#price").value = Number.parseInt(document.querySelector("#price").value).toLocaleString();
-document.querySelector(".reservation-btn").addEventListener('click', function(){
-  fetch("/reservation")
-})

@@ -15,6 +15,7 @@ import com.howthere.app.repository.house.HouseRepository;
 import com.howthere.app.repository.member.MemberRepository;
 import com.howthere.app.repository.program.ProgramRepository;
 import com.howthere.app.repository.program.ProgramReservationRepository;
+import com.howthere.app.type.Confirm;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -85,9 +86,10 @@ public class ProgramReservationServiceImpl implements ProgramReservationService 
     }
 
     @Override
-    public void deleteReservation(ProgramReservationDTO reservationDTO) {
+    public void updateReservation(ProgramReservationDTO reservationDTO) {
         final ProgramReservation programReservation = programReservationRepository.findById(
             reservationDTO.getId()).orElseThrow(RuntimeException::new);
-        programReservationRepository.delete(programReservation);
+        programReservation.setConfirm(Confirm.Y);
+        programReservationRepository.save(programReservation);
     }
 }

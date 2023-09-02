@@ -5,6 +5,7 @@ import com.howthere.app.domain.program.ProgramReserveDTO;
 import com.howthere.app.entity.member.Member;
 import com.howthere.app.entity.program.Program;
 import com.howthere.app.entity.program.ProgramReservation;
+import com.howthere.app.type.Confirm;
 import com.howthere.app.type.Verified;
 import java.util.List;
 import java.util.Optional;
@@ -28,10 +29,10 @@ public interface ProgramReservationService {
             .member(member)
             .program(program)
             .verified(Verified.N)
+            .confirm(Confirm.N)
             .build();
     }
 
     Page<ProgramReservationDTO> getReservationByMemberId(Pageable pageable, Long id);
-
-    void deleteReservation(ProgramReservationDTO reservationDTO);
+    void updateReservation(ProgramReservationDTO reservationDTO);
 }

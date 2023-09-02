@@ -7,7 +7,8 @@
 		name="viewport">
 	<meta content="ie=edge" http-equiv="X-UA-Compatible">
 	<title>렌트카 신청</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<link href="/css/layout/index.css" rel="stylesheet">
 	<link href="/css/program/rent.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -271,7 +272,7 @@
 				success: function(rentCars) {
 					container.innerHTML = ``;
 
-					// $("#more_2").
+					$("#more_2").removeClass('d-')
 
 					let text = ``;
 					rentCars.content.forEach(rentCar => {

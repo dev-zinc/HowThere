@@ -85,6 +85,7 @@ public class ProgramServiceImpl implements ProgramService {
             .hostEmail(hostEmail)
             .hostProfile(hostProfile)
             .between(between)
+            .verified(program.getVerified())
             .build();
     }
 

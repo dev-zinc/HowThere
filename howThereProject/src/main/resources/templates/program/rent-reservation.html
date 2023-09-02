@@ -45,16 +45,19 @@
 																	<button aria-label="Slide 2" class="" data-bs-slide-to="1" data-bs-target="#carouselIndicators" type="button"></button>
 																	<button aria-current="true" aria-label="Slide 3" class="active" data-bs-slide-to="2" data-bs-target="#carouselIndicators" type="button"></button>
 																</div>
-																<div class="carousel-inner">
-																	<div class="carousel-item">
-																		<img alt="미니" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
-																	</div>
-																	<div class="carousel-item">
-																		<img alt="경차" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">
-																	</div>
-																	<div class="carousel-item active">
-																		<img alt="미니" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">
-																	</div>
+
+																<div class="carousel-inner" >
+                                                                    <th:block th:each="file, i : ${rentCar.rentCarFileDTOS}" >
+                                                                        <div th:class="|carousel-item ${i.index==0?'active':''}|">
+                                                                            <img alt="미니" class="car-img" th:src="${file.filePath}">
+                                                                        </div>
+                                                                    </th:block>
+<!--																	<div class="carousel-item">-->
+<!--																		<img alt="경차" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/economy.png">-->
+<!--																	</div>-->
+<!--																	<div class="carousel-item active">-->
+<!--																		<img alt="미니" class="car-img" src="https://logos.skyscnr.com/images/carhire/seo/deals-images/mini.png">-->
+<!--																	</div>-->
 																</div>
 																<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselIndicators" type="button">
 																	<span aria-hidden="true" class="carousel-control-prev-icon"></span>
@@ -242,7 +245,7 @@
                     // 요청 성공 시 실행되는 함수
                     if(response.response == "success"){
                         alert("예약 되었습니다");
-                        location.href = "http://localhost:10000/account/payment";
+                        location.href = "http://localhost:10000/account/menu";
                     }
 
                 },
