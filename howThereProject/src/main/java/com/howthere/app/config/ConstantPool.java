@@ -1,7 +1,7 @@
 package com.howthere.app.config;
 
 public class ConstantPool {
-    private static final String WINDOW_FILE_ROOT = "C:/upload";
+    private static final String WINDOW_FILE_ROOT = "C:/upload/";
     private static final String LINUX_FILE_ROOT = "/upload";
 
     public static String getFileRootPath() {

@@ -202,7 +202,7 @@
                                      style="--dls-liteimage-height: 254px; --dls-liteimage-width: auto; --dls-liteimage-background-image: url('data:image/png;base64,null'); --dls-liteimage-background-size: cover;">
                                     <picture>
                                         <img aria-hidden="true" loading="eager"
-                                             th:src="|/host/load-image?filePath=${program.thumbnail}|"
+                                             th:src="|/files/display?fileName=/2023/${#strings.substring(program.thumbnail, 15)}|"
                                              style="--dls-liteimage-object-fit: cover;">
                                     </picture>
                                 </div>

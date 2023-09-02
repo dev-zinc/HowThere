@@ -57,12 +57,13 @@ $(document).ready(getList());
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     const windowHeight = window.innerHeight;
-    const bodyHeight = document.body.scrollHeight;
-    // console.log(currentScroll + windowHeight + 20, bodyHeight);
-    if(currentScroll + windowHeight - 0.5 >= bodyHeight){
+    // const bodyHeight = document.body.scrollHeight;
+    console.log(currentScroll + windowHeight, bodyHeight);
+    if(currentScroll + windowHeight + 1 >= bodyHeight){
         // currentScroll + windowHeight >= bodyHeight
         page++;
         getList();
     }
 });
 
+// console.log('들어옴');

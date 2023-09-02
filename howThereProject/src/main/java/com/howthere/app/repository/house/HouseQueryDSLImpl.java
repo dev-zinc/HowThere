@@ -70,7 +70,7 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
     public Page<HouseDTO> findAllByIdWithPaging(Pageable pageable, Long memberId) {
         final List<HouseDTO> houseDTOs =
             query.select(editHouseDTO)
-                .from(house)
+                .from(house)    
                 .leftJoin(houseFile)
                 .on(house.id.eq(houseFile.house.id)
                     .and(house.member.id.eq(memberId)))
@@ -79,7 +79,7 @@ public class HouseQueryDSLImpl implements HouseQueryDSL {
                 .limit(pageable.getPageSize())
                 .orderBy(house.id.desc())
                 .fetch().stream()
-                    .peek(dto -> dto.setThumbnail(dto.getThumbnail().replaceAll("\\\\", "/")))
+                    .peek(dto -> dto.setThumbnail("2023/"+dto.getThumbnail().substring(15)))
                     .collect(Collectors.toList());
         Long count = query.select(house.count())
             .from(house)

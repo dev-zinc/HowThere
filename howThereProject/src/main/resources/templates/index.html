@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="house-img-wrap">
                                         <th:block th:if="${program.filePath != null}">
-                                            <img th:src="|/files/display?fileName=${program.filePath}t_${program.fileUuid}_${program.fileName}|" alt="">
+                                            <img th:src="|/files/display?fileName=/2023/${#strings.substring(program.filePath, 15)}/${program.fileUuid}|" alt="">
                                         </th:block>
                                     </div>
                                 </div>

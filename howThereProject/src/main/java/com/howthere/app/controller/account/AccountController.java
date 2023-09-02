@@ -6,7 +6,6 @@ import com.howthere.app.domain.program.ProgramReservationDTO;
 import com.howthere.app.service.account.AccountService;
 import com.howthere.app.service.program.ProgramPaymentService;
 import com.howthere.app.service.program.ProgramReservationService;
-import com.howthere.app.type.RentCarType;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +33,9 @@ public class AccountController {
 
     //http://localhost:10000/account/menu
     @GetMapping("menu")
-    public void menu() {
-        ;
+    public void menu(HttpSession session, Model model) {
+        final MemberDTO member = (MemberDTO) session.getAttribute("member");
+        model.addAttribute("member", member);
     }
 
     //http://localhost:10000/account/setting

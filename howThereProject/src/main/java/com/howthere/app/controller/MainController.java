@@ -4,6 +4,7 @@ import com.howthere.app.domain.program.ProgramMainDTO;
 import com.howthere.app.service.diary.DiaryService;
 import com.howthere.app.service.program.ProgramService;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,10 @@ public class MainController {
     @GetMapping("api/list")
     @ResponseBody
     public List<ProgramMainDTO> getList(@RequestParam String region) {
-        List<ProgramMainDTO> programs = programService.getPrograms(region);
+        List<ProgramMainDTO> programs = programService.getPrograms(region).stream().peek(programMainDTO -> 
+            programMainDTO.setFilePath("2023/"+programMainDTO.getFilePath().substring(15)))
+                .collect(Collectors.toList());
+        
         log.info(programs.toString());
         return programs;
     }

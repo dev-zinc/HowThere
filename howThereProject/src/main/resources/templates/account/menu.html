@@ -22,8 +22,9 @@
                     <div class="info-wrap">
                         <h1 tabindex="-1">계정</h1>
                         <div class="info">
-                            <span style="font-weight: 600;">사용자 이름 · </span>
-                            <span>user@email</span>
+                            <span style="font-weight: 600;" th:text="${member.memberName}"></span>
+                            ·
+                            <span th:text="${member.memberEmail}"></span>
                         </div>
                     </div>
                 </section>
@@ -139,4 +140,7 @@
     <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${member}]];
+</script>
 </html>

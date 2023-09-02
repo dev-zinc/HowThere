@@ -50,7 +50,7 @@
                 <div class="program-wrap" th:each="reserve:${pagination.content}">
                     <div class="program-image-wrap" th:onclick="|location.href='@{/program/detail(id=${reserve.programId})}'|">
                         <img aria-hidden="true"
-                             th:src="|/host/load-image?filePath=${reserve.filePath}|"
+                             th:src="|/files/display?fileName=/2023/${#strings.substring(reserve.filePath, 15)}|"
                              style="width: 355px; height: 235px;">
                     </div>
                     <div class="program-text">
@@ -61,15 +61,15 @@
                             <span> - </span>
                             <span th:text="${reserve.programEndDate}"></span>
                         </div>
-                        <th:block th:if="${reserve.confirm.name()} == 'N'">
-                            <div class="program-verified" th:if="${reserve.verified.name()} == 'N'" style="color: #868e96;">
+                        <th:block th:if="${reserve.confirm} == 'N'">
+                            <div class="program-verified" th:if="${reserve.verified} == 'N'" style="color: #868e96;">
                                 <button disabled>접수 대기중</button>
                             </div>
-                            <div class="program-verified" th:unless="${reserve.verified.name()} == 'N'" style="color: #BB84E8">
+                            <div class="program-verified" th:unless="${reserve.verified} == 'N'" style="color: #BB84E8">
                                 <button id="payBtn" th:onclick="pay([[${reserve}]])">결제하기</button>
                             </div>
                         </th:block>
-                        <th:block th:unless="${reserve.confirm.name()} == 'N'">
+                        <th:block th:unless="${reserve.confirm} == 'N'">
                             <div class="program-verified" style="color: slateblue">
                                 <button th:onclick="|location.href='/diary/write/${reserve.houseId}'|">일기 작성</button>
                             </div>

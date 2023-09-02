@@ -79,6 +79,8 @@ public class HostController {
     @GetMapping("hosting")
     public void hosting(@RequestParam(value = "id") Long id, Model model) {
         final HouseDTO house = houseService.getHouse(id);
+        house.setThumbnail("2023/" + house.getThumbnail().substring(15));
+        log.info(house.getThumbnail());
         model.addAttribute("house", house);
     }
 

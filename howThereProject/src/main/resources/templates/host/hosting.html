@@ -78,7 +78,7 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item" th:each="image:${house.fileList}">
                                         <img alt="..."
-                                             class="d-block w-100" th:src="|/host/load-image?filePath=${image}|">
+                                             class="d-block w-100" th:src="|/host/load-image?filePath=/2023/${#strings.substring(image, 15, )}|">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" data-bs-slide="prev"
