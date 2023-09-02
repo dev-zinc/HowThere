@@ -2,9 +2,9 @@ const $writeButton = $('#writeDiary');
 const $programListButton = $('#programList');
 
 $writeButton.on('click', function () {
-    location.href = "/diary/write";
+    location.href = "/account/program";
 });
 
 $programListButton.on('click', function () {
-    location.href = "/account/program";
+    location.href = "/program/list";
 });

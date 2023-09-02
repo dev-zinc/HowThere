@@ -1,5 +1,6 @@
 package com.howthere.app.domain.program;
 
+import com.howthere.app.type.Confirm;
 import com.howthere.app.type.Verified;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
